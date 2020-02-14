@@ -1,0 +1,1175 @@
+Файл БЗУ для Ubuntu 18.04 v2.4.7 (Безумные Записки Убунтолога) 
+
+0.ВОЗВРАЩЕНИЕ ВАНИЛЬНОГО GNOME 3
+
+1.ОБНОВИТЬ СИСТЕМУ И GNOME
+sudo apt-add-repository -y ppa:gnome3-team/gnome3-staging
+sudo apt upgrade
+sudo apt dist-upgrade
+
+Автор: Яцына Михаил
+
+
+2.УДАЛЕНИЕ ЛИШНЕГО МУСОРА ИЗ GNOME, ПУТЕМ УДАЛЕНИЯ ЕГО САМОГО И УСТАНОВКИ ОСНОВНОЙ ВЕРСИИ GNOME-CORE.
+ВНИМАНИЕ: это лучше делать на чистой установке, в других случаях можно убить или повредить систему.
+
+sudo apt remove --purge -y gnome
+sudo apt clean
+sudo apt autoremove -y
+sudo apt install gnome-core -y
+
+Автор: Сарвилин Михаил
+
+2.1.ВОЗВРАЩЕНИЕ КЛАССИЧЕСКОЙ СЕССИИ
+sudo apt install -y --reinstall gnome-session gnome-session-wayland
+
+2.2.УСТАНОВКА ТВИК УТИЛИТЫ:
+sudo apt install -y gnome-tweak-tool
+
+2.3.ВЕРНУТЬ ДОПОЛНЕНИЯ:
+sudo apt install -y chrome-gnome-shell
+Список дополнений (на сайте: https://extensions.gnome.org/local/)
+ВНИМАНИЕ НЕКОТОРЫЕ ГЛЮЧАТ С NVIDIA, А НЕКТОРЫЕ С AMD
+- Appfolders Management extension - создание папок в главном меню программ
+- Applications Menu - включение меню программ вместо обзор( как в gnome2)
+- Caffeine - не дает ubuntu уйти в сон, если идет просмотр полно экранного видео
+- Dash to Dock - изменения расположения и содержания Дока
+- No Topleft Hot Corner - отключает вызов меню программ при наведении в верхний левый угол мышкой
+- OpenWeather - погода на верхней панели
+- Places Status Indicator - быстрый переход в нужный диск\папку nautlus
+- Removable Drive Menu - меню usb- диски\фешки
+- Sensory Perception - быстрый просмотр сенсоров температуры
+- cpufreq by konkor - индикация и настройка рабочей частоты процессора
+- Sound Settings - быстрый переход к аудио настройкам 
+- TopIcons Plus - иконки программ в верхней панели
+- User Themes - установка сторонних тем
+- Workspace Indicator - индикатор виртуальных рабочих столов
+- Workspaces to Dock - позволяет настроить док рабочих столов, горизонтальный скролинг(удобно с мультитатч текпадом) и другие настройки
+
+Автор: Яцына Михаил
+
+2.4 УСТАНОВИТЬ КЛАСИЧЕСКОЕ ЛОГО UBUNTU GNOME
+sudo apt install plymouth-theme-ubuntu-gnome-logo
+
+Автор: Яцына М.А.
+
+2.5 КЛАССИЧИСКИЕ ЦВЕТА GNOME SHELL В ЗАСТАВКЕ С ВЫБОРОМ ПОЛЬЗАВАТЕЛЯ
+sudo update-alternatives --config gdm3.css
+# и выбрать:   1            /usr/share/gnome-shell/theme/gnome-shell.css   5         ручной режим
+
+Автор: Яцына М.А.
+
+3.ВАЖНЫЕ ДОПОЛНЕНИЯ К UBUNTU
+
+3.1.ТЕМЫ ИКОНОК
+NUMIX
+sudo add-apt-repository -y ppa:numix/ppa
+sudo apt install -y numix-gtk-theme numix-icon-theme-circle
+
+3.2.ПОДДЕРЖКА 32-БИТ БИБЛИОТЕК
+sudo dpkg --add-architecture i386
+sudo apt install -y libc6:i386 libasound2:i386 libasound2-data:i386 libasound2-plugins:i386 libgtk2.0-0:i386 libsdl2-2.0-0:i386 libsdl2-image-2.0-0:i386 libfreetype6:i386 libcurl3:i386
+
+3.3.КОДАКИ, ДОПОЛНЕНИЯ
+sudo apt install -y ubuntu-restricted-extras libavcodec-extra libdvd-pkg browser-plugin-freshplayer-pepperflash build-essential libgtk2.0-dev cmake gparted mono* 
+
+3.4.АРХИВАТОРЫ
+sudo apt install -y p7zip-rar rar unrar unace arj cabextract
+
+3.5.ПАКЕТ JDK, JRE И ПЛАГИН ДЛЯ БРАУЗЕРА
+sudo add-apt-repository -y ppa:webupd8team/java 
+sudo apt install -y oracle-java8-installer
+
+3.6 ОБНОВЛЕНИЕ МИКРОКОДА INTEL
+sudo apt install --reinstall intel-microcode
+
+3.7 ОБНОВЛЕНИЕ МИКРОКОДА AMD
+sudo apt install --reinstall amd64-microcode
+
+Автор: Яцына Михаил, Юрка NSK
+
+
+
+4.ОБНОВЛЕНИЕ ДРАЙВЕРОВ
+
+4.1.NVIDIA NATIVE DRIVER
+для ПК:
+sudo add-apt-repository -y ppa:graphics-drivers/ppa
+
+4.1a УСТАНОВКА NVIDIA-396+
+#В новой версии название драйвера изменилось
+sudo apt update
+sudo apt upgrade
+sudo apt install -y nvidia-driver-396*
+
+Автор: Vladimirs Jazvinskis
+
+4.2.ДЛЯ НОУТБУКОВ NVIDIA
+sudo apt install -y nvidia-361 nvidia-settings nvidia-prime
+
+4.3.ДЛЯ НОУТОВ\ПК INTEL\AMD
+sudo add-apt-repository -y ppa:paulo-miguel-dias/pkppa
+
+4.4.ДОПОЛНИТЕЛЬНОЕ ПО ДЛЯ AMD:
+sudo apt install libvulkan1 libvulkan1:i386 libvulkan-dev libvulkan-dev:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 vulkan-utils
+
+Автор: Проект portwine-linux.ru
+
+5.МОНИТОРИНГ СИСТЕМЫ
+
+5.1.ПРОГРАММА PSENSOR
+sudo add-apt-repository -y ppa:jfi/ppa
+sudo apt install -y psensor
+
+Автор: Яцына М.А.
+
+5.2.ПРОГРАММА INXI (РАБОТАЕТ В ТЕРМИНАЛЕ)
+sudo apt install -y inxi
+далее для подробной информации о железе устройства нужно ввеси в терминале: inxi -F
+
+Автор: Яцына М.А.
+
+5.3 УСТАНВОКА GLXOSD - FPS счетчик,время кадра, мониторинг памяти, процессора и видеокарты [ только для X11], работает в OpenGL играх, в steam, в wine]
+собираем из исходников
+
+mkdir GLXOSD
+cd GLXOSD
+sudo apt install git cmake freeglut3 freeglut3-dev
+git clone --recursive https://github.com/nickguletskii/GLXOSD source
+mkdir build
+cd build
+cmake -G "Unix Makefiles" ../source -DINSTALLATION_SUFFIX_32=/lib/ -DINSTALLATION_SUFFIX_64=/lib64/
+make all
+sudo make install
+
+Тестируем
+glxosd glxgears
+
+- для отображения в игра wine, нужно выводить ярлык на рабочий стол и добавлять в его запуск "glxosd " ( например): 
+glxosd /usr/share/playonlinux/playonlinux --run "witcher3" %F
+
+Автор: Яцына М.А.
+
+
+
+6.ОПТИМИЗАЦИЯ И УСКОРЕНИЕ
+
+6.1.СОЗДАНИЕ ФАЙЛА ПОДКАЧКИ ( только для ubuntu 17.04/10 и файловой системы EXT4)
+ 
+#Создание фала и обязтаельно в месте где файловая система ext4(я сделал в папке home, она у меня на разделе ext4), где 4g  это размер, а 4GIB.swap  название файла
+
+sudo fallocate -l 4g /home/4GiB.swap
+
+sudo chmod 600 /home/4GiB.swap # даем спец права на файл
+
+sudo mkswap /home/4GiB.swap  # форматируем файл для свопа
+
+sudo swapon /home/4GiB.swap # задействуем файл как своп
+
+echo '/home/4GiB.swap swap swap defaults 0 0' | sudo tee -a /etc/fstab # добовляем автозагрузку свопа в fstab
+
+free -h - после перезагрузки проверка что своп работает.
+
+6.2.УМЕНЬШЕНИЕ ИСПОЛЬЗОВАНИЯ ФАЙЛА ПОДКАЧКИ(использовать если у вас памяти более 3гб):
+echo -e "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf
+# Параметр ниже использовать только если у вас надежный SSD  и 8Гб+ Памяти
+echo -e "vm.vfs_cache_pressure=1000" | sudo tee -a /etc/sysctl.conf 
+
+6.3.УСКОРЕНИЕ ЗАГРУЗКИ UBUNTU [не работает в 17.10+]
+
+
+6.4.ЗАВОДИМ МУЛЬТИТАЧ ЖЕСТЫ НА ТРЕКПАДЕ( желательно ставить в X-сессии, но работает и в wayland)
+
+# Вначале добавляем своего пользователя в группу input и обязательно выходим из учетной записи и заходим вновь
+sudo gpasswd -a $USER input
+
+# Устанавливаем нужные пакеты для ubuntu 17.10
+sudo apt install xdotool wmctrl libinput-tools
+
+# Собираем из исходников саму утилиту для трекпада и мультитач
+git clone http://github.com/bulletmark/libinput-gestures
+cd libinput-gestures
+sudo ./libinput-gestures-setup install
+
+# Стартуем службу, провермя что работает и видит трекпад,останавливаем, добавляем в авто запуск и снова стартуем
+libinput-gestures-setup start
+(для остановки используем Ctrl + C)
+libinput-gestures-setup autostart
+libinput-gestures-setup start
+
+# По умолчанию работают жесты 2 видов:
+# 1. Смахивание с середины влево\вправо - переключение между виртуальными рабочими столами (3-4 пальца)
+# 2. Смахивание с середины вверх\вниз - суперзум (3-4 пальца)
+# Для настройки можно редактировать этот файл:/etc/libinput-gestures.conf
+# Более подробно о настройке здесь: https://github.com/bulletmark/libinput-gestures
+
+6.4.1.ПРИМЕР ФАЙЛА НАСТРОЕК (/home/$USER/.config/libinput-gestures.conf):
+
+# Configuration file for libinput-gestures.
+#
+# The default configuration file exists at /etc/libinput-gestures.conf
+# свои конфигурации нужно сохранять здесь: /home/$User/.config/libinput-gestures.conf
+#
+# Переключиться на виртуальный рабочий стол в право(работает в  Wayland и Xorg)
+gesture swipe right	_internal ws_down 
+#  Переключиться на виртуальный рабочий стол влево (работает в  Wayland и Xorg)
+gesture swipe left	_internal ws_up
+#
+# включить супер-зум (для возвращения используйте повторно жест)
+gesture swipe up 3	dbus-send --session --type=method_call --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval string:'Main.overview.toggle();' 
+# показать обзор программ (для возвращения используете жест суперзума)
+gesture swipe down 3	xdotool key super+a
+#
+# gesture swipe down 4	xdotool key control+alt+d - дополнительные жесты если ваш трекпад поддерживает 4 касания
+# gesture swipe up 4 	xdotool key alt+Tab - дополнительные жесты если ваш трекпад поддерживает 4 касания
+
+ВНИМАНИЕ: обязательно с этой утилитой используйте дополнение для gnome3: Workspaces to Dock
+
+Автор: Letalis и Яцына М.А.
+
+
+6.5.TLP – LINUX ADVANCED POWER MANAGEMENT(Альтернативное управления питанием в Linux)- ДЛЯ НОУТБУКОВ
+sudo apt install tlp
+
+# Ниже PPA на случай если выдаст ошибку на доступность для установки пакета TLP
+# sudo add-apt-repository -y ppa:linrunner/tlp
+# sudo apt update
+# для удаления: sudo apt remove --autoremove tlp
+
+НАСТРОЙКА
+# После установки запустите службу для теста и проверите статус
+sudo tlp start
+sudo tlp-stat
+# Если нет ошибок останавливаем, удаляем из системы любые другие настройки по управлению питанием процессора и заходим в файл конфигурации
+sudo tlp stop
+sudo update-rc.d -f ondemand remove
+sudo gedit /etc/default/tlp
+
+# Находим в файле строки
+#CPU_SCALING_GOVERNOR_ON_AC=ondemand
+#CPU_SCALING_GOVERNOR_ON_BAT=ondemand
+# И меняем их на
+CPU_SCALING_GOVERNOR_ON_AC=performance
+CPU_SCALING_GOVERNOR_ON_BAT=powersave
+
+# Далее находим
+#CPU_MIN_PERF_ON_AC=0
+#CPU_MAX_PERF_ON_AC=100
+#CPU_MIN_PERF_ON_BAT=0
+#CPU_MAX_PERF_ON_BAT=30
+# И меняем на
+CPU_MIN_PERF_ON_AC=0
+CPU_MAX_PERF_ON_AC=100 # в процентах максимальная мощность процессора при работе от зарядки
+CPU_MIN_PERF_ON_BAT=0
+CPU_MAX_PERF_ON_BAT=45 # в процентах максимальная мощность процессора при работе от батареи, может поиграться с этим значениями
+
+# Расскомментируем следующие строки
+CPU_BOOST_ON_AC=1
+CPU_BOOST_ON_BAT=0
+# Менять ничего не надо, это отключает функцию Turbo boost при работе от батареи и разрешает при подключенной заряде.
+
+# Далее наоборот Закомментируем строки
+#ENERGY_PERF_POLICY_ON_AC=performance
+#ENERGY_PERF_POLICY_ON_BAT=powersave
+
+
+Автор: Яцына М.А.
+
+6.6. ЗАМЕНА NETWORK-MANAGER НА АЛЬТЕРНАТИВНЫЙ МЕНЕДЖЕР
+ 
+sudo apt install wicd
+
+Автор: Яцына М.А.
+
+6.7. УСТАНВОКА PRELOAD – демон, который собирает информацию о наиболее часто используемых программах, и кэширующий их и используемые ими библиотеки, что приводит к повышению скорости загрузки программ. Для установки нужно просто выполнить в терминале
+
+sudo apt-get install preload
+или запустить Центр приложений Ubuntu, найти в нем preload и установить его. После установки preload перезагрузите компьютер и выполните в консоли команды
+
+sudo touch /var/lib/preload/preload.state
+sudo chmod 600 /var/lib/preload/preload.state
+sudo /etc/init.d/preload restart
+Проверить работу Preload можно посмотрев содержимое preload.state
+
+sudo cat /var/lib/preload/preload.state
+Если файл не пуст, значит демон работает.
+
+Настройки preload по умолчанию подходят большинству, поэтому изменять что-либо в файле /etc/preload.conf не обязательно.
+
+Автор: Яцына М.А.
+
+7.ФАЙЛОВЫЕ СИСТЕМЫ
+
+7.1.Для работы с SSD нужно выставить флаги в sudo gedit /etc/fstab:
+ 
+relatime,discard (Defaults - этот убираем)- для EXT4.
+
+ssd,discard (Defaults - этот убираем)  - для btrFS.
+
+# Зачем включать TRIM? Работа SSD заключается в том, что во время сеанса он постоянно пишет на новое место не стирая записанного, поэтому к концу
+# сеанса диск заполняется по принципу работы андроидных систем, на следующий сеанс при старте диск заполнен предыдущим сеансом и его нужно
+# предварительно очистить функцией trim 
+
+Автор: Евгений Сокол, Сарвилин Михаил
+
+8.УЛУЧШЕНИЕ КАЧЕСТВА ЗВУКА
+Открываем 
+sudo gedit /etc/pulse/daemon.conf 
+#Находим строки и заменяем
+resample-method = speex-float-1 на resample-method = src-sinc-medium-quality
+
+default-sample-format = s16le на default-sample-format = s32le
+
+default-sample-rate = 44100 на default-sample-rate = 192000 
+
+alternate-sample-rate = 48000 на alternate-sample-rate = 192000
+
+#Если перед строками стоят ; или # - удаляем эти знаки.
+#Нажимаем в редакторе сохранить и выходим.
+#Открываем
+sudo gedit /usr/share/alsa/alsa.conf
+#Находим строку и заменяем
+defaults.pcm.dmix.rate 192000
+#Нажимаем в редакторе сохранить и выходим.
+Перезагружаемся!
+
+Автор: Яцына М.А.
+
+8.1 ЕСЛИ ПОЯВИЛСЯ ПРОТИВНЫЙ СРИП\СКРЕЖЕТ В ЗВУКЕ
+# Открываем sudo gedit /etc/pulse/daemon.conf 
+#Находим строку и заменяем
+realtime-scheduling = yes и меняем на realtime-scheduling = no
+# Если перед строками стоят ; или # - удаляем эти знаки.
+
+Автор: Гжегож
+
+
+9.ВАЖНЫЕ ПРОГРАММЫ ДЛЯ УЛУЧШЕНИЯ СИСТЕМЫ
+
+9.1.ПРОГРАММА ДЛЯ ОБНОВЛЕНИЯ ЯДРА UKUU
+sudo apt-add-repository -y ppa:teejee2008/ppa
+sudo apt update
+sudo apt install -y ukuu
+для установки последнего ядра:
+sudo ukuu --install-latest
+для удаления всех старых и незапущеных:
+sudo ukuu --purge-old-kernels
+
+Автор: Яцына М.А.
+
+
+9.2. УСТАНОВКА GRUB CUSTOMIZER – ПРИЛОЖЕНИЕ ДЛЯ НАСТРОЙКИ ЗАГРУЗЧИКА GRUB
+sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
+sudo apt update
+sudo apt install -y grub-customizer
+
+9.3.УПРАВЛЕНИЯ ПОЛЬЗОВАТЕЛЯМИ И ГРУППАМИ
+sudo apt install -y gnome-system-tools
+
+9.4.УСТАНОВКА DCONF – НИЗКОУРОВНЕВАЯ СИСТЕМА КОНФИГУРАЦИИ. При помощи dconf в GNOME и Unity хранятся настройки большинства программ.
+sudo apt-get install dconf-editor
+
+9.5.УСТАНОВКА SYNAPTIC - это графическая программа, позволяющая управлять пакетами в Ubuntu 
+sudo apt-get install synaptic
+
+Автор: Яцына М.А.
+
+9.6 УСТАНВОКА CAFFEINE - эта программа не дает отключиться экрану или включить хранитель экрана если вы смотрите в полноэкранном режиме видео через браузер,  видео плеер
+Установка через PPA
+sudo add-apt-repository ppa:caffeine-developers/ppa
+sudo apt update
+sudo apt install caffeine
+ЕСЛИ УСТАНОВИЛАСЬ ВЕРСИЯ НИЖЕ 2.9.4
+cd /tmp; wget https://launchpad.net/~caffeine-developers/+archive/ppa/+files/caffeine_2.9.4_all.deb; sudo dpkg -i caffeine_2.9.4_all.deb
+
+Автор: Яцына М.А.
+
+9.7.УСТАНОВКА ПО ДЛЯ ЧИСТКИ СИСТЕМЫ ОТ МУСОРА
+sudo apt install bleachbit
+
+Автор: Яцына М.А.
+
+10.ДОПОЛНИТЕЛЬНЫЕ И НЕ ОБЯЗАТЕЛЬНЫЕ ПРОГРАММЫ
+
+УСТАНОВКА VIRTUALBOX
+sudo add-apt-repository -y ppa:costamagnagianfranco/virtualbox-ppa
+sudo apt update
+sudo apt install virtualbox virtualbox-ext-pack virtualbox-guest-additions-iso
+sudo usermod -aG vboxusers $USER
+Автор: Яцына М.А
+
+
+УСТАНОВКА VMWARE WORCKSTATION PLAYER 14.х
+#скачайте сам плеер: https://my.vmware.com/en/web/vmware/free#desktop_end_user_computing/vmware_workstation_player/14_0
+#далее перейдите в папку куда скачали и запустите как скрипт с правами суперпользователя для установки
+cd /home/$USER/Загрузки/
+sudo sh VMware-Player-14*
+#после запустится графический установщик и возможно с паузой в 1-2 минуты
+#после установки если плеер при запуске не может скомпилировать свои модули ( это бывает из-за новой версии ядра например 4.15+)
+#нужно скачать более новые модули.
+#качаем новые с гит: https://github.com/mkubecek/vmware-host-modules/tree/player-14.1.1
+#и кидаем папки vmnet-only + vmmon-only с правами суперпользователя в : /usr/lib/vmware/modules/source/
+#переходим в папку с модулями
+cd /usr/lib/vmware/modules/source/
+#запаковываем новые модули в архивы
+sudo tar -cf vmnet.tar vmnet-only/
+sudo tar -cf vmmon.tar vmmon-only/
+#и сделайте новую компиляцию модулей
+sudo vmware-modconfig --console --install-all
+
+Автор: Яцына М.А
+
+
+ДЛЯ ДИЗАЙНЕРОВ И РАЗРАБОТЧИКОВ
+
+УСТАНОВКА PINTA 1.7 (2d-графика)
+sudo add-apt-repository -y ppa:pinta-maintainers/pinta-daily
+sudo apt update
+sudo apt install -y pinta
+
+Установка pinta 1.7 из git (если установилась pinta 1.6-2)
+
+sudo apt install git mono* mono-xbuild automake autoconf  mono-reference-assemblies-2.0 mono-devel libmono-cil-dev gtk-sharp2 yelp-tools intltool
+
+git clone https://github.com/PintaProject/Pinta.git
+
+cd ~/Pinta
+
+сборка из исходников с помощью скрипта
+
+./autogen.sh
+make
+sudo make install
+
+либо можно классическим способом
+
+./configure
+make
+sudo make install
+
+Автор: Яцына М.А
+
+
+УСТАНОВКА GIMP (2d-графика)
+sudo add-apt-repository -y ppa:otto-kesselgulasch/gimp-edge
+sudo apt update
+sudo apt install -y gimp
+
+
+УСТАНОВКА MY PAINT (2d-графика)
+sudo add-apt-repository ppa:achadwick/mypaint-testing
+sudo apt update
+sudo apt install mypaint
+
+
+УСТАНОВКА KRITA ПРОФИССИОНАЛЬНОГО ГРАФИЧЕСКОГО РЕДАКТОРА
+sudo add-apt-repository -y ppa:kritalime/ppa
+sudo apt update
+sudo apt install krita-testing
+
+
+УСТАНОВКА INKSCAPE ВЕКТОРНЫЙ ПРОФЕССИОНВЛЬНЫЙ РЕДАКТОР
+sudo add-apt-repository -y ppa:inkscape.dev/stable
+sudo apt update
+sudo apt install inkscape
+
+
+УСТАНОВКА SYNFIG STUDIO (сознание 2D анимации)из исходников последнюю версию
+sudo apt install build-essential autoconf automake etl-dev libsynfig-dev libgtkmm-2.4-dev libgtk2.0-dev libglibmm-2.4-dev libsigc++-2.0-dev libltdl3-dev libltdl-dev libgtkmm-3.0-dev libtool gettext cvs git intltool libxml++2.6-dev autopoint fftw3-dev libmlt++-dev libmlt-dev ttf-freefont ttf-dejavu fonts-dustin libboost-all-dev
+sudo apt upgrade
+
+cd /home/$USER/
+git clone https://github.com/synfig/synfig.git
+cd ~/synfig/autobuild/
+DEBUG=1 ./synfigstudio-linux-build.sh synfigstudio
+
+cd ~/synfig/ETL
+autoreconf --install --force
+./configure
+sudo make install
+
+cd ~/synfig/synfig-core
+./bootstrap.sh
+./configure --enable-logging --enable-debug --enable-dht --with-boost-libdir=/usr/lib/x86_64-linux-gnu
+make
+sudo make install
+
+cd ~/synfig/synfig-studio
+./bootstrap.sh
+./configure
+make
+sudo make install
+
+#FINAL!!!
+sudo ldconfig
+Далее можно запускать программу
+
+Автор: Яцына М.А.
+
+
+УСТАНОВКА DIGIKAM, РЕДАКТИРОВАНИЕ И ОБРАБОТКА ФОТО
+sudo add-apt-repository -y ppa:philip5/extra
+sudo apt update
+sudo apt install digikam
+
+
+УСТАНОВКА RAWTHERAPEE, РЕДАКТИРОВАНИЕ И ОБРАБОТКА ФОТО
+sudo add-apt-repository -y ppa:dhor/myway
+sudo apt install rawtherapee
+
+
+УСТАНОВКА DARKTABLE, РЕДАКТИРОВАНИЕ И ОБРАБОТКА ФОТО
+sudo add-apt-repository -y ppa:pmjdebruijn/darktable-release
+sudo apt install darktable
+
+УСТАНОВКА OPENSHOT 1.4.3 И KDENLIVE
+sudo add-apt-repository -y ppa:sunab/kdenlive-release
+sudo apt update
+sudo apt upgrade
+sudo apt install openshot kdenlive*
+
+УСТАНОВКА SHOTCUT (монтаж\обработка видео, перекодеровка, 1080p to 4K)
+sudo add-apt-repository -y ppa:haraldhv/shotcut
+sudo apt update
+sudo apt install shotcut
+
+УСТАНОВКА BLENDER ( 3D и видео монтаж\обработка, а также игровой движок)
+sudo add-apt-repository -y ppa:thomas-schiex/blender
+sudo apt update
+sudo apt install blender
+
+УСТАНОВКА FREECAD: ПАРАМЕТРИЧЕСКИЙ 3D CAD МОДЕЛЕР
+sudo add-apt-repository ppa:freecad-maintainers/freecad-daily
+sudo apt update
+sudo apt install  freecad-daily
+
+
+
+УСТАНОВКА ДВИЖКА UNITY3D
+sudo apt install monodevelop mono-reference-assemblies-3.5
+wget https://beta.unity3d.com/download/ce9f6a0436e1+/unity-editor_amd64-2017.2.1f1.deb
+sudo dpkg -i unity-editor_amd64-2017.2.1f1.deb
+sudo apt-get install -f
+
+УСТАНОВКА ANDROID-STUDIO ПОСЛЕДНЯЯ ВЕРСИЯ
+sudo add-apt-repository -y ppa:maarten-fonville/android-studio
+sudo apt update
+sudo apt install android-studio-preview
+
+УСТАНОВКА ЯЗЫКА ПРОГРАММИРОВАНИЕ GO (Go lang), язык разработан google 
+sudo apt-get install golang
+УСТАНАВЛИВАЕМ ОБОЛОЧКУ ДЛЯ УДОБСТВА НАПИСАНИЯ КОДА В GO, LiteIDE
+git clone https://github.com/visualfc/liteide.git
+sudo apt-get update
+sudo apt-get install qt4-dev-tools libqt4-dev libqtcore4 libqtgui4 libqtwebkit-dev g++
+cd /home/$USER/liteide/build
+./update_pkg.sh
+QTDIR=/usr ./build_linux.sh
+cp -a /home/$USER/liteide/build/liteide/ /home/$USER//liteide-go-app/
+rm -rf /home/$USER/liteide/
+nano /home/$USER/liteide-go-app/LiteIDE-Go-APP.desktop
+#в файл нужно добавить текст ниже и не забудьте поправить пути под вашего пользователя!:
+
+[Desktop Entry]
+Name=LiteIDE-Go-APP
+Comment=IDE for editing and building projects written in the Go programming language
+GenericName=LiteIDE-Go-APP
+Keywords=;
+Exec=/usr/bin/gnome-terminal -e ./liteide
+Terminal=false
+Type=Application
+#после /home/ пишите своего пользователя вместо redroot
+Icon=/home/redroot/liteide-go-app/share/liteide/welcome/images/liteide400.png
+Categories=Development;
+#после /home/ пишите своего пользователя вместо redroot
+Path=/home/redroot/liteide-go-app/bin/
+NoDiplay=false
+
+#сохраняем файл
+#пробуем запуск из папки /home/..../liteide-go-app/
+#может пожаловаться на безопасность, для решения проблемы, откройте свойства и #поставьте галку на разрешение запуска как программы
+#если все работает, закинем его в папку с ярлыками программ
+sudo cp /home/$USER/liteide-go-app/LiteIDE-Go-APP.desktop /usr/share/applications/
+#теперь ярлык находиться в программах и оболочку для Go не нужно запускать из консоли
+
+Автор: Яцына М.А.
+
+
+УСТАНОВКА СРЕДЫ РАЗРАБОТКИ НА С\С++ CODE::BLOCKS 
+sudo add-apt-repository -y ppa:damien-moore/codeblocks-stable
+sudo apt update
+sudo apt install -y codeblocks codeblocks-contrib
+
+УСТАНОВКА СРЕДЫ РАЗРАБОТКИ ECLIPSE-TEAM PPA
+sudo add-apt-repository -y ppa:eclipse-team/ppa
+sudo apt update
+sudo apt install eclipse
+
+УСТАНОВКА ATOM, более продвинутый текстовой редактор
+sudo apt-add-repository ppa:webupd8team/atom
+sudo apt update
+sudo apt install atom
+
+
+ДЛЯ СТРИМЕРОВ И ГЕЙМЕРОВ
+
+УСТАНОВКА WINE
+wget -nc https://repos.wine-staging.com/wine/Release.key
+sudo apt-key add Release.key
+sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/'
+sudo apt update
+sudo apt install -y wine-dev* winetricks
+
+УСТАНОВКА PLAYONLINUX
+wget -q "http://deb.playonlinux.com/public.gpg" -O - | sudo apt-key add -
+sudo wget http://deb.playonlinux.com/playonlinux_precise.list -O /etc/apt/sources.list.d/playonlinux.list
+sudo apt update
+sudo apt install -y libxrender1:i386 libxtst6:i386 libxi6:i386 playonlinux
+
+УСТАНОВКА OBS-STUDIO И ДОПОЛНЕНИЙ
+Кодеки и nvenc (NVIDIA)
+sudo add-apt-repository -y ppa:jonathonf/ffmpeg-3
+sudo apt update
+sudo apt install -y ffmpeg x264 x265
+- УСТАНОВКА NVENC NVIDIA
+#скачайте по ссылке скрип: https://yadi.sk/d/ODMTInQL3RSakK
+#поместите его в корень вашей домашней папки ( /home/user - пример)
+#далее  перейдите в папку
+cd /home/$USER
+#и запустите с правами супер пользователя скрипт
+sudo sh install_ffmpeg_nvenc2.sh
+#ВНИМАНИЕ: во время установки скрипт может выдать ошибку в начале, если вы поместили его в папку с #длинным именем или запустили без прав супер пользователя, если скрипт выполнялся 5-7 мин и выдал #ошибку в конце, то это нечего страшного. Рекомендую придерживаться строгости выполнения установки #NVENC: сначала кодеки, потом скрипт, далее obs-studio.
+- УСТАНОВКА САМОГО OBS-STUDIO
+sudo add-apt-repository -y ppa:obsproject/obs-studio
+sudo apt update
+sudo apt install -y obs-studio
+- УСТАНОВКА OBS-QTWEBKIT ДЛЯ OBS-STUDIO
+sudo apt install git qtbase5-dev libqt5webkit5-dev
+git clone https://github.com/bazukas/obs-qtwebkit.git
+cd ~/obs-qtwebkit
+make
+make install
+- УСТАНОВКА ПЛАГИНА OBS-LINUXBROWSER, замена obs-qtwebkit, основан на Chromium OEM
+sudo apt install cmake libgconf-2-4
+#скачиваем архив с плагином: https://github.com/bazukas/obs-linuxbrowser/releases
+#для ubuntu файл имеет следующее название: linuxbrowser*.*.*-obs*.*.*-64bit.tgz
+#переходим в папку где скачен файл
+cd /home/$USER/Загрузки/  #пример
+#создаем папку плагины в конфигурации OBS-studio
+mkdir -p $HOME/.config/obs-studio/plugins
+#далее распаковываем архив в папку с плагинами OBS-studio
+tar xfvz linuxbrowser*.tgz -C $HOME/.config/obs-studio/plugins/
+#после запускаем OBS, он запуститься не сразу, так как подключает первый раз плагин.
+#как запуститься, в источниках появится  Linux Browser, настройки такие же как у obs-qtwebkit 
+
+Автор: Яцына М.А, Александр Дронов
+
+УСТАНОВКА УТИЛИТЫ VIDEO LINUX CONTROL PANEL  или v4l2ucp [Настройка web-камеры]
+#ставим саму утилиту
+sudo apt install v4l2ucp
+#теперь запускаем её, найдя в Dash по имени Video Linux Control Panel
+#Программа полностью на английском, но даже с примитивным знанием английского языка можно понять #названия настроек вебкамеры.Количество настроек у утилиты может отличаться, в зависимости от веб #камеры.При перезагрузке настройки сбрасываются, что настройки сохранились нужно сначала их #выгрузить и далее через автозагрузку подгружать с помощью утилиты v4l2ctrl, которая входит в #комплект с v4l2ucp
+#Чтобы выгрузить настройки вебкамеры в файл, введите следующую команду в терминале:
+v4l2ctrl -s /home/$USER/.webcam
+#Теперь нужно добавить загрузку параметров вебкамеры при старте системы. 
+#Должно получится так:
+/usr/bin/v4l2ctrl -l /home/$USER/.webcam
+
+Автор: Яцына М.А
+
+
+ПРОГРАММЫ ДЛЯ ИНТЕРНЕТА, ОФИСА, МУЛЬТИМЕДИА  
+
+УСТАНОВКА ТЕЛЕГРАМ:
+sudo add-apt-repository -y ppa:atareao/telegram
+sudo apt update
+sudo apt install -y telegram orville-write
+
+УСТАНОВКА FIREFOX
+sudo add-apt-repository -y ppa:ubuntu-mozilla-security/ppa
+sudo apt update
+sudo apt install -y firefox
+
+УСТАНОВКА CHROMIUM
+sudo add-apt-repository -y ppa:canonical-chromium-builds/stage
+sudo apt update
+sudo apt install chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg-extra
+
+Автор: ОлегСТ
+
+УСТАНОВКА БРАУЗЕРА OPERA в Ubuntu из PPA
+wget -qO- https://deb.opera.com/archive.key | sudo apt-key add -
+sudo add-apt-repository 'deb https://deb.opera.com/opera-stable/ stable non-free'
+sudo apt update
+А теперь на выбор:
+sudo apt install opera-stable
+sudo apt install opera-beta
+sudo apt install opera-developer
+
+Автор: ОлегСТ
+
+УСТАНОВКА GOOGLE CHROME
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" » /etc/apt/sources.list.d/google-chrome.list'
+sudo apt update
+А теперь на выбор:
+sudo apt install google-chrome-stable
+sudo apt install google-chrome-beta
+sudo apt install google-chrome-unstable
+
+Автор: Богдан Іванюк
+
+УСТАНОВКА TORRENT
+sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable
+sudo apt update
+sudo apt install -y qbittorrent*
+
+УСТАНОВКА ОНЛАЙН MICROSOFT OFFICE (Требуется учетная запись MS)
+Скачать deb пакет: https://yadi.sk/d/YTr7LO0EvmJC6
+для установки: sudo dpkg -i microsoft_online_apps.deb
+для удаления: sudo apt-get remove microsoft-online-apps
+
+УСТАНОВКА УНИВЕРСАЛЬНОГО ВИДЕО ПЛЕЕРА VLC + SMPLAYER
+sudo apt install -y vlc smplayer
+
+УСТАНОВКА AUDACITY и  AUDACIOUS (audacity редактирование и обработка аудио) и (audacious аналог aimp player)
+sudo add-apt-repository -y ppa:audacity-team/daily 
+sudo add-apt-repository -y ppa:nilarimogard/webupd8
+sudo apt update
+sudo apt install audacity audacious audacious-plugins
+
+Автор: Богдан Іванюк
+
+11. ПРОГРАММЫ ДЛЯ АРХИВАЦИИ\ВОССТАНОВЛЕНИЯ\БЕЗОПАСНОСТИ
+
+Aptik Migration Utility - АРХИВАЦИЯ\ВОССТАНОВЛЕНИЕ\МИГРАЦИЯ ОС
+sudo apt-add-repository -y ppa:teejee2008/ppa
+sudo apt update
+sudo apt install aptik*
+[http://www.teejeetech.in/p/aptik.html]
+
+Автор: Яцына М.А.
+
+
+
+
+
+12. УГОЛОК СИСТЕМНОГО АДМИНИСТРАТОРА
+
+УСТАНОВКА ДОПЛНИТЕЛЬНЫ УТИЛИТ ДЛЯ ТЕМИНАЛА
+для графического меню
+sudo apt install vlan nmap terminator git htop ipcalc mc --reinstall mtr fping lm-sensors hddtemp p7zip-rar rar unrar unace arj cabextract
+для серверных систем:
+sudo apt install vlan nmap git htop ipcalc mc mtr-tiny fping lm-sensors hddtemp p7zip-rar rar unrar unace arj cabextract
+
+УСТАНОВКА КОНСОЛЬНОЙ UKUU  ИЗ ИСХОДНИКОВ BETA (ubuntu server 16.04/17.10)
+#консольную версию придется собирать из исходников
+#в начале нам придется поставить пакеты с графикой, которые потянут за собой кучу библиотек с #графикой, но не переживайте, потом мы их удалим
+sudo apt install libgee-0.8-dev libjson-glib-dev libvte-2.91-dev valac
+#после качаем из git нужные файлы и ставим сам git (если не стоит)
+sudo apt install git make
+git clone https://github.com/teejee2008/ukuu.git
+cd ukuu
+make app
+sudo make app install
+sudo apt --purge remove libgee-0.8-dev libjson-glib-dev libvte-2.91-dev valac
+sudo apt autoremove
+sudo apt clean
+sudo apt-get install libgee-0.8-2 libjson-glib-*
+#проверяем что работает
+ukuu
+#если нам показывают меню, значит все ок
+
+УСТАНОВКА ТЕСТА СКОРОСТИ ИНТЕРНЕТА В КОНСОЛЕ (SPEEDTEST)
+sudo apt install python-pip
+pip install git+https://github.com/sivel/speedtest-cli.git
+sudo apt install speedtest-cli
+для теста в консоли вводим: speedtest-cli
+
+ЗАПУСК HTTP-СЕРВЕРА В ТЕКУЩЕЙ ДИРЕКТОРИИ НА 8000 ПОРТУ
+Если в директории нет файла index.html, то будет показан её листинг.
+python -m SimpleHTTPServer
+
+ПРОСКАНИРОВАТЬ ПОДСЕТЬ
+fping -g 31.184.198.133/26
+
+ПРОВЕРИТЬ ОТКРЫТЫЕ ПОРТЫ НА IP
+nmap -p 1-65000 31.184.198.133
+
+ЗАПУСТИТЬ МОНИТОРИНГ В РЕАЛТАЙМ В КОНСОЛЕ
+#вначале нужно просканировать какие есть сенсоры, делается один раз
+sudo sensors-detect
+#теперь можно мониторить
+watch -d sensors
+
+УСТАНОВКА ПРОСТОЙ СИСТЕМЫ МОНИТОРИНГА СЕРВЕРА LINUX по HTTP
+sudo apt install ruby
+sudo gem install scout_realtime
+scout_realtime start
+#По умолчанию демон запускается на 5555 порту, что можно изменить (см. $ scout_realtime help).
+#Чтобы подключиться, на вашей машине нужно создать SSH туннель к серверу, выполнив:
+ssh -NL 5555:localhost:5555 user@ip_or_hostname
+#где user@ip_or_hostname те же самые, что вы обычно используете для подключения к серверу. 
+#После этого, можно открывать в браузере 
+http://localhost:5555
+#Опционально: если firewall блокирует подключения, а через туннель SSH заходить желания нет, на сервере можно добавить разрешающее правило:
+sudo iptables -A INPUT -p tcp --dport 5555 -j ACCEPT
+#и подключаться напрямую: http://example.ru:5555 (имейте в виду, что при этом статистика будет доступна любому желающему).
+
+Автор: Яцына М.А.
+
+УСТАНОВКА УТИЛИТЫ IPERF, ИСПОЛЬЗУЕТСЯ ДЛЯ ИЗМЕРЕНИЯ ПРОПУСКНОЙ СПОСОБНОСТИ СЕТИ.
+sudo apt install iperf
+#простой запуск серверной части в консоле, порт 5001, прослушивает все сетевые интерфкейсы
+iperf -s
+#простой запуск серверной части, как демона, порт 5001, прослушивает все сетевые интерфкейсы
+iperf -s -D
+#запуск серверной части, как демона, порт 5001, прослушивает только определенный интерфейс
+iperf -s -D -B ip.ad.dre.ss
+#запуск серверной части, как демона, порт 5001, прослушивает только определенный интерфейс и по UDP
+iperf -u -s -D -B ip.ad.dre.ss
+
+#Запуск клиентской части
+iperf -c <host>
+#Запуск клиентской части для UDP
+iperf -u -c <host>
+#Запуск клиентской части  и вывод в килобайтах
+iperf -c <host> -f K
+#Запуск клиентской части и передача данных в течение 20 секунд и отображать результаты теста скорости сети каждые 5 секунд
+iperf -c <host> -t 20 -i 5
+#Протестировать передачу данных в обе стороны одновременно, использовать no delay и запустить два клиентских процесса
+iperf -c <host> -N -d -P 2
+
+Автор: Яцына М.А.
+
+13.ПОЛЕЗНЫЕ КОМАНДЫ\РЕШЕНИЕ РАЗЛИЧНЫХ ПРОБЛЕМ 
+
+1.ЕСЛИ ПРИ УСТАНОВКЕ ИЛИ ОБНОВЛЕНИЯХ ПО,  система пишет: E: Не удалось получить доступ к файлу блокировки /var/lib/dpkg/lock - open (11: Ресурс временно недоступен)
+
+то делаем так:
+sudo fuser -vki /var/lib/dpkg/lock
+sudo rm /var/lib/dpkg/lock
+sudo dpkg --configure -a
+sudo apt autoclean
+sudo apt autoremove
+sudo apt --fix-broken install -y
+sudo apt update
+sudo apt upgrade
+
+2.ЕСЛИ ТИРИНГ В СЕССИИ XORG(XORG.CONF)
+Заходим в файл:
+sudo gedit /etc/X11/xorg.conf # так же можно использовать консольный текстовой редактор  nano  вместо gedit
+
+И в него добавляем один из вариантов Intel\AMD\Nvidia
+
+2.1.Intel Mobile\Desktop
+Section "Device"
+ Identifier "Device0"
+ Driver "intel"
+ BusID "PCI:0:2:0"
+ Option "AccelMethod" "sna"
+ Option "TearFree" "true"
+EndSection
+
+2.2.AMD Desktop
+Section "Device"
+    Identifier "Radeon"
+    Driver "radeon"
+    Option "TearFree" "on"
+EndSection
+
+2.3.Nvidia Desktop
+#вы должны изменить настройки на свою карту
+#внимание не работает в mate c Compton GPU
+Section "Device"
+    Identifier     "Device0"
+    Driver         "nvidia"
+    VendorName     "NVIDIA Corporation"
+    BoardName      "GeForce GTX 660"
+#если у вас уже есть настройки в файле, достаточно добавить два пункта ниже.
+    Option "RegistryDwords" "PerfLevelSrc=0x2222"
+    Option "TripleBuffer" "True"
+    Option         "Coolbits" "28"
+EndSection
+
+Section "Screen"
+    Identifier     "Screen0"
+    Device         "Device0"
+    Monitor        "Monitor0"
+    DefaultDepth    24
+    Option         "Stereo" "0"
+    Option         "nvidiaXineramaInfoOrder" "DFP-0"
+#если у вас уже есть настройки в файле, достаточно добавить пункт ниже.
+    Option "metamodes" "nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
+    Option         "SLI" "Off"
+    Option         "MultiGPU" "Off"
+    Option         "BaseMosaic" "off"
+    SubSection     "Display"
+        Depth       24
+    EndSubSection
+EndSection
+
+2.4. Nvidia Mobile
+
+
+3.МОНИТРОВАНИЕ ОТДЕЛЬНЫХ ПАПОК\ДИСКОВ(заходим в файл /etc/fstab и добовляем нужный вариант, ниже примеры)
+# Монтирование корневых каталогов (что бы знать UUID,видите в терминале: ls -l /dev/disk/by-uuid)
+UUID=9c7aa67e-703c-4d93-a8e6-ed6b721c5e8f /               ext4    errors=remount-ro 0       1
+
+
+# Постоянное монтирование дисков, также можно это делать в каталоге /mnt/ вместо /media/*
+/dev/sda5                           /media/redroot/disk_d ext4 defaults 0 1
+/dev/sdd1                           /media/redroot/games ext4 defaults 0 1
+
+# Постоянное монтирование отдельных папок
+/mnt/home/Документы   /home/redroot/Документы ext4 bind,x-gvfs-hide            0 0
+/mnt/home/Видео   /home/redroot/Видео ext4 bind,x-gvfs-hide             0 0
+/mnt/home/Изображения   /home/redroot/Изображения ext4 bind,x-gvfs-hide             0 0
+/mnt/home/Музыка   /home/redroot/Музыка ext4 bind,x-gvfs-hide             0 0
+/mnt/home/Загрузки /home/redroot/Загрузки ext4 bind,x-gvfs-hide             0 0
+/mnt/games/GOG\040Games /home/redroot/GOG\040Games ext4 bind,x-gvfs-hide             0 0
+/mnt/games/.PlayOnLinux/wineprefix /home/redroot/.Phoenicis/wineprefix ext4 bind,x-gvfs-hide             0 0
+/mnt/home/VirtualBox\040VMs /home/redroot/VirtualBox\040VMs ext4 bind,x-gvfs-hide             0 0
+/mnt/vm-disk/.vmware /home/redroot/.vmware ext4 bind,x-gvfs-hide             0 0
+/mnt/games/.PlayOnLinux /home/redroot/.PlayOnLinux   ext4 bind,x-gvfs-hide             0 0
+
+# Монтирование папки с полными правами
+/media/disk_F/butterfly /media/disk_D/butterfly bind rw,uid=33,gid=33,file_mode=0777,dir_mode=0777,bind 0 0
+
+# Монтирование сетевых папок windows с правами, логин + пароль
+//192.168.0.150/backUp/1cbase    /home/cloud/win_share   cifs   auto,_netdev,rw,uid=1000,gid=1000,user=linux,password=Ubuntu,codepage=cp1251,iocharset=utf8,file_mode=0777,dir_mode=0777     0       0
+
+Автор: Яцына М.А
+
+
+4.ЕСЛИ VIRTUALBOX НЕ КОНЕКТИТ ФЛЕШКИ В ВИРТУАЛЬНУЮ МАШИНУ, нужно просто пользователя добавить в группу
+sudo usermod -aG vboxusers $USER
+
+Автор: Яцына М.А.
+
+
+5.ЕСЛИ WINE И PLAYONLINUX НЕ ОТОБРАЖАЮТ НОРМАЛЬНО ШРИФТЫ ИЛИ ИХ НЕТ.
+Оказывается PlayOnLinux не работает, так как использует в своих версиях wine, устаревшие библиотеки *libz.so, и они просто не могут нормально работать с новыми версиями TrueType. А так как Ubuntu 17.10 использует все самое последнее, это создало конфликт. Нужно просто удалить все Библиотеки с именем: libz.so из папки : /home/<user>/.PlayOnLinux/wine/ . Далее PlayOnlinux их не видит и начинает использовать системные) Из минусов, эти библиотеки нужно удалять во всех новых версия wine :(((
+
+Автор: Яцына М.А.
+
+6. РЕШЕНИЕ С ПРОБЛЕМОЙ УСТАНОВКИ WPS OFFICE 
+[dpkg: зависимости пакетов не позволяют настроить пакет wps-office:
+wps-office зависит от libpng12-0, однако:
+Пакет libpng12-0 не установлен.]
+
+#Сначала добавляем поддержку 32 битной архитектуры, если у вас 64 битная система:
+sudo dpkg --add-architecture i386
+#Качаем пакет и устанавливаем
+wget http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb
+sudo dpkg -i libpng12-0_1.2.54-1ubuntu1_amd64.deb
+
+#готово, теперь мы можем начать установку WPS Office, предварительно скачав с сайта его, 
+#пакет со шрифтами и словарем: http://wps-community.org/downloads
+sudo dpkg -i wps-office_*.deb
+
+Автор: Яцына М.А.
+
+7. ПРОЦЕССЫ TRACKER-EXTRACT И TRACKER-STORE В UBUNTU ГРУЗЯТ ПРОЦ
+Linux, Домашний серверДобавить комментарий
+Tips После перезагрузки вдруг заметил, что комп с Ubuntu стал тормозить. В top-е обнаружились два процесса, внаглую жрущие проц: tracker-extract и tracker-store. Эти процессы, как выяснилось, относятся к службе индексирования, которая по умолчанию ни разу не настроена и готова всегда придти на помощь, проиндексировав все файлы, до которых дотянется.
+Кардинальное решение проблемы — это удаление пакета командой
+sudo apt-get remove tracker-extract
+Но мы поступим правильнее и дадим ей по рукам настроим эту утилиту.
+Жмём Alt-F2 и запускаем
+tracker-preferences
+Открывается окно с настройками, которые можно поменять:
+tracker-preferences - главное окно
+Переходим на вкладку «Местоположения»
+tracker-preferences - окно местоположений
+и снимаем «галки» с тех директорий, которые не нужно индексировать.
+
+8.ЕСЛИ ПОСЛЕ УСТАНОВКИ ДРАЙВЕРА NVDIA, ЗАГРУЗЧИК СТАРТУЕТ В РАЗРЕШЕНИИ 1024Х768\640Х480
+заходим в
+sudo nano /etc/default/grub
+убераем решотку и выставляем нужное разрешение экрана
+#GRUB_GFXMODE=640x480
+чтобы получилось для примера вот так:
+GRUB_GFXMODE=1920x1080
+GRUB_GFXPAYLOAD_LINUX=keep
+сохраняем и обнавляем grub
+sudo update-grub2
+
+Если не помогло, нужно дополнительно сделать следующее:
+создать\открыть файл
+sudo nano /etc/initramfs-tools/conf.d/splash
+
+далее добавить в него
+echo FRAMEBUFFER=y
+
+после сохронить и выполнить команду ниже
+
+sudo update-initramfs -u
+
+Автор: Яцына М.А.
+
+9. ЕСЛИ НА МАТ.ПЛАТЕ AMD ПЛОХО РАБОТАЮ ИЛИ ОТКЛЮЧАЮТСЯ\ОТКЛЮЧЕНЫ USB 3.0
+В биос находим параметр iommu и меняем его на enable или 64mb  у все поразному бывает
+
+далее загружаеи систему и заходим в файл настройки grub
+sudo nano /etc/default/grub
+находим строку
+GRUB_CMDLINE_LINUX=""
+если она пустая добавляем в нее параметр
+GRUB_CMDLINE_LINUX="iommu=soft"
+Либо если там уже что то есть через пробел дописываем " iommu=soft"
+сохраняем файл
+обновляем в терминале gurb
+sudo update-grub2
+перезагружаемая и в биос отключаем iommu
+
+Автор: Яцына М.А.
+
+10. СОЗДАНИЕ ЯРЛЫКА ДЛЯ СКРИПТА: GNOME\MATE
+
+nano /home/$USER/Unigine_Valley-1.0/Valley_Benchmark.desktop
+#в файл нужно добавить текст ниже и не забудьте поправить пути под вашего пользователя!:
+
+[Desktop Entry]
+Name=Valley_Benchmark-1.0
+Comment=Valley Benchmark
+GenericName=Valley_Benchmark-1.0
+Keywords=;
+#так же есть варианты для gnome: gnome-terminal,для mate: mate-terminal
+Exec=/usr/bin/mate-terminal -e ./valley
+Terminal=false
+Type=Application
+#после /home/ пишите своего пользователя вместо redroot и можете скачать любой логотип с расшерением .PNG
+Icon=/home/redroot/Unigine_Valley-1.0/Valley-Benchmark.png
+Categories=games;
+OnlyShowIn=GNOME;KDE;LXDE;LXQt;MATE;Razor;ROX;TDE;Unity;XFCE;EDE;Cinnamon;Pantheon;
+#после /home/ пишите своего пользователя вместо redroot
+Path=/home/redroot/Unigine_Valley-1.0/
+NoDiplay=false
+
+#сохраняем файл
+#пробуем запуск из папки /home/..../Valley_Benchmark.desktop
+#может пожаловаться на безопасность, для решения проблемы, откройте свойства и 
+#поставьте галку на разрешение запуска как программы
+#если все работает, закинем его в папку с ярлыками программ
+sudo cp /home/$USER/Unigine_Valley-1.0/Valley_Benchmark.desktop /usr/share/applications/
+#теперь ярлык находиться в программах и ваш скрипт не нужно запускать из консоли.
+
+11. проблемы с libssl ( например у Superposition)
+sudo apt install libssl1.0-dev
+
+
+ВНИМАНИЕ: При создании данного Файла использовались наработки других авторов, различные блоги, форумы и официальная документация. Поскольку вся эта информация по частям собиралась с различных ресурсов, а я лишь доработал все и собрал воедино, дополнив своими идеями, мне не представляется возможным опубликовать полный список авторов. Так что если кто-то увидел тут свой авторский текст, не нужно рвать волосы и обвинять метя в копипастии, нужно лишь сообщить мне об этом, добавив ссылку на свою статью и я обязательно включу Вас в список авторов.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pre-production:
+
+install pulseaudio pulseaudio-utils
+sudo alsamixer
+
+вы подключали репозиторий(-ии) с более новыми версиями пакетов. информация об этих версиях хранится в /var/lib/dpkg/status.
+
+удалите из этого файла информацию про версию 1:5.1.3~rc2-3 пакета libreoffice-common (начиная со строки Package: libreoffice-common и до следующей строки, начинающейся со слова Package:, обязательно сохранив разделяющую описания пакетов пустую строку).
+
+и обновите список пакетов:
+
+sudo apt-get update
+
+sudo apt install gnome-maps gnome-weather polari gnome-documents gnome-photos gnome-music
+
+sudo add-apt-repository ppa:alexlarsson/flatpak
+sudo apt update
+sudo apt install flatpak
+
+
+sudo apt install git automake autoconf  intltool gcc-multilib g++-multilib flex bison libbison-dev xorg-dev libx11-dev libx11-dev:i386 libfreetype6-dev:i386 gobject* libxrender-dev libfontconfig-dev pthread* libpthread-stubs0-dev xext* libsm-dev
+sudo apt install -f 
+sudo apt autoremove
+
+
+git clone https://github.com/wine-mirror/wine.git
+cd ~/wine
+./configure --enable-win64
+
+#если нужно в определенную папку скомпилить wine то просто указываем ее как в примере ниже
+#./configure --enable-win64 prefix=/mnt/games/.PlayOnLinux/wine/linux-amd64/3.5-staging
+
+make
+sudo make install
+
+#для теста 
+wine winecfg
+
+
+WINEDEBUG=fps wine MYAPP.exe 2>&1 | tee /dev/stderr | grep --line-buffered "^trace:fps:" | osd_cat
+
+WINEDEBUG=fps wine YOURGAME.exe 2>&1 | tee /dev/stderr | grep  --line-buffered "^trace:fps:" | cut -c25-30 | osd_cat --lines=1  --font="lucidasanstypewriter-bold-18" --color=yellow
+
+
+date
+timedatectl list-timezones
+sudo timedatectl set-timezone Europe/Moscow
+date
+sudo apt-get install mc aptitude lamp-server^ phpmyadmin
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo aptitude search oracle-java
+sudo apt-get install oracle-java8-installer	
+sudo mysql -u root -p
+CREATE DATABASE openfire CHARACTER SET='utf8';
+CREATE USER 'openfire'@'localhost' IDENTIFIED BY '12345678';
+GRANT ALL PRIVILEGES ON `openfire`.* TO 'openfire'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+use openfire
+alter database character set utf8;
+alter database collate utf8_general_ci;
+quit
+wget https://github.com/igniterealtime/Openfire/releases/download/v4.2.3/openfire_4.2.3_all.deb
+sudo dpkg -i openfire*.deb
+
