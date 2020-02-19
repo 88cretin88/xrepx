@@ -1,0 +1,7 @@
+os:      linux
+dist:    xenial
+git:
+  depth: false
+script:
+  - bash comp_version.sh
+  - bash broken_links.sh

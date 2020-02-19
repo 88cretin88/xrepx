@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang=ru id=faq>
+
+<!-- If you make edits to any FAQ documents, please start each sentence
+     on a new line, and try to keep the general formatting consistent
+     with the rest of the pages -->
+
+<title>OpenBSD FAQ: Сеть</title>
+<meta charset=utf-8>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../openbsd.css">
+<link rel="canonical" href="https://www.openbsd.org/faq/faq6.html">
+
+<h2 id=OpenBSD>
+<a href="../index.html">
+<i>Open</i><b>BSD</b></a>
+FAQ - Сеть
+<small>
+<a href="index.html">[FAQ - На главную]</a>
+</small>
+</h2>
+<hr>
+
+<ul>
+<li><a href="#Setup"           >Настройка сети</a>
+<ul>
+  <li><a href="#Setup.if"      >Поиск и настройка сетевых интерфейсов</a>
+  <li><a href="#Setup.gateway" >Имя машины (Hostname) и шлюз (Gateway)</a>
+  <li><a href="#Setup.resolver">Информация о DNS</a>
+  <li><a href="#Setup.activate">Применение изменений настроек</a>
+  <li><a href="#Setup.chkroute">Проверка маршрутизации (Routes)</a>
+  <li><a href="#Setup.aliases" >Настройка Aliases для сетевых интерфейсов</a>
+</ul>
+<li><a href="#DHCP"            >Dynamic Host Configuration Protocol</a>
+<li><a href="#Wireless"        >Беспроводные сети (Wireless Networking)</a>
+<li><a href="#Bridge"          >Настройка сетевого моста (bridge)</a>
+<li><a href="#Multipath"       >Equal-cost Multipath Routing</a>
+<li><a href="#NFS"             >Использование NFS</a>
+</ul>
+
+<hr>
+
+<h2 id="Setup">Настройка сети</h2>
+
+Сеть в OpenBSD настраивается при помощи конфигурационных файлов в
+<code>/etc</code>. Как правило, процесс настройки проходит
+<a href="faq4.html">во время установки</a> операционной системы.
+
+<h3 id="Setup.if">Поиск и настройка сетевых интерфейсов</h3>
+
+Сетевые интерфейсы называются по имени типа карты (используемого им
+драйвера), а не по типу соединения.
+Вот пример вывода команды <a href="https://man.openbsd.org/dmesg">dmesg(8)</a>
+для сетевой карты Intel Fast Ethernet:
+
+<pre class="cmdbox">
+fxp0 at pci0 dev 10 function 0 "Intel 82557" rev 0x0c: irq 5, address 00:02:b3:2b:10:f7
+inphy0 at fxp0 phy 1: i82555 10/100 media interface, rev. 4
+</pre>
+
+Это устройство использует драйвер <a href="https://man.openbsd.org/fxp">fxp(4)</a>,
+а соответствующий номер устройства тут 0.
+
+<p>
+Вы можете увидеть список всех найденных сетевых карт при помощи утилиты
+<a href="https://man.openbsd.org/ifconfig">ifconfig(8)</a>.
+Эта комманда показывает все сетевые интрефейсы в системе.
+
+<pre class="cmdbox">
+$ <b>ifconfig</b>
+lo0: flags=8049&lt;UP,LOOPBACK,RUNNING,MULTICAST&gt; mtu 33200
+        index 3 priority 0 llprio 3
+        groups: lo
+        inet 127.0.0.1 netmask 0xff000000
+fxp0: flags=8843&lt;UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500
+        lladdr 00:02:b3:2b:10:f7
+        index 1 priority 0 llprio 3
+        media: Ethernet autoselect (100baseTX full-duplex)
+        status: active
+        inet 10.0.0.38 netmask 0xffffff00 broadcast 10.0.0.255
+enc0: flags=0&lt;&gt;
+        index 2 priority 0 llprio 3
+        groups: enc
+        status: active
+pflog0: flags=141&lt;UP,RUNNING,PROMISC&gt; mtu 33200
+        index 4 priority 0 llprio 3
+        groups: pflog
+</pre>
+
+Приведенный выше пример показывает, что в системе найден только один
+Ethernet интерфейс: <code>fxp0</code>. Он уже настроен и ему присвоен IP,
+поэтому мы видим строчку
+<code>inet 10.0.0.38 netmask 0xffffff00 broadcast 10.0.0.255</code>.
+Флаги <code>UP</code> и <code>RUNNING</code> так же для него установленны.
+
+<p>
+Скрипт <a href="https://man.openbsd.org/netstart">netstart(8)</a> настраивает
+сетевые интерфейсы во время загрузки. Для этого он использует
+<a href="https://man.openbsd.org/hostname.if">hostname.if(5)</a> конфигурационные
+файлы, где "if" соответствует полному имени интерфеса, необходимого для настройки.
+Для примера выше использовался бы файл <code>/etc/hostname.fxp0</code>,
+содержащий следующее:
+
+<pre class="cmdbox">
+inet 10.0.0.38 255.255.255.0
+</pre>
+
+Того же результата, который мы получим при помощи файла
+<code>hostname.fxp0</code>, можно добиться и в интерактивном режиме:
+
+<pre class="cmdbox">
+# <b>ifconfig fxp0 10.0.0.38 255.255.255.0</b>
+</pre>
+
+Обратите внимание, что несколько других виртуальных интерфейсов включены по
+умолчанию. Информацию о них вы можете найти в man-страницах:
+
+<ul>
+  <li><a href="https://man.openbsd.org/enc">enc(4)</a>
+    - Encapsulating interface
+  <li><a href="https://man.openbsd.org/lo">lo(4)</a>
+    - Loopback interface
+  <li><a href="https://man.openbsd.org/pflog">pflog(4)</a>
+    - Packet Filter logging interface
+</ul>
+
+Другие виртуальные интерфейсы могут быть добавленны при помощи команды
+<code>create</code> <a href="https://man.openbsd.org/ifconfig">ifconfig(8)</a>.
+
+<h3 id="Setup.gateway">Имя машины (Hostname) и шлюз (Gateway)</h3>
+
+Файлы <code>/etc/myname</code> и <code>/etc/mygate</code> используются
+<a href="https://man.openbsd.org/netstart">netstart(8)</a> скриптом.
+Оба из них содержат единственную строчку, в которой указывается полное доменное
+имя системы (domain name) и адрес хоста шлюза (address of the gateway host)
+соответственно. Файл <code>/etc/mygate</code> не обязательно должен
+существовать в системе. Более подробную информацю можно найти в
+<a href="https://man.openbsd.org/myname">myname(5)</a>.
+
+<h3 id="Setup.resolver">Информация о DNS</h3>
+
+Информация об используемых DNS серверах находится в файле
+<a href="https://man.openbsd.org/resolv.conf">resolv.conf(5)</a>.
+
+<pre class="cmdbox">
+$ <b>cat /etc/resolv.conf</b>
+search example.com
+nameserver 125.2.3.4
+nameserver 125.2.3.5
+lookup file bind
+</pre>
+
+В этом примере доменное имя по умолчанию <code>example.com</code>,
+имеются два сервера DNS с адресами <code>125.2.3.4</code> и <code>125.2.3.5</code>,
+файл <a href="https://man.openbsd.org/hosts">hosts(5)</a> будет использован
+до получения информации от DNS-серверов.
+
+<h3 id="Setup.activate">Применение изменений настроек</h3>
+
+Для того, чтобы применить новые настройки (или, как ещё говорят, чтобы они
+"вошли в силу"), вы можете или перезагрузиться или запустить скрипт
+<a href="https://man.openbsd.org/netstart">netstart(8)</a>. Это можно сделать
+просто выполнив от root:
+
+<pre class="cmdbox">
+# <b>sh /etc/netstart</b>
+</pre>
+
+Обратите внимание, при запуске этого скрипта могут появиться предупреждения
+(warnings), если его запуск подразумевает переконфигурацию уже сконфигурированных
+интерфейсов. Убедитесь, что ваш интерфейс был сконфигурирован правильно при помощи
+<a href="https://man.openbsd.org/ifconfig">ifconfig(8)</a>.
+
+<p>
+Хотя в OpenBSD возможна полная переконфигурация сетевых настроек системы без
+перезагрузки, рестарт системы НАСТОЯТЕЛЬНО рекомендуется после значительного
+изменения конфигурации.
+
+<h3 id="Setup.chkroute">Проверка маршрутизации (Routes)</h3>
+
+Настройку маршрутизации можно проверить при помощи
+<a href="https://man.openbsd.org/netstat">netstat(1)</a> или
+<a href="https://man.openbsd.org/route">route(8)</a>.
+
+<pre class="cmdbox">
+$ <b>netstat -rn</b>
+Routing tables
+
+Internet:
+Destination        Gateway            Flags     Refs     Use    Mtu  Prio Iface
+default            10.0.0.1           UGS         4       16      -    12 fxp0
+224/4              127.0.0.1          URS         0        0  32768     8 lo0
+127/8              127.0.0.1          UGRS        0        0  32768     8 lo0
+127.0.0.1          127.0.0.1          UH          2       15  32768     1 lo0
+10.0.0/24          link#1             UC          1        4      -     4 fxp0
+10.0.0.1           aa:0:4:0:81:d      UHL         1       11      -     1 fxp0
+10.0.0.38          127.0.0.1          UGHS        0        0      -     1 lo0
+
+$ <b>route show</b>
+Routing tables
+
+Internet:
+Destination        Gateway            Flags     Refs     Use    Mtu  Prio Iface
+default            10.0.0.1           UGS         4       16      -    12 fxp0
+base-address.mcast localhost          URS         0        0  32768     8 lo0
+loopback           localhost          UGRS        0        0  32768     8 lo0
+localhost          localhost          UH          2       15  32768     1 lo0
+10.0.0/24          link#1             UC          1        4      -     4 fxp0
+10.0.0.1           aa:0:4:0:81:d      UHL         1       11      -     1 fxp0
+10.0.0.38          localhost          UGHS        0        0      -     1 lo0
+</pre>
+
+<h3 id="Setup.aliases">Настройка Aliases для интерфейсов</h3>
+
+OpenBSD имеет простой механизм для установки IP псевдонимов (алиасов) для
+сетевых интерфейсов. Чтобы сделать это, просто отредактируйте файл
+<a href="https://man.openbsd.org/hostname.if">hostname.if(5)</a>.
+
+<p>
+Предположим, что у вас есть интерфейс <b>dc0</b>.
+Вы находитесь в сети <code>192.168.0.0</code>, и IP-адрес <code>dc0</code>
+<code>192.168.0.2</code>, а маска сети <code>255.255.255.0</code>.
+
+<p>
+Допустим, вы используете несколько IP-адресов, которые находятся в одной
+подсети с псевдонимами, ваша маска сети для каждого псевдонима станет
+<code>255.255.255.255</code>.
+Им не нужно следовать сетевой маске первого IP-адреса, привязанного к интерфейсу.
+В этом примере два псевдонима добавляются к интерфейсу <code>dc0</code>, который
+был настроен как <code>192.168.0.2</code> с маской сети <code>255.255.255.0</code>.
+
+<pre class="cmdbox">
+$ <b>cat /etc/hostname.dc0</b>
+inet 192.168.0.2 255.255.255.0
+inet alias 192.168.0.3 255.255.255.255
+inet alias 192.168.0.4 255.255.255.255
+</pre>
+
+Как только вы создали этот файл, <a href="#Setup.activate">запустите netstart</a>
+или просто перезагрузитесь, чтобы изменения вступили в силу.
+Чтобы просмотреть все псевдонимы в системе, используйте <code>ifconfig -A</code>.
+
+<h2 id="DHCP">Dynamic Host Configuration Protocol</h2>
+
+Dynamic Host Configuration Protocol или Динамический Протокол Конфигурации Хостов
+- способ "автоматической" конфигурации сетевых интерфейсов.
+OpenBSD может быть сервером DHCP (конфигурируя другие машины), клиентом DHCP
+(сконфигурированный другой машиной), а также может сочетать оба случая.
+
+<h3 id="DHCPclient">DHCP клиент</h3>
+
+Для того, чтобы использовать включенный в OpenBSD клиент DHCP
+<a href="https://man.openbsd.org/dhclient">dhclient(8)</a>, отредактируйте файл
+<a href="https://man.openbsd.org/hostname.if">hostname.if(5)</a> вашего сетевого
+интерфейса.
+Часть этой главы, посвященная <a href="#Wireless">беспроводным сетям</a>,
+рассажет как настроить беспроводный интерфейс.
+Для ethernet интерфейса достаточно добавить в этот файл всего одну строчку:
+
+<pre class="cmdbox">
+dhcp
+</pre>
+
+OpenBSD получит свои IP-адрес, имя шлюза, а также адреса DNS серверов
+от DHCP сервера во время загрузки системы.
+
+<p>
+Eсли вы хотите получить IP от DHCP сервера в интерактивном режиме, просто
+запустите клиент в консоли:
+
+<pre class="cmdbox">
+# <b>dhclient xl0</b>
+</pre>
+
+Замените <code>xl0</code> названием своего интерфейса.
+
+<p>
+Файл <code>resolv.conf</code> будет перезаписан клиентом
+<a href="https://man.openbsd.org/dhclient">dhclient(8)</a>, если ответ DHCP
+сервера будет включать в себя информацию о domain-name, domain-search или
+domain-name-servers.
+Каждый пераметр может быть проигнорирован, переопределен или изменен в
+соответствии с настройками в
+<a href="https://man.openbsd.org/dhclient.conf">dhclient.conf(5)</a>.
+Например, если вы хотите использовать DNS сервер 1.2.3.4, а не тот, который
+предоставлен DHCP сервером, добавьте следующее:
+
+<pre class="cmdbox">
+supersede domain-name-servers 1.2.3.4;
+</pre>
+
+Кроме того, файл <code>/etc/resolv.conf.tail</code> может быть использован
+для добавления информации, если
+<a href="https://man.openbsd.org/dhclient">dhclient(8)</a>
+перезаписывает <code>resolv.conf</code>.
+
+<h3 id="DHCPserver">DHCP сервер</h3>
+
+Если вы хотите использовать OpenBSD в качестве DHCP сервера, добавьте демон
+<a href="https://man.openbsd.org/dhcpd">dhcpd(8)</a> в автозагрузку.
+
+<pre class="cmdbox">
+# <b>rcctl enable dhcpd</b>
+</pre>
+
+Во время следующей загрузки, dhcpd будет запущен и им будут испрользоваться
+все сетевые карты, в соответствии с конфигурацией в
+<a href="https://man.openbsd.org/dhcpd.conf">dhcpd.conf(5)</a>.
+Вместо этого вы также можете указать лишь определенные интерфейсы, задав их
+имена явно.
+
+<pre class="cmdbox">
+# <b>rcctl set dhcpd flags em1 em2</b>
+</pre>
+
+Ниже приведен пример файла <code>/etc/dhcpd.conf</code>:
+
+<pre class="cmdbox">
+# Home
+subnet 192.168.1.0 netmask 255.255.255.0 {
+	option domain-name-servers 192.168.1.2;
+	option routers 192.168.1.1;
+	range 192.168.1.3 192.168.1.50;
+}
+
+# Guests
+subnet 172.16.0.0 netmask 255.255.255.0 {
+	option domain-name-servers 209.244.0.3, 8.8.8.8;
+	option routers 172.16.0.1;
+	range 172.16.0.2 172.16.0.254;
+}
+</pre>
+
+В этом примере рассматривается конфигурация с двумя подсетями: домашняя сеть и гостевая.
+Клиенты будут автоматически получать IP-адрес, шлюз и DNS-серверы, указанные вами.
+Ознакомьтесь с <a href="https://man.openbsd.org/dhcp-options">dhcp-options(5)</a>,
+где описаны остальные поддерживаемые параметры.
+
+<h3 id="PXE">Загрузка при помощи PXE (i386, amd64)</h3>
+
+PXE (Preboot Execution Environment) представляет из себя стандартный метод загрузки
+системы, используя для этого только сеть.
+Сетевая карта клиента с поддержкой PXE транслирует запрос DHCP в самом начале
+<a href="faq14.html#BootAmd64">процесса загрузки</a>, и вместо получения только
+основной информации об использовании IP/DNS, клиенту также предоставляется файл
+для загрузки.
+В OpenBSD этим файлом является <a href="https://man.openbsd.org/pxeboot">pxeboot(8)</a>,
+и предоставляется он обычно <a href="https://man.openbsd.org/tftpd">tftpd(8)</a>.
+
+<h2 id="Wireless">Беспроводные сети (Wireless Networking)</h2>
+
+OpenBSD поддерживает
+<a href="https://man.openbsd.org/?query=wireless&amp;apropos=1">ряд wireless чипсетов</a>.
+Кроме того, поддерживемые устройства могут быть найдены в
+<a href="https://man.openbsd.org/usb">usb(4)</a> и
+<a href="https://man.openbsd.org/pci">pci(4)</a>.
+О том, на сколько хорошо и какие именно чипы они поддерживают, можно узнать из
+соответствующих man-страниц.
+
+<p>
+Следующие карты поддерживают режим Host-based Access Point (HostAP), что позволяет их
+использовать в качестве <a href="pf/example1.html">точки доступа</a>:
+
+<ul>
+  <li><a href="https://man.openbsd.org/acx">acx(4)</a>
+    - TI ACX100/ACX111
+  <li><a href="https://man.openbsd.org/ath">ath(4)</a>
+    - Atheros 802.11a/b/g
+  <li><a href="https://man.openbsd.org/athn">athn(4)</a>
+    - Atheros 802.11/a/g/n devices
+  <li><a href="https://man.openbsd.org/pgt">pgt(4)</a>
+    - Conexant/Intersil Prism GT Full-MAC 802.11a/b/g
+  <li><a href="https://man.openbsd.org/ral">ral(4)</a>
+      и <a href="https://man.openbsd.org/ural">ural(4)</a>
+    - Ralink Technology RT25x0 802.11a/b/g
+  <li><a href="https://man.openbsd.org/rtw">rtw(4)</a>
+    - Realtek 8180 802.11b
+  <li><a href="https://man.openbsd.org/rum">rum(4)</a>
+    - Ralink Technology RT2501USB
+  <li><a href="https://man.openbsd.org/wi">wi(4)</a>
+    - Prism2/2.5/3
+</ul>
+
+Команда <a href="https://man.openbsd.org/ifconfig">ifconfig(8)</a> <code>media</code>
+показывает возможности сетевого интерфейса.
+Для беспроводных устройств она показывает поддерживаемые режимы 802.11a/b/g/n и
+режимы работы (<code>hostap</code>, <code>ibss</code>,
+<code>monitor</code>).
+К примеру, так можно посмотреть возможности интерфейса <code>ath0</code>:
+
+<pre class="cmdbox">
+$ <b>ifconfig ath0 media</b>
+</pre>
+
+Чтобы использовать некоторые беспроводные карты, вам необходимо загрузить себе
+firmware при помощью <a href="https://man.openbsd.org/fw_update">fw_update(1)</a>.
+Некоторые производители не разрешают <a href="faq1.html#ReallyFree">свободное</a>
+распространение своих прошивок (firmware), поэтому они не могут быть включены в
+состав OpenBSD.
+
+<p>
+Еще один способ включения OpenBSD в беспроводную сеть состоит в совместном
+использовании обычной сетевой карты и внешней точки доступа.
+Очевидное преимущество: подобная схема позволяет удобно расположить антенну в месте,
+где сигнал будет наиболее качественным, что зачастую отнюдь не является местом
+непосредственно рядом с машиной.
+
+<h3>Настройка вашего беспроводного адаптера (Wireless Adapter)</h3>
+
+Адаптеры на основе поддерживаемых чипов можно использовать как любой другой сетевой
+интерфейс. Чтобы подключить OpenBSD к существующей беспроводной сети, используйте
+утилиту <a href="https://man.openbsd.org/ifconfig">ifconfig(8)</a>.
+
+<p>
+Пример <a href="https://man.openbsd.org/hostname.if">hostname.if(5)</a> файла,
+когда используется wireless в качестве клиента:
+
+<pre class="cmdbox">
+nwid puffyuberalles wpakey passwordhere
+dhcp
+</pre>
+
+Или, для нескольких точек доступа:
+
+<pre class="cmdbox">
+join home-net wpakey passwordhere
+join work-net wpakey passwordhere
+join cafe-wifi
+dhcp
+</pre>
+
+Обратите внимание, что ключевое слово <code>dhcp</code> должно быть в самом
+конце, т.е. после других строк конфигурации, поскольку сетевой адаптер не сможет
+отправлять DHCP запрос, пока он не настроен.
+
+<h3>Использование trunking</h3>
+
+Trunk'и - это виртуальные интерфейсы, состоящие из одного или нескольких сетевых карт.
+В этом разделе нашим примером будет ноутбук с wired интерфейсом
+<a href="https://man.openbsd.org/bge">bge0</a> и wireless интерфейсом
+<a href="https://man.openbsd.org/iwn">iwn0</a>.
+Мы создадим <a href="https://man.openbsd.org/trunk">trunk(4)</a> интерфейс, объединив
+оба из них в один.
+
+<p>
+Для этого мы сначала активируем два физических порта, а затем переназначаем их для
+<code>trunk0</code>.
+
+<pre class="cmdbox">
+# <b>echo up > /etc/hostname.bge0</b>
+</pre>
+
+Однако для беспроводного интерфейса требуется немного больше настроек.
+Его необходимо подключить к нашей беспроводной WPA-защищенной сети:
+
+<pre class="cmdbox">
+$ <b>cat /etc/hostname.iwn0</b>
+nwid puffynet wpakey mysecretkey
+up
+</pre>
+
+Теперь наш trunk интерфейс определен следующим образом:
+
+<pre class="cmdbox">
+$ <b>cat /etc/hostname.trunk0</b>
+trunkproto failover trunkport bge0
+trunkport iwn0
+dhcp
+</pre>
+
+Trunk настроен в <code>failover</code> режиме (режим аварийного переключения),
+поэтому можно использовать любой интерфейс. Если оба доступны, он предпочтет
+<code>bge0</code>, так как он первый задан в настройках.
+
+<h2 id="Bridge">Настройка сетевого моста (bridge)</h2>
+
+Сетевой мост или <a href="https://man.openbsd.org/bridge">bridge(4)</a>
+является связующим звеном между двумя или более отдельными сетями.
+В отличие от рутера, пакеты проходят через bridge прозрачно: две
+различных сети объединены в один сегмент с обоих сторон сетевого моста.
+Мосты пересылают только те пакеты, которые должны пройти от одного сегмента
+к другому, при этом, как результат, интерфейс моста может иметь или не иметь
+собственного IP адреса.
+Если у него есть IP, интерфейс будет иметь два режима работы: первый - как
+часть моста, второй - как автономный NIC. Если ни один из интерфейсов не
+имеет IP адреса, мост будет передавать сетевые данные, но не будет
+обслуживаться извне (что рассматривется как фича).
+
+<h3>Сетевой мост, использующийся в качестве DHCP сервера</h3>
+
+Представим для примера, что у нас есть система с четыремя
+<a href="https://man.openbsd.org/vr">vr(4)</a> интерфейсами,
+<code>vr0</code> и до <code>vr3</code>.
+Мы хотим соединить <code>vr1</code>, <code>vr2</code> и <code>vr3</code>
+вместе, оставив при этом <code>vr0</code> как входную линию связи.
+Мы также хотим обслуживать IP адреса через DHCP, при помощи объединенных
+интерфейсов. Будучи DHCP сервером и рутором для входящей линии связи,
+box должен иметь IP-адрес в мостовой сети.
+
+<p>
+Невозможно назначить IP адрес непосредственно bridge интерфейсу.
+IP адрес должен быть добавлен к одному из интерфейсов, но мы не можем
+использовать физический интерфейс, так как link может быть down, и в этом
+случае адрес будет недоступен.
+К счастью, есть драйвер <a href="https://man.openbsd.org/vether">vether(4)</a>
+(виртуальный Ethernet), который можно использовать для этой цели.
+Мы добавим его к мосту, назначим ему IP адрес и скажем
+<a href="https://man.openbsd.org/dhcpd">dhcpd(8)</a> использовать его.
+
+<ul>
+  <li><a href="#DHCPserver">Конфигурация DHCP сервера</a> еще не описана в
+	  этом разделе, но схема адресации, используемая здесь, является
+	  той же самой.
+  <li>Это также будет uplink роутер для вашей мостовой сети, поэтому мы будем
+	  использовать IP адрес <code>192.168.1.1</code> для соответствия
+	  конфигурации DHCP сервера.
+  <li>Мы не будем рассматривать здесь конфигурацию входящей линии связи,
+	  маршрутизации или фаервола.
+</ul>
+
+Сначала помечаем интерфейсы <code>vr1</code>, <code>vr2</code> и <code>vr3</code>
+как up:
+
+<pre class="cmdbox">
+# <b>echo up > /etc/hostname.vr1</b>
+# <b>echo up > /etc/hostname.vr2</b>
+# <b>echo up > /etc/hostname.vr3</b>
+</pre>
+
+Затем создаем конфигурацию <code>vether0</code>:
+
+<pre class="cmdbox">
+# <b>echo 'inet 192.168.1.1 255.255.255.0 192.168.1.255' > /etc/hostname.vether0</b>
+</pre>
+
+Настраиваем интерфейс моста так, чтобы он содержал все вышеперечисленные
+vr-интерфейсы:
+
+<pre class="cmdbox">
+$ <b>cat /etc/hostname.bridge0</b>
+add vether0
+add vr1
+add vr2
+add vr3
+up
+</pre>
+
+Наконец, говорим DHCP демону работать с <code>vether0</code> интерфейсом:
+
+<pre class="cmdbox">
+# <b>rcctl set dhcpd flags vether0</b>
+</pre>
+
+Перегружаемся и наслаждаемся работой моста!
+
+<h3>Фильтрация пакетов при помощи моста</h3>
+
+Конечно и такой простой мост тоже может найти применение, но, вероятно, вам
+захочется ОБРАБАТЫВАТЬ пакеты тем или иным образом, поскольку они проходят через
+ваш мост.
+Как вы уже наверное догодались, для фильтрации трафика на мосту может
+испльзоваться <a href="pf/index.html">Packet Filter</a>.
+Имейте в виду, что по характеру моста одни и те же данные проходят через оба
+интерфейса, поэтому вам нужно фильтровать только один интерфейс.
+
+<h3>Пара советов</h3>
+
+<ul>
+  <li>Используя опцию <code>blocknonip</code>
+      <a href="https://man.openbsd.org/ifconfig">ifconfig(8)</a> или в
+      <a href="https://man.openbsd.org/hostname.if">hostname.bridge0</a>,
+      вы можете предотвратить утечку вашего не-IP-трафика (например, IPX
+      или NETBEUI).
+      Это может быть важно в некоторых ситуациях. Вы должны знать, что мосты
+      работают для всех видов трафика, а не только для IP.
+  <li>Соединение на мосту требует, чтобы NIC находились в promiscuous режиме.
+      Они слушают <b>весь</b> сетевой трафик, а не только тот, который направлен
+      на интерфейс. Это увеличит нагрузку на процессор и шину, как и следовало
+      бы ожидать.
+</ul>
+
+<h2 id="Multipath">Equal-cost Multipath Routing</h2>
+
+"Equal-cost multipath routing" означает, что имеется несколько маршрутов в
+таблице маршрутизации к данной сети, например маршрут по умолчанию (default
+route) <code>0.0.0.0/0</code>.
+Когда ядро определяет, каким маршрутом отправить пакет для данной сети,
+оно может выбрать любой из equal-cost маршрутов. В большинстве случаев такая
+маршрутизация используется для создания резервированного соединения с сетью
+логически более "корневого" уровня, например, подключения к сети Интернет.
+
+<p>
+Команда <a href="https://man.openbsd.org/route">route(8)</a> используется
+для добавления/удаления/изменения маршрутов в таблице маршрутизации (routing
+table). Аргумент <code>-mpath</code> используется при добавлении multipath
+маршрутов.
+
+<pre class="cmdbox">
+# <b>route add -mpath default 10.130.128.1</b>
+# <b>route add -mpath default 10.132.0.1</b>
+</pre>
+
+Проверим маршрутизацию:
+
+<pre class="cmdbox">
+# <b>netstat -rnf inet | grep default</b>
+default     10.130.128.1      UGS       2      134      -     fxp1
+default     10.132.0.1        UGS       0      172      -     fxp2
+</pre>
+
+В этом примере мы видим, что маршрут по умолчанию достижим, используя
+<code>10.130.128.1</code> через интерфейс <code>fxp1</code>, а другой
+использует <code>10.132.0.1</code> и <code>fxp2</code>.
+
+<p>
+Так как <a href="https://man.openbsd.org/mygate">mygate(5)</a> до сих пор
+не поддерживает multipath маршрутизацию по умолчанию, вышеуказанные команды
+должны быть добавленны в конец
+<a href="https://man.openbsd.org/hostname.if">hostname.if(5)</a> файлов для
+<code>fxp1</code> и <code>fxp2</code> интерфейсов.
+Файл <code>/etc/mygate</code> должен быть после этого удален.
+
+<pre class="cmdbox">
+$ <b>tail -1 /etc/hostname.fxp1</b>
+!route add -mpath default 10.130.128.1
+$ <b>tail -1 /etc/hostname.fxp2</b>
+!route add -mpath default 10.132.0.1
+</pre>
+
+Наконец, не забудьте активировать multipath маршрутизацию, при помощи
+соответствующих параметров
+<a href="https://man.openbsd.org/sysctl.8">sysctl(8)</a>.
+
+<pre class="cmdbox">
+# <b>sysctl net.inet.ip.multipath=1</b>
+# <b>sysctl net.inet6.ip6.multipath=1</b>
+</pre>
+
+Не забудьте отредактировать
+<a href="https://man.openbsd.org/sysctl.conf">sysctl.conf(5)</a>,
+чтобы сохранить изменения.
+
+<p>
+А теперь попробуем проверить работу разных маршрутов.
+Ядро будет распределять трафик в режиме балансировки (load balance)
+для каждого multipath маршрута.
+
+<pre class="cmdbox">
+# <b>traceroute -n 154.11.0.4</b>
+traceroute to 154.11.0.4 (154.11.0.4), 64 hops max, 60 byte packets
+ 1  10.130.128.1  19.337 ms  18.194 ms  18.849 ms
+ 2  154.11.95.170  17.642 ms  18.176 ms  17.731 ms
+ 3  154.11.5.33  110.486 ms  19.478 ms  100.949 ms
+ 4  154.11.0.4  32.772 ms  33.534 ms  32.835 ms
+
+# <b>traceroute -n 154.11.0.5</b>
+traceroute to 154.11.0.5 (154.11.0.5), 64 hops max, 60 byte packets
+ 1  10.132.0.1  14.175 ms  14.503 ms  14.58 ms
+ 2  154.11.95.38  13.664 ms  13.962 ms  13.445 ms
+ 3  208.38.16.151  13.964 ms  13.347 ms  13.788 ms
+ 4  154.11.0.5  30.177 ms  30.95 ms  30.593 ms
+</pre>
+
+Для дополнительной информации о том, как выбирается тот или иной маршрут,
+читайте <a href="https://www.ietf.org/rfc/rfc2992.txt">RFC2992</a>,
+"Analysis of an Equal-Cost Multi-Path Algorithm".
+
+<p>
+Стоит заметить, если интерфейс, используемый при multipath маршрутизации,
+потеряет соединение (например, нет carrier), ядро тем не менее все
+равно будет пытаться отправить пакеты маршрутом, сконфигурированным для
+этого интерфейса. Конечно, этот трафик никуда не попадет.
+Очень рекомендуется использовать
+<a href="https://man.openbsd.org/ifstated">ifstated(8)</a> для проверки
+доступности интерфейса и коррекции таблицы маршрутизации.
+
+
+<h2 id="NFS">Использование NFS</h2>
+
+Network File System (NFS или Сетевая Файловая Система) используется
+для совместного использования файловой системы по сети.
+
+<p>
+В этом разделе приводятся шаги по простой установке NFS.
+В этом примере описывается NFS-сервер в LAN с клиентами из LAN.
+Здесь не обсуждаются вопросы безопасности NFS. Мы считаем, что вы уже установили
+фильтрацию пакетов или другую защиту с помощью фаервола для предотвращения
+доступа извне.
+
+<h3>Настройка NFS сервера</h3>
+
+Во-первых, включите <a href="https://man.openbsd.org/portmap">portmap(8)</a>,
+<a href="https://man.openbsd.org/mountd">mountd(8)</a> и
+<a href="https://man.openbsd.org/nfsd">nfsd(8)</a> сервисы на сервере:
+
+<pre class="cmdbox">
+# <b>rcctl enable portmap mountd nfsd</b>
+</pre>
+
+Следующим шагом мы настроим список файловых систем, чтобы сделать
+доступным для клиентов монтирование.
+
+<p>
+В этом примере наш сервер имеет адреc <code>10.0.0.1</code>.
+Этот NFS-сервер обслуживает только клиентов из своей сети.
+Первый шаг в установке NFS - настройка файла
+<a href="https://man.openbsd.org/exports">exports(5)</a>:
+
+
+<pre class="cmdbox">
+$ <b>cat /etc/exports</b>
+/docs -alldirs -ro -network=10.0.0 -mask=255.255.255.0
+</pre>
+
+ФС <code>/docs</code> будет доступна через NFS.
+Параметр <code>-alldirs</code> указывает, что клиенты смогут монтировать
+полностью либо лишь часть каталога <code>/docs</code>. Опция <code>-ro</code>
+указывает, что клиентам будет предоставлен доступ только для чтения.
+Последние два аргумента указывают, что только клиенты в сети <code>10.0.0.0</code>
+и использующие маску сети <code>255.255.255.0</code>, будут авторизованы для
+монтирования этой файловой системы.
+
+<p>
+Теперь можно запустить сервисы на сервере.
+
+<pre class="cmdbox">
+# <b>rcctl start portmap mountd nfsd</b>
+</pre>
+
+Если вы вносите изменения в <code>/etc/exports</code> когда NFS уже
+запущен, вам необходимо перезагрузить mountd:
+
+<pre class="cmdbox">
+# <b>rcctl reload mountd</b>
+</pre>
+
+<h3>Подключение ФС через NFS</h3>
+
+Файловые системы через NFS монтируются при помощи
+<a href="https://man.openbsd.org/mount_nfs">mount(8)</a>, или, точнее,
+<a href="https://man.openbsd.org/mount_nfs">mount_nfs(8)</a>.
+
+<p>
+Для монтирования ФС <code>/docs</code>, которая находится на машине <code>10.0.0.1</code>,
+к себе в <code>/mnt</code>, сделайте:
+
+<pre class="cmdbox">
+# <b>mount -t nfs 10.0.0.1:/docs /mnt</b>
+</pre>
+
+Чтобы это происходило автоматически во время загрузки системы, добавьте следующую
+строку в ваш <a href="https://man.openbsd.org/fstab">fstab(5)</a>:
+
+<pre class="cmdbox">
+# <b>echo '10.0.0.1:/docs /mnt nfs ro,nodev,nosuid 0 0' >> /etc/fstab</b>
+</pre>
+
+Не забывайте использовать <code>0 0</code> в конце данной строки для
+файловой системы NFS, чтобы ваш компьютер не пытался запустить на ней
+<a href="https://man.openbsd.org/fsck">fsck(8)</a> во время загрузки.
+
+<p>
+При обращении к монтируемому каталогу от пользователя root, сервер
+автоматически отображает root доступ к имени пользователя <code>nobody</code>
+и группе <code>nobody</code>. Это важно знать при рассмотрении прав доступа
+к файлам. Например, возьмем файл с таким набором прав:
+
+<pre class="cmdbox">
+-rw-------    1 root     wheel           0 Dec 31 03:00 _daily.B20143
+</pre>
+
+Если этот файл находится в NFS, и пользователь root пытается получить доступ
+к этому файлу через тот или иной NFS-клиент, доступ будет запрещен.
+
+<p>
+Пользователи и группы, которые должны иметь root-доступ, настраиваются при помощи
+файла <a href="https://man.openbsd.org/exports">exports(5)</a> на стороне сервера.
+
+<h3>Проверка состояния NFS</h3>
+
+Для проверки, что сервис NFS работает должным образом, можно поверить RPC,
+которая регистрирует все запущенные демоны. Для этого используется
+<a href="https://man.openbsd.org/rpcinfo">rpcinfo(8)</a>.
+
+<pre class="cmdbox">
+$ <b>rpcinfo -p 10.0.0.1</b>
+   program vers proto   port
+    100000    2   tcp    111  portmapper
+    100000    2   udp    111  portmapper
+    100005    1   udp    633  mountd
+    100005    3   udp    633  mountd
+    100005    1   tcp    916  mountd
+    100005    3   tcp    916  mountd
+    100003    2   udp   2049  nfs
+    100003    3   udp   2049  nfs
+    100003    2   tcp   2049  nfs
+    100003    3   tcp   2049  nfs
+</pre>
+
+Есть несколько утилит для просмотра происходящего с NFS.
+Одна из них <a href="https://man.openbsd.org/showmount">showmount(8)</a>,
+которая показывает, какие файловые системы смонтированы и кем.
+Есть также <a href="https://man.openbsd.org/nfsstat">nfsstat(1)</a>, которая
+покажет более подробную статистику.
