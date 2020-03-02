@@ -54,7 +54,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
 #IgnoreRhosts yes
 
 # To disable tunneled clear text passwords, change to no here!
-#PasswordAuthentication no
+PasswordAuthentication yes
 PermitEmptyPasswords no
 
 # Change to no to disable s/key passwords
@@ -81,13 +81,13 @@ ChallengeResponseAuthentication no
 # and ChallengeResponseAuthentication to 'no'.
 UsePAM yes
 
-#AllowAgentForwarding yes
-#AllowTcpForwarding yes
-#GatewayPorts no
-X11Forwarding yes
+AllowAgentForwarding yes
+AllowTcpForwarding yes
+GatewayPorts yes
+X11Forwarding no
 X11DisplayOffset 10
 X11UseLocalhost yes
-#PermitTTY yes
+PermitTTY yes
 PrintMotd no # pam does that
 #PrintLastLog yes
 #TCPKeepAlive yes
@@ -110,7 +110,7 @@ Subsystem	sftp	/usr/lib/ssh/sftp-server
 
 # Example of overriding settings on a per-user basis
 #Match User anoncvs
-	X11Forwarding yes
-	AllowTcpForwarding yes
+#	X11Forwarding no
+#	AllowTcpForwarding no
 #	PermitTTY no
 #	ForceCommand cvs server
