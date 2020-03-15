@@ -1,0 +1,1 @@
+javascript:(function(){location.href='https://www.google.com/bookmarks/mark?op=add&hl=ru'+'&bkmk='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);})();

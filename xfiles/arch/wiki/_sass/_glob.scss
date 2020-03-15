@@ -1,0 +1,68 @@
+a.logo	{
+	color: $content-background-color;
+	text-decoration: none;
+	&:hover {
+		color: $content-background-color;
+	}
+}
+
+.btn {
+	background-color: $brand-colour;
+	font-size: 1em;
+	text-transform: uppercase;
+	text-decoration: none;
+	border: 1px solid $brand-colour;
+	border-radius: .2em;
+	color: $content-background-color;
+	padding: .5em 2em;
+	cursor: pointer;
+	&:hover {
+		background-color: $accent-hover;
+		color: $content-background-color;
+		text-decoration: none;
+	}
+}
+@media (max-width: 480px) {
+  .btn {
+  	font-size: .5em;
+  }
+}
+
+.edit-link {
+	padding-bottom: 1em;
+	a {
+		color: $brand-colour;
+		padding: 1em 0;
+		text-decoration: none;
+		&:hover {
+			color: $accent-hover;
+		}
+	}
+}
+
+#disqus_thread {
+	text-align: center;
+	background-color: $content-background-color;
+	padding: 1em;
+	-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	-moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+// back-top
+#scrollup {
+	font-size: 2em;
+	color: $content-background-color;
+	position: fixed;
+	z-index: 1000;
+	opacity: 0.8;
+	padding: 10px;
+	background: $brand-colour;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	right: 20px;
+	bottom: 50px;
+	display: none;
+	cursor: pointer;
+}
