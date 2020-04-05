@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-coreutils" role="wrap">
+  <?dbhtml filename="coreutils.html"?>
+
+  <sect1info condition="script">
+    <productname>coreutils</productname>
+    <productnumber>&coreutils-version;</productnumber>
+    <address>&coreutils-url;</address>
+  </sect1info>
+
+  <title>Coreutils-&coreutils-version;</title>
+
+  <indexterm zone="ch-tools-coreutils">
+    <primary sortas="a-Coreutils">Coreutils</primary>
+    <secondary>tools</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/coreutils.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&coreutils-ch5-sbu;</seg>
+        <seg>&coreutils-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Установка пакета Coreutils</title>
+
+    <para>Подготовьте пакет Coreutils к компиляции:</para>
+
+<screen><userinput remap="configure">./configure --prefix=/tools --enable-install-program=hostname</userinput></screen>
+
+    <variablelist>
+      <title>Значение параметров конфигурации:</title>
+
+      <varlistentry>
+        <term><envar>--enable-install-program=hostname</envar></term>
+        <listitem>
+          <para>Аргумент включает в установку программу <command>hostname</command>. Эта программа по умолчанию выключена, но она необходима для выполнения набора тестов пакета Perl.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Скомпилируйте пакет:</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>Компиляция завершена. Как обсуждалось ранее выполнение тестов не является обязательным для набора временных инструментов в этой главе. Чтобы запустить выполнение тестов, в любом случае, выполните следующую команду:</para>
+
+<screen><userinput remap="test">make RUN_EXPENSIVE_TESTS=yes check</userinput></screen>
+
+    <para>The <parameter>RUN_EXPENSIVE_TESTS=yes</parameter> аргумент сообщает включить в набор  ресурсозатратные (с точки зрения мощности процессора и использования памяти) тесты для некоторых платформ. Как правило, такие тесты не вызывают проблем в Linux.</para>
+
+    <para>Установите пакет:</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+<!--
+    <para>The above command refuses to install <filename>su</filename>
+    because the program cannot be installed setuid root as a non-privileged
+    user. By manually installing it, we can use it for running tests in the
+    final system as a non-privileged user. Install it with:</para>
+
+<screen><userinput remap="install">cp -v src/su /tools/bin</userinput></screen>
+-->
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>Подробная информация об этом пакете находится в
+    <xref linkend="contents-coreutils" role="."/></para>
+
+  </sect2>
+
+</sect1>

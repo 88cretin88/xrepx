@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-adjusting">
+  <?dbhtml filename="adjusting.html"?>
+
+  <title>Перенастройка временного набора инструментов</title>
+
+  <para>Теперь, когда все библиотеки Си были установлены, необходимо перенастроить используемый сейчас временный набор инструментов, чтобы он выполнял линковку новых скомпилированых программ с установленными библиотеками.</para>
+
+  <para>Сначала,выполните резервное копирование компоновщика <filename class="directory">/tools</filename>, и замените его настроенным компоновщиком в главе 5. Также будут созданы ссылки на их копии в каталоге <filename class="directory">/tools/$(uname -m)-pc-linux-gnu/bin</filename>:</para>
+
+<screen><userinput>mv -v /tools/bin/{ld,ld-old}
+mv -v /tools/$(uname -m)-pc-linux-gnu/bin/{ld,ld-old}
+mv -v /tools/bin/{ld-new,ld}
+ln -sv /tools/bin/ld /tools/$(uname -m)-pc-linux-gnu/bin/ld</userinput></screen>
+
+  <para>Далее, необходимо изменить специальные файлы GCC так, чтобы они указывали на новый динамический компоновщик. После удаления всех экземпляров в каталоге <quote>/tools</quote> останутся только правильные пути к динамическому компоновщику. Также необходимо настроить некоторые файлы GCC для правильного поиска заголовочных файлов и файлов запуска Glibc. С помощью команды <command>sed</command> можно выполнить следующую команду:</para>
+
+<screen><userinput>gcc -dumpspecs | sed -e 's@/tools@@g'                   \
+    -e '/\*startfile_prefix_spec:/{n;s@.*@/usr/lib/ @}' \
+    -e '/\*cpp:/{n;s@$@ -isystem /usr/include@}' &gt;      \
+    `dirname $(gcc --print-libgcc-file-name)`/specs</userinput></screen>
+
+  <para>Хорошей идеей будет выполнить проверку сделанных изменений на предмет корректности работы.</para>
+  <para>На этом этапе следует проверить и убедиться в том, что базовые функции (линковка и компиляция) перенастроенного временного набора инструментов работают так, как необходимо. Выполним такие проверки:</para>
+
+<screen os="a"><userinput>echo 'int main(){}' &gt; dummy.c
+cc dummy.c -v -Wl,--verbose &amp;&gt; dummy.log
+readelf -l a.out | grep ': /lib'</userinput></screen>
+
+  <para os="b">В результате выполнения этой команды не должно быть ошибок, и вывод (в зависимости от платформы) должен соответствовать следующей строке:</para>
+
+<screen os="c"><computeroutput>[Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]</computeroutput></screen>
+
+  <para>Обратите внимание, что для 64-битной системы каталог <filename class="directory">/lib</filename> это место, где располагается динамический компоновщик, но доступ к нему обеспечен через символическую ссылку /lib64.</para>
+
+  <note><para>Для 32-битных систем интерпретатор должен быть /lib/ld-linux.so.2.</para></note>
+
+  <para os="d">Теперь убедимся что настройка стартовых файлов запуска выполнена правильно:</para>
+
+<screen os="e"><userinput>grep -o '/usr/lib.*/crt[1in].*succeeded' dummy.log</userinput></screen>
+
+  <para os="f">Вывод должен соответствовать следующей строке:</para>
+
+<screen><computeroutput>/usr/lib/../lib/crt1.o succeeded
+/usr/lib/../lib/crti.o succeeded
+/usr/lib/../lib/crtn.o succeeded</computeroutput></screen>
+
+  <para os="g">Проверьте, что компилятор выполняет поиск заголовочных файлов в нужных местах:</para>
+
+<screen><userinput>grep -B1 '^ /usr/include' dummy.log</userinput></screen>
+
+  <para os="h">Вывод должен соответствовать следующей строке:</para>
+
+<screen><computeroutput>#include &lt;...&gt; search starts here:
+ /usr/include</computeroutput></screen>
+
+  <para os="i">Далее проверим, что компоновщик использует правильные пути поиска:</para>
+
+<screen os="j"><userinput>grep 'SEARCH.*/usr/lib' dummy.log |sed 's|; |\n|g'</userinput></screen>
+
+  <para os="k">Ссылки на пути с наличием у компонента суффикса '-linux-gnu' должны быть проигнорированы, и вывод должен соответствовать следующей строке:</para>
+
+<screen><computeroutput>SEARCH_DIR("/usr/lib")
+SEARCH_DIR("/lib")</computeroutput></screen>
+
+  <para os="l">Проверим что используется нужная библиотека libc:</para>
+
+<screen os="m"><userinput>grep "/lib.*/libc.so.6 " dummy.log</userinput></screen>
+
+  <para os="n">Вывод должен соответствовать следующей строке:</para>
+
+<screen os="o"><computeroutput>attempt to open /lib/libc.so.6 succeeded</computeroutput></screen>
+
+  <para os="p">Наконец, проверим что GCC использует правильный динамический компоновщик:</para>
+
+<screen os="q"><userinput>grep found dummy.log</userinput></screen>
+
+  <para os="r">Вывод (в зависимости от платформы в наименовании динамического компоновщика) должен соответствовать следующей строке:</para>
+
+<screen os="s"><computeroutput>found ld-linux-x86-64.so.2 at /lib/ld-linux-x86-64.so.2</computeroutput></screen>
+
+  <para os="t">Если вывод на выполнение команд не выводиться или команды не выполняются вовсе, то это признак того, что в предыдущих инструкциях была допущена серьезная ошибка. Исследуйте предыдущие шаги и проверьте правильность их выполнения. Постарайтесь найти ошибку в вводимых командах. Наиболее вероятно, что причина в проблемах - не правильная настройка специальных файлов при перенастройке временного набора инструментов. Все проблемы должны быть найдены и исправлены здесь, до выполнения следующих этапов.</para>
+
+  <para os="u">Если все работает правильно, выполним очистку тестовых файлов:</para>
+
+<screen os="v"><userinput>rm -v dummy.c a.out dummy.log</userinput></screen>
+
+</sect1>

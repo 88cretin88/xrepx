@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-finish-getcounted">
+  <?dbhtml filename="getcounted.html"?>
+
+  <title>Вступите в ряды пользователей LFS</title>
+
+  <para>Теперь, когда вы закончили изучение книги LFS, и хотите вступить в ряды пользователей LFS, перейдите по ссылке <ulink url="http://linuxfromscratch.org/cgi-bin/lfscounter.php"/> и зарегистрируйтесь. Введите ваше имя и версию LFS которую вы использовали.</para>
+
+  <para>Давайте выполним перезагрузку в систему LFS.</para>
+
+</sect1>

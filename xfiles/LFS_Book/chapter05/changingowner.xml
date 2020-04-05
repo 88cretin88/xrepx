@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-changingowner">
+  <?dbhtml filename="changingowner.html"?>
+
+  <title>Изменение прав</title>
+
+  <note>
+    <para>Команды в остальных частях книги должны выполняться от пользователя <systemitem class="username">root</systemitem> и более не использовать временного пользователя <systemitem class="username">lfs</systemitem>. Также, дважды проверьте  что переменная окружения <envar>$LFS</envar> установлена пользователю <systemitem class="username">root</systemitem>.</para>
+  </note>
+
+  <para>Сейчас, права на каталог <filename class="directory">$LFS/tools</filename> принадлежат пользователю <systemitem class="username">lfs</systemitem>, который существует только в хост-системе. Если права на каталог оставить как есть, файлы будут иметь принадлежность к пользовательскому идентификатору но без соответствующей учетной записи. Это небезопасно, потому что в дальнейшем когда будут создаваться новые учетные записи,  идентификатор может быть кому нибудь назначен, и права на этот каталог будут ему предоставлены, следовательно он сможет манипулировать всем содержимым каталога без каких либо ограничений.</para>
+
+  <para>Во избежание этой проблемы, позднее, можно добавить пользователя <systemitem class="username">lfs</systemitem> в новую систему, когда будет создан файл <filename>/etc/passwd</filename>, позаботьтесь назначить ему тоже имя и идентификатор группы  как в хост-системе. Лучше всего изменить права на каталог <filename class="directory">$LFS/tools</filename>, и назначить их пользователю <systemitem class="username">root</systemitem>, запустив команду:</para>
+
+<screen><userinput>chown -R root:root $LFS/tools</userinput></screen>
+
+  <para>Несмотря на то, что каталог <filename class="directory">$LFS/tools</filename> может быть удалён, как только сборка системы LFS будет завершена, его можно сохранить для сборки другой системы LFS  <emphasis>той же версии книги.</emphasis>. Каким образом выполнять резервное копирование каталога <filename class="directory">$LFS/tools</filename> является личным предпочтением.</para>
+
+  <caution>
+    <para>Если вы намерены сохранить временный набор инструментов для повторной сборки системы LFS, <emphasis>сейчас</emphasis> самое время, чтобы выполнить резервное копирование. Команды, в процессе выполнения главы 6 изменять файлы и ссылки временного набора инструментов, и в конечном состоянии инструментарий будет бесполезным для будущих сборок.</para>
+  </caution>
+
+</sect1>

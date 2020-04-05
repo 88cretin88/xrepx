@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-perl" role="wrap">
+  <?dbhtml filename="perl.html"?>
+
+  <sect1info condition="script">
+    <productname>perl</productname>
+    <productnumber>&perl-version;</productnumber>
+    <address>&perl-url;</address>
+  </sect1info>
+
+  <title>Perl-&perl-version;</title>
+
+  <indexterm zone="ch-tools-perl">
+    <primary sortas="a-Perl">Perl</primary>
+    <secondary>tools</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/perl.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&perl-ch5-sbu;</seg>
+        <seg>&perl-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Установка пакета Perl</title>
+
+    <para>Подготовьте пакет Perl к компиляции::</para>
+
+<screen><userinput remap="configure">sh Configure -des -Dprefix=/tools -Dlibs=-lm -Uloclibpth -Ulocincpth</userinput></screen>
+    <variablelist>
+      <title>Значения параметров конфигурации:</title>
+
+      <varlistentry>
+        <term><parameter>-des</parameter></term>
+        <listitem>
+          <para>This is a combination of three options: -d uses defaults for 
+          all items; -e ensures completion of all tasks; -s silences
+          non-essential output.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>-Uloclibpth amd -Ulocincpth</parameter></term>
+        <listitem>
+          <para>These entries undefine variables that cause the configuration
+          to search for locally installed components that may exist on the
+          host system.</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+    <para>Выполните сборку пакета:</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>Хотя Perl поставляется с набором тестов, было бы лучше подождать
+     пока он не будет установлен в следующей главе.</para>
+
+    <para>На данный момент, только некоторые из утилит и библиотек должны быть установлены:</para>
+
+<screen><userinput remap="install">cp -v perl cpan/podlators/scripts/pod2man /tools/bin
+mkdir -pv /tools/lib/perl5/&perl-version;
+cp -Rv lib/* /tools/lib/perl5/&perl-version;</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>Подробная информация об этом пакете находится в
+    <xref linkend="contents-perl" role="."/></para>
+
+  </sect2>
+
+</sect1>

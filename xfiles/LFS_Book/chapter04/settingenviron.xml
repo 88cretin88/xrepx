@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-settingenviron">
+  <?dbhtml filename="settingenvironment.html"?>
+
+  <title>Настройка окружения</title>
+
+  <para>Настроим хорошо работающее окружение. Создадим два файла для оболочки <command>bash</command>. При входе в систему как пользователь <systemitem class="username">lfs</systemitem> выполните следующую команду для создания нового файла <filename>.bash_profile</filename>:</para>
+
+<screen><userinput>cat &gt; ~/.bash_profile &lt;&lt; "EOF"
+<literal>exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash</literal>
+EOF</userinput></screen>
+
+  <para>Когда выполнен вход под пользователем <systemitem class="username">lfs</systemitem>, при инициализации оболочки   <emphasis>login</emphasis>, будет читать данные из файла <filename>/etc/profile</filename> хост-системы (который возможно будет содержать некоторые настройки и дополнительные переменные), и затем данные из файла <filename>.bash_profile</filename>. Команда <command>exec env -i.../bin/bash</command> в файле <filename>.bash_profile</filename> заменяет запущенную оболочку новой полностью пустой средой, кроме таких переменных, как <envar>HOME</envar>, <envar>TERM</envar>, и <envar>PS1</envar>. Такой подход гарантирует, что нежелательные и потенциально опасные переменные окружения хост-системы не попадут в среду сборки. В результате чего мы получаем чистое окружение.</para>
+
+  <para>Новый экземпляр оболочки - это <emphasis>non-login</emphasis> оболочка, которая не выполняет чтение файла <filename>/etc/profile</filename> или <filename>.bash_profile</filename>, но выполняет чтение из файла <filename>.bashrc</filename>. Создадим файл <filename>.bashrc</filename>:</para>
+
+<screen><userinput>cat &gt; ~/.bashrc &lt;&lt; "EOF"
+<literal>set +h
+umask 022
+LFS=/mnt/lfs
+LC_ALL=POSIX
+LFS_TGT=$(uname -m)-lfs-linux-gnu
+PATH=/tools/bin:/bin:/usr/bin
+export LFS LC_ALL LFS_TGT PATH</literal>
+EOF</userinput></screen>
+
+  <para>Команда <command>set +h</command> отключает хеш-функцию <command>bash</command>. Хеширование полезно когда <command>bash</command> использует хеш-таблицу для хранения полного пути исполняемых файлов чтобы избежать поиска в переменной окружения <envar>PATH</envar> при каждом обращении. Однако новые инструменты должны быть использованы сразу после их установки. При выключении хеш-функции оболочка будет всегда искать переменную окружения <envar>PATH</envar> когда программу необходимо запустить. Таким образом, оболочка будет выполнять поиск скомпилированных инструментов в каталоге <filename class="directory">$LFS/tools</filename>, как только они станут доступны без запоминания предыдущей версии той же программы в другом расположении.</para>
+
+  <para>Указание для значения 022 маски создания файлов пользователя (umask) для создания новых файлов и каталогов позволяет выполнять запись только их владельцу, но они останутся доступными на чтение и выполнение для остальных пользователей (при условии, что режимы по умолчанию используют системный вызов <function>open(2)</function>, новые файлы получат разрешение 644 а каталоги 755).</para>
+
+  <para>Переменная окружения <envar>LFS</envar> должны указывать на выбранную точку монтирования.</para>
+
+  <para>Переменная <envar>LC_ALL</envar> управляет локализацией некоторых программ, и формирует сообщения в соответствии с соглашениями локализаций указанной страны. Если указать значение
+  <envar>LC_ALL</envar> в <quote>POSIX</quote> или  <quote>C</quote> (что одно и тоже) гарантирует, что все будет работает так, как ожидается в chroot окружении.</para>
+
+  <para>Переменная <envar>LFS_TGT</envar> содержит совместимое описание компьютера, которая будет использоваться при сборке кросс-компилятора и компоновщика и затем при кросс-компиляции временного набора инструментов. Более подробная информация содержится в разделе <xref linkend="ch-tools-toolchaintechnotes" role=""/>.</para>
+
+  <para>Указание значения <filename class="directory">/tools/bin</filename> перед стандартным содержимым переменной <envar>PATH</envar> дает возможность оболочке сразу использовать программы и библиотеки, которые были установлены в этот каталог. В сочетании с отключением хеширования, снижается риск, что старые программы будут использованы хост-системой когда те же программы будут доступны в среде окружения, в главе 5.</para>
+
+  <para>Наконец, чтобы полностью подготовить среду для временных инструментов, укажите источник только что созданного профиля пользователя:</para>
+
+<screen><userinput>source ~/.bash_profile</userinput></screen>
+
+</sect1>

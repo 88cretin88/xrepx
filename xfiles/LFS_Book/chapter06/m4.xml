@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-m4" role="wrap">
+  <?dbhtml filename="m4.html"?>
+
+  <sect1info condition="script">
+    <productname>m4</productname>
+    <productnumber>&m4-version;</productnumber>
+    <address>&m4-url;</address>
+  </sect1info>
+
+  <title>M4-&m4-version;</title>
+
+  <indexterm zone="ch-system-m4">
+    <primary sortas="a-M4">M4</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Пакет содержит общий макропроцессор текста - полезный инструмент для выполнения сборки других программ.</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&m4-ch6-sbu;</seg>
+        <seg>&m4-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Установка пакета M4</title>
+    <para>Сначала, сделаем некоторые исправления, требуемые glibc-2.28:</para>
+    <screen><userinput remap="pre">sed -i 's/IO_ftrylockfile/IO_EOF_SEEN/' lib/*.c
+echo "#define _IO_IN_BACKUP 0x100" >> lib/stdio-impl.h</userinput></screen>
+    <para>Подготовьте пакет M4 к компиляции:</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr</userinput></screen>
+
+    <para>Скомпилируйте пакет:</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>Для выполнения тестов, выполните команду:</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>Установите пакет:</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-m4" role="content">
+    <title>Содержимое пакета M4</title>
+
+    <segmentedlist>
+      <segtitle>Установленная программа</segtitle>
+
+      <seglistitem>
+        <seg>m4</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Краткое описание</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="m4">
+         <!-- Don't remove the extra space, it prevet a FOP warning. -->
+        <term><command>m4 </command></term>
+        <listitem>
+          <para>Копирует данные файлы при расширении макросов, которые они содержат. Эти макросы являются встроенными или определяемыми пользователем и могут принимать любое количество аргументов. Помимо выполнения макрорасширения, m4 имеет встроенные функции для включения именованных файлов, выполнения команд Unix, выполнения целочисленной арифметики, обработки текста, рекурсии и т. Д. Программа m4 может использоваться либо как фронт-енд для компилятора, или как самостоятельный макропроцессор.]</para>
+          <indexterm zone="ch-system-m4 m4">
+            <primary sortas="b-m4">m4</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

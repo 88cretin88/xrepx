@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-gettext" role="wrap">
+  <?dbhtml filename="gettext.html"?>
+
+  <sect1info condition="script">
+    <productname>gettext</productname>
+    <productnumber>&gettext-version;</productnumber>
+    <address>&gettext-url;</address>
+  </sect1info>
+
+  <title>Gettext-&gettext-version;</title>
+
+  <indexterm zone="ch-tools-gettext">
+    <primary sortas="a-Gettext">Gettext</primary>
+    <secondary>tools</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/gettext.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&gettext-ch5-sbu;</seg>
+        <seg>&gettext-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Установка пакета Gettext</title>
+
+    <para>Для временного набора инструментов, необходимо скомпилировать и установить только три программы из пакета Gettext.</para>
+
+    <para>Подготовьте пакет Gettext к компиляции:</para>
+
+
+<screen><userinput remap="configure">./configure --disable-shared</userinput></screen>
+
+    <variablelist>
+      <title>Значения параметров конфигурации:</title>
+<!--
+      <varlistentry>
+        <term><parameter>EMACS="no"</parameter></term>
+        <listitem>
+          <para>Аргумент сообщает сценарию конфигурирования не определять куда установить файлы Emacs Lisp. Как известно, такая проверка может вызывать зваисание, на некоторых хост-системах.</para>
+        </listitem>
+      </varlistentry> -->
+
+      <varlistentry>
+        <term><parameter>--disable-shared</parameter></term>
+        <listitem>
+          <para>Не требуется установка и компиляция общих библиотек пакета Gettext.</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>Скомпилируйте пакет:</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+ <para>
+    Due to the limited environment, running the test suite at this stage
+    is not recommended.</para>
+
+    <para>Установите the <command>msgfmt</command>, <command>msgmerge</command> and
+    <command>xgettext</command> programs:</para>
+
+
+<screen><userinput remap="install">cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /tools/bin</userinput></screen>
+
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>Подробная информация об этом пакете находится в
+    <xref linkend="contents-gettext" role="."/></para>
+
+  </sect2>
+
+</sect1>
