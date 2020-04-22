@@ -1,0 +1,22 @@
+h1{
+    text-align: center;
+    background-color: yellow;
+}
+#contact{
+    text-align: center;
+}
+#nav1{
+    vertical-align: top;
+    display: inline-block;
+    width: 30%;
+}
+#nav2{
+    vertical-align: top;
+    display: inline-block;
+    width: 30%;
+}
+#nav3{
+    vertical-align: top;
+    display: inline-block;
+    width: 30%;
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">PSWDS</title>
+    <link rel="shortcut icon" type="image/png" href="http://universidadedegestao.com.br/wp-content/uploads/lock-open-blue.png"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <style>
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.4) !important;
+        }
+    </style>
+</head>
+<body >
+<div class="navbar navbar-fixed-top" role="navigation" style="background: #007bff; ">
+    <div class="container">
+        <div class="navbar-header" style="display: flex; justify-content: space-between; width: 100%;">
+            <div style="display: flex; align-items: center;width: 100%; ">
+                <img src="http://cdn.onlinewebfonts.com/svg/img_521094.png" style="width: 2.5em; height: 2.7em; margin: 0 1em;">
+                <a class="navbar-brand"  style="color: #FFF;">PSWDS - Password Saver</a>
+            </div>
+            <div  style="display: flex; align-items: center;width: 20%; align-items: center; justify-items: right;">
+                <p class="navbar-brand" style="margin: 0 1em !important; color: #fff;" th:inline="text">[[${#httpServletRequest.remoteUser}]]</p>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" class="btn btn-outline-danger" value="Log Out"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<main class="container "  style="margin: 2em auto 3em auto;">
+    <h1 style="text-align: center;"> <b>Keep your passwords in safe!</b></h1>
+
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center">Item Form</h2>
+            <div class="alert alert-success" th:if="${successmessage}">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong th:text="${successmessage}"></strong>
+            </div>
+            <div class="alert alert-warning" th:if="${errormessage}">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong th:text="${errormessage}"></strong>
+            </div>
+            <form action="#" th:action="@{${isAdd}?'/save':'/update'}" th:object="${item}" method="post">
+
+                <div class="form-group d-flex text-right">
+                    <label for="title" class="col-sm-2">Title</label>
+                    <div class="col-sm-8">
+                        <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="Enter Title"/>
+                    </div>
+                </div>
+                <div class="form-group d-flex text-right">
+                    <label for="userName" class="col-sm-2">User Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" th:field="*{userName}" class="form-control" id="userName" placeholder="Enter User Name"/>
+                    </div>
+                </div>
+
+                <div class="form-group d-flex text-right">
+                    <label for="password" class="col-sm-2">Password</label>
+                    <div class="col-sm-8">
+                        <input type="text"  th:field="*{password}" class="form-control" id="password" placeholder="Enter Password"/>
+                    </div>
+                </div>
+                <div class="form-group d-flex text-right">
+                    <label for="link" class="col-sm-2">Link</label>
+                    <div class="col-sm-8">
+                        <input type="text" th:field="*{link}" class="form-control" id="link" placeholder="Enter Link"/>
+                    </div>
+                </div>
+                <input type="hidden" class="form-control" th:field="*{id}">
+
+                <button class="btn btn-outline-primary float-right" style="margin-right: 15em ;" th:text="${isAdd}?'Add Entity': 'Update'">Submit</button>
+            </form>
+
+        </div>
+        <div class="col-md-12">
+            <hr/>
+            <h2 class="text-center">All Items</h2>
+            <div style="margin-top: 10px;">
+                <table id="itemtable" class="table table-srtiped table-bordered" style="width: 100%;">
+                    <thead>
+                    <tr class="text-center">
+                        <th>Title</th>
+                        <th>User Name</th>
+                        <th>Password</th>
+                        <th>Link</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item: ${items}">
+                        <td th:text="${item.title}"></td>
+                        <td th:text="${item.userName}"></td>
+                        <td th:text="${item.password}"></td>
+                        <td>
+                            <a th:href="${item.link}" th:text="${item.link}" target="_blank">Item_link</a>
+                        </td>
+                        <td class="text-center">
+                            <a th:href="@{'/getItem/'+${item.id}}">
+                                <i class="fas fa-pen" style="font-size: 18px;"></i>
+                            </a>
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#itemModal" class="confirm-delete"
+                               th:attr="data-id=${item.id}, data-name=${item.title+': '+item.userName }">
+                                <i class="fas fa-trash" style="font-size: 18px; color: red;"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript">
+    $("#itemtable").dataTable();
+    $(".confirm-delete").on('click', function (e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        var name = $(this).data('name');
+        $("#modal-name").html(name);
+        $("#idModalLink").attr('href', '/deleteItem/' + id);
+    });
+</script>
+
+<div class="modal" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" id="myModalBody">
+                <p>Do you want to delete this (<span id="modal-name"></span>) record?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary" id="idModalLink">Yes!</a>
+                <button type="button" data-dismiss="modal" class="btn btn-danger">No!</button>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="text-center" style="background: #007bff; padding: 1em 0; ">
+    <h1 style="color: white;" >Baisalbek Daniiarov</h1>
+    <a style="color: white;"  href="github.com/xbaysal11/pswds" target="_blank">
+        GitHub
+    </a>
+</footer>
+</body>
+</html>

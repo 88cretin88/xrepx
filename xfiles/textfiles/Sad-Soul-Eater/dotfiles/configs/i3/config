@@ -1,0 +1,300 @@
+#--------#
+# BASICS #
+#--------#
+
+# mod
+set $mod Mod4
+set $alt Mod1
+
+# font
+font pango:FiraGO 12
+
+#-----------------------------#
+# WINDOW / WORKSPACE COMMANDS #
+#-----------------------------#
+
+# drag floating key
+floating_modifier $alt
+
+# kill focused window
+bindsym $mod+q kill
+bindsym $alt+F4 kill
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# toggle split
+bindsym $mod+v split toggle
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+b floating toggle, resize set 1280 720, move position center
+
+workspace_auto_back_and_forth yes
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+z move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+z scratchpad show
+
+# Sticky floating windows
+bindsym $mod+w sticky toggle
+bindsym $mod+Shift+w sticky enable, floating enable, resize set 480 270
+
+bindsym $mod+p layout toggle tabbed split
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym $mod+y move workspace to output up
+
+mode "resize" {
+	bindsym h resize shrink width 10 px
+	bindsym j resize grow height 10 px
+	bindsym k resize shrink height 10 px
+	bindsym l resize grow width 10 px
+
+	bindsym Left resize shrink width 10 px
+	bindsym Down resize grow height 10 px
+	bindsym Up resize shrink height 10 px
+	bindsym Right resize grow width 10 px
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+#----------------#
+# BASIC BINDINGS #
+#----------------#
+
+# drun
+bindsym $mod+d exec --no-startup-id ~/bin/rofi.sh -d
+
+# clipmenu
+bindsym $alt+v exec --no-startup-id ~/bin/rofi.sh -l
+
+# calc
+bindsym $mod+c exec --no-startup-id ~/bin/rofi.sh -c
+
+# NetworkManager
+bindsym $mod+n exec --no-startup-id ~/bin/rofi.sh -n
+
+# Power-menu
+bindsym $mod+e exec --no-startup-id ~/bin/rofi.sh -p
+
+# print screen
+bindsym Print exec --no-startup-id  ~/bin/rofi.sh -s
+
+# emoji picker
+bindsym $mod+m exec --no-startup-id ~/bin/rofi.sh -e
+
+# terminal
+bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+Shift+Return exec --no-startup-id kitty --title="i3-float"
+
+# File Manager
+bindsym $mod+Tab exec --no-startup-id pcmanfm
+
+# restart i3 in place
+bindsym $mod+Shift+r restart
+
+# Firefox
+bindsym $mod+a exec --no-startup-id firefox
+
+# Telegram
+bindsym $mod+t exec --no-startup-id telegram-desktop
+
+#------#
+# GAPS #
+#------#
+
+#smart_gaps on
+
+gaps outer 5
+gaps inner 10
+bindsym $mod+o gaps outer current set 5; gaps inner current set 10
+bindsym $mod+i gaps outer current set 0; gaps inner current set 0
+
+#------------#
+# APPEARANCE #
+#------------#
+
+smart_borders on
+
+# window border
+for_window [class="^.*"] border pixel 1
+
+set_from_resource $fg i3wm.foreground #f0f0f0
+set_from_resource $bg i3wm.background #f0f0f0
+set_from_resource $cl0 i3wm.color0 #f0f0f0
+set_from_resource $cl1 i3wm.color1 #f0f0f0
+set_from_resource $cl2 i3wm.color2 #f0f0f0
+set_from_resource $cl3 i3wm.color3 #f0f0f0
+set_from_resource $cl4 i3wm.color4 #f0f0f0
+set_from_resource $cl5 i3wm.color5 #f0f0f0
+set_from_resource $cl6 i3wm.color6 #f0f0f0
+set_from_resource $cl7 i3wm.color7 #f0f0f0
+set_from_resource $cl8 i3wm.color8 #f0f0f0
+set_from_resource $cl9 i3wm.color9 #f0f0f0
+set_from_resource $cl10 i3wm.color10 #f0f0f0
+set_from_resource $cl11 i3wm.color11 #f0f0f0
+set_from_resource $cl12 i3wm.color12 #f0f0f0
+set_from_resource $cl13 i3wm.color13 #f0f0f0
+set_from_resource $cl14 i3wm.color14 #f0f0f0
+set_from_resource $cl15 i3wm.color15 #f0f0f0
+
+# class                 border  backgr. text   indicator child_border
+client.focused          $cl7    $bg     $fg    $fg       $fg
+client.focused_inactive $cl0    $bg     $fg    $bg       $bg
+client.unfocused        $cl0    $bg     $fg    $bg       $bg
+client.urgent           $cl13   $bg     $cl13  $bg       $cl13
+client.placeholder      $bg     $bg     $fg    $bg       $fg
+
+client.background       $bg
+
+#----------------------#
+# STARTUP APPLICATIONS #
+#----------------------#
+
+# Keyboard layout
+exec_always --no-startup-id setxkbmap -layout us,ru && setxkbmap -option 'grp:alt_shift_toggle' &
+
+exec_always --no-startup-id nitrogen --restore &
+exec_always --no-startup-id xrdb ~/.Xresources &
+exec_always --no-startup-id ~/bin/bar.sh &
+exec_always --no-startup-id killall dunst; dunst -lf "$fg" -nf "$fg" -cf "$fg" -lb "$bg" -nb "$bg" -cb "$bg" -lfr "$lw" -nfr "$cl10" -cfr "$cl13" &
+exec_always --no-startup-id killall picom; picom --experimental-backends --config ~/.config/picom/picom.conf &
+exec_always --no-startup-id killall conky; conky &
+
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id udiskie &
+exec --no-startup-id nextcloud --background &
+exec --no-startup-id telegram-desktop -startintray &
+exec --no-startup-id wg-quick up ~/wg/wg-aruba-local.conf &
+exec --no-startup-id /usr/lib/kdeconnectd &
+exec --no-startup-id xcalib -v '/home/soul/Acer Swift 3 SF315-41.icm' &
+exec --no-startup-id redshift &
+
+#---------------#
+# SPECIAL CASES #
+#---------------#
+
+# Telegram
+for_window [class="Telegram"]                           floating enable,    resize set 400 1000,    move position 20 40
+for_window [title="Media viewer"]                       fullscreen enable
+
+# KeePassXC
+for_window [class="KeePassXC"]                          floating enable,    resize set 1280 720,    move position center
+
+# pcmanfm
+for_window [class="(?i)pcmanfm" window_type="normal"]   floating enable,    resize set 1280 720,    move position center
+
+# sxiv
+for_window [class="Sxiv"]                               floating enable,    resize set 1280 720,    move position center
+
+# libreoffice
+for_window [class="Soffice"]                                                resize set 1000 750,    move position center
+
+# Yad popup calendar
+for_window [class="Yad" title="yad-calendar"]           floating enable
+
+# Make window with specified title float
+for_window [title="^i3-float$"]                         floating enable,    resize set 1280 720,    move position center
+
+for_window [window_role="About"]                        floating enable
+
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable,    resize set 380 420
+
+#------------#
+# MEDIA KEYS #
+#------------#
+
+# audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+
+# screen brightness controls
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
+
+#floating_maximum_size 1900 x 1060
+#floating_minimum_size -1 x -1
+
+#-------------#
+# ASSIGNMENTS #
+#-------------#
+
+assign [class="firefox" window_type="normal"] $ws2
+assign [class="code-oss"] $ws3
+assign [class="VSCodium"] $ws3
+assign [class="qBittorrent" window_type="normal"] $ws4
+assign [class="Transmission" window_type="normal"] $ws4
+assign [class="Deluge" window_type="normal"] $ws4
+assign [class="mpv"] $ws5
+assign [class="Steam" title="Steam"] $ws6
+assign [class="discord"] $ws7
+for_window [class="Spotify"] move to workspace $ws10
+
+# vim: set ft=i3config:

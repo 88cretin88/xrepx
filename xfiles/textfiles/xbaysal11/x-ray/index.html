@@ -1,0 +1,287 @@
+<html lang="eng">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>X-Ray</title>
+    <link rel="icon" href="img/logo.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="css/all.css">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body cz-shortcut-listen="true">
+    <div class="body_bg">
+        <!--::header part start::-->
+        <header class="main_menu single_page_menu">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"
+                                    style="width: 80px;"> </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="menu_icon">
+                                    <div class="burger"></div>
+                                    <div class="burger"></div>
+                                    <div class="burger"></div>
+                                </span>
+                            </button>
+
+                            <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="javascript:void(0);" id="encode-layout-button"
+                                            onclick="document.getElementById('encode-div').style.display='';
+                                            document.getElementById('decode-div').style.display='none';"
+                                            title="Hide a file or a text inside an image file">Hide data</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="javascript:void(0);" id="decode-layout-button"
+                                            onclick="document.getElementById('decode-div').style.display='';
+                                            document.getElementById('encode-div').style.display='none';"
+                                            title=" Hide a file or a text inside an image file">Extract data</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Header part end-->
+
+        <!-- banner part start-->
+        <section class="banner_part">
+            <div class="container">
+                <div class="row align-items-center justify-content-between">
+                    <!-- <div class="col-lg-12"> -->
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="banner_text">
+                            <div class="banner_text_iner">
+                                <h1>X-Ray</h1>
+                                <p>Steganography is the practice of concealing a file, message, image, or video within
+                                    another file, message, image, or video.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="encode-div" class="col-lg-6 col-md-6">
+                        <div class="banner_text">
+                            <div class="banner_text_iner">
+                                <div style="width: 100%;">
+                                    <input type="file" style="display: none;" id="encode-filechooser"
+                                        onclick="this.value=null" onchange="FileSelected_EncodeImage(this.files)"
+                                        accept="image/*">
+                                    <button id="encode-filechooserbutton" class="btn_1"
+                                        onclick="document.getElementById('encode-filechooser').click()"
+                                        style="margin-bottom: 10px;"
+                                        title="Select an image file; the data will be hidden inside this image file">Select
+                                        an image
+                                        file</button>
+                                    <div id="encode-selectedfilename"
+                                        style="font-size: 20px; display: inline; margin-left: 10px;">No file
+                                        selected</div>
+                                    <div style="margin-bottom: 10px;">
+                                        <!-- <div style="font-size: 22px; display: inline;"
+                                                            title="Choose what type of data you'd like to hide inside the image">Data type to hide:</div> -->
+
+                                        <label style="font-size: 22px;" title="Hide text inside the image">
+                                            <input id="encode-type-radio-text" type="radio" name="encode-type"
+                                                value="text" checked=""
+                                                onchange="
+                                                                document.getElementById('encode-file-div').style.display='none';
+                                                                document.getElementById('encode-text-div').style.display='';">Hide Text</label>
+
+                                        <label style="font-size: 22px; margin-left: 10px;"
+                                            title="Hide another file in the image">
+                                            <input id="encode-type-radio-file" type="radio" name="encode-type"
+                                                value="file"
+                                                onchange="
+                                                                document.getElementById('encode-text-div').style.display='none';
+                                                                document.getElementById('encode-file-div').style.display='';">Hide
+                                            File</label>
+                                    </div>
+                                    <div id="encode-error-text" class="error-text" style="display: none;"></div>
+
+                                    <div id="encode-text-div">
+                                        <textarea id="encode-textarea"
+                                            style="width: 100%; height: 200px; margin-bottom: 10px;"
+                                            title="This text will be hidden inside the image file"
+                                            placeholder="Enter text to hide"></textarea>
+                                    </div>
+                                    <div id="encode-file-div" style="display: none;">
+                                        <input type="file" style="display: none;" id="encode-filetohidechooser"
+                                            onclick="this.value=null"
+                                            onchange="FileSelected_EncodeFileToHide(this.files)">
+                                        <button id="encode-filetohidebutton" class="btn_1"
+                                            onclick="document.getElementById('encode-filetohidechooser').click()"
+                                            style="margin: 10px 0px 30px 0px;" disabled=""
+                                            title="This file will be hidden inside the image file">Select a file to
+                                            hide</button>
+                                        <div id="encode-selectedfiletohidename"
+                                            style="font-size: 20px; display: inline; margin-left: 10px;">No
+                                            file selected</div>
+                                    </div>
+                                    <input type="text" id="encode-password" placeholder="Password"
+                                        style="width: 100%; margin-bottom: 10px;">
+
+                                    <div style="margin: 20px 0px; display:none;">
+                                        <div style="display: inline-block; font-size: 24px; margin-right: 10px; cursor: help; width: 300px;"
+                                            title="Quality of the JPEG image (1-100). Higher quality images take up more space,
+                                            but also more data can be hidden in them without any noticeable changes to the image.">
+                                            Image quality</div>
+                                        <input id="encode-image-quality-slider" type="range" min="1" max="100" step="1"
+                                            value="100" style="vertical-align: text-bottom; width: 200px;"
+                                            oninput="document.getElementById('encode-image-quality-text').innerText=this.value">
+                                        <div id="encode-image-quality-text"
+                                            style="display: inline; margin-left: 10px; font-size: 24px;">100
+                                        </div>
+
+                                        <div style="margin-bottom: 10px;">
+                                        </div>
+
+                                        <div style="display: inline-block; font-size: 24px; margin-right: 10px; cursor: help; width: 300px;"
+                                            title="How many bits to use per 8x8 block when hiding the data.
+                                            If the count is low, then the changes to the image itself will be unnoticeable, but also less data can be hidden.
+                                            If the count is higher, then the changes to the image might be noticeable (especially when the quality is lower), but more data can be hidden.
+                                            If the size of data you want to hide is small, then it will probably fit into the image with the lowest amount of bits.
+                                            Try multiple settings, and see which one is the best for your needs.">Bit
+                                            count per block</div>
+                                        <input id="encode-image-bitcount-slider" type="range" min="1" max="8" step="1"
+                                            value="1" style="vertical-align: text-bottom; width: 200px;"
+                                            oninput="document.getElementById('encode-image-bitcount-text').innerText=this.value">
+                                        <div id="encode-image-bitcount-text"
+                                            style="display: inline; margin-left: 10px; font-size: 24px;">1
+                                        </div>
+
+                                        <div style="margin-bottom: 10px;">
+                                        </div>
+
+                                        <div style="display: inline-block; font-size: 24px; margin-right: 10px; cursor: help; width: 300px;"
+                                            title="How many bits of each AC value should be kept.
+                                            If the value is higher, then the changes to the image will be less noticeable (it might have no effect at all).
+                                            If the value is lower, then the changes will be more noticeable, but also more data can be fit into the image.">
+                                            AC
+                                            bit
+                                            threshold</div>
+                                        <input id="encode-image-threshold-slider" type="range" min="3" max="6" step="1"
+                                            value="4" style="vertical-align: text-bottom; width: 200px;"
+                                            oninput="document.getElementById('encode-image-threshold-text').innerText=this.value">
+                                        <div id="encode-image-threshold-text"
+                                            style="display: inline; margin-left: 10px; font-size: 24px;">4
+                                        </div>
+                                    </div>
+
+                                    <button id="encode-file-button" class="btn_1" onclick="EncodeFile()"
+                                        style="vertical-align: top;" disabled="">Hide the
+                                        data in the image</button>
+                                    <div id="encode-spinner" class="loading-spinner"
+                                        style="visibility: hidden; opacity: 0;"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="decode-div" style="display: none;" class="col-lg-6 col-md-6">
+                        <div class="banner_text">
+                            <div class="banner_text_iner">
+                                <div style=" width: 100%">
+                                    <input type="file" id="decode-filechooser" style="display: none;"
+                                        onclick="this.value=null" onchange="FileSelected_DecodeImage(this.files)"
+                                        accept="image/jpeg">
+
+                                    <button onclick="document.getElementById('decode-filechooser').click()"
+                                        class="btn_1" style="margin-bottom: 10px;">Select
+                                        a file</button>
+                                    <div id="decode-selectedfilename"
+                                        style="font-size: 20px; display: inline; margin-left: 10px;">No file
+                                        selected</div>
+                                    <div id="decode-spinner" class="loading-spinner"
+                                        style="visibility: hidden; opacity: 0;"></div>
+                                    <div id="decode-error-text" class="error-text" style="display: none;"></div>
+
+                                    <div id="decode-result-before">
+                                        <input type="text" id="decode-password" placeholder="Password"
+                                            style="width: 100%; margin-bottom: 10px;">
+                                        <button id="decode-file-button" class="btn_1" style="margin-bottom: 10px;"
+                                            onclick="DecodeFile(); document.getElementsByTagName('input').value = 'newResetButtonValue';"
+                                            disabled="">Extract
+                                            data from the image</button>
+                                        <div id="decode-extract-spinner" class="loading-spinner"
+                                            style="visibility: hidden; opacity: 0;">
+                                        </div>
+                                    </div>
+                                    <div id="decode-result-text" style="display: none;">
+                                        <div style="font-size: 24px; margin-bottom: 10px;">The image contains the
+                                            following text:</div>
+                                        <textarea id="decode-textarea" readonly=""
+                                            style="width: 100%; height: 200px; margin-bottom: 10px;"></textarea>
+                                    </div>
+                                    <div id="decode-result-file" style="display: none;">
+                                        <div style="font-size: 24px; margin-bottom: 10px;">The image contains the
+                                            following file:</div>
+                                        <div id="decoded-file-name"
+                                            style="display: table; font-size: 24px; margin-bottom: 10px; background: #54575a; padding: 8px;">
+                                            filename</div>
+                                        <button id="decoded-file-download">Download the file</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- </div> -->
+
+                </div>
+            </div>
+        </section>
+        <!-- banner part start-->
+    </div>
+    <script>
+
+        async function WaitUntilNextFrame() // not actually until next frame; faster with setImmediate
+        {
+            //return new Promise(resolve => window.requestAnimationFrame(resolve));
+            return new Promise(resolve => setImmediate(resolve));
+        }
+
+        async function WaitFor(timeout) {
+            return new Promise(resolve => window.setTimeout(resolve, timeout));
+        }
+
+        function BitCount(number) {
+            if (number < 0)
+                number = ~number;
+
+            let count = 0;
+            while (number != 0) {
+                ++count;
+                number >>= 1;
+            }
+            return count;
+        }
+    </script>
+
+    <!-- jquery plugins here-->
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/setImmediate.js"></script>
+    <script src="js/crypto-js.js"></script>
+    <script src="js/scrypt-async.js"></script>
+    <script src="js/crypto-helper.js"></script>
+    <script src="js/encoder.js"></script>
+    <script src="js/decoder.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
