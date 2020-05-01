@@ -1,4 +1,4 @@
-version:1.2.1.3.11 :30.04.2020
+version:1.2.1.3.12 :1.05.2020
 _________________________________
 
 
@@ -60,28 +60,28 @@ ________________________________________________________________________________
 
 Погода-
 
-curl wttr.in/Derbent
+curl wttr.in/Moscow
 ---------------------------------------
 
-lspci -v                    -информация о системе
+lspci -v                  -информация о системе
 
 
 glxinfo | grep "OpenGL version"         -узнать видеодрайвер
 
 
-sudo hdparm -Tt /dev/sda    -скорость диска
+sudo hdparm -Tt /dev/sda        -скорость диска
 
 
 sudo smartctl -a /dev/sda       -проверка с.м.а.р.т.а диска
 
 
-hddtemp /dev/sda      -температура диска
+hddtemp /dev/sda        -температура диска
 
 
-balooctl disable            -отключить baloo
+balooctl disable        -отключить baloo
 
 
-free -m                            -потребление ОЗУ в МБ
+free -m                 -потребление ОЗУ в МБ
 
 
 файловая система ntfs:
