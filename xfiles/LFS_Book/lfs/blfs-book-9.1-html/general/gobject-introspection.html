@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      gobject-introspection-1.62.0
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;9.&nbsp;General Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gmime3.html" title="GMime-3.2.6">Prev</a>
+          <p>
+            GMime-3.2.6
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="grantlee.html" title=
+          "Grantlee-5.2.0">Next</a>
+          <p>
+            Grantlee-5.2.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="gobject-introspection" name=
+        "gobject-introspection"></a>gobject-introspection-1.62.0
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to GObject Introspection
+        </h2>
+        <p>
+          The <span class="application">GObject Introspection</span> is used
+          to describe the program APIs and collect them in a uniform, machine
+          readable format.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.gnome.org/pub/gnome/sources/gobject-introspection/1.62/gobject-introspection-1.62.0.tar.xz">
+                http://ftp.gnome.org/pub/gnome/sources/gobject-introspection/1.62/gobject-introspection-1.62.0.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnome.org/pub/gnome/sources/gobject-introspection/1.62/gobject-introspection-1.62.0.tar.xz">
+                ftp://ftp.gnome.org/pub/gnome/sources/gobject-introspection/1.62/gobject-introspection-1.62.0.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 37278eab3704e42234b6080b8cf241f1
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 950 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 40 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.2 SBU (Using parallelism=4; with
+                tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="glib2.html" title=
+          "GLib-2.62.4">GLib-2.62.4</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../x/cairo.html" title=
+          "Cairo-1.17.2+f93fc72c03e">Cairo-1.17.2+f93fc72c03e</a> (required
+          for the tests), <a class="xref" href="../gnome/gjs.html" title=
+          "Gjs-1.58.5">Gjs-1.58.5</a> (to satisfy one test), <a class="xref"
+          href="gtk-doc.html" title="GTK-Doc-1.32">GTK-Doc-1.32</a>,
+          <a class="xref" href="python-modules.html#Mako" title=
+          "Mako-1.1.1">Mako-1.1.1</a>, and <a class="ulink" href=
+          "https://pypi.org/project/Markdown/">Markdown</a> (to satisfy one
+          test)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/gobject-introspection">http://wiki.linuxfromscratch.org/blfs/wiki/gobject-introspection</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of GObject Introspection
+        </h2>
+        <p>
+          Install <span class="application">GObject Introspection</span> by
+          running the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson --prefix=/usr .. &amp;&amp;
+ninja</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>ninja
+          test -k0</strong></span>. One test (test_docwriter) fails if the
+          optional Markdown module is not installed.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">ninja install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <code class="option">-Dgtk_doc=true</code>: Build and install the
+          documentation.
+        </p>
+        <p>
+          <code class="option">-Dcairo=true</code>: Use cairo for tests.
+        </p>
+        <p>
+          <code class="option">-Ddoctool=true</code>: Install g-ir-doc-tool
+          and run related tests.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">g-ir-annotation-tool, g-ir-compiler,
+              g-ir-doc-tool, g-ir-inspect, g-ir-generate, and
+              g-ir-scanner</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libgirepository-1.0.so and
+              _giscanner.cpython-37m-x86_64-linux-gnu.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/gobject-introspection-1.0,
+              /usr/lib/girepository-1.0, /usr/lib/gobject-introspection,
+              /usr/share/gir-1.0, and
+              /usr/share/gobject-introspection-1.0</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="g-ir-annotation-tool" name=
+                    "g-ir-annotation-tool"></a><span class=
+                    "term"><span class="command"><strong>g-ir-annotation-tool</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    creates or extracts annotation data from GI typelibs.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="g-ir-compiler" name=
+                    "g-ir-compiler"></a><span class="term"><span class=
+                    "command"><strong>g-ir-compiler</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    converts one or more GIR files into one or more typelib.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="g-ir-doc-tool" name=
+                    "g-ir-doc-tool"></a><span class="term"><span class=
+                    "command"><strong>g-ir-doc-tool</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    generates Mallard files that can be viewed with
+                    <span class="command"><strong>yelp</strong></span> or
+                    rendered to HTML with <span class=
+                    "command"><strong>yelp-build</strong></span> from
+                    <a class="ulink" href=
+                    "http://ftp.acc.umu.se/pub/gnome/sources/yelp-tools">yelp-tools</a>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="g-ir-inspect" name="g-ir-inspect"></a><span class=
+                    "term"><span class=
+                    "command"><strong>g-ir-inspect</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a utility that gives information about a GI typelib.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="g-ir-scanner" name="g-ir-scanner"></a><span class=
+                    "term"><span class=
+                    "command"><strong>g-ir-scanner</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool which generates GIR XML files by parsing
+                    headers and introspecting GObject based libraries.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="g-ir-generate" name=
+                    "g-ir-generate"></a><span class="term"><span class=
+                    "command"><strong>g-ir-generate</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a GIR generator that uses the repository API.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgirepository-1.0" name=
+                    "libgirepository-1.0"></a><span class="term"><code class=
+                    "filename">libgirepository-1.0.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides an API to access the typelib metadata.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 20:23:35 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gmime3.html" title="GMime-3.2.6">Prev</a>
+          <p>
+            GMime-3.2.6
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="grantlee.html" title=
+          "Grantlee-5.2.0">Next</a>
+          <p>
+            Grantlee-5.2.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

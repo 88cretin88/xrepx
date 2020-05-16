@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      CMake-3.16.4
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;13.&nbsp;Programming
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="clisp.html" title="Clisp-2.49">Prev</a>
+          <p>
+            Clisp-2.49
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="dejagnu.html" title="DejaGnu-1.6.2">Next</a>
+          <p>
+            DejaGnu-1.6.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="cmake" name="cmake"></a>CMake-3.16.4
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to CMake
+        </h2>
+        <p>
+          The <span class="application">CMake</span> package contains a
+          modern toolset used for generating Makefiles. It is a successor of
+          the auto-generated <span class=
+          "command"><strong>configure</strong></span> script and aims to be
+          platform- and compiler-independent. A significant user of
+          <span class="application">CMake</span> is <span class=
+          "application">KDE</span> since version 4.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://cmake.org/files/v3.16/cmake-3.16.4.tar.gz">https://cmake.org/files/v3.16/cmake-3.16.4.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: e3dacb6b612a6b06f7054c7fb4e18616
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 8.7 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 443 MB (add 541 MB for tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 2.8 SBU (add 3.8 SBU for tests, both
+                using parallelism=4)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          CMake Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="libuv.html" title=
+          "libuv-1.34.2">libuv-1.34.2</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../basicnet/curl.html" title=
+          "cURL-7.68.0">cURL-7.68.0</a> and <a class="xref" href=
+          "libarchive.html" title="libarchive-3.4.2">libarchive-3.4.2</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../x/qt5.html" title=
+          "Qt-5.14.1">Qt-5.14.1</a> (for the Qt-based GUI), <a class="xref"
+          href="subversion.html" title=
+          "Subversion-1.13.0">Subversion-1.13.0</a> (for testing), and
+          <a class="ulink" href=
+          "https://pypi.python.org/pypi/Sphinx">Sphinx</a> (for building
+          documents)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/cmake">http://wiki.linuxfromscratch.org/blfs/wiki/cmake</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of CMake
+        </h2>
+        <p>
+          Install <span class="application">CMake</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i '/"lib64"/s/64//' Modules/GNUInstallDirs.cmake &amp;&amp;
+
+./bootstrap --prefix=/usr        \
+            --system-libs        \
+            --mandir=/share/man  \
+            --no-system-jsoncpp  \
+            --no-system-librhash \
+            --docdir=/share/doc/cmake-3.16.4 &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>bin/ctest
+          -j<em class="replaceable"><code>&lt;N&gt;</code></em> -O
+          cmake-3.16.4-test.log</strong></span>, where <em class=
+          "replaceable"><code>&lt;N&gt;</code></em> is an integer between 1
+          and the number of system cores. In case the environment variable
+          <code class="literal">LANG</code> is set to a non-blank value and
+          failures occur, try running the tests without having <code class=
+          "literal">LANG</code> set. The test RunCMake.CommandLineTar is
+          known to fail if the <a class="ulink" href=
+          "https://github.com/facebook/zstd">zstd</a> package is not
+          installed.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>sed ...
+          Modules/GNUInstallDirs.cmake</strong></span>: This command disables
+          applications using cmake from attempting to install files in
+          /usr/lib64/.
+        </p>
+        <p>
+          <em class="parameter"><code>--system-libs</code></em>: This switch
+          forces the build system to link against <span class=
+          "application">Zlib</span>, <span class="application">Bzip2</span>,
+          <span class="application">cURL</span>, <span class=
+          "application">Expat</span> and <span class=
+          "application">libarchive</span> installed on the system.
+        </p>
+        <p>
+          <em class="parameter"><code>--no-system-jsoncpp</code></em>: This
+          switch removes the <span class="application">JSON-C++</span>
+          library from the list of system libraries. A bundled version of
+          that library is used instead.
+        </p>
+        <p>
+          <code class="option">--qt-gui</code>: This switch enables building
+          of the <span class="application">Qt</span>-based GUI for
+          <span class="application">CMake</span>.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">ccmake, cmake, cmake-gui (optional),
+              cpack, and ctest</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/share/cmake-3.16 and
+              /usr/share/doc/cmake-3.16.4</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ccmake" name="ccmake"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ccmake</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a curses based interactive frontend to <span class=
+                    "command"><strong>cmake</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="cmake-prog" name="cmake-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>cmake</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the makefile generator.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="cmake-gui" name="cmake-gui"></a><span class=
+                    "term"><span class=
+                    "command"><strong>cmake-gui</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    (optional) is the <span class=
+                    "application">Qt</span>-based frontent to <span class=
+                    "command"><strong>cmake</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="cpack" name="cpack"></a><span class=
+                    "term"><span class=
+                    "command"><strong>cpack</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">CMake</span> packaging
+                    program.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ctest" name="ctest"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ctest</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a testing utility for cmake-generated build trees.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 08:54:30 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="clisp.html" title="Clisp-2.49">Prev</a>
+          <p>
+            Clisp-2.49
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="dejagnu.html" title="DejaGnu-1.6.2">Next</a>
+          <p>
+            DejaGnu-1.6.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Configuring for Adding Users
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;3.&nbsp;After LFS Configuration Issues
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="devices.html" title="About Devices">Prev</a>
+          <p>
+            About Devices
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="users.html" title=
+          "About System Users and Groups">Next</a>
+          <p>
+            About System Users and Groups
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="config.html" title=
+          "Chapter&nbsp;3.&nbsp;After LFS Configuration Issues">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="postlfs-config-skel" name=
+        "postlfs-config-skel"></a>Configuring for Adding Users
+      </h1>
+      <p>
+        Together, the <span class=
+        "command"><strong>/usr/sbin/useradd</strong></span> command and
+        <code class="filename">/etc/skel</code> directory (both are easy to
+        set up and use) provide a way to assure new users are added to your
+        LFS system with the same beginning settings for things such as the
+        <code class="envar">PATH</code>, keyboard processing and other
+        environmental variables. Using these two facilities makes it easier
+        to assure this initial state for each new user added to the system.
+      </p>
+      <p>
+        The <code class="filename">/etc/skel</code> directory holds copies of
+        various initialization and other files that may be copied to the new
+        user's home directory when the <span class=
+        "command"><strong>/usr/sbin/useradd</strong></span> program adds the
+        new user.
+      </p>
+      <h5>
+        Useradd
+      </h5>
+      <p>
+        The <span class="command"><strong>useradd</strong></span> program
+        uses a collection of default values kept in <code class=
+        "filename">/etc/default/useradd</code>. This file is created in a
+        base LFS installation by the <span class="application">Shadow</span>
+        package. If it has been removed or renamed, the <span class=
+        "command"><strong>useradd</strong></span> program uses some internal
+        defaults. You can see the default values by running <span class=
+        "command"><strong>/usr/sbin/useradd -D</strong></span>.
+      </p>
+      <p>
+        To change these values, simply modify the <code class=
+        "filename">/etc/default/useradd</code> file as the <code class=
+        "systemitem">root</code> user. An alternative to directly modifying
+        the file is to run <span class=
+        "command"><strong>useradd</strong></span> as the <code class=
+        "systemitem">root</code> user while supplying the desired
+        modifications on the command line. Information on how to do this can
+        be found in the <span class="command"><strong>useradd</strong></span>
+        man page.
+      </p>
+      <h5>
+        /etc/skel
+      </h5>
+      <p>
+        To get started, create an <code class="filename">/etc/skel</code>
+        directory and make sure it is writable only by the system
+        administrator, usually <code class="systemitem">root</code>. Creating
+        the directory as <code class="systemitem">root</code> is the best way
+        to go.
+      </p>
+      <p>
+        The mode of any files from this part of the book that you put in
+        <code class="filename">/etc/skel</code> should be writable only by
+        the owner. Also, since there is no telling what kind of sensitive
+        information a user may eventually place in their copy of these files,
+        you should make them unreadable by "group" and "other".
+      </p>
+      <p>
+        You can also put other files in <code class=
+        "filename">/etc/skel</code> and different permissions may be needed
+        for them.
+      </p>
+      <p>
+        Decide which initialization files should be provided in every (or
+        most) new user's home directory. The decisions you make will affect
+        what you do in the next two sections, <a class="xref" href=
+        "profile.html" title="The Bash Shell Startup Files">The Bash Shell
+        Startup Files</a> and <a class="xref" href="vimrc.html" title=
+        "The /etc/vimrc and ~/.vimrc Files">The vimrc Files</a>. Some or all
+        of those files will be useful for <code class=
+        "systemitem">root</code>, any already-existing users, and new users.
+      </p>
+      <p>
+        The files from those sections that you might want to place in
+        <code class="filename">/etc/skel</code> include <code class=
+        "filename">.inputrc</code>, <code class=
+        "filename">.bash_profile</code>, <code class=
+        "filename">.bashrc</code>, <code class=
+        "filename">.bash_logout</code>, <code class=
+        "filename">.dircolors</code>, and <code class=
+        "filename">.vimrc</code>. If you are unsure which of these should be
+        placed there, just continue to the following sections, read each
+        section and any references provided, and then make your decision.
+      </p>
+      <p>
+        You will run a slightly modified set of commands for files which are
+        placed in <code class="filename">/etc/skel</code>. Each section will
+        remind you of this. In brief, the book's commands have been written
+        for files <span class="emphasis"><em>not</em></span> added to
+        <code class="filename">/etc/skel</code> and instead just sends the
+        results to the user's home directory. If the file is going to be in
+        <code class="filename">/etc/skel</code>, change the book's command(s)
+        to send output there instead and then just copy the file from
+        <code class="filename">/etc/skel</code> to the appropriate
+        directories, like <code class="filename">/etc</code>, <code class=
+        "filename">~</code> or the home directory of any other user already
+        in the system.
+      </p>
+      <h5>
+        When Adding a User
+      </h5>
+      <p>
+        When adding a new user with <span class=
+        "command"><strong>useradd</strong></span>, use the <code class=
+        "option">-m</code> parameter, which tells <span class=
+        "command"><strong>useradd</strong></span> to create the user's home
+        directory and copy files from <code class="filename">/etc/skel</code>
+        (can be overridden) to the new user's home directory. For example
+        (perform as the <code class="systemitem">root</code> user):
+      </p>
+      <pre class="root">
+<kbd class="command">useradd -m <em class=
+"replaceable"><code>&lt;newuser&gt;</code></em></kbd>
+</pre>
+      <p class="updated">
+        Last updated on 2007-10-16 06:49:09 -0700
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="devices.html" title="About Devices">Prev</a>
+          <p>
+            About Devices
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="users.html" title=
+          "About System Users and Groups">Next</a>
+          <p>
+            About System Users and Groups
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="config.html" title=
+          "Chapter&nbsp;3.&nbsp;After LFS Configuration Issues">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

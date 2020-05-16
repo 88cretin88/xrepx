@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Epiphany-3.34.4
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;40.&nbsp;Graphical Web Browsers
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="graphweb.html" title=
+          "Graphical Web Browsers">Prev</a>
+          <p>
+            Graphical Web Browsers
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="falkon.html" title="Falkon-3.1.0">Next</a>
+          <p>
+            Falkon-3.1.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="graphweb.html" title=
+          "Chapter&nbsp;40.&nbsp;Graphical Web Browsers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="epiphany" name="epiphany"></a>Epiphany-3.34.4
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Epiphany
+        </h2>
+        <p>
+          <span class="application">Epiphany</span> is a simple yet powerful
+          <span class="application">GNOME</span> web browser targeted at
+          non-technical users. Its principles are simplicity and standards
+          compliance.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.gnome.org/pub/gnome/sources/epiphany/3.34/epiphany-3.34.4.tar.xz">
+                http://ftp.gnome.org/pub/gnome/sources/epiphany/3.34/epiphany-3.34.4.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnome.org/pub/gnome/sources/epiphany/3.34/epiphany-3.34.4.tar.xz">
+                ftp://ftp.gnome.org/pub/gnome/sources/epiphany/3.34/epiphany-3.34.4.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: a559f164bb7d6cbeceb348648076830b
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 5.1 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 78 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.2 SBU (Using parallelism=4)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Epiphany Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../gnome/gcr.html" title=
+          "Gcr-3.34.0">Gcr-3.34.0</a>, <a class="xref" href=
+          "../gnome/gnome-desktop.html" title=
+          "gnome-desktop-3.34.4">gnome-desktop-3.34.4</a>, <a class="xref"
+          href="../general/iso-codes.html" title="ISO Codes-4.4">ISO
+          Codes-4.4</a>, <a class="xref" href="../general/json-glib.html"
+          title="JSON-GLib-1.4.4">JSON-GLib-1.4.4</a>, <a class="xref" href=
+          "../x/libnotify.html" title="libnotify-0.7.8">libnotify-0.7.8</a>,
+          and <a class="xref" href="../x/webkitgtk.html" title=
+          "WebKitGTK+-2.26.4">WebKitGTK+-2.26.4</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../x/libdazzle.html" title=
+          "libdazzle-3.34.1">libdazzle-3.34.1</a> and <a class="xref" href=
+          "../x/libhandy.html" title="Libhandy-0.0.11">libhandy-0.0.11</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="ulink" href=
+          "http://people.freedesktop.org/~hughsient/appstream-glib/releases">Appstream-Glib</a>
+        </p>
+        <h4>
+          Runtime Dependencies
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../gnome/gnome-keyring.html" title=
+          "gnome-keyring-3.34.0">gnome-keyring-3.34.0</a> (for storing
+          passwords) and <a class="xref" href="../gnome/seahorse.html" title=
+          "Seahorse-3.34.1">Seahorse-3.34.1</a> (for managing stored
+          passwords)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/epiphany">http://wiki.linuxfromscratch.org/blfs/wiki/epiphany</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Epiphany
+        </h2>
+        <p>
+          Install <span class="application">Epiphany</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson --prefix=/usr .. &amp;&amp;
+ninja</kbd>
+</pre>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">ninja install</kbd>
+</pre>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            If you installed the package to your system using a <span class=
+            "quote">&ldquo;<span class="quote">DESTDIR</span>&rdquo;</span>
+            method, <code class=
+            "filename">/usr/share/glib-2.0/schemas/gschemas.compiled</code>
+            was not updated/created. Create (or update) the file using the
+            following command as the <code class="systemitem">root</code>
+            user:
+          </p>
+          <pre class="root">
+<kbd class="command">glib-compile-schemas /usr/share/glib-2.0/schemas</kbd>
+</pre>
+        </div>
+        <p>
+          One test would fail if this package is not installed, so it's
+          better to run the test suite after installation. To test the
+          results, issue <span class="command"><strong>ninja
+          test</strong></span>.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">epiphany and ephy-profile-migrator</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libephywebextension.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class=
+              "segbody">/usr/{lib,libexec,share,share/help/*}/epiphany</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="epiphany-prog" name=
+                    "epiphany-prog"></a><span class="term"><span class=
+                    "command"><strong>epiphany</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a <span class="application">GNOME</span> web browser
+                    based on the <span class="application">WebKit2</span>
+                    rendering engine.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-27 13:05:33 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="graphweb.html" title=
+          "Graphical Web Browsers">Prev</a>
+          <p>
+            Graphical Web Browsers
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="falkon.html" title="Falkon-3.1.0">Next</a>
+          <p>
+            Falkon-3.1.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="graphweb.html" title=
+          "Chapter&nbsp;40.&nbsp;Graphical Web Browsers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      MC-4.8.24
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;12.&nbsp;System Utilities
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="logrotate.html" title=
+          "Logrotate-3.15.1">Prev</a>
+          <p>
+            Logrotate-3.15.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="ModemManager.html" title=
+          "ModemManager-1.12.6">Next</a>
+          <p>
+            ModemManager-1.12.6
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="sysutils.html" title=
+          "Chapter&nbsp;12.&nbsp;System Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="mc" name="mc"></a>MC-4.8.24
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to MC
+        </h2>
+        <p>
+          <span class="application">MC</span> (Midnight Commander) is a
+          text-mode full-screen file manager and visual shell. It provides a
+          clear, user-friendly, and somewhat protected interface to a Unix
+          system while making many frequent file operations more efficient
+          and preserving the full power of the command prompt.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.midnight-commander.org/mc-4.8.24.tar.xz">http://ftp.midnight-commander.org/mc-4.8.24.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.osuosl.org/pub/midnightcommander/mc-4.8.24.tar.xz">
+                ftp://ftp.osuosl.org/pub/midnightcommander/mc-4.8.24.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 3a11df2dd379dd67c497c8d2c344715c
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 2.3 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 209 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.6 SBU (using parallelism=4; with
+                tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          MC Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="glib2.html" title=
+          "GLib-2.62.4">GLib-2.62.4</a> and <a class="xref" href="pcre.html"
+          title="PCRE-8.44">PCRE-8.44</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="slang.html" title=
+          "slang-2.3.2">slang-2.3.2</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="doxygen.html" title=
+          "Doxygen-1.8.17">Doxygen-1.8.17</a>, <a class="xref" href=
+          "gpm.html" title="GPM-1.20.7">GPM-1.20.7</a>, <a class="xref" href=
+          "../basicnet/samba.html" title="Samba-4.11.6">Samba-4.11.6</a>,
+          <a class="xref" href="unzip.html" title="UnZip-6.0">UnZip-6.0</a>,
+          <a class="xref" href="../x/installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">X Window
+          System</a>, and <a class="xref" href="zip.html" title=
+          "Zip-3.0">Zip-3.0</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/MC">http://wiki.linuxfromscratch.org/blfs/wiki/MC</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of MC
+        </h2>
+        <p>
+          Install <span class="application">MC</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr \
+            --sysconfdir=/etc \
+            --enable-charset &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span>. One test concerning rpm files fails.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install &amp;&amp;
+cp -v doc/keybind-migration.txt /usr/share/mc</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--sysconfdir=/etc</code></em>: This
+          switch places the global configureation directory in <code class=
+          "filename">/etc</code>.
+        </p>
+        <p>
+          <em class="parameter"><code>--enable-charset</code></em>: This
+          switch adds support to <span class=
+          "command"><strong>mcedit</strong></span> for editing files in
+          encodings different from the one implied by the current locale.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring MC
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="mc-config" name="mc-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="mc-config" name="mc-config"></a>Config Files
+          </h4>
+          <p>
+            <code class="filename">~/.config/mc/*</code>
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779270404448" name=
+            "idm45779270404448"></a>Configuration Information
+          </h4>
+          <p>
+            The <code class="filename">~/.config/mc</code> directory and its
+            contents are created when you start <span class=
+            "command"><strong>mc</strong></span> for the first time. Then you
+            can edit the main <code class="filename">~/.config/mc/ini</code>
+            configuration file manually or through the <span class=
+            "application">MC</span> shell. Consult the mc(1) man page for
+            details.
+          </p>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              On 8.x versions of <span class="application">mc</span>, keybind
+              names used in mc.keymap.* files are changed. This is described
+              in <code class="filename">keybind-migration.txt</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">mc and the symlinks mcdiff, mcedit and
+              mcview</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/etc/mc and
+              /usr/{libexec,share}/mc</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="conssaver" name="conssaver"></a><span class=
+                    "term"><span class=
+                    "command"><strong>cons.saver</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used internally by <span class=
+                    "command"><strong>mc</strong></span> for saving and
+                    restoring the text behind the panels on Linux text
+                    console.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mc-prog" name="mc-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mc</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a visual shell.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mcdiff" name="mcdiff"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mcdiff</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an internal visual diff tool.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mcedit" name="mcedit"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mcedit</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an internal file editor.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mcview" name="mcview"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mcview</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an internal file viewer.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-19 08:47:37 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="logrotate.html" title=
+          "Logrotate-3.15.1">Prev</a>
+          <p>
+            Logrotate-3.15.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="ModemManager.html" title=
+          "ModemManager-1.12.6">Next</a>
+          <p>
+            ModemManager-1.12.6
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="sysutils.html" title=
+          "Chapter&nbsp;12.&nbsp;System Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

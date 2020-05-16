@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      libksba-1.3.5
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;9.&nbsp;General Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libiodbc.html" title=
+          "libiodbc-3.52.12">Prev</a>
+          <p>
+            libiodbc-3.52.12
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="liblinear.html" title=
+          "liblinear-230">Next</a>
+          <p>
+            liblinear-230
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="libksba" name="libksba"></a>libksba-1.3.5
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Libksba
+        </h2>
+        <p>
+          The <span class="application">Libksba</span> package contains a
+          library used to make X.509 certificates as well as making the CMS
+          (Cryptographic Message Syntax) easily accessible by other
+          applications. Both specifications are building blocks of S/MIME and
+          TLS. The library does not rely on another cryptographic library but
+          provides hooks for easy integration with <span class=
+          "application">Libgcrypt</span>.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.5.tar.bz2">
+                https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.5.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnupg.org/gcrypt/libksba/libksba-1.3.5.tar.bz2">ftp://ftp.gnupg.org/gcrypt/libksba/libksba-1.3.5.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 8302a3e263a7c630aa7dea7d341f07a2
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 608 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 9.2 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.1 SBU (with tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Libksba Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="libgpg-error.html" title=
+          "libgpg-error-1.37">libgpg-error-1.37</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="valgrind.html" title=
+          "Valgrind-3.15.0">Valgrind-3.15.0</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/libksba">http://wiki.linuxfromscratch.org/blfs/wiki/libksba</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Libksba
+        </h2>
+        <p>
+          Install <span class="application">Libksba</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">ksba-config</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">libksba.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">None</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ksba-config" name="ksba-config"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ksba-config</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a utility used to configure and build applications
+                    based on the libksba(3) library. It can be used to query
+                    the C compiler and linker flags which are required to
+                    correctly compile and link the application against the
+                    libksba(3) library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libksba-lib" name="libksba-lib"></a><span class=
+                    "term"><code class=
+                    "filename">libksba.{so,a}</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains the cryptographic API functions.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-16 15:15:05 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libiodbc.html" title=
+          "libiodbc-3.52.12">Prev</a>
+          <p>
+            libiodbc-3.52.12
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="liblinear.html" title=
+          "liblinear-230">Next</a>
+          <p>
+            liblinear-230
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Which-2.21 and Alternatives
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;12.&nbsp;System Utilities
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="usbutils.html" title="usbutils-012">Prev</a>
+          <p>
+            usbutils-012
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="zip.html" title="Zip-3.0">Next</a>
+          <p>
+            Zip-3.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="sysutils.html" title=
+          "Chapter&nbsp;12.&nbsp;System Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="which" name="which"></a>Which-2.21 and Alternatives
+      </h1>
+      <p>
+        The presence or absence of the <span class=
+        "command"><strong>which</strong></span> program in the main LFS book
+        is probably one of the most contentious issues on the mailing lists.
+        It has resulted in at least one flame war in the past. To hopefully
+        put an end to this once and for all, presented here are two options
+        for equipping your system with <span class=
+        "command"><strong>which</strong></span>. The question of which
+        <span class="quote">&ldquo;<span class="quote"><span class=
+        "command"><strong>which</strong></span></span>&rdquo;</span> is for
+        you to decide.
+      </p>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to GNU Which
+        </h2>
+        <p>
+          The first option is to install the actual GNU <span class=
+          "application">which</span> package.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://ftp.gnu.org/gnu/which/which-2.21.tar.gz">https://ftp.gnu.org/gnu/which/which-2.21.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnu.org/gnu/which/which-2.21.tar.gz">ftp://ftp.gnu.org/gnu/which/which-2.21.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 097ff1a324ae02e0a3b0369f07a7544a
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 148 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 1 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/which">http://wiki.linuxfromscratch.org/blfs/wiki/which</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Which
+        </h2>
+        <p>
+          Install <span class="application">which</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">which</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">None</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="which-prog" name="which-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>which</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    shows the full path of (shell) commands installed in your
+                    <code class="envar">PATH</code>.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          The 'which' Script
+        </h2>
+        <p>
+          The second option (for those who don't want to install the package)
+          is to create a simple script (execute as the <code class=
+          "systemitem">root</code> user):
+        </p>
+        <pre class="root">
+<kbd class="command">cat &gt; /usr/bin/which &lt;&lt; "EOF"
+<code class="literal">#!/bin/bash
+type -pa "$@" | head -n 1 ; exit ${PIPESTATUS[0]}</code>
+EOF
+chmod -v 755 /usr/bin/which
+chown -v root:root /usr/bin/which</kbd>
+</pre>
+        <p>
+          This should work OK and is probably the easiest solution for most
+          cases, but is not the most comprehensive implementation.
+        </p>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 20:23:35 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="usbutils.html" title="usbutils-012">Prev</a>
+          <p>
+            usbutils-012
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="zip.html" title="Zip-3.0">Next</a>
+          <p>
+            Zip-3.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="sysutils.html" title=
+          "Chapter&nbsp;12.&nbsp;System Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

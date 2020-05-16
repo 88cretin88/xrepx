@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      JS-60.8.0
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;9.&nbsp;General Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="jansson.html" title="Jansson-2.12">Prev</a>
+          <p>
+            Jansson-2.12
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="json-c.html" title="JSON-C-0.13.1">Next</a>
+          <p>
+            JSON-C-0.13.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="js60" name="js60"></a>JS-60.8.0
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to JS
+        </h2>
+        <p>
+          <span class="application">JS</span> is Mozilla's JavaScript engine
+          written in C.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.gnome.org/pub/gnome/teams/releng/tarballs-needing-help/mozjs/mozjs-60.8.0.tar.bz2">
+                http://ftp.gnome.org/pub/gnome/teams/releng/tarballs-needing-help/mozjs/mozjs-60.8.0.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnome.org/pub/gnome/teams/releng/tarballs-needing-help/mozjs/mozjs-60.8.0.tar.bz2">
+                ftp://ftp.gnome.org/pub/gnome/teams/releng/tarballs-needing-help/mozjs/mozjs-60.8.0.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 5eda38cc08a3594a3f2c3cc185d4f15b
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 31 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 640 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 6.6 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          JS60 Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="autoconf213.html" title=
+          "Autoconf2.13">Autoconf-2.13</a>, <a class="xref" href="icu.html"
+          title="ICU-65.1">ICU-65.1</a>, <a class="xref" href="python2.html"
+          title="Python-2.7.17">Python-2.7.17</a>, <a class="xref" href=
+          "which.html" title="Which-2.21 and Alternatives">Which-2.21</a>,
+          and <a class="xref" href="zip.html" title="Zip-3.0">Zip-3.0</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="doxygen.html" title=
+          "Doxygen-1.8.17">Doxygen-1.8.17</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/js60">http://wiki.linuxfromscratch.org/blfs/wiki/js60</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of JS
+        </h2>
+        <div class="admon caution">
+          <img alt="[Caution]" src="../images/caution.png" />
+          <h3>
+            Caution
+          </h3>
+          <p>
+            If you are upgrading JS60 from a previously installed old
+            version, save all work and exit your GNOME Session if you have
+            one running. Replacing the JS60 binary will cause the GNOME Shell
+            to crash and return you to your display manager or TTY. After
+            installing the new version, reinstall <a class="xref" href=
+            "../gnome/gjs.html" title="Gjs-1.58.5">Gjs-1.58.5</a>. Polkit is
+            unaffected.
+          </p>
+        </div>
+        <p>
+          Install <span class="application">JS</span> by running the
+          following commands:
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            If installing in the chroot environment, be sure to export the
+            <code class="envar">SHELL</code> environment variable or
+            configuration of the package will fail.
+          </p>
+        </div>
+        <pre class="userinput">
+<kbd class="command">mkdir mozjs-build &amp;&amp;
+cd    mozjs-build &amp;&amp;
+
+../js/src/configure --prefix=/usr       \
+                    --with-intl-api     \
+                    --with-system-zlib  \
+                    --with-system-icu   \
+                    --disable-jemalloc  \
+                    --enable-readline   &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a working test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--with-*</code></em>: These parameters
+          allow the build system to use system versions of the above
+          libriares. These are required for stability.
+        </p>
+        <p>
+          <em class="parameter"><code>--enable-readline</code></em>: This
+          switch enables Readline support in the JS shell.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-jemalloc</code></em>: This
+          switch disables the internal memory allocator used in JS60.
+          jemalloc causes a conflict with glibc.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">js60 and js60-config</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libmozjs-60.so and
+              libjs_static.ajs</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/mozjs-60</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="js6-js60" name="js6-js60"></a><span class=
+                    "term"><span class=
+                    "command"><strong>js60</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides a command line interface to the <span class=
+                    "application">JavaScript</span> engine.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="js60-config" name="js60-config"></a><span class=
+                    "term"><span class=
+                    "command"><strong>js60-config</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to find the JS compiler and linker flags.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libmozjs-60" name="libmozjs-60"></a><span class=
+                    "term"><code class=
+                    "filename">libmozjs-60.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains the Mozilla JavaScript API functions.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-16 15:50:16 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="jansson.html" title="Jansson-2.12">Prev</a>
+          <p>
+            Jansson-2.12
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="json-c.html" title="JSON-C-0.13.1">Next</a>
+          <p>
+            JSON-C-0.13.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

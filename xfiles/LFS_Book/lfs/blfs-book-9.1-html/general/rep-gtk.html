@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Rep-gtk-0.90.8.3
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;11.&nbsp;General Utilities
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="rarian.html" title="Rarian-0.8.1">Prev</a>
+          <p>
+            Rarian-0.8.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="screen.html" title="Screen-4.8.0">Next</a>
+          <p>
+            Screen-4.8.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genutils.html" title=
+          "Chapter&nbsp;11.&nbsp;General Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="rep-gtk" name="rep-gtk"></a>Rep-gtk-0.90.8.3
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Rep-gtk
+        </h2>
+        <p>
+          The <span class="application">rep-gtk</span> package contains a
+          <span class="application">Lisp</span> and <span class=
+          "application">GTK</span> binding. This is useful for extending
+          <span class="application">GTK-2</span> and <span class=
+          "application">GDK</span> libraries with <span class=
+          "application">Lisp</span>. Starting at <span class=
+          "application">rep-gtk</span>-0.15, the package contains the
+          bindings to <span class="application">GTK</span> and uses the same
+          instructions. Both can be installed, if needed.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://download.tuxfamily.org/librep/rep-gtk/rep-gtk_0.90.8.3.tar.xz">
+                http://download.tuxfamily.org/librep/rep-gtk/rep-gtk_0.90.8.3.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: b20f72cf00d316d35fa7f84a6e7532af
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 120 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 13 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Rep-gtk Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../x/gtk2.html" title=
+          "GTK+-2.24.32">GTK+-2.24.32</a> and <a class="xref" href=
+          "librep.html" title="Librep-0.92.7">librep-0.92.7</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/rep-gtk">http://wiki.linuxfromscratch.org/blfs/wiki/rep-gtk</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Rep-gtk
+        </h2>
+        <p>
+          Install <span class="application">rep-gtk</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./autogen.sh --prefix=/usr &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">Lisp bindings</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/include/rep-gtk and
+              /usr/lib/rep/gui</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="lisp-bindings" name=
+                    "lisp-bindings"></a><span class="term"><code class=
+                    "filename">Lisp bindings</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    are libraries stored in <code class=
+                    "filename">/usr/lib/rep/gui/</code> that assist
+                    communication between Lisp and the <span class=
+                    "application">GTK</span> libraries.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-18 14:50:03 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="rarian.html" title="Rarian-0.8.1">Prev</a>
+          <p>
+            Rarian-0.8.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="screen.html" title="Screen-4.8.0">Next</a>
+          <p>
+            Screen-4.8.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genutils.html" title=
+          "Chapter&nbsp;11.&nbsp;General Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

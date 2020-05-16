@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      About Logical Volume Management (LVM)
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;5.&nbsp;File Systems and Disk Management
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="lvm2.html" title="LVM2-2.03.08">Prev</a>
+          <p>
+            LVM2-2.03.08
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="raid.html" title="About RAID">Next</a>
+          <p>
+            About RAID
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="filesystems.html" title=
+          "Chapter&nbsp;5.&nbsp;File Systems and Disk Management">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="aboutlvm" name="aboutlvm"></a>About Logical Volume Management
+        (LVM)
+      </h1>
+      <p>
+        LVM manages disk drives. It allows multiple drives and partitions to
+        be combined into larger <span class="emphasis"><em>volume
+        groups</em></span>, assists in making backups through a <span class=
+        "emphasis"><em>snapshot</em></span>, and allows for dynamic volume
+        resizing. It can also provide mirroring similar to a RAID 1 array.
+      </p>
+      <p>
+        A complete discussion of LVM is beyond the scope of this
+        introduction, but basic concepts are presented below.
+      </p>
+      <p>
+        To run any of the commands presented here, the <a class="xref" href=
+        "lvm2.html" title="LVM2-2.03.08">LVM2-2.03.08</a> package must be
+        installed. All commands must be run as the <code class=
+        "systemitem">root</code> user.
+      </p>
+      <p>
+        Management of disks with lvm is accomplished using the following
+        concepts:
+      </p>
+      <div class="variablelist">
+        <dl class="variablelist">
+          <dt>
+            <span class="term">physical volumes</span>
+          </dt>
+          <dd>
+            <p>
+              These are physical disks or partitions such as /dev/sda3 or
+              /dev/sdb.
+            </p>
+          </dd>
+          <dt>
+            <span class="term">volume groups</span>
+          </dt>
+          <dd>
+            <p>
+              These are named groups of physical volumes that can be
+              manipulated by the administrator. The number of physical
+              volumes that make up a volume group is arbitrary. Physical
+              volumes can be dynamically added or removed from a volume
+              group.
+            </p>
+          </dd>
+          <dt>
+            <span class="term">logical volumes</span>
+          </dt>
+          <dd>
+            <p>
+              Volume groups may be subdivided into logical volumes. Each
+              logical volume can then be individually formatted as if it were
+              a regular Linux partition. Logical volumes may be dynamically
+              resized by the administrator according to need.
+            </p>
+          </dd>
+        </dl>
+      </div>
+      <p>
+        To give a concrete example, suppose that you have two 2 TB disks.
+        Also suppose a really large amount of space is required for a very
+        large database, mounted on <code class="filename">/srv/mysql</code>.
+        This is what the initial set of partitions would look like:
+      </p>
+      <pre class="screen">
+<code class="literal">Partition  Use    Size      Partition Type
+/dev/sda1  /boot  100MB     83 (Linux)
+/dev/sda2  /       10GB     83 (Linux)
+/dev/sda3  swap     2GB     82 (Swap)
+/dev/sda4  LVM    remainder 8e (LVM)
+/dev/sdb1  swap     2GB     82 (Swap)
+/dev/sdb2  LVM    remainder 8e (LVM)</code>
+</pre>
+      <p>
+        First initialize the physical volumes:
+      </p>
+      <pre class="userinput">
+<kbd class="command">pvcreate /dev/sda4 /dev/sdb2</kbd>
+</pre>
+      <div class="admon note">
+        <img alt="[Note]" src="../images/note.png" />
+        <h3>
+          Note
+        </h3>
+        <p>
+          A full disk can be used as part of a physical volume, but beware
+          that the <span class="command"><strong>pvcreate</strong></span>
+          command will destroy any partition information on that disk.
+        </p>
+      </div>
+      <p>
+        Next create a volume group named lfs-lvm:
+      </p>
+      <pre class="userinput">
+<kbd class="command">vgcreate lfs-lvm /dev/sda4  /dev/sdb2</kbd>
+</pre>
+      <p>
+        The status of the volume group can be checked by running the command
+        <span class="command"><strong>vgscan</strong></span>. Now create the
+        logical volumes. Since there is about 3900 GB available, leave about
+        900 GB free for expansion. Note that the logical volume named
+        <span class="emphasis"><em>mysql</em></span> is larger than any
+        physical disk.
+      </p>
+      <pre class="userinput">
+<kbd class="command">lvcreate --name mysql --size 2500G lfs-lvm
+lvcreate --name home  --size  500G lfs-lvm</kbd>
+</pre>
+      <p>
+        Finally the logical volumes can be formatted and mounted. In this
+        example, the jfs file system (<a class="xref" href="jfsutils.html"
+        title="jfsutils-1.1.15">jfsutils-1.1.15</a>) is used for
+        demonstration purposes.
+      </p>
+      <pre class="userinput">
+<kbd class="command">mkfs -t ext4 /dev/lfs-lvm/home
+mkfs -t jfs  /dev/lfs-lvm/mysql
+mount /dev/lfs-lvm/home /home
+mkdir -p /srv/mysql
+mount /dev/lfs-lvm/mysql /srv/mysql</kbd>
+</pre>
+      <p>
+        The LFS boot scripts automatically make these file systems available
+        to the system in the checkfs script. Edit the <code class=
+        "filename">/etc/fstab</code> file as required to automatically mount
+        them.
+      </p>
+      <p>
+        A LVM logical volume can host a root filesystem, but requires the use
+        of an initramfs (initial RAM file system) and is not discussed here.
+      </p>
+      <p>
+        For a more information about LVM, see the <a class="ulink" href=
+        "http://www.tldp.org/HOWTO/LVM-HOWTO/">LVM HOWTO</a> and the lvm man
+        pages.
+      </p>
+      <p class="updated">
+        Last updated on 2019-11-10 01:43:02 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="lvm2.html" title="LVM2-2.03.08">Prev</a>
+          <p>
+            LVM2-2.03.08
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="raid.html" title="About RAID">Next</a>
+          <p>
+            About RAID
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="filesystems.html" title=
+          "Chapter&nbsp;5.&nbsp;File Systems and Disk Management">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

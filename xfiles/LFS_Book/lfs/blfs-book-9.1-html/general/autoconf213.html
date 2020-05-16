@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Autoconf2.13
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;13.&nbsp;Programming
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="prog.html" title="Programming">Prev</a>
+          <p>
+            Programming
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="cbindgen.html" title=
+          "Cbindgen-0.13.1">Next</a>
+          <p>
+            Cbindgen-0.13.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="autoconf213" name="autoconf213"></a>Autoconf2.13
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Autoconf2.13
+        </h2>
+        <p>
+          <span class="application">Autoconf2.13</span> is an old version of
+          <span class="application">Autoconf</span> . This old version
+          accepts switches which are not valid in more recent versions. Now
+          that <span class="application">firefox</span> has started to use
+          <span class="application">python2</span> for configuring, this old
+          version is required even if configure files have not been changed.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://ftp.gnu.org/gnu/autoconf/autoconf-2.13.tar.gz">https://ftp.gnu.org/gnu/autoconf/autoconf-2.13.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnu.org/gnu/autoconf/autoconf-2.13.tar.gz">ftp://ftp.gnu.org/gnu/autoconf/autoconf-2.13.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 9de56d4a161a723228220b0f425dc711
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 434 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 2.8 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU (additional 0.1 SBU
+                for the tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Additional Downloads
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Required patch: <a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/blfs/9.1/autoconf-2.13-consolidated_fixes-1.patch">
+                http://www.linuxfromscratch.org/patches/blfs/9.1/autoconf-2.13-consolidated_fixes-1.patch</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Autoconf2.13 Dependencies
+        </h3>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="dejagnu.html" title=
+          "DejaGnu-1.6.2">DejaGnu-1.6.2</a> (Required for the tests)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/autoconf213">http://wiki.linuxfromscratch.org/blfs/wiki/autoconf213</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Autoconf2.13
+        </h2>
+        <p>
+          Install <span class="application">Autoconf</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">patch -Np1 -i ../autoconf-2.13-consolidated_fixes-1.patch &amp;&amp;
+mv -v autoconf.texi autoconf213.texi                      &amp;&amp;
+rm -v autoconf.info                                       &amp;&amp;
+./configure --prefix=/usr --program-suffix=2.13           &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the installation, if you have installed <a class="xref"
+          href="dejagnu.html" title="DejaGnu-1.6.2">DejaGnu-1.6.2</a>, issue
+          <span class="command"><strong>make check</strong></span> (all 253
+          tests should pass).
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">make install                                      &amp;&amp;
+install -v -m644 autoconf213.info /usr/share/info &amp;&amp;
+install-info --info-dir=/usr/share/info autoconf213.info</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>mv -v autoconf.texi
+          autoconf213.texi</strong></span>: ensure that the info file added
+          by this package will not overwrite the more recent version.
+        </p>
+        <p>
+          <span class="command"><strong>rm -v autoconf.info</strong></span>:
+          ensure that the info file will be created by the current version of
+          texinfo.
+        </p>
+        <p>
+          <span class=
+          "command"><strong>--program-suffix=2.13</strong></span>: ensure
+          that the installed programs have the version added to their names,
+          so that only a script which specifically looks for these old
+          versions will find them.
+        </p>
+        <p>
+          <span class="command"><strong>install -v -m644 ...</strong></span>:
+          the patch removes install-info from the Makefile because that would
+          install (and if necessary recreate) standards.info which is an old
+          version, so now <code class="filename">autoconf213.info</code> has
+          to be manually installed.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">autoconf2.13, autoheader2.13,
+              autoreconf2.13, autoscan2.13, autoupdate2.13, and
+              ifnames2.13</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/share/autoconf-2.13</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="autoconf2.13" name="autoconf2.13"></a><span class=
+                    "term"><span class=
+                    "command"><strong>autoconf2.13</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    Produces shell scripts that automatically configure
+                    software source code packages to adapt to many kinds of
+                    Unix-like systems.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="autoheader2.13" name=
+                    "autoheader2.13"></a><span class="term"><span class=
+                    "command"><strong>autoheader2.13</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool for creating template files of C <span class=
+                    "emphasis"><em>#define</em></span> statements for
+                    configure to use
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="autoreconf2.13" name=
+                    "autoreconf2.13"></a><span class="term"><span class=
+                    "command"><strong>autoreconf2.13</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    This automatically runs <span class=
+                    "command"><strong>autoconf2.13</strong></span>,
+                    <span class=
+                    "command"><strong>autoheader2.13</strong></span>,
+                    <span class="command"><strong>aclocal</strong></span>,
+                    <span class="command"><strong>automake</strong></span>,
+                    <span class="command"><strong>gettextize</strong></span>
+                    and <span class=
+                    "command"><strong>libtoolize</strong></span> in the right
+                    order when changes have been made to <span class=
+                    "command"><strong>autoconf</strong></span> or
+                    <span class="command"><strong>automake</strong></span>
+                    template files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="autoscan2.13" name="autoscan2.13"></a><span class=
+                    "term"><span class=
+                    "command"><strong>autoscan2.13</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    Can be used as a preliminary step in creating a
+                    <code class="filename">configure.in</code> file.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="autoupdate2.13" name=
+                    "autoupdate2.13"></a><span class="term"><span class=
+                    "command"><strong>autoupdate2.13</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    Modifies a <code class="filename">configure.in</code>
+                    file that still calls <span class=
+                    "command"><strong>autoconf</strong></span> macros by
+                    their old names to use the current macro names.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ifnames2.13" name="ifnames2.13"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ifnames2.13</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    Prints the identifiers that the package uses in C
+                    preprocessor conditionals [If a package has already been
+                    set up to have some portability, this program can help
+                    determine what configure needs to check for. It can also
+                    fill in gaps in a configure.in file generated by
+                    autoscan.]
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-16 15:50:16 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="prog.html" title="Programming">Prev</a>
+          <p>
+            Programming
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="cbindgen.html" title=
+          "Cbindgen-0.13.1">Next</a>
+          <p>
+            Cbindgen-0.13.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

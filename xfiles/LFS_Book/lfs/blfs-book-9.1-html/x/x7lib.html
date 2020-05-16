@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Xorg Libraries
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;24.&nbsp;X Window System Environment
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libxcb.html" title="libxcb-1.13.1">Prev</a>
+          <p>
+            libxcb-1.13.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="xcb-util.html" title=
+          "xcb-util-0.4.0">Next</a>
+          <p>
+            xcb-util-0.4.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="xorg7-lib" name="xorg7-lib"></a>Xorg Libraries
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Xorg Libraries
+        </h2>
+        <p>
+          The <span class="application">Xorg</span> libraries provide library
+          routines that are used within all X Window applications.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://www.x.org/pub/individual/lib/">https://www.x.org/pub/individual/lib/</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.x.org/pub/individual/lib/">ftp://ftp.x.org/pub/individual/lib/</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 13 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 224 MB (34 MB installed) - if
+                source directories not deleted
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 2.4 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Xorg Libraries Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../general/fontconfig.html" title=
+          "Fontconfig-2.13.1">Fontconfig-2.13.1</a> and <a class="xref" href=
+          "libxcb.html" title="libxcb-1.13.1">libxcb-1.13.1</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/elogind.html" title=
+          "elogind-243.4">elogind-243.4</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../pst/xmlto.html" title=
+          "xmlto-0.0.28">xmlto-0.0.28</a> with one or more of the following:
+          <a class="xref" href="../pst/fop.html" title="fop-2.4">fop-2.4</a>,
+          <a class="xref" href="../basicnet/links.html" title=
+          "Links-2.20.2">Links-2.20.2</a>, <a class="xref" href=
+          "../basicnet/lynx.html" title=
+          "Lynx-2.8.9rel.1">Lynx-2.8.9rel.1</a>, and <a class="ulink" href=
+          "http://w3m.sourceforge.net/">W3m</a> (to generate additional PDF
+          or text documentation for the libXfont package).
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/Xorg7Libraries">http://wiki.linuxfromscratch.org/blfs/wiki/Xorg7Libraries</a>
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Downloading Xorg Libraries
+        </h2>
+        <p>
+          First, create a list of files to be downloaded. This file will also
+          be used to verify the integrity of the downloads when complete:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat &gt; lib-7.md5 &lt;&lt; "EOF"
+<code class="literal">ce2fb8100c6647ee81451ebe388b17ad  xtrans-1.4.0.tar.bz2
+55adbfb6d4370ecac5e70598c4e7eed2  libX11-1.6.9.tar.bz2
+f5b48bb76ba327cd2a8dc7a383532a95  libXext-1.3.4.tar.bz2
+4e1196275aa743d6ebd3d3d5ec1dff9c  libFS-1.0.8.tar.bz2
+76d77499ee7120a56566891ca2c0dbcf  libICE-1.0.10.tar.bz2
+87c7fad1c1813517979184c8ccd76628  libSM-1.2.3.tar.bz2
+eeea9d5af3e6c143d0ea1721d27a5e49  libXScrnSaver-1.2.3.tar.bz2
+a9019421d3ee8b4937b6afd9025f018a  libXt-1.2.0.tar.bz2
+ac774cff8b493f566088a255dbf91201  libXmu-1.1.3.tar.bz2
+6f0ecf8d103d528cfc803aa475137afa  libXpm-3.5.13.tar.bz2
+e5e06eb14a608b58746bdd1c0bd7b8e3  libXaw-1.0.13.tar.bz2
+07e01e046a0215574f36a3aacb148be0  libXfixes-5.0.3.tar.bz2
+3fa0841ea89024719b20cd702a9b54e0  libXcomposite-0.4.5.tar.bz2
+802179a76bded0b658f4e9ec5e1830a4  libXrender-0.9.10.tar.bz2
+9b9be0e289130fb820aedf67705fc549  libXcursor-1.2.0.tar.bz2
+e3f554267a7a04b042dc1f6352bd6d99  libXdamage-1.1.5.tar.bz2
+6447db6a689fb530c218f0f8328c3abc  libfontenc-1.1.4.tar.bz2
+00516bed7ec1453d56974560379fff2f  libXfont2-2.0.4.tar.bz2
+4a433c24627b4ff60a4dd403a0990796  libXft-2.3.3.tar.bz2
+62c4af0839072024b4b1c8cbe84216c7  libXi-1.7.10.tar.bz2
+0d5f826a197dae74da67af4a9ef35885  libXinerama-1.1.4.tar.bz2
+18f3b20d522f45e4dadd34afb5bea048  libXrandr-1.5.2.tar.bz2
+5d6d443d1abc8e1f6fc1c57fb27729bb  libXres-1.2.0.tar.bz2
+ef8c2c1d16a00bd95b9fdcef63b8a2ca  libXtst-1.2.3.tar.bz2
+210b6ef30dda2256d54763136faa37b9  libXv-1.0.11.tar.bz2
+3569ff7f3e26864d986d6a21147eaa58  libXvMC-1.0.12.tar.bz2
+0ddeafc13b33086357cfa96fae41ee8e  libXxf86dga-1.1.5.tar.bz2
+298b8fff82df17304dfdb5fe4066fe3a  libXxf86vm-1.1.4.tar.bz2
+d2f1f0ec68ac3932dd7f1d9aa0a7a11c  libdmx-1.1.4.tar.bz2
+b34e2cbdd6aa8f9cc3fa613fd401a6d6  libpciaccess-0.16.tar.bz2
+dd7e1e946def674e78c0efbc5c7d5b3b  libxkbfile-1.1.0.tar.bz2
+42dda8016943dc12aff2c03a036e0937  libxshmfence-1.3.tar.bz2</code>
+EOF</kbd>
+</pre>
+        <p>
+          To download the needed files using <span class=
+          "application">wget</span>, use the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir lib &amp;&amp;
+cd lib &amp;&amp;
+grep -v '^#' ../lib-7.md5 | awk '{print $2}' | wget -i- -c \
+    -B https://www.x.org/pub/individual/lib/ &amp;&amp;
+md5sum -c ../lib-7.md5</kbd>
+</pre>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Xorg Libraries
+        </h2>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            When installing multiple packages in a script, the installation
+            needs to be done as the root user. There are three general
+            options that can be used to do this:
+          </p>
+          <div class="orderedlist">
+            <ol>
+              <li class="listitem">
+                <p>
+                  Run the entire script as the root user (not recommended).
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Use the <span class="command"><strong>sudo</strong></span>
+                  command from the <a class="xref" href=
+                  "../postlfs/sudo.html" title="Sudo-1.8.31">Sudo-1.8.31</a>
+                  package.
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Use <span class="command"><strong>su -c "command
+                  arguments"</strong></span> (quotes required) which will ask
+                  for the root password for every iteration of the loop.
+                </p>
+              </li>
+            </ol>
+          </div>
+          <p>
+            One way to handle this situation is to create a short
+            <span class="command"><strong>bash</strong></span> function that
+            automatically selects the appropriate method. Once the command is
+            set in the environment, it does not need to be set again.
+          </p>
+          <pre class="userinput">
+<kbd class="command">as_root()
+{
+  if   [ $EUID = 0 ];        then $*
+  elif [ -x /usr/bin/sudo ]; then sudo $*
+  else                            su -c \\"$*\\"
+  fi
+}
+
+export -f as_root</kbd>
+</pre>
+        </div>
+        <p>
+          Some libraries come with a test suite. If you wish to execute them,
+          either comment out the <span class="command"><strong>rm -rf
+          ...</strong></span> below, so that, after all libraries are
+          installed, you can come back to the corresponding directory and run
+          <span class="command"><strong>make check</strong></span>, or do
+          individual builds, running the tests for each of those distributed
+          with working test suites. Alternatively, you can uncomment the line
+          #<span class="command"><strong>make check ...</strong></span>, and
+          at the end, check the test results with:
+        </p>
+        <pre class="userinput">
+<kbd class="command">grep -A9 summary *make_check.log</kbd>
+</pre>
+        <p>
+          BLFS developers have confirmed that <span class=
+          "application">libX11</span>, <span class="application">libXt</span>
+          and <span class="application">libxshmfence</span> are distributed
+          with working test suites.
+        </p>
+        <p>
+          First, start a subshell that will exit on error:
+        </p>
+        <pre class="userinput">
+<kbd class="command">bash -e</kbd>
+</pre>
+        <p>
+          Install all of the packages by running the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">for package in $(grep -v '^#' ../lib-7.md5 | awk '{print $2}')
+do
+  packagedir=${package%.tar.bz2}
+  tar -xf $package
+  pushd $packagedir
+  case $packagedir in
+    libICE* )
+      ./configure $XORG_CONFIG ICE_LIBS=-lpthread
+    ;;
+
+    libXfont2-[0-9]* )
+      ./configure $XORG_CONFIG --disable-devel-docs
+    ;;
+
+    libXt-[0-9]* )
+      ./configure $XORG_CONFIG \
+                  --with-appdefaultdir=/etc/X11/app-defaults
+    ;;
+
+    * )
+      ./configure $XORG_CONFIG
+    ;;
+  esac
+  make
+  #make check 2&gt;&amp;1 | tee ../$packagedir-make_check.log
+  as_root make install
+  popd
+  rm -rf $packagedir
+  as_root /sbin/ldconfig
+done</kbd>
+</pre>
+        <p>
+          Finally, exit the shell that was started earlier:
+        </p>
+        <pre class="userinput">
+<kbd class="command">exit</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>./configure $XORG_CONFIG
+          ICE_LIBS=-lpthread</strong></span>: This fixes a change in glibc
+          which breaks pulseaudio at runtime.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-devel-docs</code></em>:
+          Disable generation of text documentation in the libXfont2 package
+          if <a class="xref" href="../pst/xmlto.html" title=
+          "xmlto-0.0.28">xmlto-0.0.28</a> is installed without a text
+          browser. Omit this parameter (or the entire <span class=
+          "command"><strong>case</strong></span> statement) if a text browser
+          is installed.
+        </p>
+        <p>
+          <code class="option">--with-fop</code>: Use <a class="xref" href=
+          "../pst/fop.html" title="fop-2.4">fop-2.4</a> to generate PDF
+          documentation (only for the libXfont package).
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuration of Xorg Libraries
+        </h2>
+        <p>
+          If you've chosen to install <span class="application">Xorg</span>
+          into <code class="filename">/usr</code>, then no further
+          configuration is necessary and you can skip the rest of this
+          section. If you've opted for an alternate prefix, you should create
+          two symlinks to satisfy the expected environment of several
+          packages. Execute the following commands as the root user:
+        </p>
+        <pre class="root">
+<kbd class="command">ln -sv $XORG_PREFIX/lib/X11 /usr/lib/X11 &amp;&amp;
+ln -sv $XORG_PREFIX/include/X11 /usr/include/X11</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">cxpm and sxpm</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libdmx.so, libfontenc.so, libFS.so,
+              libICE.so, libpciaccess.so, libSM.so, libX11.so, libXaw6.so,
+              libXaw7.so, libXaw.so, libXcomposite.so, libXcursor.so,
+              libXdamage.so, libXext.so, libXfixes.so, libXfont2.so,
+              libXft.so, libXinerama.so, libXi.so, libxkbfile.so, libXmu.so,
+              libXmuu.so, libXpm.so, libXrandr.so, libXrender.so, libXRes.so,
+              libxshmfence.so, libXss.so, libXt.so, libXtst.so, libXvMC.so,
+              libXvMCW.so, libXv.so, libXxf86dga.so and libXxf86vm.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody"><code class=
+              "envar">$XORG_PREFIX</code>/include/X11/fonts, <code class=
+              "envar">$XORG_PREFIX</code>/include/X11/Xtrans, <code class=
+              "envar">$XORG_PREFIX</code>/share/doc/libFS, <code class=
+              "envar">$XORG_PREFIX</code>/share/doc/libICE, <code class=
+              "envar">$XORG_PREFIX</code>/share/doc/libSM, <code class=
+              "envar">$XORG_PREFIX</code>/share/doc/libX11, <code class=
+              "envar">$XORG_PREFIX</code>/share/doc/libXaw, <code class=
+              "envar">$XORG_PREFIX</code>/share/doc/libXext, <code class=
+              "envar">$XORG_PREFIX</code>/share/doc/libXi, <code class=
+              "envar">$XORG_PREFIX</code>/share/doc/libXmu, <code class=
+              "envar">$XORG_PREFIX</code>/share/doc/libXrender, <code class=
+              "envar">$XORG_PREFIX</code>/share/doc/libXt, <code class=
+              "envar">$XORG_PREFIX</code>/share/doc/libXtst, <code class=
+              "envar">$XORG_PREFIX</code>/share/doc/libXvMC, <code class=
+              "envar">$XORG_PREFIX</code>/share/doc/xtrans and <code class=
+              "envar">$XORG_PREFIX</code>/share/X11/locale</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="cxpm" name="cxpm"></a><span class=
+                    "term"><span class=
+                    "command"><strong>cxpm</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    checks the format of an XPM file.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="sxpm" name="sxpm"></a><span class=
+                    "term"><span class=
+                    "command"><strong>sxpm</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    shows an XPM file and/or converts XPM 1 or 2 files to XPM
+                    3.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libdmx" name="libdmx"></a><span class=
+                    "term"><code class="filename">libdmx.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X Window System DMX (Distributed Multihead X)
+                    extension library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libfontenc" name="libfontenc"></a><span class=
+                    "term"><code class="filename">libfontenc.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X11 font encoding library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libFS" name="libFS"></a><span class=
+                    "term"><code class="filename">libFS.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the library interface to the X Font Server.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libICE" name="libICE"></a><span class=
+                    "term"><code class="filename">libICE.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X Inter Client Exchange Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libpciaccess" name="libpciaccess"></a><span class=
+                    "term"><code class=
+                    "filename">libpciaccess.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the generic PCI Access library for X.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libSM" name="libSM"></a><span class=
+                    "term"><code class="filename">libSM.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X Session Management Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libX11" name="libX11"></a><span class=
+                    "term"><code class="filename">libX11.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the Xlib Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXaw6" name="libXaw6"></a><span class=
+                    "term"><code class="filename">libXaw6.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X Athena Widgets Library, version 6.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXaw7" name="libXaw7"></a><span class=
+                    "term"><code class="filename">libXaw7.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X Athena Widgets Library, version 7.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXaw" name="libXaw"></a><span class=
+                    "term"><code class="filename">libXaw.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    are symbolic links to the current X Athena Widgets
+                    Library, version 7.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXcomposite" name=
+                    "libXcomposite"></a><span class="term"><code class=
+                    "filename">libXcomposite.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X Composite Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXcursor" name="libXcursor"></a><span class=
+                    "term"><code class="filename">libXcursor.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X Cursor management library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXdamage" name="libXdamage"></a><span class=
+                    "term"><code class="filename">libXdamage.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X Damage Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXext" name="libXext"></a><span class=
+                    "term"><code class="filename">libXext.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the Misc X Extension Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXfixes" name="libXfixes"></a><span class=
+                    "term"><code class="filename">libXfixes.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides augmented versions of core protocol requests.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXfont2" name="libXfont2"></a><span class=
+                    "term"><code class="filename">libXfont2.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X font library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXft" name="libXft"></a><span class=
+                    "term"><code class="filename">libXft.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X FreeType interface library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXinerama" name="libXinerama"></a><span class=
+                    "term"><code class=
+                    "filename">libXinerama.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the Xinerama Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXi" name="libXi"></a><span class=
+                    "term"><code class="filename">libXi.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X Input Extension Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libxkbfile" name="libxkbfile"></a><span class=
+                    "term"><code class="filename">libxkbfile.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the xkbfile Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXmu" name="libXmu"></a><span class=
+                    "term"><code class="filename">libXmu.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X interface library for miscellaneous utilities
+                    not part of the Xlib standard.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXmuu" name="libXmuu"></a><span class=
+                    "term"><code class="filename">libXmuu.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the Mini Xmu Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXpm" name="libXpm"></a><span class=
+                    "term"><code class="filename">libXpm.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X Pixmap Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXrandr" name="libXrandr"></a><span class=
+                    "term"><code class="filename">libXrandr.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X Resize, Rotate and Reflection extension library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXrender" name="libXrender"></a><span class=
+                    "term"><code class="filename">libXrender.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X Render Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXRes" name="libXRes"></a><span class=
+                    "term"><code class="filename">libXRes.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X-Resource extension client library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libxshmfence" name="libxshmfence"></a><span class=
+                    "term"><code class=
+                    "filename">libxshmfence.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    exposes an event API on top of Linux futexes.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXss" name="libXss"></a><span class=
+                    "term"><code class="filename">libXss.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X11 Screen Saver extension client library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXt" name="libXt"></a><span class=
+                    "term"><code class="filename">libXt.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X Toolkit Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXtst" name="libXtst"></a><span class=
+                    "term"><code class="filename">libXtst.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the Xtst Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXvMC" name="libXvMC"></a><span class=
+                    "term"><code class="filename">libXvMC.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X-Video Motion Compensation Library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXvMCW" name="libXvMCW"></a><span class=
+                    "term"><code class="filename">libXvMCW.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the XvMC Wrapper including the Nonstandard VLD
+                    extension.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXv" name="libXv"></a><span class=
+                    "term"><code class="filename">libXv.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the X Window System video extension library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXxf86dga" name="libXxf86dga"></a><span class=
+                    "term"><code class=
+                    "filename">libXxf86dga.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the client library for the XFree86-DGA extension.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libXxf86vm" name="libXxf86vm"></a><span class=
+                    "term"><code class="filename">libXxf86vm.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the client library for the XFree86-VidMode X
+                    extension.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 20:23:35 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libxcb.html" title="libxcb-1.13.1">Prev</a>
+          <p>
+            libxcb-1.13.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="xcb-util.html" title=
+          "xcb-util-0.4.0">Next</a>
+          <p>
+            xcb-util-0.4.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

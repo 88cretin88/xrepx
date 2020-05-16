@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      SeaMonkey-2.53.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;40.&nbsp;Graphical Web Browsers
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="firefox.html" title=
+          "Firefox-68.5.0">Prev</a>
+          <p>
+            Firefox-68.5.0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="other.html" title=
+          "Other X-based Programs">Next</a>
+          <p>
+            Other X-based Programs
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="graphweb.html" title=
+          "Chapter&nbsp;40.&nbsp;Graphical Web Browsers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="seamonkey" name="seamonkey"></a>SeaMonkey-2.53.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to SeaMonkey
+        </h2>
+        <p>
+          <span class="application">SeaMonkey</span> is a browser suite, the
+          Open Source sibling of <span class="application">Netscape</span>.
+          It includes the browser, composer, mail and news clients, and an
+          IRC client. It is the follow-on to the Mozilla browser suite.
+        </p>
+        <p>
+          The Mozilla project also hosts two subprojects that aim to satisfy
+          the needs of users who don't need the complete browser suite or
+          prefer to have separate applications for browsing and e-mail. These
+          subprojects are <a class="xref" href="firefox.html" title=
+          "Firefox-68.5.0">Firefox-68.5.0</a> and <a class="xref" href=
+          "thunderbird.html" title=
+          "Thunderbird-68.5.0">Thunderbird-68.5.0</a>. Both are based on the
+          <span class="application">Mozilla</span> source code.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://archive.mozilla.org/pub/seamonkey/releases/2.53.1/source/seamonkey-2.53.1.source.tar.xz">
+                https://archive.mozilla.org/pub/seamonkey/releases/2.53.1/source/seamonkey-2.53.1.source.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 0cb5b34ea2194ec1a7e48ba21049cf35
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 277 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 6.9 GB (154 MB installed)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 19 SBU (using parallelism=4)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            The tarball <span class=
+            "emphasis"><em>seamonkey-2.53.1.source.tar.xz</em></span> will
+            untar to <span class="emphasis"><em>seamonkey-2.53.1</em></span>
+            directory.
+          </p>
+        </div>
+        <h3>
+          SeaMonkey Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../general/autoconf213.html" title=
+          "Autoconf2.13">Autoconf-2.13</a>, both <a class="xref" href=
+          "../x/gtk2.html" title="GTK+-2.24.32">GTK+-2.24.32</a> and
+          <a class="xref" href="../x/gtk3.html" title=
+          "GTK+-3.24.13">GTK+-3.24.13</a>, <a class="xref" href=
+          "../general/rust.html" title="Rustc-1.37.0">rustc-1.37.0</a>,
+          <a class="xref" href="../general/unzip.html" title=
+          "UnZip-6.0">UnZip-6.0</a>, <a class="xref" href=
+          "../general/yasm.html" title="yasm-1.3.0">yasm-1.3.0</a>, and
+          <a class="xref" href="../general/zip.html" title=
+          "Zip-3.0">Zip-3.0</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/icu.html" title=
+          "ICU-65.1">ICU-65.1</a>, <a class="xref" href=
+          "../basicnet/libevent.html" title=
+          "libevent-2.1.11">libevent-2.1.11</a>, <a class="xref" href=
+          "../general/nspr.html" title="NSPR-4.25">NSPR-4.25</a>, <a class=
+          "xref" href="../postlfs/nss.html" title="NSS-3.50">NSS-3.50</a>,
+          <a class="xref" href="../multimedia/pulseaudio.html" title=
+          "PulseAudio-13.0">PulseAudio-13.0</a>, and <a class="xref" href=
+          "../server/sqlite.html" title="SQLite-3.31.1">SQLite-3.31.1</a>
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            If you don't install recommended dependencies, then internal
+            copies of those packages will be used. They might be tested to
+            work, but they can be out of date or contain security holes.
+          </p>
+        </div>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../multimedia/alsa-lib.html" title=
+          "alsa-lib-1.2.1.2">alsa-lib-1.2.1.2</a>, <a class="xref" href=
+          "../basicnet/curl.html" title="cURL-7.68.0">cURL-7.68.0</a>,
+          <a class="xref" href="../general/dbus-glib.html" title=
+          "dbus-glib-0.110">dbus-glib-0.110</a>, <a class="xref" href=
+          "../general/doxygen.html" title=
+          "Doxygen-1.8.17">Doxygen-1.8.17</a>, <a class="xref" href=
+          "../gnome/GConf.html" title="GConf-3.2.6">GConf-3.2.6</a>,
+          <a class="xref" href="../multimedia/gst10-plugins-base.html" title=
+          "gst-plugins-base-1.16.2">gst-plugins-base-1.16.2</a> (and other
+          plugins, only for tests), <a class="xref" href=
+          "../general/openjdk.html" title=
+          "OpenJDK-12.0.2">OpenJDK-12.0.2</a>, <a class="xref" href=
+          "../x/startup-notification.html" title=
+          "startup-notification-0.12">startup-notification-0.12</a>,
+          <a class="xref" href="../general/valgrind.html" title=
+          "Valgrind-3.15.0">Valgrind-3.15.0</a>, <a class="xref" href=
+          "../basicnet/wget.html" title="Wget-1.20.3">Wget-1.20.3</a>,
+          <a class="xref" href="../basicnet/wireless_tools.html" title=
+          "Wireless Tools-29">Wireless Tools-29</a>, and <a class="ulink"
+          href="http://hunspell.sourceforge.net/">Hunspell</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/seamonkey">http://wiki.linuxfromscratch.org/blfs/wiki/seamonkey</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of SeaMonkey
+        </h2>
+        <p>
+          The configuration of <span class="application">SeaMonkey</span> is
+          accomplished by creating a <code class="filename">mozconfig</code>
+          file containing the desired configuration options. A default
+          <code class="filename">mozconfig</code> file is created below. To
+          see the entire list of available configuration options (and an
+          abbreviated description of each one), issue <span class=
+          "command"><strong>./configure --help</strong></span>. You may also
+          wish to review the entire file and uncomment any other desired
+          options. Create the file by issuing the following command:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat &gt; mozconfig &lt;&lt; "EOF"
+<code class=
+"literal"># If you have a multicore machine, all cores will be used by default.
+# If desired, you can reduce the number of cores used, e.g. to 1, by
+# uncommenting the next line and setting a valid number of CPU cores.
+#mk_add_options MOZ_MAKE_FLAGS="-j1"
+
+# If you have installed DBus-Glib comment out this line:
+ac_add_options --disable-dbus
+
+# If you have installed dbus-glib, and you have installed (or will install)
+# wireless-tools, and you wish to use geolocation web services, comment out
+# this line
+ac_add_options --disable-necko-wifi
+
+# Uncomment these lines if you have installed optional dependencies:
+#ac_add_options --enable-system-hunspell
+#ac_add_options --enable-startup-notification
+
+# Uncomment the following option if you have not installed PulseAudio
+#ac_add_options --disable-pulseaudio
+# and uncomment this if you installed alsa-lib instead of PulseAudio
+#ac_add_options --enable-alsa
+
+# Comment out following option if you have gconf installed
+ac_add_options --disable-gconf
+
+# Comment out following options if you have not installed
+# recommended dependencies:
+ac_add_options --enable-system-sqlite
+ac_add_options --with-system-libevent
+ac_add_options --with-system-nspr
+ac_add_options --with-system-nss
+ac_add_options --with-system-icu
+
+
+
+# The BLFS editors recommend not changing anything below this line:
+ac_add_options --prefix=/usr
+ac_add_options --enable-application=suite
+
+ac_add_options --disable-crashreporter
+ac_add_options --disable-updater
+ac_add_options --disable-tests
+
+ac_add_options --enable-optimize="-O2"
+ac_add_options --enable-strip
+ac_add_options --enable-install-strip
+
+# not recognized since 2.53.1 - ac_add_options --enable-gio
+ac_add_options --enable-official-branding
+# not recognized since 2.53.1 - ac_add_options --enable-safe-browsing
+# not recognized since 2.53.1 - ac_add_options --enable-url-classifier
+
+# From firefox-40 (and the corresponding version of seamonkey),
+# using system cairo caused seamonkey to crash
+# frequently when it was doing background rendering in a tab.
+# This appears to again work in seamonkey-2.49.2
+ac_add_options --enable-system-cairo
+ac_add_options --enable-system-ffi
+ac_add_options --enable-system-pixman
+
+ac_add_options --with-pthreads
+
+ac_add_options --with-system-bz2
+ac_add_options --with-system-jpeg
+ac_add_options --with-system-png
+ac_add_options --with-system-zlib</code>
+EOF</kbd>
+</pre>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            If you are compiling <span class="application">SeaMonkey</span>
+            in chroot, make sure you have the <code class=
+            "envar">SHELL</code> environment variable set or prepend
+            <code class="envar">SHELL=/bin/sh</code> to the first make
+            command below.
+          </p>
+        </div>
+        <p>
+          Remove a function definition, which is incompatible with the one in
+          glibc-2.30:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i -e '/pid_t gettid/,+3 s@^@//@' mozilla/tools/profiler/core/platform.h</kbd>
+</pre>
+        <p>
+          Compile <span class="application">SeaMonkey</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">CC=gcc CXX=g++ make -f client.mk</kbd>
+</pre>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            The CC and CXX variables above are only needed if <a class="xref"
+            href="../general/llvm.html" title="LLVM-9.0.1">LLVM-9.0.1</a> is
+            installed and you do not want to use clang.
+          </p>
+        </div>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Install <span class="application">SeaMonkey</span> by issuing the
+          following commands as the <code class="systemitem">root</code>
+          user:
+        </p>
+        <pre class="root">
+<kbd class="command">make  -f client.mk install INSTALL_SDK= &amp;&amp;
+chown -R 0:0 /usr/lib/seamonkey-2.53.1    &amp;&amp;
+
+cp -v $(find -name seamonkey.1 | head -n1) /usr/share/man/man1</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>make -f client.mk</strong></span>:
+          Mozilla products are packaged to allow the use of a configuration
+          file which can be used to pass the configuration settings to the
+          <span class="command"><strong>configure</strong></span> command.
+          <span class="command"><strong>make</strong></span> uses the
+          <code class="filename">client.mk</code> file to get initial
+          configuration and setup parameters.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring SeaMonkey
+        </h2>
+        <p>
+          For installing various <span class="application">SeaMonkey</span>
+          plugins, refer to <a class="ulink" href=
+          "http://plugindoc.mozdev.org/linux.html">Mozdev's PluginDoc
+          Project</a>.
+        </p>
+        <p>
+          Along with using the <span class="quote">&ldquo;<span class=
+          "quote">Preferences</span>&rdquo;</span> menu to configure
+          <span class="application">SeaMonkey</span>'s options and
+          preferences to suit individual tastes, finer grain control of many
+          options is only available using a tool not available from the
+          general menu system. To access this tool, you'll need to open a
+          browser window and enter <code class=
+          "systemitem">about:config</code> in the address bar. This will
+          display a list of the configuration preferences and information
+          related to each one. You can use the <span class=
+          "quote">&ldquo;<span class="quote">Filter:</span>&rdquo;</span> bar
+          to enter search criteria and narrow down the listed items. Changing
+          a preference can be done using two methods. One, if the preference
+          has a boolean value (True/False), simply double-click on the
+          preference to toggle the value and two, for other preferences
+          simply right-click on the desired line, choose <span class=
+          "quote">&ldquo;<span class="quote">Modify</span>&rdquo;</span> from
+          the menu and change the value. Creating new preference items is
+          accomplished in the same way, except choose <span class=
+          "quote">&ldquo;<span class="quote">New</span>&rdquo;</span> from
+          the menu and provide the desired data into the fields when
+          prompted.
+        </p>
+        <div class="admon tip">
+          <img alt="[Tip]" src="../images/tip.png" />
+          <h3>
+            Tip
+          </h3>
+          <p>
+            There is a multitude of configuration parameters you can tweak to
+            customize <span class="application">SeaMonkey</span>. A very
+            extensive list of these parameters can be found at <a class=
+            "ulink" href=
+            "http://preferential.mozdev.org/preferences.html">http://preferential.mozdev.org/preferences.html</a>.
+          </p>
+        </div>
+        <p>
+          If you use a desktop environment like <span class=
+          "application">Gnome</span> or <span class="application">KDE</span>
+          you may wish to create a <code class=
+          "filename">seamonkey.desktop</code> file so that <span class=
+          "application">SeaMonkey</span> appears in the panel's menus. If you
+          didn't enable <span class="application">Startup-Notification</span>
+          in your mozconfig change the StartupNotify line to false. As the
+          <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">mkdir -pv /usr/share/{applications,pixmaps}              &amp;&amp;
+
+cat &gt; /usr/share/applications/seamonkey.desktop &lt;&lt; "EOF"
+<code class="literal">[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=SeaMonkey
+Comment=The Mozilla Suite
+Icon=seamonkey
+Exec=seamonkey
+Categories=Network;GTK;Application;Email;Browser;WebBrowser;News;
+StartupNotify=true
+Terminal=false</code>
+EOF
+
+ln -sfv /usr/lib/seamonkey-2.53.1/chrome/icons/default/seamonkey.png \
+        /usr/share/pixmaps</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">seamonkey</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">Numerous libraries, browser, and
+              email/newsgroup components, plugins, extensions, and helper
+              modules installed in <code class=
+              "filename">/usr/lib/seamonkey-2.53.1</code></span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/lib/seamonkey-2.53.1</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="seamonkey-prog" name=
+                    "seamonkey-prog"></a><span class="term"><span class=
+                    "command"><strong>seamonkey</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the Mozilla browser/email/newsgroup/chat client suite.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-29 08:01:53 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="firefox.html" title=
+          "Firefox-68.5.0">Prev</a>
+          <p>
+            Firefox-68.5.0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="other.html" title=
+          "Other X-based Programs">Next</a>
+          <p>
+            Other X-based Programs
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="graphweb.html" title=
+          "Chapter&nbsp;40.&nbsp;Graphical Web Browsers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

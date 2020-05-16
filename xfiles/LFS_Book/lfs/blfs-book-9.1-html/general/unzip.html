@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      UnZip-6.0
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;12.&nbsp;System Utilities
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="unrar.html" title="UnRar-5.9.1">Prev</a>
+          <p>
+            UnRar-5.9.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="upower.html" title="UPower-0.99.11">Next</a>
+          <p>
+            UPower-0.99.11
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="sysutils.html" title=
+          "Chapter&nbsp;12.&nbsp;System Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="unzip" name="unzip"></a>UnZip-6.0
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to UnZip
+        </h2>
+        <p>
+          The <span class="application">UnZip</span> package contains
+          <code class="filename">ZIP</code> extraction utilities. These are
+          useful for extracting files from <code class="filename">ZIP</code>
+          archives. <code class="filename">ZIP</code> archives are created
+          with <span class="application">PKZIP</span> or <span class=
+          "application">Info-ZIP</span> utilities, primarily in a DOS
+          environment.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <div class="admon caution">
+          <img alt="[Caution]" src="../images/caution.png" />
+          <h3>
+            Caution
+          </h3>
+          <p>
+            The previous version of the <span class=
+            "application">UnZip</span> package had some locale related
+            issues. Currently there are no BLFS editors capable of testing
+            these locale issues. Therefore, the locale related information is
+            left on this page, but has not been tested. A more general
+            discussion of these problems can be found in the <a class="xref"
+            href="../introduction/locale-issues.html#locale-assumed-encoding"
+            title=
+            "The Program Assumes the Locale-Based Encoding of External Documents">
+            Program Assumes Encoding</a> section of the <a class="xref" href=
+            "../introduction/locale-issues.html" title=
+            "Locale Related Issues">Locale Related Issues</a> page.
+          </p>
+        </div>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://downloads.sourceforge.net/infozip/unzip60.tar.gz">https://downloads.sourceforge.net/infozip/unzip60.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.info-zip.org/pub/infozip/src/unzip60.tgz">ftp://ftp.info-zip.org/pub/infozip/src/unzip60.tgz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 62b490407489521db863b523a7f86375
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 1.3 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 9 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Additional Downloads
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Required patch: <a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/blfs/9.1/unzip-6.0-consolidated_fixes-1.patch">
+                http://www.linuxfromscratch.org/patches/blfs/9.1/unzip-6.0-consolidated_fixes-1.patch</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/unzip">http://wiki.linuxfromscratch.org/blfs/wiki/unzip</a>
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="unzip-locale-issues" name="unzip-locale-issues"></a>UnZip
+          Locale Issues
+        </h2>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            Use of <span class="application">UnZip</span> in the <span class=
+            "application">JDK</span>, <span class=
+            "application">Mozilla</span>, <span class=
+            "application">DocBook</span> or any other BLFS package
+            installation is not a problem, as BLFS instructions never use
+            <span class="application">UnZip</span> to extract a file with
+            non-ASCII characters in the file's name.
+          </p>
+        </div>
+        <p>
+          These issues are thought to be fixed in the patch. But since none
+          of the editors have data to test this, the following workarounds
+          are retained in case they might still be needed.
+        </p>
+        <p>
+          The <span class="application">UnZip</span> package assumes that
+          filenames stored in the ZIP archives created on non-Unix systems
+          are encoded in CP850, and that they should be converted to
+          ISO-8859-1 when writing files onto the filesystem. Such assumptions
+          are not always valid. In fact, inside the ZIP archive, filenames
+          are encoded in the DOS codepage that is in use in the relevant
+          country, and the filenames on disk should be in the locale
+          encoding. In MS Windows, the OemToChar() C function (from
+          <code class="filename">User32.DLL</code>) does the correct
+          conversion (which is indeed the conversion from CP850 to a superset
+          of ISO-8859-1 if MS Windows is set up to use the US English
+          language), but there is no equivalent in Linux.
+        </p>
+        <p>
+          When using <span class="command"><strong>unzip</strong></span> to
+          unpack a ZIP archive containing non-ASCII filenames, the filenames
+          are damaged because <span class=
+          "command"><strong>unzip</strong></span> uses improper conversion
+          when any of its encoding assumptions are incorrect. For example, in
+          the ru_RU.KOI8-R locale, conversion of filenames from CP866 to
+          KOI8-R is required, but conversion from CP850 to ISO-8859-1 is
+          done, which produces filenames consisting of undecipherable
+          characters instead of words (the closest equivalent understandable
+          example for English-only users is rot13). There are several ways
+          around this limitation:
+        </p>
+        <p>
+          1) For unpacking ZIP archives with filenames containing non-ASCII
+          characters, use <a class="ulink" href=
+          "http://www.winzip.com/">WinZip</a> while running the <a class=
+          "ulink" href="http://www.winehq.com/">Wine</a> Windows emulator.
+        </p>
+        <p>
+          2) Use <span class="command"><strong>bsdtar -xf</strong></span>
+          from <a class="xref" href="libarchive.html" title=
+          "libarchive-3.4.2">libarchive-3.4.2</a> to unpack the ZIP archive.
+          Then fix the damage made to the filenames using the <span class=
+          "command"><strong>convmv</strong></span> tool (<a class="ulink"
+          href=
+          "http://j3e.de/linux/convmv/">http://j3e.de/linux/convmv/</a>). The
+          following is an example for the zh_CN.UTF-8 locale:
+        </p>
+        <pre class="userinput">
+<kbd class="command">convmv -f cp936 -t utf-8 -r --nosmart --notest \
+    <em class=
+"replaceable"><code>&lt;/path/to/unzipped/files&gt;</code></em></kbd>
+</pre>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of UnZip
+        </h2>
+        <p>
+          First apply the patch:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">patch -Np1 -i ../unzip-6.0-consolidated_fixes-1.patch</kbd>
+</pre>
+        <p>
+          Now compile the package:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make -f unix/Makefile generic</kbd>
+</pre>
+        <p>
+          The test suite does not work for target <span class=
+          "quote">&ldquo;<span class="quote">generic</span>&rdquo;</span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make prefix=/usr MANDIR=/usr/share/man/man1 \
+ -f unix/Makefile install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>make -f unix/Makefile
+          generic</strong></span>: This target begins by running a configure
+          script (unlike the older targets such as linux and linux_noasm)
+          which creates a flags file that is then used in the build. This
+          ensures that the 32-bit x86 build receives the right flags to unzip
+          files which which are larger than 2GB when extracted.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">funzip, unzip, unzipfsx, zipgrep, and
+              zipinfo</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">None</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="funzip" name="funzip"></a><span class=
+                    "term"><span class=
+                    "command"><strong>funzip</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    allows the output of <span class=
+                    "command"><strong>unzip</strong></span> commands to be
+                    redirected.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="unzip-prog" name="unzip-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>unzip</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    lists, tests or extracts files from a <code class=
+                    "filename">ZIP</code> archive.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="unzipfsx" name="unzipfsx"></a><span class=
+                    "term"><span class=
+                    "command"><strong>unzipfsx</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a self-extracting stub that can be prepended to a
+                    <code class="filename">ZIP</code> archive. Files in this
+                    format allow the recipient to decompress the archive
+                    without installing <span class=
+                    "application">UnZip</span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="zipgrep" name="zipgrep"></a><span class=
+                    "term"><span class=
+                    "command"><strong>zipgrep</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    searches files in a <code class="filename">ZIP</code>
+                    archive for lines matching a pattern.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="zipinfo" name="zipinfo"></a><span class=
+                    "term"><span class=
+                    "command"><strong>zipinfo</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    produces technical information about the files in a
+                    <code class="filename">ZIP</code> archive, including file
+                    access permissions, encryption status, type of
+                    compression, etc.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 08:54:30 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="unrar.html" title="UnRar-5.9.1">Prev</a>
+          <p>
+            UnRar-5.9.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="upower.html" title="UPower-0.99.11">Next</a>
+          <p>
+            UPower-0.99.11
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="sysutils.html" title=
+          "Chapter&nbsp;12.&nbsp;System Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

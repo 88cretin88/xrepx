@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      QtWebEngine-5.14.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;25.&nbsp;X Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="qt5.html" title="Qt-5.14.1">Prev</a>
+          <p>
+            Qt-5.14.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="startup-notification.html" title=
+          "startup-notification-0.12">Next</a>
+          <p>
+            startup-notification-0.12
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="lib.html" title=
+          "Chapter&nbsp;25.&nbsp;X Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="qtwebengine" name="qtwebengine"></a>QtWebEngine-5.14.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to QtWebEngine
+        </h2>
+        <p>
+          <span class="application">QtWebEngine</span> integrates
+          <span class="application">chromium</span>'s web capabilities into
+          Qt. It ships with its own copy of ninja which it uses for the build
+          if it cannot find a system copy, and various copies of libraries
+          from ffmpeg, icu, libvpx, and zlib (including libminizip) which
+          have been forked by the <span class="application">chromium</span>
+          developers.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            By default, ninja will use all online CPUs +2 (if at least 4
+            exist), even if they are not available to the current task
+            because the build terminal has been restricted with 'taskset'. To
+            work around this, see the Command Explanations below.
+          </p>
+          <p>
+            Unusually, the shipped GN build system (used to create the Ninja
+            files) requires a static <code class=
+            "filename">libstdc++.a</code> although the installed libraries
+            correctly use the shared version. If that static library is not
+            present, the build will fail quite quickly. Please note that if
+            you try to build webengine as part of <span class=
+            "application">Qt</span> and the static library is not available,
+            that build will either complete without installing webengine, or
+            else fail during the install (both variants have been observed in
+            5.12.0).
+          </p>
+        </div>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://download.qt.io/archive/qt/5.14/5.14.1/submodules/qtwebengine-everywhere-src-5.14.1.tar.xz">
+                https://download.qt.io/archive/qt/5.14/5.14.1/submodules/qtwebengine-everywhere-src-5.14.1.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 26eb3bb5cd1e47320d74f4115a879b10
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 232 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 3.6 GB (146 MB installed)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 68 SBU (using 4 cores)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          qtwebengine Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../postlfs/nss.html" title=
+          "NSS-3.50">NSS-3.50</a>, <a class="xref" href=
+          "../general/python2.html" title="Python-2.7.17">Python-2.7.17</a>,
+          and <a class="xref" href="qt5.html" title="Qt-5.14.1">Qt-5.14.1</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            If these packages are not installed, the build process will
+            compile and install its own (perhaps older) version, with the
+            side effect of increasing build and installed disk space and
+            build time.
+          </p>
+        </div>
+        <p class="recommended">
+          either <a class="xref" href="../multimedia/alsa-lib.html" title=
+          "alsa-lib-1.2.1.2">alsa-lib-1.2.1.2</a> or <a class="xref" href=
+          "../multimedia/pulseaudio.html" title=
+          "PulseAudio-13.0">PulseAudio-13.0</a> (or both), <a class="xref"
+          href="../multimedia/ffmpeg.html" title=
+          "FFmpeg-4.2.2">FFmpeg-4.2.2</a>, <a class="xref" href=
+          "../general/python-modules.html#Jinja2" title=
+          "Jinja2-2.11.1">Jinja2-2.11.1</a> (Python 2 module), <a class=
+          "xref" href="../general/icu.html" title="ICU-65.1">ICU-65.1</a>,
+          <a class="xref" href="../general/libwebp.html" title=
+          "libwebp-1.1.0">libwebp-1.1.0</a>, <a class="xref" href=
+          "../general/libxslt.html" title=
+          "libxslt-1.1.34">libxslt-1.1.34</a>, and <a class="xref" href=
+          "../multimedia/opus.html" title="Opus-1.3.1">Opus-1.3.1</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../basicnet/libevent.html" title=
+          "libevent-2.1.11">libevent-2.1.11</a>, <a class="xref" href=
+          "../general/poppler.html" title=
+          "Poppler-0.85.0">Poppler-0.85.0</a>, <a class="ulink" href=
+          "https://github.com/open-source-parsers/jsoncpp/releases">jsoncpp</a>,
+          <a class="ulink" href=
+          "https://github.com/cisco/libsrtp/releases">libsrtp</a>, <a class=
+          "ulink" href="http://google.github.io/snappy/">snappy</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/qtwebengine">http://wiki.linuxfromscratch.org/blfs/wiki/qtwebengine</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of qtwebengine
+        </h2>
+        <p>
+          First, ensure that the local headers are available when not
+          building as part of the complete <a class="xref" href="qt5.html"
+          title="Qt-5.14.1">Qt-5.14.1</a>:
+        </p>
+        <pre class="userinput">
+<kbd class="command">find -type f -name "*.pr[io]" |
+  xargs sed -i -e 's|INCLUDEPATH += |&amp;$$QTWEBENGINE_ROOT/include |'</kbd>
+</pre>
+        <p>
+          Next, allow the pulseaudio library to be linked at build time,
+          instead of run time. This also prevents an issue with newer
+          pulseaudio:
+        </p>
+        <pre class="userinput">
+<kbd class="command">sed -e '/link_pulseaudio/s/false/true/' \
+    -i src/3rdparty/chromium/media/media_options.gni</kbd>
+</pre>
+        <p>
+          Finally, fix a change in the build system which allows its
+          developers to pass e.g. -j20 to make (for quick tests of some
+          areas) but breaks the build with LFS's use of the NINJAJOBS
+          environment variable:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i 's/NINJAJOBS/NINJA_JOBS/' src/core/gn_run.pro</kbd>
+</pre>
+        <p>
+          If an older version of the package's main library has been
+          installed, when the package is built separately it will link to
+          that in preference to its own not-yet-installed version, and fail
+          because of missing symbols. Prevent that by, as the <code class=
+          "systemitem">root</code> user, moving the symlink out of the way:
+        </p>
+        <pre class="root">
+<kbd class="command">if [ -e ${QT5DIR}/lib/libQt5WebEngineCore.so ]; then
+  mv -v ${QT5DIR}/lib/libQt5WebEngineCore.so{,.old}
+fi</kbd>
+</pre>
+        <p>
+          Install <span class="application">qtwebengine</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+qmake .. -- -system-ffmpeg -webengine-icu &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+        <p>
+          Remove references to the build directory from installed library
+          dependency (prl) files by running the following commands as the
+          <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">find $QT5DIR/ -name \*.prl \
+   -exec sed -i -e '/^QMAKE_PRL_BUILD_DIR/d' {} \;</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>qmake</strong></span>: This will
+          build the included copy of <span class="application">ninja</span>
+          if it is not already installed and use it to configure the build.
+        </p>
+        <p>
+          <span class="command"><strong>-- -system-ffmpeg
+          -webengine-icu</strong></span>: If any options are passed to qmake
+          they must come after '--' which must follow '..' that points to the
+          main directory. The options here cause it to use system ffmpeg and
+          system icu. If built as part of full Qt5, the system icu is
+          automatically used (only) by Qt5Core if it is available, but unless
+          this option is used webengine will always use its shipped copy of
+          icu, adding time and space to the build.
+        </p>
+        <p>
+          <code class="option">NINJAJOBS=4 make</code>: If you patched system
+          ninja in LFS to recognize the NINJAJOBS environment variable, this
+          command will run system ninja with the specified number of jobs
+          (i.e. 4). There are several reasons why you might want to do this:
+        </p>
+        <div class="itemizedlist">
+          <ul>
+            <li class="listitem">
+              <p>
+                Building on a subset of CPUs allows measuring the build time
+                for that number of processors or to run other CPU-intensive
+                tasks on other cores.
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Improving the build speed on a less-well endowed 4-core
+                machine. On a machine with a powerful CPU and plenty of RAM,
+                running N+2 jobs (the ninja default for 4+ cores) for the
+                large working sets of the C++ compiles in this package is
+                typically only marginally faster than running N jobs at a
+                time. But for a machine with less memory it can be much
+                slower.
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Reducing the number of cores being used on long running, CPU
+                intensive packages may alleviate heat problems.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring QtWebEngine
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="qtwebengine-config" name="qtwebengine-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="qtwebengine-config" name=
+            "qtwebengine-config"></a>Configuration Information
+          </h4>
+          <p>
+            If you are upgrading from an older minor version of this
+            application, for some webpages to load you may need to clear the
+            <span class="emphasis"><em>browser</em></span> caches, e.g. for
+            <span class="application">falkon</span> they will be found in
+            <code class="filename">~/.cache/falkon/</code>. You will need to
+            do this if the browser starts to render the page and then changes
+            to a blank tab with a message that something went wrong, and a
+            button to Retry. Even after removing the old caches, you may need
+            to retry a few times for each affected tab.
+          </p>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">qtwebengine_convert_dict and
+              QtWebEngineProcess (in $QT5DIR/libexec)</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libQt5WebEngineCore.so,
+              libQt5WebEngine.so, and libQt5WebEngineWidgets.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">$QT5DIR/include/QtWebEngine,
+              $QT5DIR/include/QtWebEngineCore,
+              $QT5DIR/include/QtWebEngineWidgets, $QT5DIR/qml/QtWebEngine,
+              and $QT5DIR/translations/qtwebengine_locales</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="qtwebengine_convert_dict" name=
+                    "qtwebengine_convert_dict"></a><span class=
+                    "term"><span class=
+                    "command"><strong>qtwebengine_convert_dict</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    converts hunspell dictionaries (<code class=
+                    "literal">.dic</code>) to chromium format (<code class=
+                    "literal">.bdic</code>)
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="QtWebEngineProcess" name=
+                    "QtWebEngineProcess"></a><span class="term"><span class=
+                    "command"><strong>QtWebEngineProcess</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a libexec program which runs a zygote process (one
+                    that listens for spawn requests from a master process and
+                    will fork itself in response).
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libQtWebEngine-lib" name=
+                    "libQtWebEngine-lib"></a><span class="term"><code class=
+                    "filename">libQtWebEngine.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides QML types for rendering web content within a QML
+                    application.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libQtWebEngineCore" name=
+                    "libQtWebEngineCore"></a><span class="term"><code class=
+                    "filename">libQtWebEngineCore.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides public API shared by both QtWebEngine and
+                    QtWebEngineWidgets.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libQtWebEngineWidgets" name=
+                    "libQtWebEngineWidgets"></a><span class=
+                    "term"><code class=
+                    "filename">libQtWebEngineWidgets.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides a web browser engine as well as C++ classes to
+                    render and interact with web content.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-18 13:55:17 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="qt5.html" title="Qt-5.14.1">Prev</a>
+          <p>
+            Qt-5.14.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="startup-notification.html" title=
+          "startup-notification-0.12">Next</a>
+          <p>
+            startup-notification-0.12
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="lib.html" title=
+          "Chapter&nbsp;25.&nbsp;X Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

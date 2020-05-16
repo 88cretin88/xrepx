@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Creating a Custom Boot Device
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;3.&nbsp;After LFS Configuration Issues
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="config.html" title=
+          "After LFS Configuration Issues">Prev</a>
+          <p>
+            After LFS Configuration Issues
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="console-fonts.html" title=
+          "About Console Fonts">Next</a>
+          <p>
+            About Console Fonts
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="config.html" title=
+          "Chapter&nbsp;3.&nbsp;After LFS Configuration Issues">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="postlfs-config-bootdisk" name=
+        "postlfs-config-bootdisk"></a>Creating a Custom Boot Device
+      </h1>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Decent Rescue Boot Device Needs
+        </h2>
+        <p>
+          This section is really about creating a <span class=
+          "emphasis"><em>rescue</em></span> device. As the name <span class=
+          "emphasis"><em>rescue</em></span> implies, the host system has a
+          problem, often lost partition information or corrupted file
+          systems, that prevents it from booting and/or operating normally.
+          For this reason, you <span class="emphasis"><em>must
+          not</em></span> depend on resources from the host being "rescued".
+          To presume that any given partition or hard drive <span class=
+          "emphasis"><em>will</em></span> be available is a risky
+          presumption.
+        </p>
+        <p>
+          In a modern system, there are many devices that can be used as a
+          rescue device: floppy, cdrom, usb drive, or even a network card.
+          Which one you use depends on your hardware and your BIOS. In the
+          past, a rescue device was thought to be a floppy disk. Today, many
+          systems do not even have a floppy drive.
+        </p>
+        <p>
+          Building a complete rescue device is a challenging task. In many
+          ways, it is equivalent to building an entire LFS system. In
+          addition, it would be a repetition of information already
+          available. For these reasons, the procedures for a rescue device
+          image are not presented here.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Creating a Rescue Floppy
+        </h2>
+        <p>
+          The software of today's systems has grown large. Linux 2.6 no
+          longer supports booting directly from a floppy. In spite of this,
+          there are solutions available using older versions of Linux. One of
+          the best is Tom's Root/Boot Disk available at <a class="ulink"
+          href="http://www.toms.net/rb/">http://www.toms.net/rb/</a>. This
+          will provide a minimal Linux system on a single floppy disk and
+          provides the ability to customize the contents of your disk if
+          necessary.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Creating a Bootable CD-ROM
+        </h2>
+        <p>
+          There are several sources that can be used for a rescue CD-ROM.
+          Just about any commercial distribution's installation CD-ROMs or
+          DVDs will work. These include RedHat, Ubuntu, and SuSE. One very
+          popular option is Knoppix.
+        </p>
+        <p>
+          Also, the LFS Community has developed its own LiveCD available at
+          <a class="ulink" href=
+          "http://www.linuxfromscratch.org/livecd/">http://www.linuxfromscratch.org/livecd/</a>.
+          This LiveCD, is no longer capable of building an entire LFS/BLFS
+          system, but is still a good rescue CD-ROM. If you download the ISO
+          image, use <a class="xref" href=
+          "../multimedia/libisoburn.html#xorriso"><span class=
+          "command"><strong>xorriso</strong></span></a> to copy the image to
+          a CD-ROM.
+        </p>
+        <p>
+          The instructions for using GRUB2 to make a custom rescue CD-ROM are
+          also available in <a class="ulink" href=
+          "http://www.linuxfromscratch.org/lfs/view/stable/chapter08/grub.html">
+          LFS Chapter 8</a>.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Creating a Bootable USB Drive
+        </h2>
+        <p>
+          A USB Pen drive, sometimes called a Thumb drive, is recognized by
+          Linux as a SCSI device. Using one of these devices as a rescue
+          device has the advantage that it is usually large enough to hold
+          more than a minimal boot image. You can save critical data to the
+          drive as well as use it to diagnose and recover a damaged system.
+          Booting such a drive requires BIOS support, but building the system
+          consists of formatting the drive, adding <span class=
+          "application">GRUB</span> as well as the Linux kernel and
+          supporting files.
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/CreatingaCustomBootDevice">
+          http://wiki.linuxfromscratch.org/blfs/wiki/CreatingaCustomBootDevice</a>
+        </p>
+      </div>
+      <p class="updated">
+        Last updated on 2017-04-23 10:21:19 -0700
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="config.html" title=
+          "After LFS Configuration Issues">Prev</a>
+          <p>
+            After LFS Configuration Issues
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="console-fonts.html" title=
+          "About Console Fonts">Next</a>
+          <p>
+            About Console Fonts
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="config.html" title=
+          "Chapter&nbsp;3.&nbsp;After LFS Configuration Issues">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

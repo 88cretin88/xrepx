@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Xorg Fonts
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;24.&nbsp;X Window System Environment
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="xcursor-themes.html" title=
+          "xcursor-themes-1.0.6">Prev</a>
+          <p>
+            xcursor-themes-1.0.6
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="xkeyboard-config.html" title=
+          "XKeyboardConfig-2.29">Next</a>
+          <p>
+            XKeyboardConfig-2.29
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="xorg7-font" name="xorg7-font"></a>Xorg Fonts
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Xorg Fonts
+        </h2>
+        <p>
+          The <span class="application">Xorg</span> font packages provide
+          some scalable fonts and supporting packages for <span class=
+          "application">Xorg</span> applications. Many people will want to
+          install other TTF or OTF fonts in addition to, or instead of,
+          these. Some are listed at <a class="xref" href=
+          "TTF-and-OTF-fonts.html" title="TTF and OTF fonts">the section
+          called &ldquo;TTF and OTF fonts&rdquo;</a>.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://www.x.org/pub/individual/font/">https://www.x.org/pub/individual/font/</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.x.org/pub/individual/font/">ftp://ftp.x.org/pub/individual/font/</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 3.0 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 8.8 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Xorg Fonts Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="xcursor-themes.html" title=
+          "xcursor-themes-1.0.6">xcursor-themes-1.0.6</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/Xorg7Fonts">http://wiki.linuxfromscratch.org/blfs/wiki/Xorg7Fonts</a>
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Downloading Xorg Fonts
+        </h2>
+        <p>
+          First, create a list of files to be downloaded. This file will also
+          be used to verify the integrity of the downloads when complete:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat &gt; font-7.md5 &lt;&lt; "EOF"
+<code class=
+"literal">3d6adb76fdd072db8c8fae41b40855e8  font-util-1.3.2.tar.bz2
+bbae4f247b88ccde0e85ed6a403da22a  encodings-1.0.5.tar.bz2
+6d25f64796fef34b53b439c2e9efa562  font-alias-1.0.3.tar.bz2
+fcf24554c348df3c689b91596d7f9971  font-adobe-utopia-type1-1.0.4.tar.bz2
+e8ca58ea0d3726b94fe9f2c17344be60  font-bh-ttf-1.0.3.tar.bz2
+53ed9a42388b7ebb689bdfc374f96a22  font-bh-type1-1.0.3.tar.bz2
+bfb2593d2102585f45daa960f43cb3c4  font-ibm-type1-1.0.3.tar.bz2
+6306c808f7d7e7d660dfb3859f9091d2  font-misc-ethiopic-1.0.3.tar.bz2
+3eeb3fb44690b477d510bbd8f86cf5aa  font-xfree86-type1-1.0.4.tar.bz2</code>
+EOF</kbd>
+</pre>
+        <p>
+          To download the needed files using <span class=
+          "application">wget</span>, use the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir font &amp;&amp;
+cd font &amp;&amp;
+grep -v '^#' ../font-7.md5 | awk '{print $2}' | wget -i- -c \
+    -B https://www.x.org/pub/individual/font/ &amp;&amp;
+md5sum -c ../font-7.md5</kbd>
+</pre>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Xorg Fonts
+        </h2>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            When installing multiple packages in a script, the installation
+            needs to be done as the root user. There are three general
+            options that can be used to do this:
+          </p>
+          <div class="orderedlist">
+            <ol>
+              <li class="listitem">
+                <p>
+                  Run the entire script as the root user (not recommended).
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Use the <span class="command"><strong>sudo</strong></span>
+                  command from the <a class="xref" href=
+                  "../postlfs/sudo.html" title="Sudo-1.8.31">Sudo-1.8.31</a>
+                  package.
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Use <span class="command"><strong>su -c "command
+                  arguments"</strong></span> (quotes required) which will ask
+                  for the root password for every iteration of the loop.
+                </p>
+              </li>
+            </ol>
+          </div>
+          <p>
+            One way to handle this situation is to create a short
+            <span class="command"><strong>bash</strong></span> function that
+            automatically selects the appropriate method. Once the command is
+            set in the environment, it does not need to be set again.
+          </p>
+          <pre class="userinput">
+<kbd class="command">as_root()
+{
+  if   [ $EUID = 0 ];        then $*
+  elif [ -x /usr/bin/sudo ]; then sudo $*
+  else                            su -c \\"$*\\"
+  fi
+}
+
+export -f as_root</kbd>
+</pre>
+        </div>
+        <p>
+          First, start a subshell that will exit on error:
+        </p>
+        <pre class="userinput">
+<kbd class="command">bash -e</kbd>
+</pre>
+        <p>
+          Install all of the packages by running the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">for package in $(grep -v '^#' ../font-7.md5 | awk '{print $2}')
+do
+  packagedir=${package%.tar.bz2}
+  tar -xf $package
+  pushd $packagedir
+    ./configure $XORG_CONFIG
+    make
+    as_root make install
+  popd
+  as_root rm -rf $packagedir
+done</kbd>
+</pre>
+        <p>
+          Finally, exit the shell that was started earlier:
+        </p>
+        <pre class="userinput">
+<kbd class="command">exit</kbd>
+</pre>
+        <p>
+          When all of the fonts have been installed, the system must be
+          configured so that <span class="application">Fontconfig</span> can
+          find the TrueType fonts since they are outside of the default
+          search path of <code class="filename">/usr/share/fonts</code>. Make
+          symlinks to the <span class="application">Xorg</span> TrueType font
+          directories by running the following commands as the <code class=
+          "systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">install -v -d -m755 /usr/share/fonts                               &amp;&amp;
+ln -svfn $XORG_PREFIX/share/fonts/X11/OTF /usr/share/fonts/X11-OTF &amp;&amp;
+ln -svfn $XORG_PREFIX/share/fonts/X11/TTF /usr/share/fonts/X11-TTF</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">bdftruncate and ucs2any</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody"><code class=
+              "envar">$XORG_PREFIX</code>/share/fonts</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="bdftruncate-x7" name=
+                    "bdftruncate-x7"></a><span class="term"><span class=
+                    "command"><strong>bdftruncate</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    generates a truncated BDF font from an ISO 10646-1
+                    encoded BDF font.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ucs2any-x7" name="ucs2any-x7"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ucs2any</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    generates BDF fonts in any encoding from an ISO 10646-1
+                    encoded BDF font.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 20:23:35 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="xcursor-themes.html" title=
+          "xcursor-themes-1.0.6">Prev</a>
+          <p>
+            xcursor-themes-1.0.6
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="xkeyboard-config.html" title=
+          "XKeyboardConfig-2.29">Next</a>
+          <p>
+            XKeyboardConfig-2.29
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      extra-cmake-modules-5.67.0
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;29.&nbsp;Introduction to KDE
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="kdeintro.html" title=
+          "KDE Preliminaries">Prev</a>
+          <p>
+            KDE Preliminaries
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="phonon.html" title="Phonon-4.11.1">Next</a>
+          <p>
+            Phonon-4.11.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="introduction.html" title=
+          "Chapter&nbsp;29.&nbsp;Introduction to KDE">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="extra-cmake-modules" name=
+        "extra-cmake-modules"></a>extra-cmake-modules-5.67.0
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Extra Cmake Modules
+        </h2>
+        <p>
+          The <span class="application">Extra Cmake Modules</span> package
+          contains extra <span class="application">CMake</span> modules used
+          by <span class="application">KDE Frameworks 5</span> and other
+          packages.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://download.kde.org/stable/frameworks/5.67/extra-cmake-modules-5.67.0.tar.xz">
+                http://download.kde.org/stable/frameworks/5.67/extra-cmake-modules-5.67.0.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: f59f70433adc17145b6ce2e8ab0c416d
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 332 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 4.4 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Extra Cmake Modules Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../general/cmake.html" title=
+          "CMake-3.16.4">CMake-3.16.4</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="ulink" href=
+          "https://pypi.python.org/pypi/Sphinx">Sphinx</a> (for building
+          documentation)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/extra-cmake-modules">http://wiki.linuxfromscratch.org/blfs/wiki/extra-cmake-modules</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Extra Cmake Modules
+        </h2>
+        <p>
+          Install <span class="application">Extra Cmake Modules</span> by
+          running the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i '/"lib64"/s/64//' kde-modules/KDEInstallDirs.cmake &amp;&amp;
+
+sed -e '/PACKAGE_INIT/i set(SAVE_PACKAGE_PREFIX_DIR "${PACKAGE_PREFIX_DIR}")' \
+    -e '/^include/a set(PACKAGE_PREFIX_DIR "${SAVE_PACKAGE_PREFIX_DIR}")' \
+    -i ECMConfig.cmake.in &amp;&amp;
+
+mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+cmake -DCMAKE_INSTALL_PREFIX=/usr .. &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            Unlike other KF5 packages, this module is installed in /usr
+            because it can be used by some non-KF5 packages.
+          </p>
+        </div>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>sed ...
+          Modules/KDEInstallDirs.cmake</strong></span>: This command disables
+          applications using cmake from attempting to install files in a
+          <code class="filename">lib64</code> sub-directory.
+        </p>
+        <p>
+          <span class="command"><strong>sed ...
+          ECMConfig.cmake.in</strong></span>: This command protects the
+          global <span class="application">cmake</span> variable <code class=
+          "envar">PACKAGE_PREFIX_DIR</code> from being changed when checking
+          ECM presence: since we install ECM into <code class=
+          "filename">/usr</code>, the check would set that variable to
+          <code class="filename">/usr</code>, while most KDE packages expect
+          it to be set to <code class="filename">/opt/kf5</code> and would
+          fail to build if it is set to something else.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/share/ECM and /usr/share/doc/ECM (if
+              documentation was built)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-19 16:31:22 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="kdeintro.html" title=
+          "KDE Preliminaries">Prev</a>
+          <p>
+            KDE Preliminaries
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="phonon.html" title="Phonon-4.11.1">Next</a>
+          <p>
+            Phonon-4.11.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="introduction.html" title=
+          "Chapter&nbsp;29.&nbsp;Introduction to KDE">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

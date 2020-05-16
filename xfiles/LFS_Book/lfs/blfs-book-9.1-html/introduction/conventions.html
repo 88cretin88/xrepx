@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Conventions Used in this Book
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;1.&nbsp;Welcome to BLFS
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="which.html" title=
+          "Which Sections of the Book Do I Want?">Prev</a>
+          <p>
+            Which Sections of the Book Do I Want?
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="version.html" title="Book Version">Next</a>
+          <p>
+            Book Version
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="welcome.html" title=
+          "Chapter&nbsp;1.&nbsp;Welcome to BLFS">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="conventions" name="conventions"></a>Conventions Used in this
+        Book
+      </h1>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Typographical Conventions
+        </h2>
+        <p>
+          To make things easy to follow, there are a number of conventions
+          used throughout the book. Following are some examples:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr</kbd>
+</pre>
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <p>
+              This form of text is designed to be typed exactly as seen
+              unless otherwise noted in the surrounding text. It is also used
+              to identify references to specific commands.
+            </p>
+          </blockquote>
+        </div>
+        <pre class="screen">
+<code class="computeroutput">install-info: unknown option
+`--dir-file=/mnt/lfs/usr/info/dir'</code>
+</pre>
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <p>
+              This form of text (fixed width text) is showing screen output,
+              probably a result from issuing a command. It is also used to
+              show filenames such as <code class=
+              "filename">/boot/grub/grub.conf</code>
+            </p>
+          </blockquote>
+        </div>
+        <p>
+          <span class="emphasis"><em>Emphasis</em></span>
+        </p>
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <p>
+              This form of text is used for several purposes in the book but
+              mainly to emphasize important points or to give examples as to
+              what to type.
+            </p>
+          </blockquote>
+        </div>
+        <p>
+          <a class="ulink" href=
+          "http://www.linuxfromscratch.org/">http://www.linuxfromscratch.org/</a>
+        </p>
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <p>
+              This form of text is used for hypertext links external to the
+              book such as HowTos, download locations, websites, etc.
+            </p>
+          </blockquote>
+        </div>
+        <p>
+          <a class="xref" href="../xsoft/seamonkey.html" title=
+          "SeaMonkey-2.53.1">SeaMonkey-2.53.1</a>
+        </p>
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <p>
+              This form of text is used for links internal to the book such
+              as another section describing a different package.
+            </p>
+          </blockquote>
+        </div>
+        <pre class="userinput">
+<kbd class="command">cat &gt; $LFS/etc/group &lt;&lt; "EOF"
+<code class="literal">root:x:0:
+bin:x:1:
+......</code>
+EOF</kbd>
+</pre>
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <p>
+              This type of section is used mainly when creating configuration
+              files. The first command (in bold) tells the system to create
+              the file <code class="filename">$LFS/etc/group</code> from
+              whatever is typed on the following lines until the sequence EOF
+              is encountered. Therefore, this whole section is generally
+              typed as seen.
+            </p>
+          </blockquote>
+        </div>
+        <p>
+          <em class="replaceable"><code>&lt;REPLACED TEXT&gt;</code></em>
+        </p>
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <p>
+              This form of text is used to encapsulate text that should be
+              modified and is not to be typed as seen, or copy and pasted.
+              Note that the square brackets are not part of the text, but
+              should be substituted for as well.
+            </p>
+          </blockquote>
+        </div>
+        <p>
+          <code class="systemitem">root</code>
+        </p>
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <p>
+              This form of text is used to show a specific system user or
+              group reference in the instructions.
+            </p>
+          </blockquote>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Conventions Used for Package Dependencies
+        </h2>
+        <p>
+          When packages are created, the authors depend on prior work. In
+          order to build a package in BLFS, these dependencies must be built
+          prior to the desired package. For each package, any prerequisite
+          packages are listed in one or more separate sections: Required,
+          Recommended, and Optional.
+        </p>
+        <h3>
+          Required Dependencies
+        </h3>
+        <p>
+          These dependencies are the minimum prerequisite packages required
+          to build the package. Omitted from the list are packages in LFS and
+          required dependencies of other required packages.
+        </p>
+        <h3>
+          Recommended Dependencies
+        </h3>
+        <p>
+          These dependencies are those that the BLFS editors have determined
+          are important to give the package reasonable capabilities. Package
+          installation instructions assume they are installed. If a
+          recommended package is not desired, the instructions may need to be
+          modified to accommodate the missing package.
+        </p>
+        <h3>
+          Optional Dependencies
+        </h3>
+        <p>
+          These dependencies are those that the package may use. Integration
+          of optional dependencies may be automatic by the package or may
+          need additional instructions not presented by BLFS. Optional
+          packages may be listed without corresponding BLFS instructions. In
+          this case it is up to the user to determine appropriate
+          installation instructions.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Conventions Used for Kernel Configuration Options
+        </h2>
+        <p>
+          Some packages have specific needs regarding the kernel
+          configuration. The general layout is the following:
+        </p>
+        <pre class="screen">
+<code class="literal">Master section ---&gt;
+  Subsection ---&gt;
+    [*]     Required parameter                     [CONFIG_REQU_PAR]
+    &lt;*&gt;     Required parameter (not as module)     [CONFIG_REQU_PAR_NMOD]
+    &lt;*/M&gt;   Required parameter (could be a module) [CONFIG_REQU_PAR_MOD]
+    &lt;*/M/ &gt; Optional parameter                     [CONFIG_OPT_PAR]
+    [ ] Incompatible parameter                     [CONFIG_INCOMP_PAR]
+    &lt; &gt; Incompatible parameter (even as module)    [CONFIG_INCOMP_PAR_MOD]</code>
+</pre>
+        <p>
+          [CONFIG_...] on the right gives the name of the option, so you can
+          easily check whether it is set in your <code class=
+          "filename">config</code> file. The meaning of the various entries
+          is:
+        </p>
+        <div class="blockquote">
+          <blockquote class="blockquote">
+            <div class="informaltable">
+              <table class="informaltable" border="0">
+                <colgroup>
+                  <col align="left" />
+                  <col align="left" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <td align="left">
+                      <span class="bold"><strong>Master
+                      section</strong></span>
+                    </td>
+                    <td align="left">
+                      top level menu item
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left">
+                      <span class="bold"><strong>Subsection</strong></span>
+                    </td>
+                    <td align="left">
+                      submenu item
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left">
+                      <span class="bold"><strong>Required
+                      parameter</strong></span>
+                    </td>
+                    <td align="left">
+                      the option could be either built-in or not selected: it
+                      must be selected
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left">
+                      <span class="bold"><strong>Required parameter (not as
+                      module)</strong></span>
+                    </td>
+                    <td align="left">
+                      the option could be either built-in, module, or not
+                      selected: it must be selected as built-in
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left">
+                      <span class="bold"><strong>Required parameter (could be
+                      a module)</strong></span>
+                    </td>
+                    <td align="left">
+                      the option could be either built-in, module, or not
+                      selected: it must be selected, either as built-in or
+                      module
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left">
+                      <span class="bold"><strong>Optional
+                      parameter</strong></span>
+                    </td>
+                    <td align="left">
+                      rarely used: the option could be either built-in,
+                      module, or not selected: it may be selected at will
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left">
+                      <span class="bold"><strong>Incompatible
+                      parameter</strong></span>
+                    </td>
+                    <td align="left">
+                      the option could be either built-in or not selected: it
+                      must <span class="emphasis"><em>not</em></span> be
+                      selected
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left">
+                      <span class="bold"><strong>Incompatible parameter (even
+                      as module)</strong></span>
+                    </td>
+                    <td align="left">
+                      the option could be either built-in, module, or not
+                      selected: it must <span class=
+                      "emphasis"><em>not</em></span> be selected
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </blockquote>
+        </div>
+        <p>
+          Note that, depending on other selections, the angle brackets
+          (&lt;&gt;) may appear as braces ({}), if the option cannot be
+          unselected, or even dashes (-*- or -M-), when the choice is
+          imposed. The help text about the option specifies the other
+          selections on which this option relies, and how those other
+          selections are set.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          SBU values in BLFS
+        </h2>
+        <p>
+          As in LFS, each package in BLFS has a build time listed in Standard
+          Build Units (SBUs). These times are relative to the time it took to
+          build binutils in LFS and are intended to provide some insight into
+          how long it will take to build a package. Most times listed are for
+          a single processor or core to build the package. In some cases,
+          large, long running builds tested on multi-core systems have SBU
+          times listed with comments such as '(parallelism=4)'. These values
+          indicate testing was done using multiple cores. Note that while
+          this speeds up the build on systems with the appropriate hardware,
+          the speedup is not linear and to some extent depends on the
+          individual package and specific hardware used.
+        </p>
+        <p>
+          For packages which use ninja (e.g. anything using meson) or rust,
+          by default all cores are used so similar comments will be seen on
+          such packages even when the build time is minimal.
+        </p>
+        <p>
+          Where even a parallel build takes more than 15 SBU, on certain
+          machines the time may be considerably greater even when the build
+          does not use swap. In particular, different micro-architectures
+          will build some files at different relative speeds and this can
+          introduce delays when certain make targets wait for another file to
+          be created. Where a large build uses a lot of C++ files, processors
+          with Simultaneous Multi Threading will share the Floating Point
+          Unit and can take 45% longer than when using four 'prime' cores
+          (measured on an intel i7 using taskset and keeping the other cores
+          idle).
+        </p>
+        <p>
+          Some packages do not support parallel builds and using -j1 for the
+          make command is required. Packages that are known to have such
+          limits are marked as such in the text.
+        </p>
+      </div>
+      <p class="updated">
+        Last updated on 2018-09-23 10:06:59 -0700
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="which.html" title=
+          "Which Sections of the Book Do I Want?">Prev</a>
+          <p>
+            Which Sections of the Book Do I Want?
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="version.html" title="Book Version">Next</a>
+          <p>
+            Book Version
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="welcome.html" title=
+          "Chapter&nbsp;1.&nbsp;Welcome to BLFS">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

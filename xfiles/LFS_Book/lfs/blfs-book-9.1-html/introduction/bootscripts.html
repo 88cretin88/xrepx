@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      BLFS Boot Scripts
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;2.&nbsp;Important Information
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="patches.html" title=
+          "Optional Patches">Prev</a>
+          <p>
+            Optional Patches
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="la-files.html" title=
+          "About Libtool Archive (.la) files">Next</a>
+          <p>
+            About Libtool Archive (.la) files
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="important.html" title=
+          "Chapter&nbsp;2.&nbsp;Important Information">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="bootscripts" name="bootscripts"></a>BLFS Boot Scripts
+      </h1>
+      <p>
+        The BLFS Bootscripts package contains the init scripts that are used
+        throughout the book. It is assumed that you will be using the BLFS
+        Bootscripts package in conjunction with a compatible LFS-Bootscripts
+        package. Refer to <a class="ulink" href=
+        "../../../../lfs/view/9.1/chapter07/bootscripts.html">../../../../lfs/view/9.1/chapter07/bootscripts.html</a>
+        for more information on the LFS-Bootscripts package.
+      </p>
+      <div class="itemizedlist">
+        <p class="title">
+          <strong>Package Information</strong>
+        </p>
+        <ul class="compact">
+          <li class="listitem">
+            <p>
+              Download: <a class="ulink" href=
+              "http://anduin.linuxfromscratch.org/BLFS/blfs-bootscripts/blfs-bootscripts-20191204.tar.xz">
+              http://anduin.linuxfromscratch.org/BLFS/blfs-bootscripts/blfs-bootscripts-20191204.tar.xz</a>
+            </p>
+          </li>
+        </ul>
+      </div>
+      <p>
+        The BLFS Bootscripts package will be used throughout the BLFS book
+        for startup scripts. Unlike LFS, each init script has a separate
+        install target in the BLFS Bootscripts package. It is recommended you
+        keep the package source directory around until completion of your
+        BLFS system. When a script is requested from BLFS Bootscripts, simply
+        change to the directory and as the <code class=
+        "systemitem">root</code> user, execute the given <span class=
+        "command"><strong>make install-<em class=
+        "replaceable"><code>&lt;init-script&gt;</code></em></strong></span>
+        command. This command installs the init script to its proper location
+        (along with any auxiliary configuration scripts) and also creates the
+        appropriate symlinks to start and stop the service at the appropriate
+        run-level.
+      </p>
+      <div class="admon note">
+        <img alt="[Note]" src="../images/note.png" />
+        <h3>
+          Note
+        </h3>
+        <p>
+          You should review each bootscript before installation to ascertain
+          that it satisfies your need. Also verify that the start and stop
+          symlinks it creates match your preferences.
+        </p>
+      </div>
+      <div class="admon note">
+        <img alt="[Note]" src="../images/note.png" />
+        <h3>
+          Note
+        </h3>
+        <p>
+          From time to time the bootscripts are updated to accommodate new
+          packages or to make minor corrections. All versions of the
+          bootscripts are located at <a class="ulink" href=
+          "http://anduin.linuxfromscratch.org/BLFS/blfs-bootscripts/">http://anduin.linuxfromscratch.org/BLFS/blfs-bootscripts/</a>.
+        </p>
+      </div>
+      <p class="updated">
+        Last updated on 2016-08-28 02:28:15 -0700
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="patches.html" title=
+          "Optional Patches">Prev</a>
+          <p>
+            Optional Patches
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="la-files.html" title=
+          "About Libtool Archive (.la) files">Next</a>
+          <p>
+            About Libtool Archive (.la) files
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="important.html" title=
+          "Chapter&nbsp;2.&nbsp;Important Information">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

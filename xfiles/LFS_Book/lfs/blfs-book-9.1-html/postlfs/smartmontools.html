@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      smartmontools-7.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;5.&nbsp;File Systems and Disk Management
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="reiserfs.html" title=
+          "reiserfsprogs-3.6.27">Prev</a>
+          <p>
+            reiserfsprogs-3.6.27
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="sshfs.html" title="sshfs-3.7.0">Next</a>
+          <p>
+            sshfs-3.7.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="filesystems.html" title=
+          "Chapter&nbsp;5.&nbsp;File Systems and Disk Management">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="smartmontools" name="smartmontools"></a>smartmontools-7.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to smartmontools
+        </h2>
+        <p>
+          The <span class="application">smartmontools</span> package contains
+          utility programs (smartctl, smartd) to control/monitor storage
+          systems using the Self-Monitoring, Analysis and Reporting
+          Technology System (S.M.A.R.T.) built into most modern ATA and SCSI
+          disks.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://downloads.sourceforge.net/smartmontools/smartmontools-7.1.tar.gz">
+                https://downloads.sourceforge.net/smartmontools/smartmontools-7.1.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 430cd5f64caa4524018b536e5ecd9c29
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 952 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 26 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.2 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          smartmontools Dependencies
+        </h3>
+        <h4>
+          Optional (runtime)
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../basicnet/curl.html" title=
+          "cURL-7.68.0">cURL-7.68.0</a> or <a class="xref" href=
+          "../basicnet/lynx.html" title="Lynx-2.8.9rel.1">Lynx-2.8.9rel.1</a>
+          or <a class="xref" href="../basicnet/wget.html" title=
+          "Wget-1.20.3">Wget-1.20.3</a> (download tools), and <a class="xref"
+          href="gnupg.html" title="GnuPG-2.2.19">GnuPG-2.2.19</a> (encrypted
+          hard disks)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/smartmontools">http://wiki.linuxfromscratch.org/blfs/wiki/smartmontools</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of smartmontools
+        </h2>
+        <p>
+          Install <span class="application">smartmontools</span> by running
+          the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr           \
+            --sysconfdir=/etc       \
+            --with-initscriptdir=no \
+            --with-libsystemd=no    \
+            --docdir=/usr/share/doc/smartmontools-7.1 &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring smartmontools
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="smartmontools-config" name="smartmontools-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="smartmontools-config" name=
+            "smartmontools-config"></a>Config File
+          </h4>
+          <p>
+            <code class="filename">/etc/smartd.conf</code>
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779282248160" name=
+            "idm45779282248160"></a>Configuration Information
+          </h4>
+          <p>
+            See the embedded comments in <code class=
+            "filename">/etc/smartd.conf</code> for detailed instructions on
+            customizing the <span class="application">smartd</span> darmon.
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="smartmontoools-init" name="smartmontoools-init"></a>
+          </h3>
+          <h4 class="title">
+            <a id="smartmontoools-init" name="smartmontoools-init"></a>Boot
+            Script
+          </h4>
+          <p>
+            If you want the <span class="application">smartd</span> daemon to
+            start automatically when the system is booted, install the
+            <code class="filename">/etc/rc.d/init.d/smartd</code> init script
+            included in the <a class="xref" href=
+            "../introduction/bootscripts.html" title=
+            "BLFS Boot Scripts">blfs-bootscripts-20191204</a> package.
+          </p>
+          <pre class="root">
+<kbd class="command">make install-smartd</kbd>
+</pre>
+        </div>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--with-initscriptdir=no</code></em>:
+          This switch suppresses the default initialization script. See above
+          for the BLFS script.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">smartctl, smartd, and
+              update-smart-drivedb</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/share/smartmontools,
+              /usr/share/doc/smartmontools-6.4, and
+              /etc/smartd_warning.d</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="smartctl" name="smartctl"></a><span class=
+                    "term"><span class=
+                    "command"><strong>smartctl</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the control and monitor utility for SMART Disks.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="smartd" name="smartd"></a><span class=
+                    "term"><span class=
+                    "command"><strong>smartd</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the SMART disk monitoring daemon.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="update-smart-drivedb" name=
+                    "update-smart-drivedb"></a><span class=
+                    "term"><span class="command"><strong>update-smart-drivedb</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the update tool for the smartmontools drive database.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-16 15:50:16 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="reiserfs.html" title=
+          "reiserfsprogs-3.6.27">Prev</a>
+          <p>
+            reiserfsprogs-3.6.27
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="sshfs.html" title="sshfs-3.7.0">Next</a>
+          <p>
+            sshfs-3.7.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="filesystems.html" title=
+          "Chapter&nbsp;5.&nbsp;File Systems and Disk Management">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

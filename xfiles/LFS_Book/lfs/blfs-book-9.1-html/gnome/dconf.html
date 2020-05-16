@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      DConf-0.34.0 / DConf-Editor-3.34.4
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;33.&nbsp;GNOME Libraries and Desktop
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gsound.html" title="GSound-1.0.2">Prev</a>
+          <p>
+            GSound-1.0.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gnome-backgrounds.html" title=
+          "gnome-backgrounds-3.34.0">Next</a>
+          <p>
+            gnome-backgrounds-3.34.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="core.html" title=
+          "Chapter&nbsp;33.&nbsp;GNOME Libraries and Desktop">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="dconf" name="dconf"></a>DConf-0.34.0 / DConf-Editor-3.34.4
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to DConf
+        </h2>
+        <p>
+          The <span class="application">DConf</span> package contains a
+          low-level configuration system. Its main purpose is to provide a
+          backend to GSettings on platforms that don't already have
+          configuration storage systems.
+        </p>
+        <p>
+          The <span class="application">DConf-Editor</span>, as the name
+          suggests, is a graphical editor for the <span class=
+          "application">DConf</span> database. Installation is optional,
+          because <span class="command"><strong>gsettings</strong></span>
+          from <a class="xref" href="../general/glib2.html" title=
+          "GLib-2.62.4">GLib-2.62.4</a> provides similar functionality on the
+          commandline.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.gnome.org/pub/gnome/sources/dconf/0.34/dconf-0.34.0.tar.xz">
+                http://ftp.gnome.org/pub/gnome/sources/dconf/0.34/dconf-0.34.0.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnome.org/pub/gnome/sources/dconf/0.34/dconf-0.34.0.tar.xz">
+                ftp://ftp.gnome.org/pub/gnome/sources/dconf/0.34/dconf-0.34.0.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: a3ab18ed51a0494a1c8436fef20cc1b0
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 112 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 6.9 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.1 SBU (with tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Additional Downloads
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.gnome.org/pub/gnome/sources/dconf-editor/3.34/dconf-editor-3.34.4.tar.xz">
+                http://ftp.gnome.org/pub/gnome/sources/dconf-editor/3.34/dconf-editor-3.34.4.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnome.org/pub/gnome/sources/dconf-editor/3.34/dconf-editor-3.34.4.tar.xz">
+                ftp://ftp.gnome.org/pub/gnome/sources/dconf-editor/3.34/dconf-editor-3.34.4.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: bb4c53beff260bd80ce82609e61abde4
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 556 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 36 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.2 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          DConf Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../general/dbus.html" title=
+          "dbus-1.12.16">dbus-1.12.16</a>, <a class="xref" href=
+          "../general/glib2.html" title="GLib-2.62.4">GLib-2.62.4</a>,
+          <a class="xref" href="../x/gtk3.html" title=
+          "GTK+-3.24.13">GTK+-3.24.13</a> (for the editor), and <a class=
+          "xref" href="../general/libxml2.html" title=
+          "libxml2-2.9.10">libxml2-2.9.10</a> (for the editor)
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/libxslt.html" title=
+          "libxslt-1.1.34">libxslt-1.1.34</a> and <a class="xref" href=
+          "../general/vala.html" title="Vala-0.46.6">Vala-0.46.6</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/gtk-doc.html" title=
+          "GTK-Doc-1.32">GTK-Doc-1.32</a> and <a class="ulink" href=
+          "https://github.com/scop/bash-completion">bash-completion</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/dconf">http://wiki.linuxfromscratch.org/blfs/wiki/dconf</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of DConf
+        </h2>
+        <p>
+          First, fix a bug introduced by meson-0.52.0 and a test suite
+          problem:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i 's|link_whole|link_with|' client/meson.build &amp;&amp;
+sed -i 's/module/&amp; | grep -v mangle_path/' gsettings/abicheck.sh</kbd>
+</pre>
+        <p>
+          Install <span class="application">DConf</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson --prefix=/usr --sysconfdir=/etc -Dbash_completion=false .. &amp;&amp;
+ninja</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>ninja
+          test</strong></span>
+        </p>
+        <p>
+          As the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">ninja install</kbd>
+</pre>
+        <p>
+          Now, optionally install the editor:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cd ..              &amp;&amp;
+tar -xf ../dconf-editor-3.34.4.tar.xz &amp;&amp;
+cd dconf-editor-3.34.4                &amp;&amp;
+
+mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson --prefix=/usr --sysconfdir=/etc .. &amp;&amp;
+ninja</kbd>
+</pre>
+        <p>
+          As the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">ninja install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <code class="option">-Denable-gtk-doc</code>: Use this parameter if
+          <span class="application">GTK-Doc</span> is installed and you wish
+          to rebuild and install the API documentation.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">dconf and dconf-editor</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libdconf.so, and libdconfsettings.so (GIO
+              Module installed in <code class=
+              "filename">/usr/lib/gio/modules</code>)</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class=
+              "segbody">/usr/{include,share/gtk-doc/html}/dconf</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="dconf-prog" name="dconf-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>dconf</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a simple tool for manipulating the <span class=
+                    "application">DConf</span> database.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="dconf-editor" name="dconf-editor"></a><span class=
+                    "term"><span class=
+                    "command"><strong>dconf-editor</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a graphical program for editing the <span class=
+                    "application">DConf</span> database.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libdconf" name="libdconf"></a><span class=
+                    "term"><code class="filename">libdconf.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains the <span class="application">DConf</span>
+                    client API functions.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-26 18:21:07 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gsound.html" title="GSound-1.0.2">Prev</a>
+          <p>
+            GSound-1.0.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gnome-backgrounds.html" title=
+          "gnome-backgrounds-3.34.0">Next</a>
+          <p>
+            gnome-backgrounds-3.34.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="core.html" title=
+          "Chapter&nbsp;33.&nbsp;GNOME Libraries and Desktop">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

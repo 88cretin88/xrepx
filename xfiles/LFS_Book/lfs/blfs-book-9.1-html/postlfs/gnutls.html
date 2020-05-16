@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      GnuTLS-3.6.12
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;4.&nbsp;Security
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gnupg.html" title="GnuPG-2.2.19">Prev</a>
+          <p>
+            GnuPG-2.2.19
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gpgme.html" title="GPGME-1.13.1">Next</a>
+          <p>
+            GPGME-1.13.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="security.html" title=
+          "Chapter&nbsp;4.&nbsp;Security">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="gnutls" name="gnutls"></a>GnuTLS-3.6.12
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to GnuTLS
+        </h2>
+        <p>
+          The <span class="application">GnuTLS</span> package contains
+          libraries and userspace tools which provide a secure layer over a
+          reliable transport layer. Currently the <span class=
+          "application">GnuTLS</span> library implements the proposed
+          standards by the IETF's TLS working group. Quoting from the TLS
+          protocol specification:
+        </p>
+        <p>
+          <span class="quote">&ldquo;<span class="quote">The TLS protocol
+          provides communications privacy over the Internet. The protocol
+          allows client/server applications to communicate in a way that is
+          designed to prevent eavesdropping, tampering, or message
+          forgery.</span>&rdquo;</span>
+        </p>
+        <p>
+          <span class="application">GnuTLS</span> provides support for TLS
+          1.3, TLS 1.2, TLS 1.1, TLS 1.0, and SSL 3.0 protocols, TLS
+          extensions, including server name and max record size.
+          Additionally, the library supports authentication using the SRP
+          protocol, X.509 certificates and OpenPGP keys, along with support
+          for the TLS Pre-Shared-Keys (PSK) extension, the Inner Application
+          (TLS/IA) extension and X.509 and OpenPGP certificate handling.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.12.tar.xz">
+                https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.12.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.12.tar.xz">
+                ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/gnutls-3.6.12.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: a23900f14980a467bdce3a0fd31dfa18
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 5.7 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 149 MB (add 106 MB for tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.6 SBU (using parallelism=4; add 7.7
+                SBU for tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          GnuTLS Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="nettle.html" title=
+          "Nettle-3.5.1">Nettle-3.5.1</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="make-ca.html" title=
+          "make-ca-1.5">make-ca-1.5</a>, <a class="xref" href=
+          "../general/libunistring.html" title=
+          "libunistring-0.9.10">libunistring-0.9.10</a>, <a class="xref"
+          href="../general/libtasn1.html" title=
+          "libtasn1-4.16.0">libtasn1-4.16.0</a>, and <a class="xref" href=
+          "p11-kit.html" title="p11-kit-0.23.20">p11-kit-0.23.20</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/doxygen.html" title=
+          "Doxygen-1.8.17">Doxygen-1.8.17</a>, <a class="xref" href=
+          "../general/gtk-doc.html" title="GTK-Doc-1.32">GTK-Doc-1.32</a>,
+          <a class="xref" href="../general/guile.html" title=
+          "Guile-3.0.0">Guile-3.0.0</a>, <a class="xref" href=
+          "../general/libidn.html" title="libidn-1.35">libidn-1.35</a> or
+          <a class="xref" href="../general/libidn2.html" title=
+          "libidn2-2.3.0">libidn2-2.3.0</a> <a class="xref" href=
+          "../basicnet/net-tools.html" title=
+          "Net-tools-CVS_20101030">Net-tools-CVS_20101030</a> (used during
+          the test suite), <a class="xref" href="../pst/texlive.html" title=
+          "texlive-20190410-source">texlive-20190410</a> or <a class="xref"
+          href="../pst/tl-installer.html" title=
+          "install-tl-unx">install-tl-unx</a>, <a class="xref" href=
+          "../server/unbound.html" title="Unbound-1.9.6">Unbound-1.9.6</a>
+          (to build the DANE library), <a class="xref" href=
+          "../general/valgrind.html" title=
+          "Valgrind-3.15.0">Valgrind-3.15.0</a> (used during the test suite),
+          <a class="ulink" href=
+          "https://ftp.gnu.org/gnu/autogen/">autogen</a>, <a class="ulink"
+          href="https://cmocka.org/">cmocka</a> and <a class="ulink" href=
+          "http://ftp.debian.org/debian/pool/main/d/datefudge/">datefudge</a>
+          (used during the test suite if the DANE library is built), and
+          <a class="ulink" href=
+          "https://downloads.sourceforge.net/trousers/">Trousers</a> (Trusted
+          Platform Module support)
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            Note that if you do not install <a class="xref" href=
+            "../general/libtasn1.html" title=
+            "libtasn1-4.16.0">libtasn1-4.16.0</a>, an older version shipped
+            in the <span class="application">GnuTLS</span> tarball will be
+            used instead.
+          </p>
+        </div>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/gnutls">http://wiki.linuxfromscratch.org/blfs/wiki/gnutls</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of GnuTLS
+        </h2>
+        <p>
+          Install <span class="application">GnuTLS</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr \
+            --docdir=/usr/share/doc/gnutls-3.6.12 \
+            --disable-guile \
+            --with-default-trust-store-pkcs11="pkcs11:" &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span>. If a prior version of <span class=
+          "application">GnuTLS</span> (or the same version but without all of
+          the recommended dependencies) has been installed, some tests may
+          fail. If <code class="filename">/usr/lib/libgnutls.so</code> and
+          the target of that symlink are moved or renamed so that they cannot
+          be found, all tests should pass and the install procedure will
+          restore <code class="filename">libgnutls.so</code> and the
+          versioned library it points to.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+        <p>
+          If you passed <code class="option">--enable-gtk-doc</code> to the
+          <span class="command"><strong>configure</strong></span> script, the
+          API will automatically be installed. Otherwise, if desired, you can
+          still install the API documentation to the <code class=
+          "filename">/usr/share/gtk-doc/html/gnutls</code> directory using
+          the following command as the <code class="systemitem">root</code>
+          user:
+        </p>
+        <pre class="root">
+<kbd class="command">make -C doc/reference install-data-local</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class=
+          "parameter"><code>--with-default-trust-store-pkcs11="pkcs11:"</code></em>:
+          This switch tells gnutls to use the PKCS #11 trust store as the
+          default trust. Omit this switch if <a class="xref" href=
+          "p11-kit.html" title="p11-kit-0.23.20">p11-kit-0.23.20</a> is not
+          installed.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-guile</code></em>: This
+          switch disables GUILE support, since GnuTLS does not support
+          Guile-2.2.x yet.
+        </p>
+        <p>
+          <code class=
+          "option">--with-default-trust-store-file=/etc/pki/tls/certs/ca-bundle.crt</code>:
+          This switch tells <span class=
+          "command"><strong>configure</strong></span> where to find the
+          legacy CA certificate bundle and to use it instead of PKCS #11
+          module by default. Use this if <a class="xref" href="p11-kit.html"
+          title="p11-kit-0.23.20">p11-kit-0.23.20</a> is not installed.
+        </p>
+        <p>
+          <code class="option">--enable-gtk-doc</code>: Use this parameter if
+          <span class="application">GTK-Doc</span> is installed and you wish
+          to rebuild and install the API documentation.
+        </p>
+        <p>
+          <code class="option">--enable-openssl-compatibility</code>: Use
+          this switch if you wish to build the OpenSSL compatibility library.
+        </p>
+        <p>
+          <code class="option">--without-p11-kit</code>: use this switch if
+          you have not installed <span class="application">p11-kit</span>.
+        </p>
+        <p>
+          <code class="option">--with-included-unistring</code>: uses the
+          bundled version of libunistring, instead of the system one. Use
+          this switch if you have not installed <a class="xref" href=
+          "../general/libunistring.html" title=
+          "libunistring-0.9.10">libunistring-0.9.10</a>.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">certtool, danetool, gnutls-cli,
+              gnutls-cli-debug, gnutls-serv, ocsptool, p11tool, psktool, and
+              srptool</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libgnutls.so, libgnutls-dane.so,
+              libgnutlsxx.so, libgnutls-openssl.so (optional), and
+              /usr/lib/guile/2.2/guile-gnutls-v-2.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class=
+              "segbody">/usr/{include,share/gtk-doc/html,share/guile/site/2.2}/gnutls</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="certtool" name="certtool"></a><span class=
+                    "term"><span class=
+                    "command"><strong>certtool</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to generate X.509 certificates, certificate
+                    requests, and private keys.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="danetool" name="danetool"></a><span class=
+                    "term"><span class=
+                    "command"><strong>danetool</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool used to generate and check DNS resource records
+                    for the DANE protocol.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gnutls-cli" name="gnutls-cli"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gnutls-cli</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a simple client program to set up a TLS connection to
+                    some other computer.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gnutls-cli-debug" name=
+                    "gnutls-cli-debug"></a><span class="term"><span class=
+                    "command"><strong>gnutls-cli-debug</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a simple client program to set up a TLS connection to
+                    some other computer and produces very verbose progress
+                    results.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gnutls-serv" name="gnutls-serv"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gnutls-serv</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a simple server program that listens to incoming TLS
+                    connections.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ocsptool" name="ocsptool"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ocsptool</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a program that can parse and print information about
+                    OCSP requests/responses, generate requests and verify
+                    responses.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="p11tool" name="p11tool"></a><span class=
+                    "term"><span class=
+                    "command"><strong>p11tool</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a program that allows handling data from PKCS #11
+                    smart cards and security modules.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="psktool" name="psktool"></a><span class=
+                    "term"><span class=
+                    "command"><strong>psktool</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a simple program that generates random keys for use
+                    with TLS-PSK.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="srptool" name="srptool"></a><span class=
+                    "term"><span class=
+                    "command"><strong>srptool</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a simple program that emulates the programs in the
+                    Stanford SRP (Secure Remote Password) libraries using
+                    GnuTLS.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgnutls" name="libgnutls"></a><span class=
+                    "term"><code class="filename">libgnutls.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains the core API functions and X.509 certificate API
+                    functions.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-16 18:46:23 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gnupg.html" title="GnuPG-2.2.19">Prev</a>
+          <p>
+            GnuPG-2.2.19
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gpgme.html" title="GPGME-1.13.1">Next</a>
+          <p>
+            GPGME-1.13.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="security.html" title=
+          "Chapter&nbsp;4.&nbsp;Security">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

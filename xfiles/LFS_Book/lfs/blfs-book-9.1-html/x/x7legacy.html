@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Xorg Legacy
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;24.&nbsp;X Window System Environment
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="TTF-and-OTF-fonts.html" title=
+          "TTF and OTF fonts">Prev</a>
+          <p>
+            TTF and OTF fonts
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="lib.html" title="X Libraries">Next</a>
+          <p>
+            X Libraries
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="xorg7-legacy" name="xorg7-legacy"></a>Xorg Legacy
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Xorg Legacy
+        </h2>
+        <p>
+          <span class="application">Xorg</span>'s ancestor (X11R1, in 1987)
+          at first only provided bitmap fonts, with a tool (<span class=
+          "command"><strong>bdftopcf</strong></span>) to assist in their
+          installation. With the introduction of <span class=
+          "application">xorg-server-1.19.0</span> and <span class=
+          "application">libXfont2</span> many people will not need them.
+          There are still a few old packages which might require, or benefit
+          from, these deprecated fonts and so the following packages are
+          shown here.
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            The font-adobe-100dpi package installs 100 dots per inch versions
+            of Courier, Helvetica, New Century Schoolbook and Times fonts.
+          </p>
+          <p>
+            The remaining font packages here provide 75dpi versions of those
+            fonts, and various miscellaneous fonts - mostly for legacy
+            encodings. Those are primarily to silence warnings when testing
+            Xorg. In previous versions of BLFS a lot more legacy fonts were
+            installed.
+          </p>
+          <p>
+            Please consult the BLFS-7.10 book at <a class="ulink" href=
+            "http://www.linuxfromscratch.org/blfs/view/7.10/x/x7font.html">http://www.linuxfromscratch.org/blfs/view/7.10/x/x7font.html</a>
+            if you wish to install any of those other fonts.
+          </p>
+        </div>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://www.x.org/pub/individual/">https://www.x.org/pub/individual/</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.x.org/pub/individual/">ftp://ftp.x.org/pub/individual/</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 4.2 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 30 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.3 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Xorg Legacy Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="xcursor-themes.html" title=
+          "xcursor-themes-1.0.6">xcursor-themes-1.0.6</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/Xorg7Legacy">http://wiki.linuxfromscratch.org/blfs/wiki/Xorg7Legacy</a>
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Downloading Xorg Legacy
+        </h2>
+        <p>
+          First, create a list of files to be downloaded. This file will also
+          be used to verify the integrity of the downloads when complete:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat &gt; legacy.dat &lt;&lt; "EOF"
+<code class=
+"literal">2a455d3c02390597feb9cefb3fe97a45 app/ bdftopcf-1.1.tar.bz2
+1347c3031b74c9e91dc4dfa53b12f143 font/ font-adobe-100dpi-1.0.3.tar.bz2
+6c9f26c92393c0756f3e8d614713495b font/ font-adobe-75dpi-1.0.3.tar.bz2
+cb7b57d7800fd9e28ec35d85761ed278 font/ font-jis-misc-1.0.3.tar.bz2
+0571bf77f8fab465a5454569d9989506 font/ font-daewoo-misc-1.0.3.tar.bz2
+a2401caccbdcf5698e001784dbd43f1a font/ font-isas-misc-1.0.3.tar.bz2
+c88eb44b3b903d79fb44b860a213e623 font/ font-misc-misc-1.1.2.tar.bz2</code>
+EOF</kbd>
+</pre>
+        <p>
+          To download the needed files using <span class=
+          "application">wget</span>, use the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir legacy &amp;&amp;
+cd    legacy &amp;&amp;
+grep -v '^#' ../legacy.dat | awk '{print $2$3}' | wget -i- -c \
+     -B https://www.x.org/pub/individual/ &amp;&amp;
+grep -v '^#' ../legacy.dat | awk '{print $1 " " $3}' &gt; ../legacy.md5 &amp;&amp;
+md5sum -c ../legacy.md5</kbd>
+</pre>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Xorg Legacy
+        </h2>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            When installing multiple packages in a script, the installation
+            needs to be done as the root user. There are three general
+            options that can be used to do this:
+          </p>
+          <div class="orderedlist">
+            <ol>
+              <li class="listitem">
+                <p>
+                  Run the entire script as the root user (not recommended).
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Use the <span class="command"><strong>sudo</strong></span>
+                  command from the <a class="xref" href=
+                  "../postlfs/sudo.html" title="Sudo-1.8.31">Sudo-1.8.31</a>
+                  package.
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Use <span class="command"><strong>su -c "command
+                  arguments"</strong></span> (quotes required) which will ask
+                  for the root password for every iteration of the loop.
+                </p>
+              </li>
+            </ol>
+          </div>
+          <p>
+            One way to handle this situation is to create a short
+            <span class="command"><strong>bash</strong></span> function that
+            automatically selects the appropriate method. Once the command is
+            set in the environment, it does not need to be set again.
+          </p>
+          <pre class="userinput">
+<kbd class="command">as_root()
+{
+  if   [ $EUID = 0 ];        then $*
+  elif [ -x /usr/bin/sudo ]; then sudo $*
+  else                            su -c \\"$*\\"
+  fi
+}
+
+export -f as_root</kbd>
+</pre>
+        </div>
+        <p>
+          First, start a subshell that will exit on error:
+        </p>
+        <pre class="userinput">
+<kbd class="command">bash -e</kbd>
+</pre>
+        <p>
+          Install all of the packages by running the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">for package in $(grep -v '^#' ../legacy.md5 | awk '{print $2}')
+do
+  packagedir=${package%.tar.bz2}
+  tar -xf $package
+  pushd $packagedir
+    ./configure $XORG_CONFIG
+    make
+    as_root make install
+  popd
+  rm -rf $packagedir
+  as_root /sbin/ldconfig
+done</kbd>
+</pre>
+        <p>
+          Finally, exit the shell that was started earlier:
+        </p>
+        <pre class="userinput">
+<kbd class="command">exit</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">bdftopcf</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody"><code class=
+              "envar">$XORG_PREFIX</code>/share/fonts/100dpi, <code class=
+              "envar">$XORG_PREFIX</code>/share/fonts/75dpi, <code class=
+              "envar">$XORG_PREFIX</code>/share/fonts/misc</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="bdftopcf-x7" name="bdftopcf-x7"></a><span class=
+                    "term"><span class=
+                    "command"><strong>bdftopcf</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    converts an X font from Bitmap Distribution Format to
+                    Portable Compiled Format.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 20:23:35 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="TTF-and-OTF-fonts.html" title=
+          "TTF and OTF fonts">Prev</a>
+          <p>
+            TTF and OTF fonts
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="lib.html" title="X Libraries">Next</a>
+          <p>
+            X Libraries
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

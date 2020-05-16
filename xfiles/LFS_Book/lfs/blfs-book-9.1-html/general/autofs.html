@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      autofs-5.1.6
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;12.&nbsp;System Utilities
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="at.html" title="at-3.1.23">Prev</a>
+          <p>
+            at-3.1.23
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="bluez.html" title="BlueZ-5.53">Next</a>
+          <p>
+            BlueZ-5.53
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="sysutils.html" title=
+          "Chapter&nbsp;12.&nbsp;System Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="autofs" name="autofs"></a>autofs-5.1.6
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Autofs
+        </h2>
+        <p>
+          <span class="application">Autofs</span> controls the operation of
+          the automount daemons. The automount daemons automatically mount
+          filesystems when they are accessed and unmount them after a period
+          of inactivity. This is done based on a set of pre-configured maps.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.6.tar.xz">
+                https://www.kernel.org/pub/linux/daemons/autofs/v5/autofs-5.1.6.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: b27ee7a1674ae1779aaf75c5e90b0f1e
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 308 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 8.5 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Autofs Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../basicnet/libtirpc.html" title=
+          "libtirpc-1.2.5">libtirpc-1.2.5</a> and <a class="xref" href=
+          "../basicnet/rpcsvc-proto.html" title=
+          "rpcsvc-proto-1.4">rpcsvc-proto-1.4</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../basicnet/nfs-utils.html" title=
+          "NFS-Utils-2.4.3">nfs-utils-2.4.3</a>, <a class="xref" href=
+          "libxml2.html" title="libxml2-2.9.10">libxml2-2.9.10</a>, <a class=
+          "xref" href="../postlfs/mitkrb.html" title=
+          "MIT Kerberos V5-1.18">MIT Kerberos V5-1.18</a>, <a class="xref"
+          href="../server/openldap.html" title=
+          "OpenLDAP-2.4.49">OpenLDAP-2.4.49</a> (client only), and <a class=
+          "xref" href="../postlfs/cyrus-sasl.html" title=
+          "Cyrus SASL-2.1.27">Cyrus SASL-2.1.27</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/autofs">http://wiki.linuxfromscratch.org/blfs/wiki/autofs</a>
+        </p>
+      </div>
+      <div class="kernel" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="autofs-kernel" name="autofs-kernel"></a>Kernel Configuration
+        </h2>
+        <p>
+          Verify that automounter kernel support has been enabled:
+        </p>
+        <pre class="screen">
+<code class="literal">File systems ---&gt;
+  &lt;*/M&gt; Kernel automounter version 4 support (also supports v3) [CONFIG_AUTOFS4_FS]</code>
+</pre>
+        <p>
+          Optionally, enable the following options in the kernel
+          configuration:
+        </p>
+        <pre class="screen">
+<code class="literal">File systems  ---&gt;
+  [*] Network File Systems  ---&gt;                                      [CONFIG_NETWORK_FILESYSTEMS]
+    &lt;*/M&gt; NFS client support                                          [CONFIG_NFS_FS]
+    &lt;*/M&gt; CIFS support (advanced network filesystem, SMBFS successor) [CONFIG_CIFS]</code>
+</pre>
+        <p>
+          Recompile and install the new kernel, if necessary.
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Autofs
+        </h2>
+        <p>
+          Install <span class="application">Autofs</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/         \
+            --with-libtirpc    \
+            --without-openldap \
+            --mandir=/usr/share/man &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+        <div class="admon caution">
+          <img alt="[Caution]" src="../images/caution.png" />
+          <h3>
+            Caution
+          </h3>
+          <p>
+            If <span class="application">autofs</span> is already installed
+            on your system, be sure to backup your configuration files.
+            They'll be overwritten by the following command.
+          </p>
+        </div>
+        <p>
+          Install the default configuration files, still as the <code class=
+          "systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install_samples</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--with-libtirpc</code></em>: This
+          switch forces the package to use libtirpc for RPC functionality
+          instead of relying on implementation from Glibc, which was removed
+          in LFS 8.1.
+        </p>
+        <p>
+          <em class="parameter"><code>--without-openldap</code></em>: This
+          switch disables openldap if found. If openldap is desired, omit
+          this switch. Note that openldap support in autofs requires
+          <a class="xref" href="../postlfs/mitkrb.html" title=
+          "MIT Kerberos V5-1.18">MIT Kerberos V5-1.18</a>.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring Autofs
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="autofs-config" name="autofs-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="autofs-config" name="autofs-config"></a>Config Files
+          </h4>
+          <p>
+            <code class="filename">/etc/sysconfig/autofs.conf</code>,
+            <code class="filename">/etc/auto.master</code>, <code class=
+            "filename">/etc/auto.misc</code>, and <code class=
+            "filename">/etc/auto.net</code>
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779271736800" name=
+            "idm45779271736800"></a>Configuration Information
+          </h4>
+          <p>
+            The installation process creates <code class=
+            "filename">auto.master</code>, <code class=
+            "filename">auto.misc</code>, <code class=
+            "filename">auto.smb</code>, and <code class=
+            "filename">auto.net</code>. Replace the <code class=
+            "filename">auto.master</code> file with the following commands as
+            the <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">mv /etc/auto.master /etc/auto.master.bak &amp;&amp;
+cat &gt; /etc/auto.master &lt;&lt; "EOF"
+<code class="literal"># Begin /etc/auto.master
+
+/media/auto  /etc/auto.misc  --ghost
+#/home        /etc/auto.home
+
+# End /etc/auto.master</code>
+EOF</kbd>
+</pre>
+          <p>
+            This file creates a new media directory, <code class=
+            "filename">/media/auto</code> that will overlay any existing
+            directory of the same name. In this example, the file,
+            <code class="filename">/etc/auto.misc</code>, has a line:
+          </p>
+          <pre class="screen">
+cd   -fstype=iso9660,ro,nosuid,nodev :/dev/cdrom
+</pre>
+          <p>
+            that will mount a cdrom as <code class=
+            "filename">/media/auto/cd</code> if that directory is accessed.
+            The <code class="option">--ghost</code> option tells the
+            automounter to create <span class="quote">&ldquo;<span class=
+            "quote">ghost</span>&rdquo;</span> versions (i.e. empty
+            directories) of all the mount points listed in the configuration
+            file regardless whether any of the file systems are actually
+            mounted or not. This is very convenient and highly recommended,
+            because it will show you the available auto-mountable file
+            systems as existing directories, even when their file systems
+            aren't currently mounted. Without the <code class=
+            "option">--ghost</code> option, you'll have to remember the names
+            of the directories. As soon as you try to access one of them, the
+            directory will be created and the file system will be mounted.
+            When the file system gets unmounted again, the directory is
+            destroyed too, unless the <code class="option">--ghost</code>
+            option was given.
+          </p>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              An alternative method would be to specify another automount
+              location such as <code class=
+              "filename">/var/lib/auto/cdrom</code> and create a symbolic
+              link from <code class="filename">/media/cdrom</code> to the
+              automount location.
+            </p>
+          </div>
+          <p>
+            The <code class="filename">auto.misc</code> file must be
+            configured to your working hardware. The loaded configuration
+            file should load your cdrom if <code class=
+            "filename">/dev/cdrom</code> is active or it can be edited to
+            match your device setup. Examples for floppies are available in
+            the file and easily activated. Documentation for this file is
+            available using the <span class="command"><strong>man 5
+            autofs</strong></span> command.
+          </p>
+          <p>
+            In the second line, if enabled, a user's home directory would be
+            mounted via NFS upon login. The <code class=
+            "filename">/etc/home.auto</code> would need to exist and have an
+            entry similar to:
+          </p>
+          <pre class="screen">
+joe  example.org:/export/home/joe
+</pre>
+          <p>
+            where the directory <code class=
+            "filename">/export/home/joe</code> is exported via NFS from the
+            system example.org. NFS shares are covered on the next page.
+          </p>
+          <p>
+            This package could also be used to mount SMB shares, however that
+            feature is not configured in these instructions. For additional
+            configuration information, see the man pages for auto.master(5).
+            There are also web resources such as this <a class="ulink" href=
+            "http://wiki.gentoo.org/wiki/AutoFS">AUTOFS HOWTO</a> available.
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="autofs-init" name="autofs-init"></a>
+          </h3>
+          <h4 class="title">
+            <a id="autofs-init" name="autofs-init"></a><span class=
+            "phrase">Boot Script</span>
+          </h4>
+          <p>
+            <span class="application">autofs</span> installs its own boot
+            script, but it has no capability for logging or visual
+            conformance with other BLFS scripts.
+          </p>
+          <p>
+            Install the <code class="filename">/etc/init.d/autofs</code>
+            mount script included with the <a class="xref" href=
+            "../introduction/bootscripts.html" title=
+            "BLFS Boot Scripts">blfs-bootscripts-20191204</a> package.
+          </p>
+          <pre class="root">
+<kbd class="command">make install-autofs</kbd>
+</pre>
+          <p>
+            The time-out variable is set in <code class=
+            "filename">/etc/sysconfig/autofs.conf</code>. The installed file
+            sets a default of 60 seconds of inactivity before unmounting the
+            device. A much shorter time may be necessary to protect buffer
+            writing to a floppy if users tend to remove the media prior to
+            the timeout setting.
+          </p>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">automount</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">lookup_dir.so, lookup_file.so,
+              lookup_files.so, lookup_hosts.so, lookup_ldap.so,
+              lookup_multi.so, lookup_nis.so, lookup_nisplus.so,
+              lookup_program.so, lookup_userhome.so, lookup_yp.so,
+              mount_afs.so, mount_autofs.so, mount_bind.so, mount_changer.so,
+              mount_ext2.so, mount_ext3.so, mount_ext4.so, mount_generic.so,
+              mount_nfs.so, mount_nfs4.so, parse_amd.so, and
+              parse_sun.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/lib/autofs</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="automount" name="automount"></a><span class=
+                    "term"><span class=
+                    "command"><strong>automount</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the daemon that performs the mounting when a request
+                    is made for the device.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-19 08:47:37 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="at.html" title="at-3.1.23">Prev</a>
+          <p>
+            at-3.1.23
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="bluez.html" title="BlueZ-5.53">Next</a>
+          <p>
+            BlueZ-5.53
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="sysutils.html" title=
+          "Chapter&nbsp;12.&nbsp;System Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

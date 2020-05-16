@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Gimp-2.10.18
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;41.&nbsp;Other X-based Programs
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="fontforge.html" title=
+          "FontForge-20170731">Prev</a>
+          <p>
+            FontForge-20170731
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gparted.html" title="Gparted-1.1.0">Next</a>
+          <p>
+            Gparted-1.1.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="other.html" title=
+          "Chapter&nbsp;41.&nbsp;Other X-based Programs">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="gimp" name="gimp"></a>Gimp-2.10.18
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Gimp
+        </h2>
+        <p>
+          The <span class="application">Gimp</span> package contains the GNU
+          Image Manipulation Program which is useful for photo retouching,
+          image composition and image authoring.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://download.gimp.org/pub/gimp/v2.10/gimp-2.10.18.tar.bz2">
+                https://download.gimp.org/pub/gimp/v2.10/gimp-2.10.18.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 096d04ffb2c4559cb2152f507ff31c9c
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 32 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 931 MB (206 MB installed, add
+                975 MB for tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 2.1 SBU (Using parallelism=4; add 0.6
+                SBU for tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Additional Downloads
+        </h3>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            The updating of the help files is still a work in progress, with
+            large parts of the text for many languages not yet translated.
+            The file below is a git snapshot.
+          </p>
+        </div>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://anduin.linuxfromscratch.org/BLFS/gimp/gimp-help-2019-04-08.tar.xz">
+                http://anduin.linuxfromscratch.org/BLFS/gimp/gimp-help-2019-04-08.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 166 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download md5sum: e334ebe7fd5e12350e6319c2e8c39141
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: From 310 MB (en only) to 1.6
+                GB (all 18 languages)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.8 SBU (en only), 13 SBU, with
+                parallelism=4, for all languages
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Gimp Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../general/gegl.html" title=
+          "gegl-0.4.22">gegl-0.4.22</a>, <a class="xref" href=
+          "../gnome/gexiv2.html" title="gexiv2-0.12.0">gexiv2-0.12.0</a>,
+          <a class="xref" href="../basicnet/glib-networking.html" title=
+          "glib-networking-2.62.3">glib-networking-2.62.3</a>, <a class=
+          "xref" href="../x/gtk2.html" title="GTK+-2.24.32">GTK+-2.24.32</a>,
+          <a class="xref" href="../general/harfbuzz.html" title=
+          "HarfBuzz-2.6.4">HarfBuzz-2.6.4</a>. <a class="xref" href=
+          "../general/libjpeg.html" title=
+          "libjpeg-turbo-2.0.4">libjpeg-turbo-2.0.4</a>, <a class="xref"
+          href="../general/libmypaint.html" title=
+          "libmypaint-1.5.0">libmypaint-1.5.0</a>, <a class="xref" href=
+          "../general/librsvg.html" title=
+          "librsvg-2.46.4">librsvg-2.46.4</a>, <a class="xref" href=
+          "../general/libtiff.html" title="LibTIFF-4.1.0">LibTIFF-4.1.0</a>,
+          <a class="xref" href="../general/python-modules.html#libxml2py2"
+          title="libxml2-2.9.10 (for its Python2 module)">libxml2-2.9.10 (for
+          Python2)</a> (to build the translated help files), <a class="xref"
+          href="../general/lcms2.html" title="Little CMS-2.9">Little
+          CMS-2.9</a>, <a class="xref" href="../general/mypaint-brushes.html"
+          title="mypaint-brushes-1.3.0">mypaint-brushes-1.3.0</a>, <a class=
+          "xref" href="../general/poppler.html" title=
+          "Poppler-0.85.0">Poppler-0.85.0</a> (including poppler-data) and
+          <a class="xref" href="../x/installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">X Window
+          System</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/dbus-glib.html" title=
+          "dbus-glib-0.110">dbus-glib-0.110</a>, <a class="xref" href=
+          "../pst/gs.html" title="ghostscript-9.50">ghostscript-9.50</a>
+          (with libgs installed), <a class="xref" href="../gnome/gvfs.html"
+          title="Gvfs-1.42.2">Gvfs-1.42.2</a> (to access the online help),
+          <a class="xref" href="../general/iso-codes.html" title=
+          "ISO Codes-4.4">ISO Codes-4.4</a>, <a class="xref" href=
+          "../general/libgudev.html" title="libgudev-233">libgudev-233</a>,
+          <a class="xref" href="../general/python-modules.html#pygtk" title=
+          "PyGTK-2.24.0">PyGTK-2.24.0</a> (including the gtk, pango and
+          pangocairo modules) and <a class="xref" href="xdg-utils.html"
+          title="xdg-utils-1.1.3">xdg-utils-1.1.3</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/aalib.html" title=
+          "AAlib-1.4rc5">AAlib-1.4rc5</a>, <a class="xref" href=
+          "../multimedia/alsa-lib.html" title=
+          "alsa-lib-1.2.1.2">alsa-lib-1.2.1.2</a>, <a class="xref" href=
+          "../general/libmng.html" title="libmng-2.0.3">libmng-2.0.3</a>,
+          <a class="xref" href="../general/libwebp.html" title=
+          "libwebp-1.1.0">libwebp-1.1.0</a>, <a class="xref" href=
+          "../general/openjpeg2.html" title=
+          "OpenJPEG-2.3.1">OpenJPEG-2.3.1</a>, an <a class="xref" href=
+          "../server/mail.html" title=
+          "Chapter&nbsp;21.&nbsp;Mail Server Software">MTA</a> (that provides
+          a <span class="command"><strong>sendmail</strong></span> program),
+          <a class="xref" href="../general/gtk-doc.html" title=
+          "GTK-Doc-1.32">GTK-Doc-1.32</a>, <a class="ulink" href=
+          "https://people.freedesktop.org/~hughsient/appstream-glib">appstream-glib</a>
+          and <a class="ulink" href=
+          "http://wvware.sourceforge.net/libwmf.html">libwmf</a>
+        </p>
+        <p>
+          When you have run configure, you will see that WebKit is not found
+          - that dependency is for the legacy webkit-1.0 which should never
+          be used on a modern system exposed to the internet.
+        </p>
+        <h4>
+          Optional, for building the help system
+        </h4>
+        <p class="optional">
+          <a class="ulink" href="http://dblatex.sourceforge.net/">dblatex</a>
+          (for PDF docs), <a class="ulink" href=
+          "http://pngnq.sourceforge.net/">pngnq</a> and <a class="ulink"
+          href="http://pmt.sourceforge.net/pngcrush/">pngcrush</a> to
+          optimize the png files, but see the note on the help download above
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/gimp">http://wiki.linuxfromscratch.org/blfs/wiki/gimp</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Gimp
+        </h2>
+        <p>
+          Install <span class="application">Gimp</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr --sysconfdir=/etc &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results (requires an X-Windowed terminal) issue:
+          <span class="command"><strong>make check</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            This package installs icon files into the <code class=
+            "filename">/usr/share/icons/hicolor</code> hierarchy and desktop
+            files into the <code class=
+            "filename">/usr/share/applications</code> hierarchy. You can
+            improve system performance and memory usage by updating
+            <code class=
+            "filename">/usr/share/icons/hicolor/index.theme</code> and
+            <code class=
+            "filename">/usr/share/applications/mimeinfo.cache</code>. To
+            perform the update you must have <a class="xref" href=
+            "../x/gtk2.html" title="GTK+-2.24.32">GTK+-2.24.32</a> or
+            <a class="xref" href="../x/gtk3.html" title=
+            "GTK+-3.24.13">GTK+-3.24.13</a> installed (for the icon cache)
+            and <a class="xref" href="../general/desktop-file-utils.html"
+            title="desktop-file-utils-0.24">desktop-file-utils-0.24</a> (for
+            the desktop cache) and issue the following commands as the
+            <code class="systemitem">root</code> user:
+          </p>
+          <pre class="userinput">
+<kbd class=
+"command">gtk-update-icon-cache -qtf /usr/share/icons/hicolor &amp;&amp;
+update-desktop-database -q</kbd>
+</pre>
+        </div>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Gimp-Help
+        </h2>
+        <p>
+          The <code class="filename">gimp-help</code> tarball contains images
+          and English text help for help files, together with translations.
+          Because of the issues mentioned in the note above, you are
+          recommended to use the online help, either by building against
+          <a class="xref" href="../gnome/gvfs.html" title=
+          "Gvfs-1.42.2">Gvfs-1.42.2</a> so that 'help' can open the latest
+          XML files in your browser, or else you can manually open the html
+          in your browser by going to <a class="ulink" href=
+          "https://docs.gimp.org/2.10/en/">https://docs.gimp.org/2.10/en</a>
+          (change the language code if desired).
+        </p>
+        <p>
+          If you nevertheless wish to install local copies of the help files
+          to read offline, unpack the <code class="filename">gimp-help</code>
+          tarball and change into the root of the newly created source tree.
+          Prepare for the build with the following command:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">ALL_LINGUAS="ca da de el en en_GB es fi fr it ja ko nl nn pt_BR ro ru zh_CN" \
+./autogen.sh --prefix=/usr</kbd>
+</pre>
+        <p>
+          Remove from <code class="envar">ALL_LINGUAS</code> the codes for
+          any languages which you do not wish to install. Alternatively,
+          remove the line starting with <code class=
+          "envar">ALL_LINGUAS</code>, if you wish to build all languages.
+        </p>
+        <p>
+          Now build the help files:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make</kbd>
+</pre>
+        <p>
+          Issue the following commands as the <code class=
+          "systemitem">root</code> user to install the help files:
+        </p>
+        <pre class="root">
+<kbd class="command">make install &amp;&amp;
+chown -R root:root /usr/share/gimp/2.0/help</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="gimp-cmd-explanations" name=
+          "gimp-cmd-explanations"></a>Command Explanations
+        </h2>
+        <p>
+          <code class="envar">ALL_LINGUAS="ca da de el en en_GB ..."</code>:
+          by default, the help files will be rendered in all the available
+          languages. Remove the codes of any languages you do not wish to
+          build.
+        </p>
+        <p>
+          <code class="option">--disable-python</code>: This option is
+          necessary if you have not installed <span class=
+          "application">PyGTK</span>.
+        </p>
+        <p>
+          <code class="option">--enable-gtk-doc</code>: Use this parameter if
+          <span class="application">GTK-Doc</span> is installed and you wish
+          to rebuild and install the API documentation.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring The Gimp
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="gimp-config" name="gimp-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="gimp-config" name="gimp-config"></a>Config Files
+          </h4>
+          <p>
+            <code class="filename">/etc/gimp/2.0/*</code> and <code class=
+            "filename">~/.gimp-2.8/gimprc</code>
+          </p>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">gimp (symlink), gimp-2.10, gimp-console
+              (symlink), gimp-console-2.10, gimp-test-clipboard-2.0, and
+              gimptool-2.0</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libgimp-2.0.so, libgimpbase-2.0.so,
+              libgimpcolor-2.0.so, libgimpconfig-2.0.so, libgimpmath-2.0.so,
+              libgimpmodule-2.0.so, libgimpthumb-2.0.so, libgimpui-2.0.so,
+              and libgimpwidgets-2.0.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/etc/gimp, /usr/include/gimp-2.0,
+              /usr/{lib,share}/gimp, /usr/share/gimp/2.0,
+              /usr/share/gtk-doc/html/libgimp{,base,color,config}, and
+              /usr/share/gtk-doc/html/libgimp{math,module,thumb,widgets}</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gimp-prog" name="gimp-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gimp</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a symbolic link to <span class=
+                    "command"><strong>gimp-2.10</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gimp-2.10" name="gimp-2.10"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gimp-2.10</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the Gnu Image Manipulation Program. It works with a
+                    variety of image formats and provides a large selection
+                    of tools.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gimp-console" name="gimp-console"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gimp-console</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a symbolic link to <span class=
+                    "command"><strong>gimp-console-2.10</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gimp-console-2.10" name=
+                    "gimp-console-2.10"></a><span class="term"><span class=
+                    "command"><strong>gimp-console-2.10</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a console program that behaves as if The <span class=
+                    "application">Gimp</span> was called with the
+                    <code class="option">--no-interface</code> command-line
+                    option.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gimptool-2.0" name="gimptool-2.0"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gimptool-2.0</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool that can build plug-ins or scripts and install
+                    them if they are distributed in one source file.
+                    <span class=
+                    "command"><strong>gimptool-2.0</strong></span> can also
+                    be used by programs that need to know what libraries and
+                    include-paths The <span class="application">Gimp</span>
+                    was compiled with.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgimp-2.0" name="libgimp-2.0"></a><span class=
+                    "term"><code class=
+                    "filename">libgimp-2.0.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides C bindings for The <span class=
+                    "application">Gimp</span>'s Procedural Database (PDB)
+                    which offers an interface to core functions and to
+                    functionality provided by plug-ins.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgimpbase-2.0" name=
+                    "libgimpbase-2.0"></a><span class="term"><code class=
+                    "filename">libgimpbase-2.0.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides the C functions for basic <span class=
+                    "application">Gimp</span> functionality such as
+                    determining enumeration data types, gettext translation,
+                    determining The <span class="application">Gimp</span>'s
+                    version number and capabilities, handling data files and
+                    accessing the environment.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgimpcolor-2.0" name=
+                    "libgimpcolor-2.0"></a><span class="term"><code class=
+                    "filename">libgimpcolor-2.0.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides the C functions relating to RGB, HSV and CMYK
+                    colors as well as converting colors between different
+                    color models and performing adaptive supersampling on an
+                    area.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgimpconfig-2.0" name=
+                    "libgimpconfig-2.0"></a><span class="term"><code class=
+                    "filename">libgimpconfig-2.0.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains C functions for reading and writing config
+                    information.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgimpmath-2.0" name=
+                    "libgimpmath-2.0"></a><span class="term"><code class=
+                    "filename">libgimpmath-2.0.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains C functions which provide mathematical
+                    definitions and macros, manipulate 3x3 transformation
+                    matrices, set up and manipulate vectors and the MD5
+                    message-digest algorithm.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgimpmodule-2.0" name=
+                    "libgimpmodule-2.0"></a><span class="term"><code class=
+                    "filename">libgimpmodule-2.0.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides the C functions which implements module loading
+                    using GModule and keeps a list of GimpModule's found in a
+                    given searchpath.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgimpthumb-2.0" name=
+                    "libgimpthumb-2.0"></a><span class="term"><code class=
+                    "filename">libgimpthumb-2.0.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides the C functions for handling The <span class=
+                    "application">Gimp</span>'s thumbnail objects.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgimpui-2.0" name=
+                    "libgimpui-2.0"></a><span class="term"><code class=
+                    "filename">libgimpui-2.0.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains The <span class="application">Gimp</span>'s
+                    common user interface functions.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgimpwidgets-2.0" name=
+                    "libgimpwidgets-2.0"></a><span class="term"><code class=
+                    "filename">libgimpwidgets-2.0.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains The <span class="application">Gimp</span> and
+                    <span class="application">GTK</span>'s widget creation
+                    and manipulation functions.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-23 18:49:35 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="fontforge.html" title=
+          "FontForge-20170731">Prev</a>
+          <p>
+            FontForge-20170731
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gparted.html" title="Gparted-1.1.0">Next</a>
+          <p>
+            Gparted-1.1.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="other.html" title=
+          "Chapter&nbsp;41.&nbsp;Other X-based Programs">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

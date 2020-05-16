@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      GMime-3.2.6
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;9.&nbsp;General Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gmime.html" title="GMime-2.6.23">Prev</a>
+          <p>
+            GMime-2.6.23
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gobject-introspection.html" title=
+          "gobject-introspection-1.62.0">Next</a>
+          <p>
+            gobject-introspection-1.62.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="gmime3" name="gmime3"></a>GMime-3.2.6
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to GMime
+        </h2>
+        <p>
+          The <span class="application">GMime</span> package contains a set
+          of utilities for parsing and creating messages using the
+          Multipurpose Internet Mail Extension (MIME) as defined by the
+          applicable RFCs. See the <a class="ulink" href=
+          "http://spruce.sourceforge.net/gmime/">GMime web site</a> for the
+          RFCs resourced. This is useful as it provides an API which adheres
+          to the MIME specification as closely as possible while also
+          providing programmers with an extremely easy to use interface to
+          the API functions.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.gnome.org/pub/gnome/sources/gmime/3.2/gmime-3.2.6.tar.xz">
+                http://ftp.gnome.org/pub/gnome/sources/gmime/3.2/gmime-3.2.6.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnome.org/pub/gnome/sources/gmime/3.2/gmime-3.2.6.tar.xz">
+                ftp://ftp.gnome.org/pub/gnome/sources/gmime/3.2/gmime-3.2.6.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 656548dc431004d1ebf95e5d0bb4b9c8
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 2.1 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 25 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.3 SBU (with tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          GMime Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="glib2.html" title=
+          "GLib-2.62.4">GLib-2.62.4</a> and <a class="xref" href=
+          "libgpg-error.html" title="libgpg-error-1.37">libgpg-error-1.37</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="gobject-introspection.html" title=
+          "gobject-introspection-1.62.0">gobject-introspection-1.62.0</a> and
+          <a class="xref" href="libidn2.html" title=
+          "libidn2-2.3.0">libidn2-2.3.0</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../pst/docbook-utils.html" title=
+          "DocBook-utils-0.6.14">DocBook-utils-0.6.14</a>, <a class="xref"
+          href="../postlfs/gpgme.html" title="GPGME-1.13.1">GPGME-1.13.1</a>,
+          <a class="xref" href="gtk-doc.html" title=
+          "GTK-Doc-1.32">GTK-Doc-1.32</a>, <a class="xref" href="vala.html"
+          title="Vala-0.46.6">Vala-0.46.6</a>, and <a class="ulink" href=
+          "http://download.mono-project.com/sources/gtk-sharp/">Gtk#</a>
+          (requires <a class="ulink" href=
+          "http://www.mono-project.com/Main_Page">Mono</a>)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/gmime">http://wiki.linuxfromscratch.org/blfs/wiki/gmime</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of GMime
+        </h2>
+        <p>
+          Install <span class="application">GMime</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr --disable-static &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--disable-static</code></em>: This
+          switch prevents installation of static versions of the libraries.
+        </p>
+        <p>
+          <code class="option">--enable-gtk-doc</code>: Use this parameter if
+          <span class="application">GTK-Doc</span> is installed and you wish
+          to rebuild and install the API documentation.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">libgmime-3.0.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/gmime-3.0 and
+              /usr/share/gtk-doc/html/gmime-3.0</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgmime-3" name="libgmime-3"></a><span class=
+                    "term"><code class=
+                    "filename">libgmime-3.0.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains API functions used by programs that need to
+                    comply to the MIME standards.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-16 18:46:23 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gmime.html" title="GMime-2.6.23">Prev</a>
+          <p>
+            GMime-2.6.23
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gobject-introspection.html" title=
+          "gobject-introspection-1.62.0">Next</a>
+          <p>
+            gobject-introspection-1.62.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

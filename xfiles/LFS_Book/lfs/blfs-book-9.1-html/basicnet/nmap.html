@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Nmap-7.80
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;16.&nbsp;Networking Utilities
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="networkmanager.html" title=
+          "NetworkManager-1.22.6">Prev</a>
+          <p>
+            NetworkManager-1.22.6
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="traceroute.html" title=
+          "Traceroute-2.1.0">Next</a>
+          <p>
+            Traceroute-2.1.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netutils.html" title=
+          "Chapter&nbsp;16.&nbsp;Networking Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="nmap" name="nmap"></a>Nmap-7.80
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Nmap
+        </h2>
+        <p>
+          <span class="application">Nmap</span> is a utility for network
+          exploration and security auditing. It supports ping scanning, port
+          scanning and TCP/IP fingerprinting.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://nmap.org/dist/nmap-7.80.tar.bz2">http://nmap.org/dist/nmap-7.80.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: d37b75b06d1d40f27b76d60db420a1f5
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 10 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 119 MB (add 25 MB for tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.9 SBU (add 0.1 SBU for tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Nmap Dependencies
+        </h3>
+        <h4>
+          Recommended
+        </h4>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            These packages are recommended because if they're not installed,
+            the build process will compile and link against its own (often
+            older) version.
+          </p>
+        </div>
+        <p class="recommended">
+          <a class="xref" href="libpcap.html" title=
+          "libpcap-1.9.1">libpcap-1.9.1</a>, <a class="xref" href=
+          "../general/lua.html" title="Lua-5.3.5">Lua-5.3.5</a>, <a class=
+          "xref" href="../general/pcre.html" title="PCRE-8.44">PCRE-8.44</a>,
+          and <a class="xref" href="../general/liblinear.html" title=
+          "liblinear-230">liblinear-230</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/python-modules.html#pygtk" title=
+          "PyGTK-2.24.0">PyGTK-2.24.0</a> (required for <span class=
+          "command"><strong>zenmap</strong></span>), <a class="xref" href=
+          "../general/python2.html" title="Python-2.7.17">Python-2.7.17</a>
+          (required for <span class="command"><strong>ndiff</strong></span>)
+          and <a class="xref" href="../general/subversion.html" title=
+          "Subversion-1.13.0">Subversion-1.13.0</a> (required for
+          <span class="command"><strong>nmap-update</strong></span>), and
+          <a class="xref" href="../general/libssh2.html" title=
+          "libssh2-1.9.0">libssh2-1.9.0</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/nmap">http://wiki.linuxfromscratch.org/blfs/wiki/nmap</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Nmap
+        </h2>
+        <p>
+          Install <span class="application">Nmap</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">./configure --prefix=/usr --with-liblua=included &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          If you wish to run the test suite, run the following command:
+        </p>
+        <pre class="userinput">
+<kbd class="command">sed -i 's/lib./lib/' zenmap/test/run_tests.py</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span> as the <code class="systemitem">root</code>
+          user. Tests need a graphical session.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--with-liblua=included</code></em>:
+          This switch is required to fix compilation with <span class=
+          "application">lua</span> 5.3.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">ncat, ndiff, nmap, nmapfe, nmap-update,
+              nping, uninstall_ndiff, uninstall_zenmap, xnmap and
+              zenmap</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class=
+              "segbody">/usr/lib/python2.7/site-packages/{radialnet,zenmapCore,zenmapGUI},
+              and /usr/share/{ncat,nmap,zenmap}</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ncat" name="ncat"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ncat</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a utility for reading and writing data across networks
+                    from the command line.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ndiff" name="ndiff"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ndiff</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to aid in the comparison of Nmap scans.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="nmap-prog" name="nmap-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>nmap</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a utility for network exploration and security
+                    auditing. It supports ping scanning, port scanning and
+                    TCP/IP fingerprinting.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="nmapfe" name="nmapfe"></a><span class=
+                    "term"><span class=
+                    "command"><strong>nmapfe</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a symbolic link to <span class=
+                    "command"><strong>zenmap</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="nmap-update" name="nmap-update"></a><span class=
+                    "term"><span class=
+                    "command"><strong>nmap-update</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an updater for Nmap architecture-independent files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="nping" name="nping"></a><span class=
+                    "term"><span class=
+                    "command"><strong>nping</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an open-source tool for network packet generation,
+                    response analysis and response time measurement.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="uninstall_ndiff" name=
+                    "uninstall_ndiff"></a><span class="term"><span class=
+                    "command"><strong>uninstall_ndiff</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a Python script to uninstall <span class=
+                    "command"><strong>ndiff</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="uninstall_zenmap" name=
+                    "uninstall_zenmap"></a><span class="term"><span class=
+                    "command"><strong>uninstall_zenmap</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a Python script to uninstall <span class=
+                    "command"><strong>zenmap</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="xnmap" name="xnmap"></a><span class=
+                    "term"><span class=
+                    "command"><strong>xnmap</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a symbolic link to <span class=
+                    "command"><strong>zenmap</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="zenmap" name="zenmap"></a><span class=
+                    "term"><span class=
+                    "command"><strong>zenmap</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a Python based graphical nmap frontend viewer.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-17 12:12:55 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="networkmanager.html" title=
+          "NetworkManager-1.22.6">Prev</a>
+          <p>
+            NetworkManager-1.22.6
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="traceroute.html" title=
+          "Traceroute-2.1.0">Next</a>
+          <p>
+            Traceroute-2.1.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netutils.html" title=
+          "Chapter&nbsp;16.&nbsp;Networking Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

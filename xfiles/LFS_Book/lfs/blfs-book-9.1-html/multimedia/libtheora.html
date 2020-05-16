@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      libtheora-1.1.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;42.&nbsp;Multimedia Libraries and Drivers
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libsndfile.html" title=
+          "libsndfile-1.0.28">Prev</a>
+          <p>
+            libsndfile-1.0.28
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libvorbis.html" title=
+          "libvorbis-1.3.6">Next</a>
+          <p>
+            libvorbis-1.3.6
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="libdriv.html" title=
+          "Chapter&nbsp;42.&nbsp;Multimedia Libraries and Drivers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="libtheora" name="libtheora"></a>libtheora-1.1.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to libtheora
+        </h2>
+        <p>
+          <span class="application">libtheora</span> is a reference
+          implementation of the Theora video compression format being
+          developed by the Xiph.Org Foundation.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://downloads.xiph.org/releases/theora/libtheora-1.1.1.tar.xz">
+                https://downloads.xiph.org/releases/theora/libtheora-1.1.1.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 9eeabf1ad65b7f41533854a59f7a716d
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 1.4 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 13.4 MB (without static libs
+                or API docs and without installing the examples)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.2 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          libtheora Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="libogg.html" title=
+          "libogg-1.3.4">libogg-1.3.4</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="libvorbis.html" title=
+          "libvorbis-1.3.6">libvorbis-1.3.6</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="sdl.html" title="SDL-1.2.15">SDL-1.2.15</a>
+          and <a class="xref" href="../general/libpng.html" title=
+          "libpng-1.6.37">libpng-1.6.37</a> (both to build the example
+          players), <a class="xref" href="../general/doxygen.html" title=
+          "Doxygen-1.8.17">Doxygen-1.8.17</a>, <a class="xref" href=
+          "../pst/texlive.html" title=
+          "texlive-20190410-source">texlive-20190410</a> (or <a class="xref"
+          href="../pst/tl-installer.html" title=
+          "install-tl-unx">install-tl-unx</a>), <a class="ulink" href=
+          "http://bibtexml.sourceforge.net">BibTex</a>, and <a class="ulink"
+          href="http://mcj.sourceforge.net/">Transfig</a> (all four to build
+          the API documentation), and <a class="xref" href=
+          "../general/valgrind.html" title=
+          "Valgrind-3.15.0">Valgrind-3.15.0</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/Libtheora">http://wiki.linuxfromscratch.org/blfs/wiki/Libtheora</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of libtheora
+        </h2>
+        <p>
+          Install <span class="application">libtheora</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i 's/png_\(sizeof\)/\1/g' examples/png2theora.c &amp;&amp;
+./configure --prefix=/usr --disable-static &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          If you wish to run the tests, issue: <span class=
+          "command"><strong>make check</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+        <p>
+          If you wish to install the examples (so that you can hack on
+          <code class="literal">theora</code>), install them as the
+          <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">cd examples/.libs &amp;&amp;
+for E in *; do
+  install -v -m755 $E /usr/bin/theora_${E}
+done</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>sed -i 's/png_\(sizeof\)/\1/g'
+          examples/png2theora.c</strong></span>: This <span class=
+          "command"><strong>sed</strong></span> fixes build with <span class=
+          "application">libpng</span> 1.6.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-static</code></em>: This
+          switch prevents installation of static versions of the libraries.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">None, unless you installed the
+              examples</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libtheora.so, libtheoraenc.so, and
+              libtheoradec.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/theora and
+              /usr/share/doc/libtheora-1.1.1</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libtheora-lib" name=
+                    "libtheora-lib"></a><span class="term"><code class=
+                    "filename">libtheora*.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    libraries provide the functions to read and write video
+                    files.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-17 18:27:03 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libsndfile.html" title=
+          "libsndfile-1.0.28">Prev</a>
+          <p>
+            libsndfile-1.0.28
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libvorbis.html" title=
+          "libvorbis-1.3.6">Next</a>
+          <p>
+            libvorbis-1.3.6
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="libdriv.html" title=
+          "Chapter&nbsp;42.&nbsp;Multimedia Libraries and Drivers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

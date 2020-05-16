@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Evolution-3.34.4
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;34.&nbsp;<span class="phrase">GNOME Applications</span>
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="evince.html" title="Evince-3.34.2">Prev</a>
+          <p>
+            Evince-3.34.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="file-roller.html" title=
+          "File-Roller-3.32.4">Next</a>
+          <p>
+            File-Roller-3.32.4
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="applications.html" title=
+          "Chapter&nbsp;34.&nbsp;GNOME Applications">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="evolution" name="evolution"></a>Evolution-3.34.4
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Evolution
+        </h2>
+        <p>
+          The <span class="application">Evolution</span> package contains an
+          integrated mail, calendar and address book suite designed for the
+          <span class="application">GNOME</span> environment.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.gnome.org/pub/gnome/sources/evolution/3.34/evolution-3.34.4.tar.xz">
+                http://ftp.gnome.org/pub/gnome/sources/evolution/3.34/evolution-3.34.4.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnome.org/pub/gnome/sources/evolution/3.34/evolution-3.34.4.tar.xz">
+                ftp://ftp.gnome.org/pub/gnome/sources/evolution/3.34/evolution-3.34.4.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: a39f2f35113618870d30f65e57f9701b
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 11 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 336 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 1.2 SBU (Using parallelism=4)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Evolution Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../x/adwaita-icon-theme.html" title=
+          "adwaita-icon-theme-3.34.3">adwaita-icon-theme-3.34.3</a>,
+          <a class="xref" href="evolution-data-server.html" title=
+          "evolution-data-server-3.34.4">evolution-data-server-3.34.4</a>,
+          <a class="xref" href="gnome-autoar.html" title=
+          "gnome-autoar-0.2.4">gnome-autoar-0.2.4</a>, <a class="xref" href=
+          "../pst/itstool.html" title="itstool-2.0.6">itstool-2.0.6</a>,
+          <a class="xref" href="libgdata.html" title=
+          "libgdata-0.17.11">libgdata-0.17.11</a>, <a class="xref" href=
+          "../general/shared-mime-info.html" title=
+          "shared-mime-info-1.15">shared-mime-info-1.15</a>, and <a class=
+          "xref" href="../x/webkitgtk.html" title=
+          "WebKitGTK+-2.26.4">WebKitGTK+-2.26.4</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/bogofilter.html" title=
+          "Bogofilter-1.2.5">Bogofilter-1.2.5</a>, <a class="xref" href=
+          "../general/enchant.html" title="enchant-2.2.7">enchant-2.2.7</a>,
+          <a class="xref" href="gnome-desktop.html" title=
+          "gnome-desktop-3.34.4">gnome-desktop-3.34.4</a>, <a class="xref"
+          href="../general/gspell.html" title=
+          "gspell-1.8.3">gspell-1.8.3</a>, <a class="xref" href=
+          "../general/highlight.html" title=
+          "Highlight-3.55">Highlight-3.55</a>, <a class="xref" href=
+          "../multimedia/libcanberra.html" title=
+          "libcanberra-0.30">libcanberra-0.30</a>, <a class="xref" href=
+          "libgweather.html" title=
+          "libgweather-3.34.0">libgweather-3.34.0</a>, <a class="xref" href=
+          "../x/libnotify.html" title="libnotify-0.7.8">libnotify-0.7.8</a>,
+          <a class="xref" href="../server/openldap.html" title=
+          "OpenLDAP-2.4.49">OpenLDAP-2.4.49</a>, and <a class="xref" href=
+          "seahorse.html" title="Seahorse-3.34.1">Seahorse-3.34.1</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../x/clutter-gtk.html" title=
+          "clutter-gtk-1.8.4">clutter-gtk-1.8.4</a>, <a class="xref" href=
+          "../basicnet/geoclue2.html" title=
+          "GeoClue-2.5.5">GeoClue-2.5.5</a>, <a class="xref" href=
+          "geocode-glib.html" title=
+          "geocode-glib-3.26.1">geocode-glib-3.26.1</a>, and <a class="xref"
+          href="libchamplain.html" title=
+          "libchamplain-0.12.20">libchamplain-0.12.20</a> (Contact Maps
+          plugin), <a class="xref" href="../general/gtk-doc.html" title=
+          "GTK-Doc-1.32">GTK-Doc-1.32</a>, <a class="ulink" href=
+          "https://glade.gnome.org/">Glade</a>, <a class="ulink" href=
+          "http://www.five-ten-sg.com/libpst/">libpst</a>, <a class="ulink"
+          href="https://launchpad.net/libunity/">libunity</a>, <a class=
+          "ulink" href="https://github.com/Yeraze/ytnef">libytnef</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/evolution">http://wiki.linuxfromscratch.org/blfs/wiki/evolution</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Evolution
+        </h2>
+        <p>
+          Install <span class="application">Evolution</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+cmake -DCMAKE_INSTALL_PREFIX=/usr \
+      -DSYSCONF_INSTALL_DIR=/etc  \
+      -DENABLE_INSTALLED_TESTS=ON \
+      -DENABLE_PST_IMPORT=OFF     \
+      -DENABLE_YTNEF=OFF          \
+      -DENABLE_CONTACT_MAPS=OFF   \
+      -G Ninja .. &amp;&amp;
+ninja</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">ninja install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>-DENABLE_YTNEF=OFF</code></em>: This
+          switch is used to disable the yTNEF library usage because
+          <span class="application">libytnef</span> is not part of BLFS.
+        </p>
+        <p>
+          <em class="parameter"><code>-DENABLE_PST_IMPORT=OFF</code></em>:
+          This switch is used to disable the pst-import plugin because
+          <span class="application">libpst</span> is not part of BLFS.
+        </p>
+        <p>
+          <code class="option">-DENABLE_CONTACT_MAPS=ON</code>: Use this
+          switch if you have installed the necessary dependencies and wish to
+          build the Contact Maps plugin.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">evolution</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libeabutil.so, libeabwidgets.so,
+              libecontacteditor.so, libecontactlisteditor.so,
+              libecontactprint.so, libedomutils.so, libemail-engine.so,
+              libessmime.so, libevolution-addressbook-importers.so,
+              libevolution-calendar-importers.so, libevolution-calendar.so,
+              libevolution-mail-composer.so, libevolution-mail-formatter.so,
+              libevolution-mail-importers.so, libevolution-mail.so,
+              libevolution-shell.so, libevolution-smime.so,
+              libevolution-util.so, libgnomecanvas.so, and several modules
+              and plugins in
+              /usr/lib/evolution/{modules,plugins,web-extensions}</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/evolution,
+              /usr/lib/evolution, /usr/libexec/evolution,
+              /usr/share/evolution, /usr/share/installed-tests/evolution,
+              /usr/share/gtk-doc/html/{evolution-mail-composer,evolution-mail-engine},
+              /usr/share/gtk-doc/html/{evolution-mail-formatter,evolution-shell},
+              /usr/share/gtk-doc/html/evolution-util, and
+              /usr/share/help/*/evolution</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="evolution-prog" name=
+                    "evolution-prog"></a><span class="term"><span class=
+                    "command"><strong>evolution</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an email, calendar and address book suite for the
+                    <span class="application">GNOME</span> Desktop.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-27 13:05:33 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="evince.html" title="Evince-3.34.2">Prev</a>
+          <p>
+            Evince-3.34.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="file-roller.html" title=
+          "File-Roller-3.32.4">Next</a>
+          <p>
+            File-Roller-3.32.4
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="applications.html" title=
+          "Chapter&nbsp;34.&nbsp;GNOME Applications">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

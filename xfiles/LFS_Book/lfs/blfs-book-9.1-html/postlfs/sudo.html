@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Sudo-1.8.31
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;4.&nbsp;Security
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="stunnel.html" title="stunnel-5.56">Prev</a>
+          <p>
+            stunnel-5.56
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="tripwire.html" title=
+          "Tripwire-2.4.3.7">Next</a>
+          <p>
+            Tripwire-2.4.3.7
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="security.html" title=
+          "Chapter&nbsp;4.&nbsp;Security">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="sudo" name="sudo"></a>Sudo-1.8.31
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Sudo
+        </h2>
+        <p>
+          The <span class="application">Sudo</span> package allows a system
+          administrator to give certain users (or groups of users) the
+          ability to run some (or all) commands as <code class=
+          "systemitem">root</code> or another user while logging the commands
+          and arguments.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://www.sudo.ws/dist/sudo-1.8.31.tar.gz">http://www.sudo.ws/dist/sudo-1.8.31.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.sudo.ws/pub/sudo/sudo-1.8.31.tar.gz">ftp://ftp.sudo.ws/pub/sudo/sudo-1.8.31.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: ce17ff6e72a70f8d5dabba8abf3cd2de
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 3.2 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 39 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.4 SBU (with tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Sudo Dependencies
+        </h3>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="linux-pam.html" title=
+          "Linux-PAM-1.3.1">Linux-PAM-1.3.1</a>, <a class="xref" href=
+          "mitkrb.html" title="MIT Kerberos V5-1.18">MIT Kerberos
+          V5-1.18</a>, <a class="xref" href="../server/openldap.html" title=
+          "OpenLDAP-2.4.49">OpenLDAP-2.4.49</a>, <a class="xref" href=
+          "../server/mail.html" title=
+          "Chapter&nbsp;21.&nbsp;Mail Server Software">MTA</a> (that provides
+          a <span class="command"><strong>sendmail</strong></span> command),
+          <a class="ulink" href="http://www.openafs.org/">AFS</a>, <a class=
+          "ulink" href="http://www.fwtk.org/">FWTK</a>, and <a class="ulink"
+          href="https://downloads.sourceforge.net/opie/">Opie</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/sudo">http://wiki.linuxfromscratch.org/blfs/wiki/sudo</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Sudo
+        </h2>
+        <p>
+          First, fix a problem that prevents installation from completion:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -e '/^pre-install:/{N;s@;@ -a -r $(sudoersdir)/sudoers;@}' \
+    -i plugins/sudoers/Makefile.in</kbd>
+</pre>
+        <p>
+          Install <span class="application">Sudo</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr              \
+            --libexecdir=/usr/lib      \
+            --with-secure-path         \
+            --with-all-insults         \
+            --with-env-editor          \
+            --docdir=/usr/share/doc/sudo-1.8.31 \
+            --with-passprompt="[sudo] password for %p: " &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>env
+          LC_ALL=C make check 2&gt;&amp;1 | tee
+          ../make-check.log</strong></span>. Check the results with
+          <span class="command"><strong>grep failed
+          ../make-check.log</strong></span>. One test, test3, is known to
+          fail if the tests are run as the root user.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install &amp;&amp;
+ln -sfv libsudo_util.so.0.0.0 /usr/lib/sudo/libsudo_util.so.0</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--libexecdir=/usr/lib</code></em>: This
+          switch controls where private programs are installed. Everything in
+          that directory is a library, so they belong under <code class=
+          "filename">/usr/lib</code> instead of <code class=
+          "filename">/usr/libexec</code>.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-secure-path</code></em>: This
+          switch transparently adds <code class="filename">/sbin</code> and
+          <code class="filename">/usr/sbin</code> directories to the
+          <code class="envar">PATH</code> environment variable.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-all-insults</code></em>: This
+          switch includes all the <span class="application">sudo</span>
+          insult sets.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-env-editor</code></em>: This
+          switch enables use of the environment variable EDITOR for
+          <span class="command"><strong>visudo</strong></span>.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-passprompt</code></em>: This
+          switch sets the password prompt.
+        </p>
+        <p>
+          <code class="option">--without-pam</code>: This switch avoids
+          building <span class="application">Linux-PAM</span> support when
+          <span class="application">Linux-PAM</span> is installed on the
+          system.
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            There are many options to <span class="application">sudo</span>'s
+            <span class="command"><strong>configure</strong></span> command.
+            Check the <span class="command"><strong>configure
+            --help</strong></span> output for a complete list.
+          </p>
+        </div>
+        <p>
+          <span class="command"><strong>ln -sfv
+          libsudo_util...</strong></span>: Works around a bug in the
+          installation process, which links to the previously installed
+          version (if there is one) instead of the new one.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring Sudo
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="sudo-config" name="sudo-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="sudo-config" name="sudo-config"></a>Config File
+          </h4>
+          <p>
+            <code class="filename">/etc/sudoers</code>
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779283454336" name=
+            "idm45779283454336"></a>Configuration Information
+          </h4>
+          <p>
+            The <code class="filename">sudoers</code> file can be quite
+            complicated. It is composed of two types of entries: aliases
+            (basically variables) and user specifications (which specify who
+            may run what). The installation installs a default configuration
+            that has no privileges installed for any user.
+          </p>
+          <p>
+            A couple of common configuration chanes are to set the path for
+            the super user and to allow members of the wheel group to execute
+            all commands after providing their own credientials. Use the
+            following commands to create the <code class=
+            "filename">/etc/sudoers.d/sudo</code> configuration file as the
+            <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">cat &gt; /etc/sudoers.d/sudo &lt;&lt; "EOF"
+<code class="literal">Defaults secure_path="/usr/bin:/bin:/usr/sbin:/sbin"
+%wheel ALL=(ALL) ALL</code>
+EOF</kbd>
+</pre>
+          <p>
+            For details, see <span class="command"><strong>man
+            sudoers</strong></span>.
+          </p>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              The <span class="application">Sudo</span> developers highly
+              recommend using the <span class=
+              "command"><strong>visudo</strong></span> program to edit the
+              <code class="filename">sudoers</code> file. This will provide
+              basic sanity checking like syntax parsing and file permission
+              to avoid some possible mistakes that could lead to a vulnerable
+              configuration.
+            </p>
+          </div>
+          <p>
+            If <span class="application">PAM</span> is installed on the
+            system, <span class="application">Sudo</span> is built with
+            <span class="application">PAM</span> support. In that case, issue
+            the following command as the <code class="systemitem">root</code>
+            user to create the <span class="application">PAM</span>
+            configuration file:
+          </p>
+          <pre class="root">
+<kbd class="command">cat &gt; /etc/pam.d/sudo &lt;&lt; "EOF"
+<code class="literal"># Begin /etc/pam.d/sudo
+
+# include the default auth settings
+auth      include     system-auth
+
+# include the default account settings
+account   include     system-account
+
+# Set default environment variables for the service user
+session   required    pam_env.so
+
+# include system session defaults
+session   include     system-session
+
+# End /etc/pam.d/sudo</code>
+EOF
+chmod 644 /etc/pam.d/sudo</kbd>
+</pre>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">cvtsudoers, sudo, sudoedit (symlink),
+              sudoreplay, and visudo</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">group_file.so, libsudo_util.so,
+              sudoers.so, sudo_noexec.so, and system_group.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/etc/sudoers.d, /usr/lib/sudo,
+              /usr/share/doc/sudo-1.8.31, and /var/{lib,run}/sudo</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="cvtsudoers" name="cvtsudoers"></a><span class=
+                    "term"><span class=
+                    "command"><strong>cvtsudoers</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    converts between sudoers file formats.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="sudo_prog" name="sudo_prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>sudo</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    executes a command as another user as permitted by the
+                    <code class="filename">/etc/sudoers</code> configuration
+                    file.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="sudoedit" name="sudoedit"></a><span class=
+                    "term"><span class=
+                    "command"><strong>sudoedit</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a symlink to <span class=
+                    "command"><strong>sudo</strong></span> that implies the
+                    <code class="option">-e</code> option to invoke an editor
+                    as another user.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="sudoreplay" name="sudoreplay"></a><span class=
+                    "term"><span class=
+                    "command"><strong>sudoreplay</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to play back or list the output logs created by
+                    <span class="command"><strong>sudo</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="visudo" name="visudo"></a><span class=
+                    "term"><span class=
+                    "command"><strong>visudo</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    allows for safer editing of the <code class=
+                    "filename">sudoers</code> file.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 08:54:30 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="stunnel.html" title="stunnel-5.56">Prev</a>
+          <p>
+            stunnel-5.56
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="tripwire.html" title=
+          "Tripwire-2.4.3.7">Next</a>
+          <p>
+            Tripwire-2.4.3.7
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="security.html" title=
+          "Chapter&nbsp;4.&nbsp;Security">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

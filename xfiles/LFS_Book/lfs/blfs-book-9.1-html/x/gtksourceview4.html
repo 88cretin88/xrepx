@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      gtksourceview4-4.4.0
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;25.&nbsp;X Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gtksourceview.html" title=
+          "gtksourceview-3.24.11">Prev</a>
+          <p>
+            gtksourceview-3.24.11
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="imlib2.html" title="imlib2-1.6.1">Next</a>
+          <p>
+            imlib2-1.6.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="lib.html" title=
+          "Chapter&nbsp;25.&nbsp;X Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="gtksourceview4" name="gtksourceview4"></a>gtksourceview4-4.4.0
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to GtkSourceView
+        </h2>
+        <p>
+          The <span class="application">GtkSourceView</span> package contains
+          libraries used for extending the <span class=
+          "application">GTK+</span> text functions to include syntax
+          highlighting.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.gnome.org/pub/gnome/sources/gtksourceview/4.4/gtksourceview-4.4.0.tar.xz">
+                http://ftp.gnome.org/pub/gnome/sources/gtksourceview/4.4/gtksourceview-4.4.0.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnome.org/pub/gnome/sources/gtksourceview/4.4/gtksourceview-4.4.0.tar.xz">
+                ftp://ftp.gnome.org/pub/gnome/sources/gtksourceview/4.4/gtksourceview-4.4.0.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 5c47e314517692f2622a0b724c65e628
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 1.1 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 36 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.1 SBU (with tests; both using
+                parallelism=4)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          GtkSourceView Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="gtk3.html" title=
+          "GTK+-3.24.13">GTK+-3.24.13</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/gobject-introspection.html" title=
+          "gobject-introspection-1.62.0">gobject-introspection-1.62.0</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/vala.html" title=
+          "Vala-0.46.6">Vala-0.46.6</a>, <a class="xref" href=
+          "../general/valgrind.html" title=
+          "Valgrind-3.15.0">Valgrind-3.15.0</a>, <a class="xref" href=
+          "../general/gtk-doc.html" title="GTK-Doc-1.32">GTK-Doc-1.32</a>,
+          <a class="xref" href="../pst/itstool.html" title=
+          "itstool-2.0.6">itstool-2.0.6</a>, <a class="xref" href=
+          "../pst/fop.html" title="fop-2.4">fop-2.4</a> (or <a class="ulink"
+          href="http://sourceforge.net/projects/dblatex/">dblatex</a>), and
+          <a class="ulink" href="http://glade.gnome.org/">Glade</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/gtksourceview4">http://wiki.linuxfromscratch.org/blfs/wiki/gtksourceview4</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of GtkSourceView
+        </h2>
+        <p>
+          Install <span class="application">GtkSourceView</span> by running
+          the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson --prefix=/usr .. &amp;&amp;
+ninja</kbd>
+</pre>
+        <p>
+          To test the results, issue <span class="command"><strong>ninja
+          test</strong></span>. The tests need to be run in a graphical
+          environment.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">ninja install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <code class="option">-Dgtk_doc=true</code>: This option is normally
+          used if <span class="application">GTK-Doc</span> is installed and
+          you wish to rebuild and install the API documentation.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">libgtksourceview-4.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class=
+              "segbody">/usr/{include,share,share/gtk-doc/html}/gtksourceview-4</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgtksourceview-4" name=
+                    "libgtksourceview-4"></a><span class="term"><code class=
+                    "filename">libgtksourceview-4.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains function extensions for the GtkTextView widget.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-18 14:50:03 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gtksourceview.html" title=
+          "gtksourceview-3.24.11">Prev</a>
+          <p>
+            gtksourceview-3.24.11
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="imlib2.html" title="imlib2-1.6.1">Next</a>
+          <p>
+            imlib2-1.6.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="lib.html" title=
+          "Chapter&nbsp;25.&nbsp;X Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
