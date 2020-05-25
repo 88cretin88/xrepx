@@ -1,0 +1,6 @@
+#!/bin/bash
+# Author: Tergoev M.A.
+. "$(dirname $(readlink -f "$0"))/runlib"
+START_PORTWINE
+"${var_gamemode}" "${PROTONRUN}" "run" "${gamestart}" ${launch_parameters} & KILL9_WINEDEVICE >&2
+STOP_PORTWINE
