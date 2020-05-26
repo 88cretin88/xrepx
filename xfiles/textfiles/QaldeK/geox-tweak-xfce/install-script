@@ -1,0 +1,277 @@
+#!/bin/bash
+
+##################################################################################
+# Install script for geox-tweak on Debian system (MXlinux, xubuntu, linux-mint)
+#-------------------------------- 
+#
+#	For install geox-tweak-xfce : launch "install-geox" or open a terminal in the "install-script.sh" directory, 
+# 	and enter "./install.sh"
+# 	For uninstall : "sudo ./uninstall"
+
+#________________________________________________________
+
+# Copyright: 2019 QaldeK <aldek at vivaldi dot net>
+
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+
+#  You should have received a copy of the GNU General Public License with
+#  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
+#  if not, write to the Free Software Foundation, Inc., 51 Franklin St,
+#  Fifth Floor, Boston, MA 02110-1301, USA.
+
+# On Debian systems, the complete text of the GNU General
+# Public License can be found in `/usr/share/common-licenses/GPL'.
+
+##################################################################################
+#
+##################################################################################
+
+
+echo "---------------------------------------------------------------------------------------"
+echo "This script will install geox-tweak-xfce and dependancy ('python3' 'python3-gi' 'xfce4-datetime-plugin' 'gconf2' 'gir1.2-gtk-3.0' 'gtk2-engines-murrine' 'gtk2-engines-pixbuf' 'papirus-icon-theme' 'tar' 'xz-utils')
+ 
+ Are you ok to procced  ? Tap enter for yes, tap ctrl+c or close terminal for no"
+echo
+read
+echo "---------------------------------------------------------"
+read -sp 'User password is require: ' pw
+echo
+
+mainFunction () {
+	command="${1}"
+	log="/tmp/$(date +%s)"
+	${command} 2> "${log}" 
+	checkErrorLog "${log}"
+}
+
+checkErrorLog () {
+    log="${1}"
+    error=$(cat "${log}")
+    if [ "${error}" != "" ]; then
+    	echo "---------------------"
+    	echo "Error during process :"
+    	echo
+        echo "${error}"
+        echo "---------------------"
+  #       echo
+		# echo "press enter for exit"
+		# read    
+        exit 1
+    
+    else 
+    	echo "----------------------------------------------"
+		echo "Process completed, press enter for exit"
+		echo "----------------------------------------------"
+		read    
+	fi
+}
+
+
+add_ppa() {
+      for i in "$@"; do
+        grep -h "^deb.*$i" /etc/apt/sources.list.d/* > /dev/null 2>&1
+        if [ $? -ne 0 ]
+        then
+          echo "Adding ppa:$i \
+........"
+          echo $pw | sudo -S add-apt-repository -y ppa:$i
+        else
+          echo "ppa:$i already exists \
+........"
+        fi
+      done
+    }
+
+
+_installation()	{
+	echo " "
+	echo "----------------------------------------------"
+	echo "Process to geox-tweak-xfce installation."
+	echo "----------------------------------------------"
+
+	if [ -d "/usr/share/geox-tweak" ]
+	then
+		echo "...Uninstall old GTX"
+		echo $pw | sudo -S rm -r /usr/share/geox-tweak
+		echo $pw | sudo -S rm /usr/bin/geox-tweak /usr/bin/gtx-indicator
+		echo $pw | sudo -S rm /usr/share/applications/GeoX-Tweak.desktop  /usr/share/applications/gtx-indicator.desktop
+		echo $pw | sudo -S rm -r $HOME/.config/geox-tweak-xfce
+		echo " ==> Done."
+	fi
+
+	echo $pw | sudo -S mkdir /usr/share/geox-tweak
+	echo $pw | sudo -S mkdir /usr/share/geox-tweak/theme
+	echo $pw | sudo -S mkdir /usr/share/geox-tweak/img
+	echo $pw | sudo -S mkdir /usr/share/geox-tweak/panel
+	echo $pw | sudo -S mkdir /usr/share/geox-tweak/script
+
+	echo $pw | sudo -S cp -R ./geox-tweak /usr/share/
+	echo $pw | sudo -S chmod -R 555 /usr/share/geox-tweak/script
+	echo $pw | sudo -S chmod 555 /usr/share/geox-tweak
+
+
+	echo $pw | sudo -S cp ./geox-tweak/GeoX-Tweak.desktop /usr/share/applications
+	echo $pw | sudo -S chmod 555 /usr/share/applications/GeoX-Tweak.desktop
+	echo $pw | sudo -S cp ./geox-tweak/gtx-indicator.desktop /usr/share/applications
+	echo $pw | sudo -S chmod 555 /usr/share/applications/GeoX-Tweak.desktop /usr/share/applications/gtx-indicator.desktop
+
+
+
+	# script /USR/BIN/
+	echo $pw | sudo -S cp ./geox-tweak/script/geox-tweak /usr/bin
+	echo $pw | sudo -S cp ./geox-tweak/script/gtx-indicator /usr/bin
+	echo $pw | sudo -S chmod 555 /usr/bin/geox-tweak /usr/bin/gtx-indicator
+	echo $pw | sudo -S cp ./geox-tweak/script/conkytoggle.sh /usr/bin
+	echo $pw | sudo -S chmod 555 /usr/bin/conkytoggle.sh
+	
+	# user config 
+	mkdir -p $HOME/.config/geox-tweak-xfce/panel
+	cp /usr/share/geox-tweak/geox-tweak.conf $HOME/.config/geox-tweak-xfce/
+	cp -r /usr/share/geox-tweak/panel/* $HOME/.config/geox-tweak-xfce/panel/
+
+
+	echo $pw | sudo -S cp -R ./geox-tweak/doc /usr/share/doc
+
+	echo "==> Geox-Tweak-Xfce :: Installation Done." 
+
+	_installationDep
+
+}
+
+
+	
+_installationDep() 
+	{ 
+
+		if [ -f /etc/lsb-release ]; then
+		    # For some versions of Debian/Ubuntu without lsb_release command
+		    . /etc/lsb-release
+		    os=$DISTRIB_ID
+		    ver=$DISTRIB_RELEASE
+		    echo " "
+		    echo "for" $os $ver
+		    echo " "
+		fi
+
+		distrib=$os$ver
+		
+		if [ $os = "MX" ] || [ $os = "Debian" ]; then
+			_installationDebian 
+		elif [ $os = "Ubuntu" ] || [ $os = "LinuxMint" ] ; then
+			_installationDebian
+		elif [ $os = "ManjaroLinux" ] ; then
+			_installationManjaro
+		fi
+
+		cd /usr/share/geox-tweak/script
+		./firstrun.sh
+	}
+
+_installationDebian()
+	{	
+		echo 
+		echo "__Check depends packages ________________"
+		echo 
+
+		for app in 'python3' 'python3-gi' 'xfce4-datetime-plugin' \
+		 'gconf2' \
+		'gir1.2-gtk-3.0' 'gtk2-engines-murrine' 'gtk2-engines-pixbuf'\
+		'papirus-icon-theme' 'tar' 'xz-utils'
+		do
+			if [ $(dpkg-query -W -f='${Status}' $app 2>/dev/null | grep -c "ok installed") -eq 0 ];
+			then
+				echo $app "==> try installation ..."
+				echo $pw | sudo -S apt-get install -y $app
+
+			else
+				echo $app is installed
+
+			fi	
+		done
+
+		# @ Papirus icon theme
+		if [ ! -d "/usr/share/icons/Papirus"  ]
+			# Install : Papirus-icon-theme
+			then
+				echo papirus-icon-theme installation ...
+				wget -qO- https://git.io/papirus-icon-theme-install | sh
+		fi		
+		
+		if [ ! -e '/usr/share/libreoffice/share/config/images_papirus.zip' ]; then
+			wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-libreoffice-theme/master/install-papirus-root.sh | sh
+		fi	
+
+		if [ ! -e "/usr/bin/papirus-folders" ]
+			#Install : papirus-folders
+			then 
+				echo papirus-folders installation ...
+				wget -qO- https://git.io/papirus-folders-install | sh
+			else
+				echo papirus-folders is installed
+		fi
+
+	}
+
+_installationManjaro()
+	{
+
+	echo "Geox-Tweak-Xfce need xfce4-dockbarx-plugin for some layout desktop theme, but this script don't install it. Please try to install xfce4-dockbarx-plugin manually
+
+	Press enter for continue..."
+
+	read
+	
+	echo 
+	echo "__Check depends packages ________________"
+	echo
+
+
+	for app in 'base-devel' 'yay'  'python3' 'python3-gi' 'xfce4-datetime-plugin' 'tar' 'xz-utils'  
+		do
+			if not pacman -Qs $package > /dev/null
+			then
+				echo $app installation ...
+				echo $pw | sudo -S pacman -S --noconfirm $app
+
+			else
+				echo $app is installed
+		fi	
+	done
+
+	if [ ! -d "/usr/share/icons/Papirus"  ]
+		# Install : Papirus-icon-theme
+		then
+			echo "----------------------"
+			echo papirus-icon-theme installation ...
+			echo ".................................."
+			echo $pw | sudo -S sudo pacman -S --noconfirm papirus-icon-theme
+		else
+			echo papirus-icon-theme is installed
+	fi
+
+	if [ ! -e '/usr/share/libreoffice/share/config/images_papirus.zip' ]; then
+		wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-libreoffice-theme/master/install-papirus-root.sh | sh
+	fi	
+
+	if [ ! -e "/usr/bin/papirus-folders" ]
+		#Install : papirus-folders
+		then 
+			echo papirus-folders installation ...
+			wget -qO- https://git.io/papirus-folders-install | sh
+		else
+			echo papirus-folders is installed
+	fi
+	
+}
+
+
+
+mainFunction _installation
