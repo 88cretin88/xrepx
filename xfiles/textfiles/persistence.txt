@@ -1,5 +1,0 @@
-mkdir -p /mnt/USB
-mount /dev/sda3 /mnt/USB
-echo "/ union" >> /mnt/USB/persistence.conf
-umount /dev/sda3
-reboot

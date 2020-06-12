@@ -1,7 +1,0 @@
-_site/
-.sass-cache/
-.jekyll-metadata
-node_modules
-*.log
-_config_dev.yml
-Gemfile.lock

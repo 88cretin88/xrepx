@@ -1,2 +1,0 @@
-# WebTechnologies
-Web  Exercises
