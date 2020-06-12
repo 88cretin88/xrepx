@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Pidgin-2.13.0
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;41.&nbsp;Other X-based Programs
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="inkscape.html" title=
+          "Inkscape-0.92.4">Prev</a>
+          <p>
+            Inkscape-0.92.4
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="rox-filer.html" title=
+          "Rox-Filer-2.11">Next</a>
+          <p>
+            Rox-Filer-2.11
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="other.html" title=
+          "Chapter&nbsp;41.&nbsp;Other X-based Programs">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="pidgin" name="pidgin"></a>Pidgin-2.13.0
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Pidgin
+        </h2>
+        <p>
+          <span class="application">Pidgin</span> is a Gtk+ 2 instant
+          messaging client that can connect with a wide range of networks
+          including AIM, ICQ, GroupWise, MSN, Jabber, IRC, Napster,
+          Gadu-Gadu, SILC, Zephyr and Yahoo!
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://downloads.sourceforge.net/pidgin/pidgin-2.13.0.tar.bz2">
+                https://downloads.sourceforge.net/pidgin/pidgin-2.13.0.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 423403494fe1951e47cc75231f743bb0
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 8.6 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 235 MB (with tests and docs)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.7 SBU (using parallelism=4; with
+                tests and docs)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Pidgin Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../x/gtk2.html" title=
+          "GTK+-2.24.32">GTK+-2.24.32</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/libgcrypt.html" title=
+          "libgcrypt-1.8.5">libgcrypt-1.8.5</a>, <a class="xref" href=
+          "../multimedia/gstreamer10.html" title=
+          "gstreamer-1.16.2">gstreamer-1.16.2</a> (required for audio
+          support), and <a class="xref" href="../postlfs/gnutls.html" title=
+          "GnuTLS-3.6.12">GnuTLS-3.6.12</a> or <a class="xref" href=
+          "../postlfs/nss.html" title="NSS-3.50">NSS-3.50</a>
+        </p>
+        <p>
+          SSL support is required for the MSN Messenger, Yahoo!, Novel
+          Groupwise and Google Talk protocol plugins. <span class=
+          "application">GnuTLS</span> is the preferred method (the Mozilla
+          NSS API is more likely to change and this can cause problems).
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../basicnet/avahi.html" title=
+          "Avahi-0.7">Avahi-0.7</a> (required for the Bonjour plugin),
+          <a class="xref" href="../postlfs/cyrus-sasl.html" title=
+          "Cyrus SASL-2.1.27">Cyrus SASL-2.1.27</a>, <a class="xref" href=
+          "../general/dbus.html" title="dbus-1.12.16">dbus-1.12.16</a>,
+          <a class="xref" href="../gnome/evolution-data-server.html" title=
+          "evolution-data-server-3.34.4">evolution-data-server-3.34.4</a>,
+          <a class="xref" href="../gnome/GConf.html" title=
+          "GConf-3.2.6">GConf-3.2.6</a>, <a class="xref" href=
+          "../general/libidn.html" title="libidn-1.35">libidn-1.35</a>
+          (required, if you wish to run the test suite), <a class="xref"
+          href="../basicnet/networkmanager.html" title=
+          "NetworkManager-1.22.6">NetworkManager-1.22.6</a>, <a class="xref"
+          href="../server/sqlite.html" title=
+          "SQLite-3.31.1">SQLite-3.31.1</a> (required for the Contact
+          Availability Prediction plugin), <a class="xref" href=
+          "../x/startup-notification.html" title=
+          "startup-notification-0.12">startup-notification-0.12</a>,
+          <a class="xref" href="../general/tcl.html" title=
+          "Tcl-8.6.10">Tcl-8.6.10</a>, <a class="xref" href=
+          "../general/tk.html" title="Tk-8.6.10">Tk-8.6.10</a>, <a class=
+          "ulink" href=
+          "http://www.freedesktop.org/wiki/Software/Farstream">Farstream
+          (Version 0.1)</a> (required for video and voice support), <a class=
+          "ulink" href="http://gtkspell.sourceforge.net/">Gtkspell</a>,
+          <a class="ulink" href="http://libgadu.net/">libgadu</a>, <a class=
+          "ulink" href="http://meanwhile.sourceforge.net/">Meanwhile</a>
+          (required for Sametime protocol support), <a class="ulink" href=
+          "http://silcnet.org/software/">SILC Client</a>, <a class="ulink"
+          href="http://silcnet.org/software/">SILC Toolkit</a>, <a class=
+          "ulink" href=
+          "http://packages.debian.org/stable/source/zephyr">Zephyr</a>, and
+          <a class="xref" href="../postlfs/mitkrb.html" title=
+          "MIT Kerberos V5-1.18">MIT Kerberos V5-1.18</a> (required for
+          Kerberos support in the Zephyr module)
+        </p>
+        <h4>
+          Optional (runtime)
+        </h4>
+        <p class="optional">
+          <a class="xref" href="xdg-utils.html" title=
+          "xdg-utils-1.1.3">xdg-utils-1.1.3</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/pidgin">http://wiki.linuxfromscratch.org/blfs/wiki/pidgin</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Pidgin
+        </h2>
+        <p>
+          If you wish to run the test suite, make sure that <a class="xref"
+          href="../general/libidn.html" title="libidn-1.35">libidn-1.35</a>
+          is installed and remove the switch <span class=
+          "quote">&ldquo;<span class=
+          "quote">--disable-idn</span>&rdquo;</span>. Compile <span class=
+          "application">Pidgin</span> by running the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr        \
+            --sysconfdir=/etc    \
+            --with-gstreamer=1.0 \
+            --disable-avahi      \
+            --disable-gtkspell   \
+            --disable-meanwhile  \
+            --disable-idn        \
+            --disable-nm         \
+            --disable-vv         \
+            --disable-tcl        &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          If you have <a class="xref" href="../general/doxygen.html" title=
+          "Doxygen-1.8.17">Doxygen-1.8.17</a> installed (<a class="xref"
+          href="../general/graphviz.html" title=
+          "Graphviz-2.42.3">Graphviz-2.42.3</a> can be used also) and you
+          wish to create the API documentation, issue:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make docs</kbd>
+</pre>
+        <p>
+          Remember the remarks before <span class=
+          "command"><strong>configure</strong></span>. To test the results,
+          issue: <span class="command"><strong>make check</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install &amp;&amp;
+mkdir -pv /usr/share/doc/pidgin-2.13.0 &amp;&amp;
+cp -v README doc/gtkrc-2.0 /usr/share/doc/pidgin-2.13.0</kbd>
+</pre>
+        <p>
+          If you created the API documentation, install it using the
+          following commands as the <code class="systemitem">root</code>
+          user:
+        </p>
+        <pre class="root">
+<kbd class="command">mkdir -pv /usr/share/doc/pidgin-2.13.0/api &amp;&amp;
+cp -v doc/html/* /usr/share/doc/pidgin-2.13.0/api</kbd>
+</pre>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            This package installs icon files into the <code class=
+            "filename">/usr/share/icons/hicolor</code> hierarchy and desktop
+            files into the <code class=
+            "filename">/usr/share/applications</code> hierarchy. You can
+            improve system performance and memory usage by updating
+            <code class=
+            "filename">/usr/share/icons/hicolor/index.theme</code> and
+            <code class=
+            "filename">/usr/share/applications/mimeinfo.cache</code>. To
+            perform the update you must have <a class="xref" href=
+            "../x/gtk2.html" title="GTK+-2.24.32">GTK+-2.24.32</a> or
+            <a class="xref" href="../x/gtk3.html" title=
+            "GTK+-3.24.13">GTK+-3.24.13</a> installed (for the icon cache)
+            and <a class="xref" href="../general/desktop-file-utils.html"
+            title="desktop-file-utils-0.24">desktop-file-utils-0.24</a> (for
+            the desktop cache) and issue the following commands as the
+            <code class="systemitem">root</code> user:
+          </p>
+          <pre class="userinput">
+<kbd class=
+"command">gtk-update-icon-cache -qtf /usr/share/icons/hicolor &amp;&amp;
+update-desktop-database -q</kbd>
+</pre>
+        </div>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--with-gstreamer=1.0</code></em>:
+          Remove this switch and add <code class=
+          "option">--disable-gstreamer</code> if you've not installed
+          <a class="xref" href="../multimedia/gstreamer10.html" title=
+          "gstreamer-1.16.2">gstreamer-1.16.2</a>.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-avahi</code></em>: Remove
+          this switch if you've installed <a class="xref" href=
+          "../basicnet/avahi.html" title="Avahi-0.7">Avahi-0.7</a>.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-gtkspell</code></em>:
+          Spellchecking. Remove this switch if you've installed <a class=
+          "ulink" href="http://gtkspell.sourceforge.net/">Gtkspell</a>.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-meanwhile</code></em>: Remove
+          this switch if you've installed <a class="ulink" href=
+          "http://meanwhile.sourceforge.net/">Meanwhile</a>.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-idn</code></em>: Remove this
+          switch if you've installed <a class="xref" href=
+          "../general/libidn.html" title="libidn-1.35">libidn-1.35</a>.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-nm</code></em>: Remove this
+          switch if you've installed <a class="xref" href=
+          "../basicnet/networkmanager.html" title=
+          "NetworkManager-1.22.6">NetworkManager-1.22.6</a>.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-vv</code></em>: Video and
+          voice. Remove this switch if you've installed <a class="ulink"
+          href="http://www.freedesktop.org/wiki/Software/Farstream">Farstream
+          (Version 0.1)</a>.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-tcl</code></em>: Remove this
+          switch if you've installed <a class="xref" href=
+          "../general/tcl.html" title="Tcl-8.6.10">Tcl-8.6.10</a>.
+        </p>
+        <p>
+          <code class="option">--enable-cyrus-sasl</code>: Use this switch if
+          you've installed <a class="xref" href="../postlfs/cyrus-sasl.html"
+          title="Cyrus SASL-2.1.27">Cyrus SASL-2.1.27</a> and wish to build
+          <span class="application">Pidgin</span> with SASL support.
+        </p>
+        <p>
+          <code class="option">--disable-gnutls</code>: Use this switch if
+          you've got both <a class="xref" href="../postlfs/gnutls.html"
+          title="GnuTLS-3.6.12">GnuTLS-3.6.12</a> and <a class="xref" href=
+          "../postlfs/nss.html" title="NSS-3.50">NSS-3.50</a> installed, but
+          want to use <a class="xref" href="../postlfs/nss.html" title=
+          "NSS-3.50">NSS-3.50</a> for the SSL support.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring Pidgin
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="pidgin-config" name="pidgin-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="pidgin-config" name="pidgin-config"></a>Config Files
+          </h4>
+          <p>
+            <code class="filename">~/.purple/*</code> and <code class=
+            "filename">~/.gtkrc-02</code>
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779238495888" name=
+            "idm45779238495888"></a>Configuration Information
+          </h4>
+          <p>
+            Most configuration can be accomplished by using the various
+            preference settings inside the programs. Additionally, you can
+            create a <code class="filename">~/.gtkrc-02</code> file which can
+            store gtk+-2 theme settings that affect <span class=
+            "application">Pidgin</span> and other Gtk+ 2 applications. Note
+            that an example <code class="filename">gtkrc-02</code> file was
+            installed during the package installation and can be used as a
+            starting point or reference.
+          </p>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">finch, pidgin, purple-client-example,
+              purple-remote, purple-send, purple-send-async, and
+              purple-url-handler</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">libgnt.so, libpurple.so, and
+              libpurple-client.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/finch, /usr/include/gnt,
+              /usr/include/libpurple, /usr/include/pidgin, /usr/lib/finch,
+              /usr/lib/gnt, /usr/lib/pidgin, /usr/lib/purple-2,
+              /usr/share/doc/pidgin-2.13.0, /usr/share/pixmaps/pidgin,
+              /usr/share/purple, and /usr/share/sounds/purple</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="finch" name="finch"></a><span class=
+                    "term"><span class=
+                    "command"><strong>finch</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a text-based instant messaging client.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="pidgin-prog" name="pidgin-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>pidgin</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a <span class="application">GTK+</span> 2 instant
+                    messaging client.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="purple-client-example" name=
+                    "purple-client-example"></a><span class=
+                    "term"><span class=
+                    "command"><strong>purple-client-example</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an example that demonstrate how to use
+                    libpurple-client to communicate with purple.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="purple-remote" name=
+                    "purple-remote"></a><span class="term"><span class=
+                    "command"><strong>purple-remote</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    send remote commands to Pidgin/Finch.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="purple-send" name="purple-send"></a><span class=
+                    "term"><span class=
+                    "command"><strong>purple-send</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    calls purple API functions using DBus and prints the
+                    return value.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="purple-send-async" name=
+                    "purple-send-async"></a><span class="term"><span class=
+                    "command"><strong>purple-send-async</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    calls purple API functions using DBus. As opposed to
+                    <span class=
+                    "command"><strong>purple-send</strong></span>, it does
+                    not print the return value.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="purple-url-handler" name=
+                    "purple-url-handler"></a><span class="term"><span class=
+                    "command"><strong>purple-url-handler</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a python script to handle URL with purple.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-20 16:18:37 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="inkscape.html" title=
+          "Inkscape-0.92.4">Prev</a>
+          <p>
+            Inkscape-0.92.4
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="rox-filer.html" title=
+          "Rox-Filer-2.11">Next</a>
+          <p>
+            Rox-Filer-2.11
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="other.html" title=
+          "Chapter&nbsp;41.&nbsp;Other X-based Programs">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

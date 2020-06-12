@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Thunderbird-68.5.0
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;41.&nbsp;Other X-based Programs
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="rxvt-unicode.html" title=
+          "rxvt-unicode-9.22">Prev</a>
+          <p>
+            rxvt-unicode-9.22
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="tigervnc.html" title=
+          "Tigervnc-1.10.1">Next</a>
+          <p>
+            Tigervnc-1.10.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="other.html" title=
+          "Chapter&nbsp;41.&nbsp;Other X-based Programs">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="thunderbird" name="thunderbird"></a>Thunderbird-68.5.0
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Thunderbird
+        </h2>
+        <p>
+          <span class="application">Thunderbird</span> is a stand-alone
+          mail/news client based on the <span class=
+          "application">Mozilla</span> codebase. It uses the Gecko rendering
+          engine to enable it to display and compose HTML emails.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://archive.mozilla.org/pub/thunderbird/releases/68.5.0/source/thunderbird-68.5.0.source.tar.xz">
+                https://archive.mozilla.org/pub/thunderbird/releases/68.5.0/source/thunderbird-68.5.0.source.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: c35bd7fd8d0e9d82752faba0e4954ec4
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 316 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 8.9 GB (145 MB installed)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 27 SBU (with -j4, estimated 81 SBU with
+                -j1)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Thunderbird Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../general/autoconf213.html" title=
+          "Autoconf2.13">Autoconf-2.13</a>, <a class="xref" href=
+          "../general/cbindgen.html" title=
+          "Cbindgen-0.13.1">Cbindgen-0.13.1</a>, both <a class="xref" href=
+          "../x/gtk3.html" title="GTK+-3.24.13">GTK+-3.24.13</a> and
+          <a class="xref" href="../x/gtk2.html" title=
+          "GTK+-2.24.32">GTK+-2.24.32</a>, <a class="xref" href=
+          "../general/llvm.html" title="LLVM-9.0.1">LLVM-9.0.1</a>, <a class=
+          "xref" href="../general/nodejs.html" title=
+          "Node.js-12.16.1">nodejs-12.16.1</a>, <a class="xref" href=
+          "../general/rust.html" title="Rustc-1.37.0">rustc-1.37.0</a>,
+          <a class="xref" href="../general/zip.html" title=
+          "Zip-3.0">Zip-3.0</a>, <a class="xref" href="../general/unzip.html"
+          title="UnZip-6.0">UnZip-6.0</a>, and <a class="xref" href=
+          "../general/yasm.html" title="yasm-1.3.0">yasm-1.3.0</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/icu.html" title=
+          "ICU-65.1">ICU-65.1</a>, <a class="xref" href=
+          "../basicnet/libevent.html" title=
+          "libevent-2.1.11">libevent-2.1.11</a>, <a class="xref" href=
+          "../general/nspr.html" title="NSPR-4.25">NSPR-4.25</a>, <a class=
+          "xref" href="../postlfs/nss.html" title="NSS-3.50">NSS-3.50</a>,
+          and <a class="xref" href="../server/sqlite.html" title=
+          "SQLite-3.31.1">SQLite-3.31.1</a>
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            If you don't install recommended dependencies, then internal
+            copies of those packages will be used. They might be tested to
+            work, but they can be out of date or contain security holes.
+          </p>
+        </div>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../postlfs/cyrus-sasl.html" title=
+          "Cyrus SASL-2.1.27">Cyrus SASL-2.1.27</a>, <a class="xref" href=
+          "../general/dbus-glib.html" title=
+          "dbus-glib-0.110">dbus-glib-0.110</a>, <a class="xref" href=
+          "../general/doxygen.html" title=
+          "Doxygen-1.8.17">Doxygen-1.8.17</a>, <a class="xref" href=
+          "../gnome/GConf.html" title="GConf-3.2.6">GConf-3.2.6</a>,
+          <a class="xref" href="../multimedia/pulseaudio.html" title=
+          "PulseAudio-13.0">PulseAudio-13.0</a>, <a class="xref" href=
+          "../x/startup-notification.html" title=
+          "startup-notification-0.12">startup-notification-0.12</a>,
+          <a class="xref" href="../basicnet/wget.html" title=
+          "Wget-1.20.3">Wget-1.20.3</a>, and <a class="xref" href=
+          "../basicnet/wireless_tools.html" title=
+          "Wireless Tools-29">Wireless Tools-29</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/Thunderbird">http://wiki.linuxfromscratch.org/blfs/wiki/Thunderbird</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Thunderbird
+        </h2>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            The build process for Thunderbird can use 8GB+ of RAM when
+            linking. Make sure that you have adequate swap or RAM before
+            continuing.
+          </p>
+        </div>
+        <p>
+          The configuration of <span class="application">Thunderbird</span>
+          is accomplished by creating a <code class=
+          "filename">mozconfig</code> file containing the desired
+          configuration options. A default <code class=
+          "filename">mozconfig</code> is created below. To see the entire
+          list of available configuration options (and a brief description of
+          each), issue <span class="command"><strong>mozilla/configure
+          --help</strong></span>. Create the file with the following command:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat &gt; mozconfig &lt;&lt; "EOF"
+<code class=
+"literal"># If you have a multicore machine, the build may be faster if using parallel
+# jobs. The build system automatically adds -jN to the "make" flags, where N
+# is the number of CPU cores. The option below is therefore useless, unless
+# you want to use a smaller number of jobs:
+#mk_add_options MOZ_MAKE_FLAGS="-j1"
+
+# If you have installed dbus-glib, comment out this line:
+ac_add_options --disable-dbus
+
+# If you have installed wireless-tools comment out this line:
+ac_add_options --disable-necko-wifi
+
+# Uncomment these lines if you have installed optional dependencies:
+#ac_add_options --enable-startup-notification
+
+# Comment out following option if you have PulseAudio installed
+ac_add_options --disable-pulseaudio
+
+# Comment out following option if you have gconf installed
+ac_add_options --disable-gconf
+
+# If you want to compile the Mozilla Calendar, uncomment this line:
+#ac_add_options --enable-calendar
+
+# Comment out following options if you have not installed
+# recommended dependencies:
+ac_add_options --enable-system-sqlite
+ac_add_options --with-system-libevent
+ac_add_options --with-system-nspr
+ac_add_options --with-system-nss
+ac_add_options --with-system-icu
+
+# The elf-hack causes failed builds on clang-9.0.1 with some CFLAGS including
+# -march=native on Ryzen. It is supposed to improve startup time and it shrinks
+# libxul.so by a few MB - Uncomment this if your build is affected.
+#ac_add_options --disable-elf-hack
+
+# The BLFS editors recommend not changing anything below this line:
+ac_add_options --prefix=/usr
+ac_add_options --enable-application=comm/mail
+
+ac_add_options --disable-crashreporter
+ac_add_options --disable-updater
+ac_add_options --disable-debug
+ac_add_options --disable-tests
+
+ac_add_options --enable-optimize=-O2
+ac_add_options --enable-strip
+ac_add_options --enable-install-strip
+
+ac_add_options --enable-official-branding
+
+ac_add_options --enable-system-ffi
+ac_add_options --enable-system-pixman
+
+ac_add_options --with-system-bz2
+ac_add_options --with-system-jpeg
+ac_add_options --with-system-png
+ac_add_options --with-system-zlib</code>
+EOF</kbd>
+</pre>
+        <p>
+          Compile <span class="application">Thunderbird</span> by issuing the
+          following commands:
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            If you are compiling <span class="application">Thunderbird</span>
+            in chroot, prepend <code class="envar">SHELL=/bin/sh</code> to
+            the build command below.
+          </p>
+        </div>
+        <pre class="userinput">
+<kbd class="command">./mach build</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Install <span class="application">Thunderbird</span> by running the
+          following commands as the <code class="systemitem">root</code>
+          user:
+        </p>
+        <pre class="root">
+<kbd class="command">./mach install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>./mach build</strong></span>:
+          <span class="application">Thunderbird</span> now uses this
+          <span class="application">python2</span> script to run the build
+          and install.
+        </p>
+        <p>
+          <code class="option">./mach build --verbose</code>: Use this
+          alternative if you need details of which files are being compiled,
+          together with any C or C++ flags being used.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring Thunderbird
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779238216352" name=
+            "idm45779238216352"></a>Configuration Information
+          </h4>
+          <p>
+            If your Window or Desktop Manager does not allow you to configure
+            a default browser, you can add a configuration parameter to
+            <span class="application">Thunderbird</span> so that a browser
+            will start when you click on an Internet/intranet/local URL. The
+            procedure to check or modify any of the configuration parameters
+            is quite simple and the instructions here can be used to view or
+            modify any of the parameters.
+          </p>
+          <p>
+            First, open the configuration dialog by opening the <span class=
+            "quote">&ldquo;<span class="quote">Edit</span>&rdquo;</span>
+            drop-down menu. Choose <span class="quote">&ldquo;<span class=
+            "quote">Preferences</span>&rdquo;</span> and then click on the
+            <span class="quote">&ldquo;<span class=
+            "quote">Advanced</span>&rdquo;</span> icon on the top menu bar.
+            Choose the <span class="quote">&ldquo;<span class=
+            "quote">General</span>&rdquo;</span> tab and click on the
+            <span class="quote">&ldquo;<span class="quote">Config
+            Editor</span>&rdquo;</span> button. This will display a list of
+            the configuration preferences and information related to each
+            one. You can use the <span class="quote">&ldquo;<span class=
+            "quote">Filter:</span>&rdquo;</span> bar to enter search criteria
+            and narrow down the listed items. Changing a preference can be
+            done using two methods. One, if the preference has a boolean
+            value (True/False), simply double-click on the preference to
+            toggle the value and two, for other preferences simply
+            right-click on the desired line, choose <span class=
+            "quote">&ldquo;<span class="quote">Modify</span>&rdquo;</span>
+            from the menu and change the value. Creating new preference items
+            is accomplished in the same way, except choose <span class=
+            "quote">&ldquo;<span class="quote">New</span>&rdquo;</span> from
+            the menu and provide the desired data into the fields when
+            prompted.
+          </p>
+          <p>
+            The configuration preference item you need to check so that
+            <span class="application">Thunderbird</span> uses a specified
+            browser is the <em class=
+            "parameter"><code>network.protocol-handler.app.http</code></em>
+            which should be set to the path of the desired browser, e.g.
+            <code class="option">/usr/bin/firefox</code>.
+          </p>
+          <div class="admon tip">
+            <img alt="[Tip]" src="../images/tip.png" />
+            <h3>
+              Tip
+            </h3>
+            <p>
+              There is a multitude of configuration parameters you can tweak
+              to customize <span class="application">Thunderbird</span>. A
+              very extensive, but not so up-to-date list of these parameters
+              can be found at <a class="ulink" href=
+              "http://preferential.mozdev.org/preferences.html">http://preferential.mozdev.org/preferences.html</a>.
+            </p>
+          </div>
+          <p>
+            If you use a desktop environment such as <span class=
+            "application">GNOME</span> or <span class=
+            "application">KDE</span>, a desktop file <code class=
+            "filename">thunderbird.desktop</code> may be created, in order to
+            include a <span class="quote">&ldquo;<span class=
+            "quote"><span class=
+            "application">Thunderbird</span></span>&rdquo;</span> entry in
+            the menu. If you didn't enable <span class=
+            "application">startup-notification</span> in your mozconfig, then
+            change the StartupNotify line to false. Run the following
+            commands as the <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">mkdir -pv /usr/share/{applications,pixmaps} &amp;&amp;
+
+cat &gt; /usr/share/applications/thunderbird.desktop &lt;&lt; "EOF" &amp;&amp;
+<code class="literal">[Desktop Entry]
+Name=Thunderbird Mail
+Comment=Send and receive mail with Thunderbird
+GenericName=Mail Client
+Exec=thunderbird %u
+Terminal=false
+Type=Application
+Icon=thunderbird
+Categories=Network;Email;
+MimeType=application/xhtml+xml;text/xml;application/xhtml+xml;application/xml;application/rss+xml;x-scheme-handler/mailto;
+StartupNotify=true</code>
+EOF
+
+ln -sfv /usr/lib/thunderbird/chrome/icons/default/default256.png \
+        /usr/share/pixmaps/thunderbird.png</kbd>
+</pre>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">thunderbird</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libldap60.so, libldif60.so,
+              liblgpllibs.so, libmozgtk.so, libmozsandbox.so, libprldap60.so,
+              and libxul.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/lib/thunderbird</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="thunderbird-prog" name=
+                    "thunderbird-prog"></a><span class="term"><span class=
+                    "command"><strong>thunderbird</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is <span class="application">Mozilla</span>'s email and
+                    newsgroup client.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-19 09:23:21 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="rxvt-unicode.html" title=
+          "rxvt-unicode-9.22">Prev</a>
+          <p>
+            rxvt-unicode-9.22
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="tigervnc.html" title=
+          "Tigervnc-1.10.1">Next</a>
+          <p>
+            Tigervnc-1.10.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="other.html" title=
+          "Chapter&nbsp;41.&nbsp;Other X-based Programs">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

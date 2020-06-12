@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Qca-2.2.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;9.&nbsp;General Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="ptlib.html" title="Ptlib-2.10.11">Prev</a>
+          <p>
+            Ptlib-2.10.11
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="talloc.html" title="Talloc-2.3.1">Next</a>
+          <p>
+            Talloc-2.3.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="qca" name="qca"></a>Qca-2.2.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Qca
+        </h2>
+        <p>
+          <span class="application">Qca</span> aims to provide a
+          straightforward and cross-platform crypto API, using <span class=
+          "application">Qt</span> datatypes and conventions. <span class=
+          "application">Qca</span> separates the API from the implementation,
+          using plugins known as Providers.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://download.kde.org/stable/qca/2.2.1/qca-2.2.1.tar.xz">http://download.kde.org/stable/qca/2.2.1/qca-2.2.1.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 5d809bf0ade891dc89dfd7639cbeaa9d
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 676 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 30 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.6 SBU (using parallelism=4; add 1.0
+                SBU for tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Qca Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../postlfs/make-ca.html" title=
+          "make-ca-1.5">make-ca-1.5</a>, <a class="xref" href="cmake.html"
+          title="CMake-3.16.4">CMake-3.16.4</a>, <a class="xref" href=
+          "../x/qt5.html" title="Qt-5.14.1">Qt-5.14.1</a>, and <a class=
+          "xref" href="which.html" title=
+          "Which-2.21 and Alternatives">Which-2.21</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="Optional">
+          <a class="xref" href="../postlfs/cyrus-sasl.html" title=
+          "Cyrus SASL-2.1.27">Cyrus SASL-2.1.27</a>, <a class="xref" href=
+          "../postlfs/gnupg.html" title="GnuPG-2.2.19">GnuPG-2.2.19</a>,
+          <a class="xref" href="libgcrypt.html" title=
+          "libgcrypt-1.8.5">libgcrypt-1.8.5</a>, <a class="xref" href=
+          "libgpg-error.html" title=
+          "libgpg-error-1.37">libgpg-error-1.37</a>, <a class="xref" href=
+          "../postlfs/nss.html" title="NSS-3.50">NSS-3.50</a>, <a class=
+          "xref" href="nspr.html" title="NSPR-4.25">NSPR-4.25</a>, <a class=
+          "xref" href="../postlfs/p11-kit.html" title=
+          "p11-kit-0.23.20">p11-kit-0.23.20</a>, <a class="xref" href=
+          "doxygen.html" title="Doxygen-1.8.17">Doxygen-1.8.17</a>, <a class=
+          "xref" href="which.html" title=
+          "Which-2.21 and Alternatives">Which-2.21</a>, and <a class="ulink"
+          href="https://botan.randombit.net/">Botan</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/qca">http://wiki.linuxfromscratch.org/blfs/wiki/qca</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Qca
+        </h2>
+        <p>
+          Fix the location of the CA certificates:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i 's@cert.pem@certs/ca-bundle.crt@' CMakeLists.txt</kbd>
+</pre>
+        <p>
+          Install <span class="application">Qca</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+cmake -DCMAKE_INSTALL_PREFIX=$QT5DIR            \
+      -DCMAKE_BUILD_TYPE=Release                \
+      -DQCA_MAN_INSTALL_DIR:PATH=/usr/share/man \
+      .. &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue <span class="command"><strong>make
+          test</strong></span>. One test using <a class="xref" href=
+          "../postlfs/gnupg.html" title="GnuPG-2.2.19">GnuPG-2.2.19</a> fails
+          without a correct passphrase. The required passphrase does not seem
+          to be published.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>-DCMAKE_BUILD_TYPE=Release</code></em>:
+          This switch is used to apply a higher level of compiler
+          optimizations.
+        </p>
+        <p>
+          <em class=
+          "parameter"><code>-DQCA_MAN_INSTALL_DIR:PATH=/usr/share/man</code></em>:
+          Install the qca man page in the normal location.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">mozcerts-qt5 and qcatool-qt5</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libqca-qt5.so, libqca-cyrus-sasl.so,
+              libqca-gcrypt.so, libqca-gnupg.so, libqca-logger.so,
+              libqca-nss.so, libqca-ossl.so, and libqca-softstore.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">$QT5DIR/include/Qca-qt5,
+              $QT5DIR/lib/cmake/Qca-qt5, and $QT5DIR/lib/qca-qt5</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mozcerts" name="mozcerts"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mozcerts-qt5</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a command line tool for converting certdata.txt into
+                    outfile.pem files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="qcatool" name="qcatool"></a><span class=
+                    "term"><span class=
+                    "command"><strong>qcatool-qt5</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a command line tool for performing various
+                    cryptographic operations with Qca.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libqca" name="libqca"></a><span class=
+                    "term"><code class="filename">libqca-qt5.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the Qt Cryptography Architecture (Qca) library.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-19 16:31:22 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="ptlib.html" title="Ptlib-2.10.11">Prev</a>
+          <p>
+            Ptlib-2.10.11
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="talloc.html" title="Talloc-2.3.1">Next</a>
+          <p>
+            Talloc-2.3.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

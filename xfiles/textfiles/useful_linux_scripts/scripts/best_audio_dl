@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+url="$(xsel -o)"
+title="$(youtube-dl -e $url)"
+notify-send -u critical "Начало загрузки" "$title"
+youtube-dl --ignore-errors -f bestaudio --extract-audio --audio-quality 0 -o '~/YouTubeDL/Audio/%(playlist)s/%(title)s.%(ext)s' $url
+notify-send -u critical "Успешно загружено" "$title"

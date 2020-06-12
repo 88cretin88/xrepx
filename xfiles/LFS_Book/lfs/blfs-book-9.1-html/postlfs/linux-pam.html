@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Linux-PAM-1.3.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;4.&nbsp;Security
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libcap.html" title=
+          "libcap-2.31 with PAM">Prev</a>
+          <p>
+            libcap-2.31 with PAM
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="liboauth.html" title=
+          "liboauth-1.0.3">Next</a>
+          <p>
+            liboauth-1.0.3
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="security.html" title=
+          "Chapter&nbsp;4.&nbsp;Security">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="linux-pam" name="linux-pam"></a>Linux-PAM-1.3.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Linux PAM
+        </h2>
+        <p>
+          The <span class="application">Linux PAM</span> package contains
+          Pluggable Authentication Modules used to enable the local system
+          administrator to choose how applications authenticate users.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://github.com/linux-pam/linux-pam/releases/download/v1.3.1/Linux-PAM-1.3.1.tar.xz">
+                https://github.com/linux-pam/linux-pam/releases/download/v1.3.1/Linux-PAM-1.3.1.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 558ff53b0fc0563ca97f79e911822165
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 892 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 26 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.3 SBU (with tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Additional Downloads
+        </h3>
+        <div class="itemizedlist">
+          <p class="title">
+            <strong>Optional Documentation</strong>
+          </p>
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://github.com/linux-pam/linux-pam/releases/download/v1.3.1/Linux-PAM-1.3.1-docs.tar.xz">
+                https://github.com/linux-pam/linux-pam/releases/download/v1.3.1/Linux-PAM-1.3.1-docs.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 1885fae049acd1b699a5459d7c4a0130
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size 449 KB
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Linux PAM Dependencies
+        </h3>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../server/db.html" title=
+          "Berkeley DB-5.3.28">Berkeley DB-5.3.28</a>, <a class="xref" href=
+          "cracklib.html" title="CrackLib-2.9.7">CrackLib-2.9.7</a>,
+          <a class="xref" href="../basicnet/libtirpc.html" title=
+          "libtirpc-1.2.5">libtirpc-1.2.5</a> and <a class="ulink" href=
+          "http://www.prelude-siem.org">Prelude</a>
+        </p>
+        <h4>
+          Optional (To Rebuild the Documentation)
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../pst/docbook.html" title=
+          "docbook-xml-4.5">docbook-xml-4.5</a>, <a class="xref" href=
+          "../pst/docbook-xsl.html" title=
+          "docbook-xsl-nons-1.79.2">docbook-xsl-1.79.2</a>, <a class="xref"
+          href="../pst/fop.html" title="fop-2.4">fop-2.4</a>, <a class="xref"
+          href="../general/libxslt.html" title=
+          "libxslt-1.1.34">libxslt-1.1.34</a> and either <a class="xref"
+          href="../basicnet/lynx.html" title=
+          "Lynx-2.8.9rel.1">Lynx-2.8.9rel.1</a> or <a class="ulink" href=
+          "http://w3m.sourceforge.net/">W3m</a>
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p class="required">
+            <a class="xref" href="shadow.html" title=
+            "Shadow-4.8.1">Shadow-4.8.1</a> <span class="phrase">needs</span>
+            to be reinstalled after installing and configuring <span class=
+            "application">Linux PAM</span>.
+          </p>
+        </div>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/linux-pam">http://wiki.linuxfromscratch.org/blfs/wiki/linux-pam</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Linux PAM
+        </h2>
+        <p>
+          If you downloaded the documentation, unpack the tarball by issuing
+          the following command.
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">tar -xf ../Linux-PAM-1.3.1-docs.tar.xz --strip-components=1</kbd>
+</pre>
+        <p>
+          If you instead want to regenerate the documentation, fix the
+          <span class="command"><strong>configure</strong></span> script so
+          that it detects lynx if installed:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -e 's/dummy links/dummy lynx/'                                     \
+    -e 's/-no-numbering -no-references/-force-html -nonumbers -stdin/' \
+    -i configure</kbd>
+</pre>
+        <p>
+          Install <span class="application">Linux PAM</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr                    \
+            --sysconfdir=/etc                \
+            --libdir=/usr/lib                \
+            --enable-securedir=/lib/security \
+            --docdir=/usr/share/doc/Linux-PAM-1.3.1 &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, a suitable <code class=
+          "filename">/etc/pam.d/other</code> configuration file must exist.
+        </p>
+        <div class="admon caution">
+          <img alt="[Caution]" src="../images/caution.png" />
+          <h3>
+            Reinstallation or upgrade of Linux PAM
+          </h3>
+          <p>
+            If you have a system with Linux PAM installed and working, be
+            careful when modifying the files in <code class=
+            "filename">/etc/pam.d</code>, since your system may become
+            totally unusable. If you want to run the tests, you do not need
+            to create another <code class="filename">/etc/pam.d/other</code>
+            file. The installed one can be used for that purpose.
+          </p>
+          <p>
+            You should also be aware that <span class="command"><strong>make
+            install</strong></span> overwrites the configuration files in
+            <code class="filename">/etc/security</code> as well as
+            <code class="filename">/etc/environment</code>. In case you have
+            modified those files, be sure to back them up.
+          </p>
+        </div>
+        <p>
+          For a first installation, create the configuration file by issuing
+          the following commands as the <code class="systemitem">root</code>
+          user:
+        </p>
+        <pre class="root">
+<kbd class="command">install -v -m755 -d /etc/pam.d &amp;&amp;
+
+cat &gt; /etc/pam.d/other &lt;&lt; "EOF"
+<code class="literal">auth     required       pam_deny.so
+account  required       pam_deny.so
+password required       pam_deny.so
+session  required       pam_deny.so</code>
+EOF</kbd>
+</pre>
+        <p>
+          Now run the tests by issuing <span class="command"><strong>make
+          check</strong></span>. Ensure there are no errors produced by the
+          tests before continuing the installation. Note that the checks are
+          quite long. It may be useful to redirect the output to a log file
+          in order to inspect it thoroughly.
+        </p>
+        <p>
+          Only in case of a first installation, remove the configuration file
+          created earlier by issuing the following command as the
+          <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">rm -fv /etc/pam.d/*</kbd>
+</pre>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install &amp;&amp;
+chmod -v 4755 /sbin/unix_chkpwd &amp;&amp;
+
+for file in pam pam_misc pamc
+do
+  mv -v /usr/lib/lib${file}.so.* /lib &amp;&amp;
+  ln -sfv ../../lib/$(readlink /usr/lib/lib${file}.so) /usr/lib/lib${file}.so
+done</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class=
+          "parameter"><code>--enable-securedir=/lib/security</code></em>:
+          This switch sets install location for the <span class=
+          "application">PAM</span> modules.
+        </p>
+        <p>
+          <code class="option">--disable-regenerate-docu</code> : If the
+          needed dependencies (<a class="xref" href="../pst/docbook.html"
+          title="docbook-xml-4.5">docbook-xml-4.5</a>, <a class="xref" href=
+          "../pst/docbook-xsl.html" title=
+          "docbook-xsl-nons-1.79.2">docbook-xsl-1.79.2</a>, <a class="xref"
+          href="../general/libxslt.html" title=
+          "libxslt-1.1.34">libxslt-1.1.34</a>, and <a class="xref" href=
+          "../basicnet/lynx.html" title="Lynx-2.8.9rel.1">Lynx-2.8.9rel.1</a>
+          or <a class="ulink" href="http://w3m.sourceforge.net/">W3m</a>) are
+          installed, the manual pages, and the html and text documentations
+          are (re)generated and installed. Furthermore, if <a class="xref"
+          href="../pst/fop.html" title="fop-2.4">fop-2.4</a> is installed,
+          the PDF documentation is generated and installed. Use this switch
+          if you do not want to rebuild the documentation.
+        </p>
+        <p>
+          <span class="command"><strong>chmod -v 4755
+          /sbin/unix_chkpwd</strong></span>: The <span class=
+          "command"><strong>unix_chkpwd</strong></span> helper program must
+          be setuid so that non-<code class="systemitem">root</code>
+          processes can access the shadow file.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring Linux-PAM
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="pam-config" name="pam-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="pam-config" name="pam-config"></a>Config Files
+          </h4>
+          <p>
+            <code class="filename">/etc/security/*</code> and <code class=
+            "filename">/etc/pam.d/*</code>
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779284821040" name=
+            "idm45779284821040"></a>Configuration Information
+          </h4>
+          <p>
+            Configuration information is placed in <code class=
+            "filename">/etc/pam.d/</code>. Below is an example file:
+          </p>
+          <pre class="screen">
+<code class="literal"># Begin /etc/pam.d/other
+
+auth            required        pam_unix.so     nullok
+account         required        pam_unix.so
+session         required        pam_unix.so
+password        required        pam_unix.so     nullok
+
+# End /etc/pam.d/other</code>
+</pre>
+          <p>
+            Now set up some generic files. As root:
+          </p>
+          <pre class="root">
+<kbd class="command">install -vdm755 /etc/pam.d &amp;&amp;
+cat &gt; /etc/pam.d/system-account &lt;&lt; "EOF" &amp;&amp;
+<code class="literal"># Begin /etc/pam.d/system-account
+
+account   required    pam_unix.so
+
+# End /etc/pam.d/system-account</code>
+EOF
+
+cat &gt; /etc/pam.d/system-auth &lt;&lt; "EOF" &amp;&amp;
+<code class="literal"># Begin /etc/pam.d/system-auth
+
+auth      required    pam_unix.so
+
+# End /etc/pam.d/system-auth</code>
+EOF
+
+cat &gt; /etc/pam.d/system-session &lt;&lt; "EOF"
+<code class="literal"># Begin /etc/pam.d/system-session
+
+session   required    pam_unix.so
+
+# End /etc/pam.d/system-session</code>
+EOF</kbd>
+</pre>
+          <p>
+            The remaining generic file depends on whether <a class="xref"
+            href="cracklib.html" title="CrackLib-2.9.7">CrackLib-2.9.7</a> is
+            installed. If it is installed, use:
+          </p>
+          <pre class="root">
+<kbd class="command">cat &gt; /etc/pam.d/system-password &lt;&lt; "EOF"
+<code class="literal"># Begin /etc/pam.d/system-password
+
+# check new passwords for strength (man pam_cracklib)
+password  required    pam_cracklib.so    authtok_type=UNIX retry=1 difok=5 \
+                                         minlen=9 dcredit=1 ucredit=1 \
+                                         lcredit=1 ocredit=1 minclass=0 \
+                                         maxrepeat=0 maxsequence=0 \
+                                         maxclassrepeat=0 \
+                                         dictpath=/lib/cracklib/pw_dict
+# use sha512 hash for encryption, use shadow, and use the
+# authentication token (chosen password) set by pam_cracklib
+# above (or any previous modules)
+password  required    pam_unix.so        sha512 shadow use_authtok
+
+# End /etc/pam.d/system-password</code>
+EOF</kbd>
+</pre>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              In its default configuration, pam_cracklib will allow multiple
+              case passwords as short as 6 characters, even with the
+              <em class="parameter"><code>minlen</code></em> value set to 11.
+              You should review the pam_cracklib(8) man page and determine if
+              these default values are acceptable for the security of your
+              system.
+            </p>
+          </div>
+          <p>
+            If <a class="xref" href="cracklib.html" title=
+            "CrackLib-2.9.7">CrackLib-2.9.7</a> is <span class=
+            "emphasis"><em>NOT</em></span> installed, use:
+          </p>
+          <pre class="userinput">
+<kbd class="command">cat &gt; /etc/pam.d/system-password &lt;&lt; "EOF"
+<code class="literal"># Begin /etc/pam.d/system-password
+
+# use sha512 hash for encryption, use shadow, and try to use any previously
+# defined authentication token (chosen password) set by any prior module
+password  required    pam_unix.so       sha512 shadow try_first_pass
+
+# End /etc/pam.d/system-password</code>
+EOF</kbd>
+</pre>
+          <p>
+            Now add a restrictive <code class=
+            "filename">/etc/pam.d/other</code> configuration file. With this
+            file, programs that are PAM aware will not run unless a
+            configuration file specifically for that application is created.
+          </p>
+          <pre class="root">
+<kbd class="command">cat &gt; /etc/pam.d/other &lt;&lt; "EOF"
+<code class="literal"># Begin /etc/pam.d/other
+
+auth        required        pam_warn.so
+auth        required        pam_deny.so
+account     required        pam_warn.so
+account     required        pam_deny.so
+password    required        pam_warn.so
+password    required        pam_deny.so
+session     required        pam_warn.so
+session     required        pam_deny.so
+
+# End /etc/pam.d/other</code>
+EOF</kbd>
+</pre>
+          <p>
+            The <span class="application">PAM</span> man page (<span class=
+            "command"><strong>man pam</strong></span>) provides a good
+            starting point for descriptions of fields and allowable entries.
+            The <a class="ulink" href=
+            "http://www.linux-pam.org/Linux-PAM-html/Linux-PAM_SAG.html">Linux-PAM
+            System Administrators' Guide</a> is recommended for additional
+            information.
+          </p>
+          <div class="admon important">
+            <img alt="[Important]" src="../images/important.png" />
+            <h3>
+              Important
+            </h3>
+            <p>
+              You should now reinstall the <a class="xref" href="shadow.html"
+              title="Shadow-4.8.1">Shadow-4.8.1</a> <span class=
+              "phrase">package.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">mkhomedir_helper, pam_tally, pam_tally2,
+              pam_timestamp_check, unix_chkpwd and unix_update</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libpam.so, libpamc.so and
+              libpam_misc.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/etc/security, /lib/security,
+              /usr/include/security and /usr/share/doc/Linux-PAM-1.3.1</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mkhomedir_helper" name=
+                    "mkhomedir_helper"></a><span class="term"><span class=
+                    "command"><strong>mkhomedir_helper</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a helper binary that creates home directories.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="pam_tally" name="pam_tally"></a><span class=
+                    "term"><span class=
+                    "command"><strong>pam_tally</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to interrogate and manipulate the login counter
+                    file.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="pam_tally2" name="pam_tally2"></a><span class=
+                    "term"><span class=
+                    "command"><strong>pam_tally2</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to interrogate and manipulate the login counter
+                    file, but does not have some limitations that
+                    <span class="command"><strong>pam_tally</strong></span>
+                    does.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="pam_timestamp_check" name=
+                    "pam_timestamp_check"></a><span class="term"><span class=
+                    "command"><strong>pam_timestamp_check</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to check if the default timestamp is valid
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="unix_chkpwd" name="unix_chkpwd"></a><span class=
+                    "term"><span class=
+                    "command"><strong>unix_chkpwd</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a helper binary that verifies the password of the
+                    current user.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="unix_update" name="unix_update"></a><span class=
+                    "term"><span class=
+                    "command"><strong>unix_update</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a helper binary that updates the password of a given
+                    user.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libpam" name="libpam"></a><span class=
+                    "term"><code class="filename">libpam.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides the interfaces between applications and the PAM
+                    modules.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 08:54:30 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libcap.html" title=
+          "libcap-2.31 with PAM">Prev</a>
+          <p>
+            libcap-2.31 with PAM
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="liboauth.html" title=
+          "liboauth-1.0.3">Next</a>
+          <p>
+            liboauth-1.0.3
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="security.html" title=
+          "Chapter&nbsp;4.&nbsp;Security">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

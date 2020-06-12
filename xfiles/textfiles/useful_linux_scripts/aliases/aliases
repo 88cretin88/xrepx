@@ -1,0 +1,77 @@
+# SpeedTest
+alias st='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+
+# IP info in json format
+alias ip="curl wtfismyip.com/json"
+
+# Download best audio single with convertion in mp3
+mp3 () {
+    youtube-dl --ignore-errors -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 -o '~/YouTubeDL/Audio/%(title)s.%(ext)s' "$1"
+}
+
+# Download best audio in playlist with convertion in mp3
+mp3p () {
+    youtube-dl --ignore-errors -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 -o '~/YouTubeDL/Audio/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$1"
+}
+
+# Download single best audio
+ba () {
+    youtube-dl --ignore-errors -f bestaudio --extract-audio --audio-quality 0 -o '~/YouTubeDL/Audio/%(title)s.%(ext)s' "$1"
+}
+
+# Download best audio in playlist
+bap () {
+    youtube-dl --ignore-errors -f bestaudio --extract-audio --audio-quality 0 -o '~/YouTubeDL/Audio/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$1"
+}
+
+# Download single video
+dlv () {
+    youtube-dl --ignore-errors -o '~/YouTubeDL/Video/%(title)s.%(ext)s' "$1"
+}
+
+# Download Video in playlist
+dlp () {
+    youtube-dl --ignore-errors -o '~/YouTubeDL/Video/%(playlist)s/%(title)s.%(ext)s' "$1"
+}
+
+# Weather
+alias wtr='curl -H "Accept-Language: ru" wttr.in'
+wts () {
+    curl -H 'Accept-Language: ru' wttr.in/"$1"
+}
+
+# Terminal screensaver Matrix
+alias s='cmatrix -bs'
+
+# ccrypt/ccdecrypt 
+cr () {
+     if [ -n "$1" ] 
+     then
+         if [[ $1 == *.cpt ]]
+         then
+             ccdecrypt "$1" && echo "$1 расшифрован"
+         else
+             ccrypt "$1" && echo "$1 зашифрован"
+         fi
+     else 
+         echo "Не указано имя файла"
+     fi
+} 
+
+# gpg
+gcr () {
+    if [ -n "$1" ]
+    then
+        if [[ $1 == *.gpg ]]
+        then
+            gpg "$1" && echo "$1 расшифрован"
+        else
+            gpg -c --cipher-algo aes256 "$1" && echo "$1 зашифрован"
+        fi
+    else 
+        echo "Не указано имя файла"
+    fi
+}
+
+# Total traffic counter
+alias t="TX=\`netstat -i | grep -e \"ens3\" -m 1 | awk '{print \$7}'\` && RX=\`netstat -i | grep -e \"ens3\" -m 1 | awk '{print \$3}'\` && let \"STAT=(\$RX + \$TX)/1024\" && echo \"Total:\" \$STAT \"mb\""

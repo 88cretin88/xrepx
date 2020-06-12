@@ -1,0 +1,1335 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      MariaDB-10.4.12
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;22.&nbsp;Databases
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="lmdb.html" title="lmdb-0.9.24">Prev</a>
+          <p>
+            lmdb-0.9.24
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="postgresql.html" title=
+          "PostgreSQL-12.2">Next</a>
+          <p>
+            PostgreSQL-12.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="databases.html" title=
+          "Chapter&nbsp;22.&nbsp;Databases">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="mariadb" name="mariadb"></a>MariaDB-10.4.12
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to MariaDB
+        </h2>
+        <p>
+          <span class="application">MariaDB</span> is a community-developed
+          fork and a drop-in replacement for the <span class=
+          "application">MySQL</span> relational database management system.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://downloads.mariadb.org/interstitial/mariadb-10.4.12/source/mariadb-10.4.12.tar.gz">
+                https://downloads.mariadb.org/interstitial/mariadb-10.4.12/source/mariadb-10.4.12.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://mirrors.fe.up.pt/pub/mariadb/mariadb-10.4.12/source/mariadb-10.4.12.tar.gz">
+                ftp://mirrors.fe.up.pt/pub/mariadb/mariadb-10.4.12/source/mariadb-10.4.12.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 97d7c0f508c04a31c138fdb24e95dbc4
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 75 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 1.5 GB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 9.6 SBU (with parallelism=4, add 0.4
+                SBU for tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            The installed size of MariaDB is 473 MB, but this can be reduced
+            by about 200 MB, if desired, by removing the
+            /usr/share/mysql/test directory after installation.
+          </p>
+        </div>
+        <h3>
+          MariaDB Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../general/cmake.html" title=
+          "CMake-3.16.4">CMake-3.16.4</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../basicnet/libevent.html" title=
+          "libevent-2.1.11">libevent-2.1.11</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/boost.html" title=
+          "Boost-1.72.0">Boost-1.72.0</a>, <a class="xref" href=
+          "../general/libaio.html" title="libaio-0.3.112">libaio-0.3.112</a>,
+          <a class="xref" href="../general/libxml2.html" title=
+          "libxml2-2.9.10">libxml2-2.9.10</a>, <a class="xref" href=
+          "../postlfs/linux-pam.html" title=
+          "Linux-PAM-1.3.1">Linux-PAM-1.3.1</a>, <a class="xref" href=
+          "../postlfs/mitkrb.html" title="MIT Kerberos V5-1.18">MIT Kerberos
+          V5-1.18</a>, <a class="xref" href="../general/pcre.html" title=
+          "PCRE-8.44">PCRE-8.44</a>, <a class="xref" href=
+          "../general/ruby.html" title="Ruby-2.7.0">Ruby-2.7.0</a>, <a class=
+          "xref" href="../general/unixodbc.html" title=
+          "unixODBC-2.3.7">unixODBC-2.3.7</a>, <a class="xref" href=
+          "../general/valgrind.html" title=
+          "Valgrind-3.15.0">Valgrind-3.15.0</a>, <a class="ulink" href=
+          "http://groonga.org/">Groonga</a>, <a class="ulink" href=
+          "http://www.phontron.com/kytea/">KyTea</a>, <a class="ulink" href=
+          "http://sourceforge.net/projects/judy/">Judy</a>, <a class="ulink"
+          href="https://github.com/Cyan4973/lz4">lz4</a>, <a class="ulink"
+          href="http://taku910.github.io/mecab">MeCab</a>, <a class="ulink"
+          href="http://msgpack.org/">MessagePack</a>, <a class="ulink" href=
+          "http://www.mruby.org/">mruby</a>, <a class="ulink" href=
+          "http://sphinxsearch.com/downloads/">Sphinx</a>, <a class="ulink"
+          href="https://mariadb.com/kb/en/mariadb/tokudb/">TokuDB</a>, and
+          <a class="ulink" href="http://zeromq.org/">ZeroMQ</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/mariadb">http://wiki.linuxfromscratch.org/blfs/wiki/mariadb</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of MariaDB
+        </h2>
+        <div class="admon warning">
+          <img alt="[Warning]" src="../images/warning.png" />
+          <h3>
+            Warning
+          </h3>
+          <p>
+            MariaDB and MySQL cannot be installed on the same system without
+            extensive changes to the build configuration of one of the two
+            applications.
+          </p>
+        </div>
+        <p>
+          For security reasons, running the server as an unprivileged user
+          and group is strongly encouraged. Issue the following (as
+          <code class="systemitem">root</code>) to create the user and group:
+        </p>
+        <pre class="root">
+<kbd class="command">groupadd -g 40 mysql &amp;&amp;
+useradd -c "MySQL Server" -d /srv/mysql -g mysql -s /bin/false -u 40 mysql</kbd>
+</pre>
+        <p>
+          Install <span class="application">MariaDB</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i "s@data/test@\${INSTALL_MYSQLTESTDIR}@g" sql/CMakeLists.txt &amp;&amp;
+
+mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+cmake -DCMAKE_BUILD_TYPE=Release                      \
+      -DCMAKE_INSTALL_PREFIX=/usr                     \
+      -DINSTALL_DOCDIR=share/doc/mariadb-10.4.12       \
+      -DINSTALL_DOCREADMEDIR=share/doc/mariadb-10.4.12 \
+      -DINSTALL_MANDIR=share/man                      \
+      -DINSTALL_MYSQLSHAREDIR=share/mysql             \
+      -DINSTALL_MYSQLTESTDIR=share/mysql/test         \
+      -DINSTALL_PLUGINDIR=lib/mysql/plugin            \
+      -DINSTALL_SBINDIR=sbin                          \
+      -DINSTALL_SCRIPTDIR=bin                         \
+      -DINSTALL_SQLBENCHDIR=share/mysql/bench         \
+      -DINSTALL_SUPPORTFILESDIR=share/mysql           \
+      -DMYSQL_DATADIR=/srv/mysql                      \
+      -DMYSQL_UNIX_ADDR=/run/mysqld/mysqld.sock       \
+      -DWITH_EXTRA_CHARSETS=complex                   \
+      -DWITH_EMBEDDED_SERVER=ON                       \
+      -DSKIP_TESTS=ON                                 \
+      -DTOKUDB_OK=0                                   \
+      .. &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          test</strong></span>. One test, test-connect, is known to fail.
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            A more extensive set of tests can be run with the following:
+          </p>
+          <pre class="userinput">
+<kbd class="command">pushd mysql-test
+./mtr --parallel <em class=
+"replaceable"><code>&lt;N&gt;</code></em> --mem --force
+popd</kbd>
+</pre>
+          <p>
+            Where N is the number of tests to run in parallel. A little over
+            3700 tests are run in about 14 SBU with N=4. Three tests are
+            known to fail due to character set issues.
+          </p>
+        </div>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install </kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>sed -i ...
+          sql/CMakeLists.txt</strong></span>: Set correct installation
+          directory for some components.
+        </p>
+        <p>
+          <em class="parameter"><code>-DWITH_EMBEDDED_SERVER=ON</code></em>:
+          This switch enables compiling the embedded server library needed by
+          certain applications, such as <span class=
+          "application">Amarok</span>..
+        </p>
+        <p>
+          <em class=
+          "parameter"><code>-DWITH_EXTRA_CHARSETS=complex</code></em>: This
+          switch enables support for the complex character sets.
+        </p>
+        <p>
+          <em class="parameter"><code>-DSKIP_TESTS=ON</code></em>: This
+          switch disables tests for MariaDB Connector/C which are not
+          supported without additional setup.
+        </p>
+        <p>
+          <code class="option">-DWITHOUT_SERVER=ON</code>: Use this switch if
+          you don't want the server and would like to build the client only.
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            There are numerous options available to <span class=
+            "command"><strong>cmake</strong></span>. Check the output of the
+            <span class="command"><strong>cmake . -LH</strong></span> for
+            additional customization options.
+          </p>
+        </div>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring MySQL
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="mariadb-config" name="mariadb-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="mariadb-config" name="mariadb-config"></a>Config Files
+          </h4>
+          <p>
+            <code class="filename">/etc/mysql/my.cnf</code> and <code class=
+            "filename">~/.my.cnf</code>
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779255065728" name=
+            "idm45779255065728"></a>Configuration Information
+          </h4>
+          <p>
+            Create basic <code class="filename">/etc/mysql/my.cnf</code>
+            using the following command as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">install -v -dm 755 /etc/mysql &amp;&amp;
+cat &gt; /etc/mysql/my.cnf &lt;&lt; "EOF"
+<code class="literal"># Begin /etc/mysql/my.cnf
+
+# The following options will be passed to all MySQL clients
+[client]
+#password       = your_password
+port            = 3306
+socket          = /run/mysqld/mysqld.sock
+
+# The MySQL server
+[mysqld]
+port            = 3306
+socket          = /run/mysqld/mysqld.sock
+datadir         = /srv/mysql
+skip-external-locking
+key_buffer_size = 16M
+max_allowed_packet = 1M
+sort_buffer_size = 512K
+net_buffer_length = 16K
+myisam_sort_buffer_size = 8M
+
+# Don't listen on a TCP/IP port at all.
+skip-networking
+
+# required unique id between 1 and 2^32 - 1
+server-id       = 1
+
+# Uncomment the following if you are using BDB tables
+#bdb_cache_size = 4M
+#bdb_max_lock = 10000
+
+# InnoDB tables are now used by default
+innodb_data_home_dir = /srv/mysql
+innodb_log_group_home_dir = /srv/mysql
+# All the innodb_xxx values below are the default ones:
+innodb_data_file_path = ibdata1:12M:autoextend
+# You can set .._buffer_pool_size up to 50 - 80 %
+# of RAM but beware of setting memory usage too high
+innodb_buffer_pool_size = 128M
+innodb_log_file_size = 48M
+innodb_log_buffer_size = 16M
+innodb_flush_log_at_trx_commit = 1
+innodb_lock_wait_timeout = 50
+
+[mysqldump]
+quick
+max_allowed_packet = 16M
+
+[mysql]
+no-auto-rehash
+# Remove the next comment character if you are not familiar with SQL
+#safe-updates
+
+[isamchk]
+key_buffer = 20M
+sort_buffer_size = 20M
+read_buffer = 2M
+write_buffer = 2M
+
+[myisamchk]
+key_buffer_size = 20M
+sort_buffer_size = 20M
+read_buffer = 2M
+write_buffer = 2M
+
+[mysqlhotcopy]
+interactive-timeout
+
+# End /etc/mysql/my.cnf</code>
+EOF</kbd>
+</pre>
+          <p>
+            You can now install a database and change the ownership to the
+            unprivileged user and group (perform as the <code class=
+            "systemitem">root</code> user):
+          </p>
+          <pre class="root">
+<kbd class=
+"command">mysql_install_db --basedir=/usr --datadir=/srv/mysql --user=mysql &amp;&amp;
+chown -R mysql:mysql /srv/mysql</kbd>
+</pre>
+          <p>
+            Further configuration requires that the <span class=
+            "application">MariaDB</span> server is running. Start the server
+            using the following commands as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class=
+"command">install -v -m755 -o mysql -g mysql -d /run/mysqld &amp;&amp;
+mysqld_safe --user=mysql 2&gt;&amp;1 &gt;/dev/null &amp;</kbd>
+</pre>
+          <p>
+            A default installation does not set up a password for the
+            administrator, so use the following command as the <code class=
+            "systemitem">root</code> user to set one.
+          </p>
+          <pre class="root">
+<kbd class="command">mysqladmin -u root password</kbd>
+</pre>
+          <p>
+            Configuration of the server is now finished. Shut the server down
+            using the following command as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">mysqladmin -p shutdown</kbd>
+</pre>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="mariadb-init" name="mariadb-init"></a>
+          </h3>
+          <h4 class="title">
+            <a id="mariadb-init" name="mariadb-init"></a><span class=
+            "phrase">Boot Script</span>
+          </h4>
+          <p>
+            Install the <span class="phrase"><code class=
+            "filename">/etc/rc.d/init.d/mysql</code> init script</span>
+            included in the <a class="xref" href=
+            "../introduction/bootscripts.html" title=
+            "BLFS Boot Scripts">blfs-bootscripts-20191204</a> package as the
+            <code class="systemitem">root</code> user to start the
+            <span class="application">MariaDB</span> server during system
+            boot-up.
+          </p>
+          <pre class="root">
+<kbd class="command">make install-mysql</kbd>
+</pre>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">aria_chk, aria_dump_log, aria_ftdump,
+              aria_pack, aria_read_log, innochecksum, mariabackup,
+              mariadb_config, mbstream, msql2mysql, my_print_defaults,
+              myisamchk, myisam_ftdump, myisamchk, myisamlog, myisampack,
+              mysql, mysql_client_test, mysql_client_test_embedded,
+              mysql_config, mysql_convert_table_format, mysql_embedded,
+              mysql_find_rows, mysql_fix_extensions, mysql_install_db,
+              mysql_ldb, mysql_plugin, mysql_secure_installation,
+              mysql_setpermission, mysql_tzinfo_to_sql, mysql_upgrade,
+              mysql_waitpid, mysqlaccess, mysqladmin, mysqlbinlog,
+              mysqlcheck, mysqld, mysqld_multi, mysqld_safe,
+              mysqld_safe_helper, mysqldump, mysqldumpslow, mysqlhotcopy,
+              mysqlimport, mysqlshow, mysqlslap, mysqltest,
+              mysqltest_embedded, mytop, perror, replace, resolve_stack_dump,
+              resolveip, sst_dump, wsrep_sst_common, wsrep_sst_mariabackup,
+              wsrep_sst_mysqldump, wsrep_sst_rsync, wsrep_sst_xtrabackup, and
+              wsrep_sst_xtrabackup-v2</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libmariadbclient.a, libmariadb.so,
+              libmysqlclient.a, libmysqlclient_r.a (symbolic links to
+              libmariadbclient.a), libmysqld.{so,a}, libmysqlservices.a, and
+              several under /usr/lib/mysql/plugin/</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/etc/mysql,
+              /usr/{include,lib,share}/mysql, and
+              /usr/share/doc/mariadb-10.4.12</span>
+            </div>
+          </div>
+        </div>
+        <h3>
+          Short Descriptions
+        </h3>
+        <p>
+          The <span class="application">Perl</span> DBI modules must be
+          installed for some of the <span class="application">MariaDB</span>
+          support programs to function properly.
+        </p>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="aria_chk-mariadb" name=
+                    "aria_chk-mariadb"></a><span class="term"><span class=
+                    "command"><strong>aria_chk</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to check, repair, optimize, sort and get
+                    information about Aria tables.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="aria_dump_log-mariadb" name=
+                    "aria_dump_log-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>aria_dump_log</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to dump content of Aria log pages.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="aria_ftdump-mariadb" name=
+                    "aria_ftdump-mariadb"></a><span class="term"><span class=
+                    "command"><strong>aria_ftdump</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    displays full-text index information.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="aria_pack-mariadb" name=
+                    "aria_pack-mariadb"></a><span class="term"><span class=
+                    "command"><strong>aria_pack</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to generate compressed, read-only Aria tables.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="aria_read_log-mariadb" name=
+                    "aria_read_log-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>aria_read_log</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    displays Aria log file contents.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="innochecksum-mariadb" name=
+                    "innochecksum-mariadb"></a><span class=
+                    "term"><span class="command"><strong>innochecksum</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    prints checksums for InnoDB files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mariabackup-mariadb" name=
+                    "mariabackup-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mariabackup</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an open source backup tool for InnoDB and XtraDB.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mariadb_config-mariadb" name=
+                    "mariadb_config-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mariadb_config</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    gets compiler flags for using the MariaDB Connector/C.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mbstream-mariadb" name=
+                    "mbstream-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mbstream</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an utility for sending InnoDB and XTraDB backups over
+                    a stream
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="msql2mysql-mariadb" name=
+                    "msql2mysql-mariadb"></a><span class="term"><span class=
+                    "command"><strong>msql2mysql</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to convert mSQL programs for use with MySQL.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="my_print_defaults-mariadb" name=
+                    "my_print_defaults-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>my_print_defaults</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    displays the options from option groups of option files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="myisam_ftdump-mariadb" name=
+                    "myisam_ftdump-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>myisam_ftdump</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    displays information about FULLTEXT indexes in MyISAM
+                    tables.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="myisamchk-mariadb" name=
+                    "myisamchk-mariadb"></a><span class="term"><span class=
+                    "command"><strong>myisamchk</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    gets information about your database tables or checks,
+                    repairs, or optimizes them.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="myisamlog-mariadb" name=
+                    "myisamlog-mariadb"></a><span class="term"><span class=
+                    "command"><strong>myisamlog</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    displays MyISAM log file contents.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="myisampack-mariadb" name=
+                    "myisampack-mariadb"></a><span class="term"><span class=
+                    "command"><strong>myisampack</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool for compressing MyISAM tables.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql-mariadb" name=
+                    "mysql-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mysql</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a simple SQL shell with input line editing
+                    capabilities.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_client_test-mariadb" name=
+                    "mysql_client_test-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mysql_client_test</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used for testing aspects of the MySQL client API that
+                    cannot be tested using mysqltest and its test language.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_client_test_embedded-mariadb" name=
+                    "mysql_client_test_embedded-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mysql_client_test_embedded</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to test client API for embedded server.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_config-mariadb" name=
+                    "mysql_config-mariadb"></a><span class=
+                    "term"><span class="command"><strong>mysql_config</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides you with useful information for compiling your
+                    MySQL client and connecting it to MySQL.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_convert_table_format-mariadb" name=
+                    "mysql_convert_table_format-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mysql_convert_table_format</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    converts the tables in a database to use a particular
+                    storage engine.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_embedded-mariadb" name=
+                    "mysql_embedded-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mysql_embedded</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a MySQL client statically linked to libmysqld.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_find_rows-mariadb" name=
+                    "mysql_find_rows-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mysql_find_rows</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    reads files containing SQL statements and extracts
+                    statements that match a given regular expression or that
+                    contain USE db_name or SET statements.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_fix_extensions-mariadb" name=
+                    "mysql_fix_extensions-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mysql_fix_extensions</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    converts the extensions for MyISAM (or ISAM ) table files
+                    to their canonical forms.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_install_db-mariadb" name=
+                    "mysql_install_db-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mysql_install_db</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    initializes the MySQL data directory and creates the
+                    system tables that it contains, if they do not exist.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_ldb-mariadb" name=
+                    "mysql_ldb-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mysql_ldb</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the RocksDB tool.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_plugin-mariadb" name=
+                    "mysql_plugin-mariadb"></a><span class=
+                    "term"><span class="command"><strong>mysql_plugin</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a utility that enable MySQL administrators to manage
+                    which plugins a MySQL server loads.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_secure_installation-mariadb" name=
+                    "mysql_secure_installation-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mysql_secure_installation</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to improve MySQL installation security.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_setpermission-mariadb" name=
+                    "mysql_setpermission-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mysql_setpermission</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    sets permissions in the MySQL grant tables.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_tzinfo_to_sql-mariadb" name=
+                    "mysql_tzinfo_to_sql-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mysql_tzinfo_to_sql</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    loads the time zone tables in the mysql database.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_upgrade-mariadb" name=
+                    "mysql_upgrade-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mysql_upgrade</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    examines all tables in all databases for
+                    incompatibilities with the current version of MySQL
+                    Server.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysql_waitpid-mariadb" name=
+                    "mysql_waitpid-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mysql_waitpid</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    signals a process to terminate and waits for the process
+                    to exit.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqlaccess-mariadb" name=
+                    "mysqlaccess-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mysqlaccess</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    checks the access privileges for a host name, user name,
+                    and database combination.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqladmin-mariadb" name=
+                    "mysqladmin-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mysqladmin</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a client for performing administrative operations.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqlbinlog-mariadb" name=
+                    "mysqlbinlog-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mysqlbinlog</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    read binary log files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqlcheck-mariadb" name=
+                    "mysqlcheck-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mysqlcheck</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    performs table maintenance: It checks, repairs,
+                    optimizes, or analyzes tables.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqld-mariadb" name=
+                    "mysqld-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mysqld</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the MySQL server daemon.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqld_multi-mariadb" name=
+                    "mysqld_multi-mariadb"></a><span class=
+                    "term"><span class="command"><strong>mysqld_multi</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is designed to manage several mysqld processes that
+                    listen for connections on different Unix socket files and
+                    TCP/IP ports.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqld_safe-mariadb" name=
+                    "mysqld_safe-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mysqld_safe</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the recommended way to start a mysqld server on Unix
+                    and NetWare.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqldump-mariadb" name=
+                    "mysqldump-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mysqldump</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a backup program.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqldumpslow-mariadb" name=
+                    "mysqldumpslow-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mysqldumpslow</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    parses MySQL slow query log files and prints a summary of
+                    their contents.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqlhotcopy-mariadb" name=
+                    "mysqlhotcopy-mariadb"></a><span class=
+                    "term"><span class="command"><strong>mysqlhotcopy</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    locks the table, flush the table and then performs a copy
+                    of the database.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqlimport-mariadb" name=
+                    "mysqlimport-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mysqlimport</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    reads a range of data formats, and inserts the data into
+                    a database.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqlshow-mariadb" name=
+                    "mysqlshow-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mysqlshow</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    shows the structure of a MariaDB database.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqlslap-mariadb" name=
+                    "mysqlslap-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mysqlslap</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a diagnostic program designed to emulate client load
+                    for a MySQL server and to report the timing of each
+                    stage.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqltest-mariadb" name=
+                    "mysqltest-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mysqltest</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    runs a test case against a MySQL server and optionally
+                    compares the output with a result file.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mysqltest_embedded-mariadb" name=
+                    "mysqltest_embedded-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mysqltest_embedded</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is similar to the <span class=
+                    "command"><strong>mysqltest</strong></span> command but
+                    is built with support for the libmysqld embedded server.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mytop-mariadb" name=
+                    "mytop-mariadb"></a><span class="term"><span class=
+                    "command"><strong>mytop</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a console-based tool for monitoring the threads and
+                    overall performance of a MySQL server.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="perror-mariadb" name=
+                    "perror-mariadb"></a><span class="term"><span class=
+                    "command"><strong>perror</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a utility that displays descriptions for system or
+                    storage engine error codes.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="replace-mariadb" name=
+                    "replace-mariadb"></a><span class="term"><span class=
+                    "command"><strong>replace</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a MariaDB/MySQL extension to the SQL standard.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="resolve_stack_dump-mariadb" name=
+                    "resolve_stack_dump-mariadb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>resolve_stack_dump</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    resolves a numeric stack dump to symbols.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="resolveip-mariadb" name=
+                    "resolveip-mariadb"></a><span class="term"><span class=
+                    "command"><strong>resolveip</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a utility for resolving IP addresses to host names and
+                    vice versa.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="sst_sump-mariadb" name=
+                    "sst_sump-mariadb"></a><span class="term"><span class=
+                    "command"><strong>sst_sump</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    dumps the content of sst files (the format used by
+                    RocksDB).
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-21 09:11:06 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="lmdb.html" title="lmdb-0.9.24">Prev</a>
+          <p>
+            lmdb-0.9.24
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="postgresql.html" title=
+          "PostgreSQL-12.2">Next</a>
+          <p>
+            PostgreSQL-12.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="databases.html" title=
+          "Chapter&nbsp;22.&nbsp;Databases">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

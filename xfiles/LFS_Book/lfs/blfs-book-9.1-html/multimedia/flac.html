@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      FLAC-1.3.3
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;42.&nbsp;Multimedia Libraries and Drivers
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="fdk-aac.html" title="fdk-aac-2.0.1">Prev</a>
+          <p>
+            fdk-aac-2.0.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="frei0r.html" title=
+          "frei0r-plugins-1.7.0">Next</a>
+          <p>
+            frei0r-plugins-1.7.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="libdriv.html" title=
+          "Chapter&nbsp;42.&nbsp;Multimedia Libraries and Drivers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="flac" name="flac"></a>FLAC-1.3.3
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to FLAC
+        </h2>
+        <p>
+          <span class="application">FLAC</span> is an audio CODEC similar to
+          MP3, but lossless, meaning that audio is compressed without losing
+          any information.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://downloads.xiph.org/releases/flac/flac-1.3.3.tar.xz">https://downloads.xiph.org/releases/flac/flac-1.3.3.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 26703ed2858c1fc9ffc05136d13daa69
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 1.0 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 21 MB (additional 95 MB to run
+                the test suite)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.1 SBU (additional 0.7 SBU to run the
+                test suite)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          FLAC Dependencies
+        </h3>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="libogg.html" title=
+          "libogg-1.3.4">libogg-1.3.4</a>, <a class="xref" href=
+          "../general/nasm.html" title="NASM-2.14.02">NASM-2.14.02</a>,
+          <a class="xref" href="../pst/docbook-utils.html" title=
+          "DocBook-utils-0.6.14">DocBook-utils-0.6.14</a>, <a class="xref"
+          href="../general/doxygen.html" title=
+          "Doxygen-1.8.17">Doxygen-1.8.17</a> and <a class="xref" href=
+          "../general/valgrind.html" title=
+          "Valgrind-3.15.0">Valgrind-3.15.0</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/flac">http://wiki.linuxfromscratch.org/blfs/wiki/flac</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of FLAC
+        </h2>
+        <p>
+          Install <span class="application">FLAC</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr \
+            --disable-thorough-tests &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span>. Note that if you passed the <code class=
+          "option">--enable-exhaustive-tests</code> and <code class=
+          "option">--enable-valgrind-testing</code> parameters to
+          <span class="command"><strong>configure</strong></span> and then
+          run the test suite, it will take a <span class=
+          "emphasis"><em>very</em></span> long time (up to 300 SBUs) and use
+          about 375 MB of disk space.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--disable-thorough-tests</code></em>:
+          This parameter is used so that the test suite will complete in a
+          reasonable amount of time. Remove it if you desire more extensive
+          tests.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">flac and metaflac</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libFLAC.so and libFLAC++.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/FLAC, /usr/include/FLAC++
+              and /usr/share/doc/flac-1.3.3</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="flac-prog" name="flac-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>flac</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a command-line utility for encoding, decoding and
+                    converting FLAC files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="metaflac" name="metaflac"></a><span class=
+                    "term"><span class=
+                    "command"><strong>metaflac</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a program for listing, adding, removing, or editing
+                    metadata in one or more FLAC files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libflac" name="libflac"></a><span class=
+                    "term"><code class=
+                    "filename">libFLAC{,++}.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    these libraries provide native FLAC and Ogg FLAC C/C++
+                    APIs for programs utilizing FLAC.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-17 18:27:03 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="fdk-aac.html" title="fdk-aac-2.0.1">Prev</a>
+          <p>
+            fdk-aac-2.0.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="frei0r.html" title=
+          "frei0r-plugins-1.7.0">Next</a>
+          <p>
+            frei0r-plugins-1.7.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="libdriv.html" title=
+          "Chapter&nbsp;42.&nbsp;Multimedia Libraries and Drivers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

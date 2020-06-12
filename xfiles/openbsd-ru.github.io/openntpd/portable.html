@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang=ru>
+<meta charset=utf-8>
+
+<title>OpenNTPD: Портируемая версия</title>
+<meta name="description" content="OpenNTPD Portable Release">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="openbsd.css">
+<link rel="canonical" href="http://www.openntpd.org/portable.html">
+
+<h2 id=OpenBSD>
+<a href="index.html">
+<i>Open</i><b>NTPD</b></a>
+Портируемая версия
+</h2>
+<hr>
+
+<p>
+Портированная версия OpenNTPD работает и на нескольких других UNIX
+системах, благодаря добавленния необходимого уровня совместимости
+и поддержке autotool. При этом был использован опыт, полученный при
+портировнии <a href="../openssh/index.html">OpenSSH</a> и
+<a href="../libressl/index.html">LibreSSL</a>.
+
+<h3>Требования к системе</h3>
+
+<ul>
+	<li>Системные вызовы
+	    <a href="https://man.openbsd.org/adjtime.2">adjtime(2)</a> и
+	    <a href="https://man.openbsd.org/settimeofday.2">settimeofday(2)</a>
+	    или их эквивалент.
+	<li><a href="https://man.openbsd.org/adjfreq.2">adjfreq(2)</a>
+	    или её совместимый эквивалент.
+	<li><a href="https://man.openbsd.org/daemon.3">daemon(3)</a>,
+	    <a href="https://man.openbsd.org/setresgid.2">setresgid(2)</a>,
+	    <a href="https://man.openbsd.org/setresuid.2">setresuid(2)</a>
+	    или им эквивалентнные.
+	<li>Работающие реализации
+	    <a href="https://man.openbsd.org/arc4random.3">arc4random(3)</a>
+	    или
+	    <a href="https://man.openbsd.org/getentropy.2">getentropy(2)</a>.
+</ul>
+
+<p>
+Чем больше таких интерфейсов изначально реализовано в ОС, тем выше
+вероятность, что портированная версия будет работать. Если ваша ОС
+не поддерживается, попросите вашего поставщика ОС поддерживать
+эти безопасные и простые API.
+
+<p>
+На момент написания портированная версия OpenNTPD собиралась и
+работала на следующих системах:
+
+<ul>
+	<li>OpenBSD
+	<li>Linux (Ubuntu 12.04, 14.04)
+	<li>FreeBSD (9.x, 10.x)
+	<li>NetBSD (6.1.5)
+	<li>Solaris (10.x, 11.x)
+	<li>Mac OS X (10.9)
+</ul>
+
+<p>
+OpenNTPD может работать и на других ОС, более новых и старых, но
+вышеперечисленные регулярно тестируются разработчиками. Отчеты
+(успех или нет) приветствуются. Вы можете сообщить об ошибках или
+отправлять pull request в 
+<a href="https://github.com/openntpd-portable">проект на GitHub</a>.
+
+<hr>
+<h3 id="mirrors">Список зеркал</h3>
+<ul>
+<li><a href="http://openntpd.org/portable.html#http">HTTP зеркала</a><br>
+<li><a href="http://openntpd.org/portable.html#ftp">FTP зеркала</a><br>
+<li><a href="http://openntpd.org/portable.html#rsync">RSYNC зеркала</a><br>
+</ul>

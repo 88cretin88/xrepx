@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      gnome-shell-3.34.4
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;33.&nbsp;GNOME Libraries and Desktop
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="mutter.html" title="Mutter-3.34.4">Prev</a>
+          <p>
+            Mutter-3.34.4
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gnome-shell-extensions.html" title=
+          "gnome-shell-extensions-3.34.2">Next</a>
+          <p>
+            gnome-shell-extensions-3.34.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="core.html" title=
+          "Chapter&nbsp;33.&nbsp;GNOME Libraries and Desktop">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="gnome-shell" name="gnome-shell"></a>gnome-shell-3.34.4
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to GNOME Shell
+        </h2>
+        <p>
+          The <span class="application">GNOME Shell</span> is the core user
+          interface of the <span class="application">GNOME</span> Desktop
+          environment.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.gnome.org/pub/gnome/sources/gnome-shell/3.34/gnome-shell-3.34.4.tar.xz">
+                http://ftp.gnome.org/pub/gnome/sources/gnome-shell/3.34/gnome-shell-3.34.4.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnome.org/pub/gnome/sources/gnome-shell/3.34/gnome-shell-3.34.4.tar.xz">
+                ftp://ftp.gnome.org/pub/gnome/sources/gnome-shell/3.34/gnome-shell-3.34.4.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 692181c1a98be9e5f5b7e8738fd428ce
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 1.5 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 66 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.1 SBU (Using parallelism=4)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          GNOME Shell Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="evolution-data-server.html" title=
+          "evolution-data-server-3.34.4">evolution-data-server-3.34.4</a>,
+          <a class="xref" href="gjs.html" title="Gjs-1.58.5">Gjs-1.58.5</a>,
+          <a class="xref" href="gnome-autoar.html" title=
+          "gnome-autoar-0.2.4">gnome-autoar-0.2.4</a>, <a class="xref" href=
+          "gnome-control-center.html" title=
+          "gnome-control-center-3.34.4">gnome-control-center-3.34.4</a>,
+          <a class="xref" href="../general/libcroco.html" title=
+          "libcroco-0.6.13">libcroco-0.6.13</a>, <a class="xref" href=
+          "mutter.html" title="Mutter-3.34.4">Mutter-3.34.4</a>, <a class=
+          "xref" href="../general/sassc.html" title=
+          "sassc-3.6.1">sassc-3.6.1</a>, <a class="xref" href=
+          "../x/startup-notification.html" title=
+          "startup-notification-0.12">startup-notification-0.12</a>, and
+          <span class="phrase"><a class="xref" href="../general/elogind.html"
+          title="elogind-243.4">elogind-243.4</a></span>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/asciidoc.html" title=
+          "Asciidoc-8.6.9">asciidoc-8.6.9</a>, <a class="xref" href=
+          "../general/desktop-file-utils.html" title=
+          "desktop-file-utils-0.24">desktop-file-utils-0.24</a>, <a class=
+          "xref" href="gnome-bluetooth.html" title=
+          "gnome-bluetooth-3.34.0">gnome-bluetooth-3.34.0</a>, <a class=
+          "xref" href="../multimedia/gst10-plugins-base.html" title=
+          "gst-plugins-base-1.16.2">gst-plugins-base-1.16.2</a>, and
+          <a class="xref" href="network-manager-applet.html" title=
+          "network-manager-applet-1.8.24">network-manager-applet-1.8.24</a>
+        </p>
+        <h4>
+          Recommended (Runtime)
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/blocaled.html" title=
+          "blocaled-0.2">blocaled-0.2</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/gtk-doc.html" title=
+          "GTK-Doc-1.32">GTK-Doc-1.32</a> and <a class="ulink" href=
+          "https://github.com/scop/bash-completion">bash-completion</a>
+        </p>
+        <h4>
+          Runtime Dependencies
+        </h4>
+        <p class="required">
+          <a class="xref" href="../x/adwaita-icon-theme.html" title=
+          "adwaita-icon-theme-3.34.3">adwaita-icon-theme-3.34.3</a>,
+          <a class="xref" href="dconf.html" title=
+          "DConf-0.34.0 / DConf-Editor-3.34.4">DConf-0.34.0</a>, <a class=
+          "xref" href="gdm.html" title="GDM-3.34.1">GDM-3.34.1</a>, <a class=
+          "xref" href="gnome-backgrounds.html" title=
+          "gnome-backgrounds-3.34.0">gnome-backgrounds-3.34.0</a>, <a class=
+          "xref" href="gnome-menus.html" title=
+          "gnome-menus-3.35.3">gnome-menus-3.35.3</a>, and <a class="xref"
+          href="../general/telepathy-mission-control.html" title=
+          "telepathy-mission-control-5.16.5">telepathy-mission-control-5.16.5</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/gnome-shell">http://wiki.linuxfromscratch.org/blfs/wiki/gnome-shell</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of GNOME Shell
+        </h2>
+        <p>
+          Install <span class="application">GNOME Shell</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson --prefix=/usr -Dsystemd=false .. &amp;&amp;
+ninja</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>ninja
+          test</strong></span>. You must be running an X session to run the
+          tests. Some will fail if <a class="xref" href="gdm.html" title=
+          "GDM-3.34.1">GDM-3.34.1</a> is not installed.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">ninja install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>-Dsystemd=false</code></em>: Prevents
+          installing systemd files, which are not needed in this version of
+          BLFS.
+        </p>
+        <p>
+          <code class="option">-Dextensions=false</code>: Do not build the
+          <span class="command"><strong>gnome-extensions</strong></span> CLI
+          tool. Using this option removes the need for <a class="xref" href=
+          "../general/asciidoc.html" title=
+          "Asciidoc-8.6.9">asciidoc-8.6.9</a>.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">gnome-extensions, gnome-shell,
+              gnome-shell-extension-prefs, gnome-shell-extension-tool, and
+              gnome-shell-perf-tool</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/lib/gnome-shell,
+              /usr/share/gnome-shell, /usr/share/gtk-doc/html/{shell,st}, and
+              /usr/share/xdg-desktop-portal/</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gnome-shell-prog" name=
+                    "gnome-shell-prog"></a><span class="term"><span class=
+                    "command"><strong>gnome-shell</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides the core user interface functions for the
+                    <span class="application">GNOME</span> 3 Desktop.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-26 22:00:52 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="mutter.html" title="Mutter-3.34.4">Prev</a>
+          <p>
+            Mutter-3.34.4
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gnome-shell-extensions.html" title=
+          "gnome-shell-extensions-3.34.2">Next</a>
+          <p>
+            gnome-shell-extensions-3.34.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="core.html" title=
+          "Chapter&nbsp;33.&nbsp;GNOME Libraries and Desktop">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-binutils-pass1" role="wrap">
+  <?dbhtml filename="binutils-pass1.html"?>
+
+  <sect1info condition="script">
+    <productname>binutils-pass1</productname>
+    <productnumber>&binutils-version;</productnumber>
+    <address>&binutils-url;</address>
+  </sect1info>
+
+  <title>Binutils-&binutils-version; - Проход 1</title>
+
+  <indexterm zone="ch-tools-binutils-pass1">
+    <primary sortas="a-Binutils">Binutils</primary>
+    <secondary>tools, pass 1</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/binutils.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&binutils-ch5p1-sbu;</seg>
+        <seg>&binutils-ch5p1-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Установка кросс-пакета Binutils</title>
+
+    <note><para>Вернитесь назад и перечитайте информацию в предыдущем разделе.
+     Понимание значительно сэкономит вам время и поможет избежать дальнейших проблем.</para></note>
+
+    <para>Очень важно чтобы пакет BinUtils был скомпилирован первым. потому что пакеты Glibc и  GCC в процессе конфигурирования выполняют проверки доступности компоновщика и ассемблера, чтобы определить какие функциональные возможности включить или выключить.</para>
+
+    <para>В документации пакета Binutils рекомендуется выполнять сборку в отдельном каталоге:</para>
+
+<screen><userinput remap="pre">mkdir -v build
+cd       build</userinput></screen>
+
+    <note>
+      <para>Для того, чтобы воспользоваться значением SBU (Стандартная единица времени сборки) в процессе компиляции пакетов во всей книге, необходимо измерить время конфигурирования и последующей компиляции этого пакета. Это можно легко сделать. Необходимо обернуть команды следующей инструкцией:<userinput>time { ./configure ... &amp;&amp; ...
+      &amp;&amp; make install; }</userinput>.</para>
+    </note>
+
+    <note><para>Приблизительное время сборки, значение SBU и требуемое дисковое пространство в главе &nbsp;5 не включает информацию по выполнению наборов тестов пакетов.</para></note>
+
+<para>Необходимо подготовить пакет Binutils к компиляции:</para>
+
+<screen><userinput remap="configure">../configure --prefix=/tools            \
+             --with-sysroot=$LFS        \
+             --with-lib-path=/tools/lib \
+             --target=$LFS_TGT          \
+             --disable-nls              \
+             --disable-werror</userinput></screen>
+
+    <variablelist>
+      <title>Значение параметров конфигурации:</title>
+
+      <varlistentry>
+        <term><parameter>--prefix=/tools</parameter></term>
+        <listitem>
+          <para>Указывает сценарию configure подготовить установку программ пакета Binutils в каталог <filename class="directory">/tools</filename>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-sysroot=$LFS</parameter></term>
+        <listitem>
+          <para>Для выполнения кросс-компиляции, значение передается в систему сборки для поиска в каталоге $LFS целевых системных библиотек по мере необходимости.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--with-lib-path=/tools/lib</parameter></term>
+        <listitem>
+          <para>Указывает в каком каталоге должен находится компоновщик.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><envar>--target=$LFS_TGT</envar></term>
+        <listitem>
+          <para>Поскольку название машины в значении переменной <envar>LFS_TGT</envar> может отличаться от значения, которое вернут сценарий <command>config.guess</command>, этот аргумент укажет сценарию <command>configure</command> настроить систему сборки пакета Binutils для создания кросс-линковщика.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-nls</parameter></term>
+        <listitem>
+          <para>Отключает интернационализацию, поскольку i18n не требуется во
+           временном наборе инструментов.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><parameter>--disable-werror</parameter></term>
+        <listitem>
+          <para>Это предотвращает остановку сборки в том случае, если
+           появляются предупреждения  компилятора хост-системы.</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>Чтобы скомпилировать пакет, необходимо выполнить команду:</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>Компиляция завершена. Как правило, на данном этапе необходимо выполнить наборы тестов для пакета, но сейчас пока рано, потому что инструменты для выполнения тестирования  (Tcl, Expect, and DejaGNU)  пока не на своём месте. Преимущества использования
+     тестов на данный момент минимальны, поскольку программы из сборки первого прохода будут заменены на программы из сборки второго прохода.</para>
+
+    <para>Если сборка происходит на 64-разрядной машине, необходимо создать символическую ссылку для нормальной работы временного набора инструментов.</para>
+
+<screen><userinput remap="install">case $(uname -m) in
+  x86_64) mkdir -v /tools/lib &amp;&amp; ln -sv lib /tools/lib64 ;;
+esac</userinput></screen>
+
+    <para>Установите пакет:</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>Подробная информация об этом пакете находится в
+    <xref linkend="contents-binutils" role="."/></para>
+
+  </sect2>
+
+</sect1>

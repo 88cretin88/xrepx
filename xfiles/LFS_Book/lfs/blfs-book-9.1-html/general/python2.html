@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Python-2.7.17
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;13.&nbsp;Programming
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="php.html" title="PHP-7.4.2">Prev</a>
+          <p>
+            PHP-7.4.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="python3.html" title="Python-3.8.1">Next</a>
+          <p>
+            Python-3.8.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="python2" name="python2"></a>Python-2.7.17
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Python 2
+        </h2>
+        <p>
+          The <span class="application">Python 2</span> package contains the
+          <span class="application">Python</span> development environment. It
+          is useful for object-oriented programming, writing scripts,
+          prototyping large programs or developing entire applications. This
+          version is for backward compatibility with other dependent
+          packages.
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            Python2 has been deprecated by the upstream developers. Support
+            for Python2 was discontinued on January 1st, 2020.
+          </p>
+          <p>
+            BLFS is attempting to use Python3 as much as possible, but some
+            packages have not been updated to support Python3.
+          </p>
+        </div>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://www.python.org/ftp/python/2.7.17/Python-2.7.17.tar.xz">
+                https://www.python.org/ftp/python/2.7.17/Python-2.7.17.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: b3b6d2c92f42a60667814358ab9f0cfd
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 12 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 134 MB (add 17 MB for tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.7 SBU (Using parallelism=4; add 7.1
+                SBU for tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Additional Downloads
+        </h3>
+        <div class="itemizedlist">
+          <p class="title">
+            <strong>Optional HTML Documentation</strong>
+          </p>
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://docs.python.org/ftp/python/doc/2.7.17/python-2.7.17-docs-html.tar.bz2">
+                https://docs.python.org/ftp/python/doc/2.7.17/python-2.7.17-docs-html.tar.bz2</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Python 2 Dependencies
+        </h3>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="bluez.html" title="BlueZ-5.53">BlueZ-5.53</a>
+          and <a class="xref" href="valgrind.html" title=
+          "Valgrind-3.15.0">Valgrind-3.15.0</a>
+        </p>
+        <h4>
+          Optional (For Additional Modules)
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../server/sqlite.html" title=
+          "SQLite-3.31.1">SQLite-3.31.1</a> and <a class="xref" href=
+          "tk.html" title="Tk-8.6.10">Tk-8.6.10</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/Python">http://wiki.linuxfromscratch.org/blfs/wiki/Python</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Python 2
+        </h2>
+        <div class="admon caution">
+          <img alt="[Caution]" src="../images/caution.png" />
+          <h3>
+            Caution
+          </h3>
+          <p>
+            After installing this package or updating <span class=
+            "application">pip2</span> with the command <span class=
+            "command"><strong>pip2 install --upgrade pip</strong></span>, it
+            will remove <span class="application">pip3</span> installed in
+            LFS. To reset <span class="application">pip</span> and
+            <span class="application">pip3</span>, run, as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="userinput">
+<kbd class="command">python3 -m pip install --force pip</kbd>
+</pre>
+        </div>
+        <p>
+          Install <span class="application">Python 2</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr       \
+            --enable-shared     \
+            --with-system-expat \
+            --with-system-ffi   \
+            --with-ensurepip=yes \
+            --enable-unicode=ucs4 &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make -k
+          test</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install &amp;&amp;
+chmod -v 755 /usr/lib/libpython2.7.so.1.0</kbd>
+</pre>
+        <p>
+          Since <span class="application">Python 2</span> is in maintenance
+          mode, and <span class="application">Python 3</span> is recommended
+          by upstream for development, you probably do not need to install
+          the documentation. However, if you still want to install
+          documentation for both <span class="application">Python</span>
+          versions, be sure to define the <code class=
+          "envar">PYTHONDOCS</code> variable for the version you want to use,
+          each time you need to consult the documentation. If you have
+          downloaded the preformatted documentation from <a class="ulink"
+          href=
+          "http://docs.python.org/download.html">http://docs.python.org/download.html</a>,
+          install it as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">install -v -dm755 /usr/share/doc/python-2.7.17 &amp;&amp;
+
+tar --strip-components=1                     \
+    --no-same-owner                          \
+    --directory /usr/share/doc/python-2.7.17 \
+    -xvf ../python-2.7.17-docs-html.tar.bz2 &amp;&amp;
+
+find /usr/share/doc/python-2.7.17 -type d -exec chmod 0755 {} \; &amp;&amp;
+find /usr/share/doc/python-2.7.17 -type f -exec chmod 0644 {} \;</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--with-system-expat</code></em>: This
+          switch enables linking against system version of <span class=
+          "application">Expat</span>.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-system-ffi</code></em>: This
+          switch enables linking against system version of <span class=
+          "application">libffi</span>.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-ensurepip=yes</code></em> : This
+          switch enables building <span class=
+          "command"><strong>pip</strong></span> and <span class=
+          "command"><strong>setuptools</strong></span> packaging programs.
+          <span class="command"><strong>setuptools</strong></span> is needed
+          for building some Python modules.
+        </p>
+        <p>
+          <em class="parameter"><code>--enable-unicode=ucs4</code></em>: This
+          switch enables 32bit Unicode support in <span class=
+          "application">Python</span>.
+        </p>
+        <p>
+          <code class="option">--with-dbmliborder=bdb:gdbm:ndbm</code>: Use
+          this switch if you want to build <span class=
+          "application">Python</span> DBM Module against <span class=
+          "application">Berkeley DB</span> instead of <span class=
+          "application">GDBM</span>.
+        </p>
+        <p>
+          <span class="command"><strong>chmod ...</strong></span>: Fix
+          permissions for libraries to be consistent with other libraries.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring Python 2
+        </h2>
+        <p>
+          In order for <span class="command"><strong>python</strong></span>
+          to find the installed documentation, you must add the following
+          environment variable to individual user's or the system's profile:
+        </p>
+        <pre class="root">
+<kbd class="command">export PYTHONDOCS=/usr/share/doc/python-2.7.17</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">2to3, pip2, pydoc, python (symlink),
+              python-config (symlink), python2 (symlink), python2-config
+              (symlink), python2.7, python2.7-config, smtpd.py, and
+              idle</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">libpython2.7.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/{include,lib}/python2.7 and
+              /usr/share/doc/python-2.7.17</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="python2-2to3" name="python2-2to3"></a><span class=
+                    "term"><span class=
+                    "command"><strong>2to3</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a <span class="application">Python</span> program that
+                    reads <span class="application">Python 2.x</span> source
+                    code and applies a series of fixes to transform it into
+                    valid <span class="application">Python 3.x</span> code.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="pip2" name="pip2"></a><span class=
+                    "term"><span class=
+                    "command"><strong>pip2</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the package manager for <span class=
+                    "application">Python 2.x</span>. It is used to automate
+                    management of <span class="application">Python 2.x</span>
+                    modules.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="idle" name="idle"></a><span class=
+                    "term"><span class=
+                    "command"><strong>idle</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a wrapper script that opens a <span class=
+                    "application">Python</span> aware GUI editor. For this
+                    script to run, you must have installed <span class=
+                    "application">Tk</span> before Python so that the Tkinter
+                    Python module is built.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="pydoc2" name="pydoc2"></a><span class=
+                    "term"><span class=
+                    "command"><strong>pydoc</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">Python</span>
+                    documentation tool.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="python" name="python"></a><span class=
+                    "term"><span class=
+                    "command"><strong>python</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an interpreted, interactive, object-oriented
+                    programming language.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="python2-ver" name="python2-ver"></a><span class=
+                    "term"><span class=
+                    "command"><strong>python2.7</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a version-specific name for the <span class=
+                    "command"><strong>python</strong></span> program.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="smtpd.py" name="smtpd.py"></a><span class=
+                    "term"><span class=
+                    "command"><strong>smtpd.py</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an SMTP proxy implemented in <span class=
+                    "application">Python</span>.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 20:23:35 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="php.html" title="PHP-7.4.2">Prev</a>
+          <p>
+            PHP-7.4.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="python3.html" title="Python-3.8.1">Next</a>
+          <p>
+            Python-3.8.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

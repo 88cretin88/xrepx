@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE bookinfo PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<bookinfo>
+  <title>Linux From Scratch</title>
+  <subtitle revision='sysv'   >Версия &version; </subtitle>
+  <subtitle revision='systemd'>Версия &versiond;</subtitle>
+
+  <authorgroup>
+    <author>
+      <firstname>Создатель - Gerard</firstname>
+      <surname>Beekmans</surname>
+    </author>
+    <author>
+      <firstname>Главный редактор: Bruce</firstname>
+      <surname>Dubbs</surname>
+    </author>
+    <author revision="systemd">
+      <firstname>Editor: Douglas R.</firstname>
+      <surname>Reno</surname>
+    </author>
+    <author revision="systemd">
+      <firstname>Редактор: DJ</firstname>
+      <surname>Lucas</surname>
+    </author>
+	 <author>
+      <firstname>Технический перевод: Антон</firstname>
+      <surname>Майсак</surname>
+    </author>
+
+	  <author>
+      <firstname>Редактор перевода: Елена</firstname>
+		<surname>Шевцова</surname>
+    </author>
+
+  </authorgroup>
+
+    <copyright id="copyright">
+    <year>&copyrightdate;</year>
+    <holder>Gerard Beekmans</holder>
+  </copyright>
+
+  <legalnotice>
+
+    <para>Все права защищены.</para>
+    <para>Эта книга лицензирована в соответствии с <xref linkend="CC"/>.</para>
+    <para>Инструкции для компьютера из книги могут быть использованы под лицензией <xref linkend="MIT"/>.</para>
+    <para><trademark class='registered'>Linux</trademark>является зарегистрированным товарным знаком Linus Torvalds.</para>
+
+  </legalnotice>
+
+</bookinfo>

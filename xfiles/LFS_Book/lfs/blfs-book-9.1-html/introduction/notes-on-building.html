@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Notes on Building Software
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;2.&nbsp;Important Information
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="important.html" title=
+          "Important Information">Prev</a>
+          <p>
+            Important Information
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="position.html" title=
+          "The /usr Versus /usr/local Debate">Next</a>
+          <p>
+            The /usr Versus /usr/local Debate
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="important.html" title=
+          "Chapter&nbsp;2.&nbsp;Important Information">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="unpacking" name="unpacking"></a>Notes on Building Software
+      </h1>
+      <p>
+        Those people who have built an LFS system may be aware of the general
+        principles of downloading and unpacking software. Some of that
+        information is repeated here for those new to building their own
+        software.
+      </p>
+      <p>
+        Each set of installation instructions contains a URL from which you
+        can download the package. The patches; however, are stored on the LFS
+        servers and are available via HTTP. These are referenced as needed in
+        the installation instructions.
+      </p>
+      <p>
+        While you can keep the source files anywhere you like, we assume that
+        you have unpacked the package and changed into the directory created
+        by the unpacking process (the 'build' directory). We also assume you
+        have uncompressed any required patches and they are in the directory
+        immediately above the 'build' directory.
+      </p>
+      <p>
+        We can not emphasize strongly enough that you should start from a
+        <span class="emphasis"><em>clean source tree</em></span> each time.
+        This means that if you have had an error during configuration or
+        compilation, it's usually best to delete the source tree and
+        re-unpack it <span class="emphasis"><em>before</em></span> trying
+        again. This obviously doesn't apply if you're an advanced user used
+        to hacking <code class="filename">Makefile</code>s and C code, but if
+        in doubt, start from a clean tree.
+      </p>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Building Software as an Unprivileged (non-root) User
+        </h2>
+        <p>
+          The golden rule of Unix System Administration is to use your
+          superpowers only when necessary. Hence, BLFS recommends that you
+          build software as an unprivileged user and only become the
+          <code class="systemitem">root</code> user when installing the
+          software. This philosophy is followed in all the packages in this
+          book. Unless otherwise specified, all instructions should be
+          executed as an unprivileged user. The book will advise you on
+          instructions that need <code class="systemitem">root</code>
+          privileges.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Unpacking the Software
+        </h2>
+        <p>
+          If a file is in <code class="filename">.tar</code> format and
+          compressed, it is unpacked by running one of the following
+          commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">tar -xvf filename.tar.gz
+tar -xvf filename.tgz
+tar -xvf filename.tar.Z
+tar -xvf filename.tar.bz2</kbd>
+</pre>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            You may omit using the <code class="option">v</code> parameter in
+            the commands shown above and below if you wish to suppress the
+            verbose listing of all the files in the archive as they are
+            extracted. This can help speed up the extraction as well as make
+            any errors produced during the extraction more obvious to you.
+          </p>
+        </div>
+        <p>
+          You can also use a slightly different method:
+        </p>
+        <pre class="userinput">
+<kbd class="command">bzcat filename.tar.bz2 | tar -xv</kbd>
+</pre>
+        <p>
+          Finally, you sometimes need to be able to unpack patches which are
+          generally not in <code class="filename">.tar</code> format. The
+          best way to do this is to copy the patch file to the parent of the
+          'build' directory and then run one of the following commands
+          depending on whether the file is a <code class=
+          "filename">.gz</code> or <code class="filename">.bz2</code> file:
+        </p>
+        <pre class="userinput">
+<kbd class="command">gunzip -v patchname.gz
+bunzip2 -v patchname.bz2</kbd>
+</pre>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Verifying File Integrity Using 'md5sum'
+        </h2>
+        <p>
+          Generally, to verify that the downloaded file is genuine and
+          complete, many package maintainers also distribute md5sums of the
+          files. To verify the md5sum of the downloaded files, download both
+          the file and the corresponding md5sum file to the same directory
+          (preferably from different on-line locations), and (assuming
+          <code class="filename">file.md5sum</code> is the md5sum file
+          downloaded) run the following command:
+        </p>
+        <pre class="userinput">
+<kbd class="command">md5sum -c file.md5sum</kbd>
+</pre>
+        <p>
+          If there are any errors, they will be reported. Note that the BLFS
+          book includes md5sums for all the source files also. To use the
+          BLFS supplied md5sums, you can create a <code class=
+          "filename">file.md5sum</code> (place the md5sum data and the exact
+          name of the downloaded file on the same line of a file, separated
+          by white space) and run the command shown above. Alternately,
+          simply run the command shown below and compare the output to the
+          md5sum data shown in the BLFS book.
+        </p>
+        <pre class="userinput">
+<kbd class="command">md5sum <em class=
+"replaceable"><code>&lt;name_of_downloaded_file&gt;</code></em></kbd>
+</pre>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Creating Log Files During Installation
+        </h2>
+        <p>
+          For larger packages, it is convenient to create log files instead
+          of staring at the screen hoping to catch a particular error or
+          warning. Log files are also useful for debugging and keeping
+          records. The following command allows you to create an installation
+          log. Replace <em class=
+          "replaceable"><code>&lt;command&gt;</code></em> with the command
+          you intend to execute.
+        </p>
+        <pre class="userinput">
+<kbd class="command">( <em class=
+"replaceable"><code>&lt;command&gt;</code></em> 2&gt;&amp;1 | tee compile.log &amp;&amp; exit $PIPESTATUS )</kbd>
+</pre>
+        <p>
+          <code class="option">2&gt;&amp;1</code> redirects error messages to
+          the same location as standard output. The <span class=
+          "command"><strong>tee</strong></span> command allows viewing of the
+          output while logging the results to a file. The parentheses around
+          the command run the entire command in a subshell and finally the
+          <span class="command"><strong>exit $PIPESTATUS</strong></span>
+          command ensures the result of the <em class=
+          "replaceable"><code>&lt;command&gt;</code></em> is returned as the
+          result and not the result of the <span class=
+          "command"><strong>tee</strong></span> command.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="parallel-builds" name="parallel-builds"></a>Using Multiple
+          Processors
+        </h2>
+        <p>
+          For many modern systems with multiple processors (or cores) the
+          compilation time for a package can be reduced by performing a
+          "parallel make" by either setting an environment variable or
+          telling the make program how many processors are available. For
+          instance, a Core2Duo can support two simultaneous processes with:
+        </p>
+        <pre class="userinput">
+<kbd class="command">export MAKEFLAGS='-j2'</kbd>
+</pre>
+        <p>
+          or just building with:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make -j2</kbd>
+</pre>
+        <p>
+          Generally the number of processes should not exceed the number of
+          cores supported by the CPU. To list the processors on your system,
+          issue: <strong class="userinput"><code>grep processor
+          /proc/cpuinfo</code></strong>.
+        </p>
+        <p>
+          In some cases, using multiple processors may result in a 'race'
+          condition where the success of the build depends on the order of
+          the commands run by the <span class=
+          "command"><strong>make</strong></span> program. For instance, if an
+          executable needs File A and File B, attempting to link the program
+          before one of the dependent components is available will result in
+          a failure. This condition usually arises because the upstream
+          developer has not properly designated all the prerequisites needed
+          to accomplish a step in the Makefile.
+        </p>
+        <p>
+          If this occurs, the best way to proceed is to drop back to a single
+          processor build. Adding '-j1' to a make command will override the
+          similar setting in the MAKEFLAGS environment variable.
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            When running the package tests or the install portion of the
+            package build process, we do not recommend using an option
+            greater than '-j1' unless specified otherwise. The installation
+            procedures or checks have not been validated using parallel
+            procedures and may fail with issues that are difficult to debug.
+          </p>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="automating-builds" name="automating-builds"></a>Automated
+          Building Procedures
+        </h2>
+        <p>
+          There are times when automating the building of a package can come
+          in handy. Everyone has their own reasons for wanting to automate
+          building, and everyone goes about it in their own way. Creating
+          <code class="filename">Makefile</code>s, <span class=
+          "application">Bash</span> scripts, <span class=
+          "application">Perl</span> scripts or simply a list of commands used
+          to cut and paste are just some of the methods you can use to
+          automate building BLFS packages. Detailing how and providing
+          examples of the many ways you can automate the building of packages
+          is beyond the scope of this section. This section will expose you
+          to using file redirection and the <span class=
+          "command"><strong>yes</strong></span> command to help provide ideas
+          on how to automate your builds.
+        </p>
+        <h3>
+          File Redirection to Automate Input
+        </h3>
+        <p>
+          You will find times throughout your BLFS journey when you will come
+          across a package that has a command prompting you for information.
+          This information might be configuration details, a directory path,
+          or a response to a license agreement. This can present a challenge
+          to automate the building of that package. Occasionally, you will be
+          prompted for different information in a series of questions. One
+          method to automate this type of scenario requires putting the
+          desired responses in a file and using redirection so that the
+          program uses the data in the file as the answers to the questions.
+        </p>
+        <p>
+          Building the <span class="application">CUPS</span> package is a
+          good example of how redirecting a file as input to prompts can help
+          you automate the build. If you run the test suite, you are asked to
+          respond to a series of questions regarding the type of test to run
+          and if you have any auxiliary programs the test can use. You can
+          create a file with your responses, one response per line, and use a
+          command similar to the one shown below to automate running the test
+          suite:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make check &lt; ../cups-1.1.23-testsuite_parms</kbd>
+</pre>
+        <p>
+          This effectively makes the test suite use the responses in the file
+          as the input to the questions. Occasionally you may end up doing a
+          bit of trial and error determining the exact format of your input
+          file for some things, but once figured out and documented you can
+          use this to automate building the package.
+        </p>
+        <h3>
+          Using <span class="command"><strong>yes</strong></span> to Automate
+          Input
+        </h3>
+        <p>
+          Sometimes you will only need to provide one response, or provide
+          the same response to many prompts. For these instances, the
+          <span class="command"><strong>yes</strong></span> command works
+          really well. The <span class="command"><strong>yes</strong></span>
+          command can be used to provide a response (the same one) to one or
+          more instances of questions. It can be used to simulate pressing
+          just the <span class="keycap"><strong>Enter</strong></span> key,
+          entering the <span class="keycap"><strong>Y</strong></span> key or
+          entering a string of text. Perhaps the easiest way to show its use
+          is in an example.
+        </p>
+        <p>
+          First, create a short <span class="application">Bash</span> script
+          by entering the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat &gt; blfs-yes-test1 &lt;&lt; "EOF"
+<code class="literal">#!/bin/bash
+
+echo -n -e "\n\nPlease type something (or nothing) and press Enter ---&gt; "
+
+read A_STRING
+
+if test "$A_STRING" = ""; then A_STRING="Just the Enter key was pressed"
+else A_STRING="You entered '$A_STRING'"
+fi
+
+echo -e "\n\n$A_STRING\n\n"</code>
+EOF
+chmod 755 blfs-yes-test1</kbd>
+</pre>
+        <p>
+          Now run the script by issuing <span class=
+          "command"><strong>./blfs-yes-test1</strong></span> from the command
+          line. It will wait for a response, which can be anything (or
+          nothing) followed by the <span class=
+          "keycap"><strong>Enter</strong></span> key. After entering
+          something, the result will be echoed to the screen. Now use the
+          <span class="command"><strong>yes</strong></span> command to
+          automate the entering of a response:
+        </p>
+        <pre class="userinput">
+<kbd class="command">yes | ./blfs-yes-test1</kbd>
+</pre>
+        <p>
+          Notice that piping <span class=
+          "command"><strong>yes</strong></span> by itself to the script
+          results in <span class="keycap"><strong>y</strong></span> being
+          passed to the script. Now try it with a string of text:
+        </p>
+        <pre class="userinput">
+<kbd class="command">yes 'This is some text' | ./blfs-yes-test1</kbd>
+</pre>
+        <p>
+          The exact string was used as the response to the script. Finally,
+          try it using an empty (null) string:
+        </p>
+        <pre class="userinput">
+<kbd class="command">yes '' | ./blfs-yes-test1</kbd>
+</pre>
+        <p>
+          Notice this results in passing just the press of the <span class=
+          "keycap"><strong>Enter</strong></span> key to the script. This is
+          useful for times when the default answer to the prompt is
+          sufficient. This syntax is used in the <a class="xref" href=
+          "../basicnet/net-tools.html#net-tools-automate-example">Net-tools</a>
+          instructions to accept all the defaults to the many prompts during
+          the configuration step. You may now remove the test script, if
+          desired.
+        </p>
+        <h3>
+          File Redirection to Automate Output
+        </h3>
+        <p>
+          In order to automate the building of some packages, especially
+          those that require you to read a license agreement one page at a
+          time, requires using a method that avoids having to press a key to
+          display each page. Redirecting the output to a file can be used in
+          these instances to assist with the automation. The previous section
+          on this page touched on creating log files of the build output. The
+          redirection method shown there used the <span class=
+          "command"><strong>tee</strong></span> command to redirect output to
+          a file while also displaying the output to the screen. Here, the
+          output will only be sent to a file.
+        </p>
+        <p>
+          Again, the easiest way to demonstrate the technique is to show an
+          example. First, issue the command:
+        </p>
+        <pre class="userinput">
+<kbd class="command">ls -l /usr/bin | more</kbd>
+</pre>
+        <p>
+          Of course, you'll be required to view the output one page at a time
+          because the <span class="command"><strong>more</strong></span>
+          filter was used. Now try the same command, but this time redirect
+          the output to a file. The special file <code class=
+          "filename">/dev/null</code> can be used instead of the filename
+          shown, but you will have no log file to examine:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">ls -l /usr/bin | more &gt; redirect_test.log 2&gt;&amp;1</kbd>
+</pre>
+        <p>
+          Notice that this time the command immediately returned to the shell
+          prompt without having to page through the output. You may now
+          remove the log file.
+        </p>
+        <p>
+          The last example will use the <span class=
+          "command"><strong>yes</strong></span> command in combination with
+          output redirection to bypass having to page through the output and
+          then provide a <span class="keycap"><strong>y</strong></span> to a
+          prompt. This technique could be used in instances when otherwise
+          you would have to page through the output of a file (such as a
+          license agreement) and then answer the question of <span class=
+          "quote">&ldquo;<span class="quote">do you accept the
+          above?</span>&rdquo;</span>. For this example, another short
+          <span class="application">Bash</span> script is required:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat &gt; blfs-yes-test2 &lt;&lt; "EOF"
+<code class="literal">#!/bin/bash
+
+ls -l /usr/bin | more
+
+echo -n -e "\n\nDid you enjoy reading this? (y,n) "
+
+read A_STRING
+
+if test "$A_STRING" = "y"; then A_STRING="You entered the 'y' key"
+else A_STRING="You did NOT enter the 'y' key"
+fi
+
+echo -e "\n\n$A_STRING\n\n"</code>
+EOF
+chmod 755 blfs-yes-test2</kbd>
+</pre>
+        <p>
+          This script can be used to simulate a program that requires you to
+          read a license agreement, then respond appropriately to accept the
+          agreement before the program will install anything. First, run the
+          script without any automation techniques by issuing <span class=
+          "command"><strong>./blfs-yes-test2</strong></span>.
+        </p>
+        <p>
+          Now issue the following command which uses two automation
+          techniques, making it suitable for use in an automated build
+          script:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">yes | ./blfs-yes-test2 &gt; blfs-yes-test2.log 2&gt;&amp;1</kbd>
+</pre>
+        <p>
+          If desired, issue <span class="command"><strong>tail
+          blfs-yes-test2.log</strong></span> to see the end of the paged
+          output, and confirmation that <span class=
+          "keycap"><strong>y</strong></span> was passed through to the
+          script. Once satisfied that it works as it should, you may remove
+          the script and log file.
+        </p>
+        <p>
+          Finally, keep in mind that there are many ways to automate and/or
+          script the build commands. There is not a single <span class=
+          "quote">&ldquo;<span class="quote">correct</span>&rdquo;</span> way
+          to do it. Your imagination is the only limit.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Dependencies
+        </h2>
+        <p>
+          For each package described, BLFS lists the known dependencies.
+          These are listed under several headings, whose meaning is as
+          follows:
+        </p>
+        <div class="itemizedlist">
+          <ul>
+            <li class="listitem">
+              <p>
+                <span class="emphasis"><em>Required</em></span> means that
+                the target package cannot be correctly built without the
+                dependency having first been installed.
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <span class="emphasis"><em>Recommended</em></span> means that
+                BLFS strongly suggests this package is installed first for a
+                clean and trouble-free build, that won't have issues either
+                during the build process, or at run-time. The instructions in
+                the book assume these packages are installed. Some changes or
+                workarounds may be required if these packages are not
+                installed.
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <span class="emphasis"><em>Optional</em></span> means that
+                this package might be installed for added functionality.
+                Often BLFS will describe the dependency to explain the added
+                functionality that will result.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="package_updates" name="package_updates"></a>Using the Most
+          Current Package Sources
+        </h2>
+        <p>
+          On occasion you may run into a situation in the book when a package
+          will not build or work properly. Though the Editors attempt to
+          ensure that every package in the book builds and works properly,
+          sometimes a package has been overlooked or was not tested with this
+          particular version of BLFS.
+        </p>
+        <p>
+          If you discover that a package will not build or work properly, you
+          should see if there is a more current version of the package.
+          Typically this means you go to the maintainer's web site and
+          download the most current tarball and attempt to build the package.
+          If you cannot determine the maintainer's web site by looking at the
+          download URLs, use Google and query the package's name. For
+          example, in the Google search bar type: 'package_name download'
+          (omit the quotes) or something similar. Sometimes typing:
+          'package_name home page' will result in you finding the
+          maintainer's web site.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="stripping" name="stripping"></a>Stripping One More Time
+        </h2>
+        <p>
+          In LFS, stripping of debugging symbols was discussed a couple of
+          times. When building BLFS packages, there are generally no special
+          instructions that discuss stripping again. It is probably not a
+          good idea to strip an executable or a library while it is in use,
+          so exiting any windowing environment is a good idea. Then you can
+          do:
+        </p>
+        <pre class="userinput">
+<kbd class="command">find /{,usr/}{bin,lib,sbin} \
+    -type f \( -name \*.so* -a ! -name \*dbg \) \
+    -exec strip --strip-unneeded {} \;</kbd>
+</pre>
+        <p>
+          If you install programs in other directories such as <code class=
+          "filename">/opt</code> or <code class="filename">/usr/local</code>,
+          you may want to strip the files there too.
+        </p>
+        <p>
+          For more information on stripping, see <a class="ulink" href=
+          "http://www.technovelty.org/linux/stripping-shared-libraries.html">http://www.technovelty.org/linux/stripping-shared-libraries.html</a>.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="buildsystems" name="buildsystems"></a>Working with different
+          build systems
+        </h2>
+        <p>
+          There are now three different build systems in common use for
+          converting C or C++ source code into compiled programs or libraries
+          and their details (particularly, finding out about available
+          options and their default values) differ. It may be easiest to
+          understand the issues caused by some choices (typically slow
+          execution or unexpected use of, or omission of, optimizatons) by
+          starting with the CFLAGS and CXXFLAGS environment variables. There
+          are also some programs which use rust.
+        </p>
+        <p>
+          Most LFS and BLFS builders are probably aware of the basics of
+          CFLAGS and CXXFLAGS for altering how a program is compiled.
+          Typically, some form of optimization is used by upstream developers
+          (-O2 or -O3), sometimes with the creation of debug symbols (-g), as
+          defaults.
+        </p>
+        <p>
+          If there are contradictory flags (e.g. multiple different -O
+          values), the <span class="emphasis"><em>last</em></span> value will
+          be used. Sometimes this means that flags specified in environment
+          variables will be picked up before values hardcoded in the
+          Makefile, and therefore ignored. For example, where a user
+          specifies '-O2' and that is followed by '-O3' the build will use
+          '-O3'.
+        </p>
+        <p>
+          There are various other things which can be passed in CFLAGS or
+          CXXFLAGS, such as forcing compilation for a specific
+          microarchitecture (e.g. -march=amdfam10, -march=native) or
+          specifying a specific standard for C or C++ (-std=c++17 for
+          example). But one thing which has now come to light is that
+          programmers might include debug assertions in their code, expecting
+          them to be disabled in releases by using -DNDEBUG. Specifically, if
+          <a class="xref" href="../x/mesa.html" title=
+          "Mesa-19.3.4">Mesa-19.3.4</a> is built with these assertions
+          enabled, some activities such as loading levels of games can take
+          extremely long times, even on high-class video cards.
+        </p>
+        <h3>
+          <a id="autotools-info" name="autotools-info"></a>Autotools with
+          Make
+        </h3>
+        <p>
+          This combination is often described as 'CMMI' (configure, make,
+          make install) and is used here to also cover the few packages which
+          have a configure script that is not generated by autotools.
+        </p>
+        <p>
+          Sometimes running <span class="command"><strong>./configure
+          --help</strong></span> will produce useful options about switches
+          which might be used. At other times, after looking at the output
+          from configure you may need to look at the details of the script to
+          find out what it was actually searching for.
+        </p>
+        <p>
+          Many configure scripts will pick up any CFLAGS or CXXFLAGS from the
+          environment, but CMMI packages vary about how these will be mixed
+          with any flags which would otherwise be used (<span class=
+          "emphasis"><em>variously</em></span>: ignored, used to replace the
+          programmer's suggestion, used before the programmer's suggestion,
+          or used after the programmer's suggestion).
+        </p>
+        <p>
+          In most CMMI packages, running 'make' will list each command and
+          run it, interspersed with any warnings. But some packages try to be
+          'silent' and only show which file they are compiling or linking
+          instead of showing the command line. If you need to inspect the
+          command, either because of an error, or just to see what options
+          and flags are being used, adding 'V=1' to the make invocation may
+          help.
+        </p>
+        <h3>
+          <a id="cmake-info" name="cmake-info"></a>CMake
+        </h3>
+        <p>
+          CMake works in a very different way, and it has two backends which
+          can be used on BLFS: 'make' and 'ninja'. The default backend is
+          make, but ninja can be faster on large packages with multiple
+          processors. To use ninja, specify '-G Ninja' in the cmake command.
+          However, there are some packages which create fatal errors in their
+          ninja files but build successfully using the default of Unix
+          Makefiles.
+        </p>
+        <p>
+          The hardest part of using CMake is knowing what options you might
+          wish to specify. The only way to get a list of what the package
+          knows about is to run <span class="command"><strong>cmake
+          -LAH</strong></span> and look at the output for that default
+          configuration.
+        </p>
+        <p>
+          Perhaps the most-important thing about CMake is that it has a
+          variety of CMAKE_BUILD_TYPE values, and these affect the flags. The
+          default is that this is not set and no flags are generated. Any
+          CFLAGS or CXXFLAGS in the environment will be used. If the
+          programmer has coded any debug assertions, those will be enabled
+          unless -DNDEBUG is used. The following CMAKE_BUILD_TYPE values will
+          generate the flags shown, and these will come <span class=
+          "emphasis"><em>after</em></span> any flags in the environment and
+          therefore take precedence.
+        </p>
+        <div class="itemizedlist">
+          <ul>
+            <li class="listitem">
+              <p>
+                Debug : '-g'
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Release : '-O3 -DNDEBUG'
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                RelWithDebInfo : '-O2 -g -DNDEBUG'
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                MinSizeRel : '-Os -DNDEBUG'
+              </p>
+            </li>
+          </ul>
+        </div>
+        <p>
+          CMake tries to produce quiet builds. To see the details of the
+          commands which are being run, use 'make VERBOSE=1' or 'ninja -v'.
+        </p>
+        <h3>
+          <a id="meson-info" name="meson-info"></a>Meson
+        </h3>
+        <p>
+          Meson has some similarities to CMake, but many differences. To get
+          details of the defines that you may wish to change you can look at
+          <code class="filename">meson_options.txt</code> which is usually in
+          the top-level directory.
+        </p>
+        <p>
+          If you have already configured the package by running <span class=
+          "command"><strong>meson</strong></span> and now wish to change one
+          or more settings, you can either remove the build directory,
+          recreate it, and use the altered options, or within the build
+          directory run <span class="command"><strong>meson
+          configure</strong></span>, e.g. to set an option:
+        </p>
+        <pre class="userinput">
+<kbd class="command">meson configure -D&lt;some_option&gt;=true</kbd>
+</pre>
+        <p>
+          If you do that, the file <code class=
+          "filename">meson-private/cmd_line.txt</code> will show the
+          <span class="emphasis"><em>last</em></span> commands which were
+          used.
+        </p>
+        <p>
+          Meson provides the following buildtype values, and the flags they
+          enable come <span class="emphasis"><em>after</em></span> any flags
+          supplied in the environment and therefore take precedence.
+        </p>
+        <div class="itemizedlist">
+          <ul>
+            <li class="listitem">
+              <p>
+                plain : no added flags. This is for distributors to supply
+                their own CLFAGS, CXXFLAGS and LDFLAGS. There is no obvious
+                reason to use this in BLFS.
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                debug : '-g'
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                debugoptimized : '-O2 -g' - this is the default if nothing is
+                specified, it leaves assertions enabled.
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                release : '-O3 -DNDEBUG' (but occasionally a package will
+                force -O2 here)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <p>
+          Although the 'release' buildtype is described as enabling -DNDEBUG,
+          and all CMake Release builds pass that, it has so far only been
+          observed (in verbose builds) for <a class="xref" href=
+          "../x/mesa.html" title="Mesa-19.3.4">Mesa-19.3.4</a>. That suggests
+          that it might only be used when there are debug assertions present.
+        </p>
+        <p>
+          The -DNDEBUG flag can also be provided by passing <span class=
+          "command"><strong>-Db_ndebug=true</strong></span>.
+        </p>
+        <p>
+          To see the details of the commands which are being run in a package
+          using meson, use 'ninja -v'.
+        </p>
+        <h3>
+          <a id="rust-info" name="rust-info"></a>Rustc and Cargo
+        </h3>
+        <p>
+          Most released rustc programs are provided as crates (source
+          tarballs) which will query a server to check current versions of
+          dependencies and then download them as necessary. These packages
+          are built using <span class="command"><strong>cargo
+          --release</strong></span>. In theory, you can manipulate the
+          RUSTFLAGS to change the optimize-level (default is 3, like -O3,
+          e.g. <code class="literal">-Copt-level=3</code>) or to force it to
+          build for the machine it is being compiled on, using <code class=
+          "literal">-Ctarget-cpu=native</code> but in practice this seems to
+          make no significant difference.
+        </p>
+        <p>
+          If you find an interesting rustc program which is only provided as
+          unpackaged source, you should at least specify <code class=
+          "literal">RUSTFLAGS=-Copt-level=2</code> otherwise it will do an
+          unoptimized compile with debug info and run <span class=
+          "emphasis"><em>much</em></span> slower.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="optimizations" name="optimizations"></a>Optimizing the build
+        </h2>
+        <p>
+          Many people will prefer to optimize compiles as they see fit, by
+          providing CFLAGS or CXXFLAGS. For an introduction to the options
+          available with gcc and g++ see <a class="ulink" href=
+          "https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html">https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html</a>
+          and <a class="ulink" href=
+          "https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html">https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html</a>
+          and <span class="command"><strong>info gcc</strong></span>.
+        </p>
+        <p>
+          Some packages default to '-O2 -g', others to '-O3 -g', and if
+          CFLAGS or CXXFLAGS are supplied they might be added to the
+          package's defaults, replace the package's defaults, or even be
+          ignored. There are details on some desktop packages which were
+          mostly current in April 2019 at <a class="ulink" href=
+          "http://www.linuxfromscratch.org/~ken/tuning/">http://www.linuxfromscratch.org/~ken/tuning/</a>
+          - in particular, README.txt, tuning-1-packages-and-notes.txt, and
+          tuning-notes-2B.txt. The particular thing to remember is that if
+          you want to try some of the more interesting flags you may need to
+          force verbose builds to confirm what is being used.
+        </p>
+        <p>
+          Clearly, if you are optimizing your own program you can spend time
+          to profile it and perhaps recode some of it if it is too slow. But
+          for building a whole system that approach is impractical. In
+          general, -O3 usually produces faster programs than -O2. Specifying
+          -march=native is also beneficial, but means that you cannot move
+          the binaries to an incompatible machine - this can also apply to
+          newer machines, not just to older machines. For example programs
+          compiled for 'amdfam10' run on old Phenoms, Kaveris, and Ryzens :
+          but programs compiled for a Kaveri will not run on a Ryzen because
+          certain op-codes are not present. Similarly, if you build for a
+          Haswell not everything will run on a SandyBridge.
+        </p>
+        <p>
+          There are also various other options which some people claim are
+          beneficial. At worst, you get to recompile and test, and then
+          discover that in your usage the options do not provide a benefit.
+        </p>
+        <p>
+          If building Perl or Python modules, or Qt packages which use qmake,
+          in general the CFLAGS and CXXFLAGS used are those which were used
+          by those 'parent' packages.
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="hardening" name="hardening"></a>Options for hardening the
+          build
+        </h2>
+        <p>
+          Even on desktop systems, there are still a lot of exploitable
+          vulnerabilities. For many of these, the attack comes via javascript
+          in a browser. Often, a series of vulnerabilities are used to gain
+          access to data (or sometimes to pwn, i.e. own, the machine and
+          install rootkits). Most commercial distros will apply various
+          hardening measures.
+        </p>
+        <p>
+          For hardening options which are reasonably cheap, there is some
+          discussion in the 'tuning' link above (occasionally, one or more of
+          these options might be inappropriate for a package). These options
+          are -D_FORTIFY_SOURCE=2, -fstack-protector=strong, and (for C++)
+          -D_GLIBCXX_ASSERTIONS. On modern machines these should only have a
+          little impact on how fast things run, and often they will not be
+          noticeable.
+        </p>
+        <p>
+          In the past, there was Hardened LFS where gcc (a much older
+          version) was forced to use hardening (with options to turn some of
+          it off on a per-package basis. What is being covered here is
+          different - first you have to make sure that the package is indeed
+          using your added flags and not over-riding them.
+        </p>
+        <p>
+          The main distros use much more, such as RELRO (Relocation Read
+          Only) and perhaps -fstack-clash-protection. You may also encounter
+          the so-called 'userspace retpoline' (-mindirect-branch=thunk etc.)
+          which is the equivalent of the spectre mitigations applied to the
+          linux kernel in late 2018). The kernel mitigations caused a lot of
+          complaints about lost performance, if you have a production server
+          you might wish to consider testing that, along with the other
+          available options, to see if performance is still sufficient.
+        </p>
+        <p>
+          Whilst gcc has many hardening options, clang/LLVM's strengths lie
+          elsewhere. Some options which gcc provides are said to be less
+          effective in clang/LLVM, others are not available.
+        </p>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-22 19:55:40 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="important.html" title=
+          "Important Information">Prev</a>
+          <p>
+            Important Information
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="position.html" title=
+          "The /usr Versus /usr/local Debate">Next</a>
+          <p>
+            The /usr Versus /usr/local Debate
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="important.html" title=
+          "Chapter&nbsp;2.&nbsp;Important Information">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

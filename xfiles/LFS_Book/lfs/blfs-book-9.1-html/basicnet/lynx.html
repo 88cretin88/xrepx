@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Lynx-2.8.9rel.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;18.&nbsp;Text Web Browsers
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="links.html" title="Links-2.20.2">Prev</a>
+          <p>
+            Links-2.20.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="mailnews.html" title=
+          "Mail/News Clients">Next</a>
+          <p>
+            Mail/News Clients
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="textweb.html" title=
+          "Chapter&nbsp;18.&nbsp;Text Web Browsers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="lynx" name="lynx"></a>Lynx-2.8.9rel.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Lynx
+        </h2>
+        <p>
+          <span class="application">Lynx</span> is a text based web browser.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://invisible-mirror.net/archives/lynx/tarballs/lynx2.8.9rel.1.tar.bz2">
+                https://invisible-mirror.net/archives/lynx/tarballs/lynx2.8.9rel.1.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 44316f1b8a857b59099927edc26bef79
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 2.5 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 31 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.3 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Lynx Dependencies
+        </h3>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../postlfs/gnutls.html" title=
+          "GnuTLS-3.6.12">GnuTLS-3.6.12</a> (experimental, to replace
+          openssl), <a class="xref" href="../general/zip.html" title=
+          "Zip-3.0">Zip-3.0</a>, <a class="xref" href="../general/unzip.html"
+          title="UnZip-6.0">UnZip-6.0</a>, an <a class="xref" href=
+          "../server/mail.html" title=
+          "Chapter&nbsp;21.&nbsp;Mail Server Software">MTA</a> (that provides
+          a <span class="command"><strong>sendmail</strong></span> command),
+          and <a class="xref" href="../general/sharutils.html" title=
+          "Sharutils-4.15.2">Sharutils-4.15.2</a> (for a <span class=
+          "command"><strong>uudecode</strong></span> program)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/Lynx">http://wiki.linuxfromscratch.org/blfs/wiki/Lynx</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Lynx
+        </h2>
+        <p>
+          Install <span class="application">Lynx</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr          \
+            --sysconfdir=/etc/lynx \
+            --datadir=/usr/share/doc/lynx-2.8.9rel.1 \
+            --with-zlib            \
+            --with-bzlib           \
+            --with-ssl             \
+            --with-screen=ncursesw \
+            --enable-locale-charset &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install-full &amp;&amp;
+chgrp -v -R root /usr/share/doc/lynx-2.8.9rel.1/lynx_doc</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--sysconfdir=/etc/lynx</code></em>:
+          This parameter is used so that the configuration files are located
+          in <code class="filename">/etc/lynx</code> instead of <code class=
+          "filename">/usr/etc</code>.
+        </p>
+        <p>
+          <em class=
+          "parameter"><code>--datadir=/usr/share/doc/lynx-2.8.9rel.1</code></em>:
+          This parameter is used so that the documentation files are
+          installed into <code class=
+          "filename">/usr/share/doc/lynx-2.8.9rel.1</code> instead of
+          <code class="filename">/usr/share/lynx_{doc,help}</code>.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-zlib</code></em>: This enables
+          support for linking <code class="filename">libz</code> into
+          <span class="application">Lynx</span>.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-bzlib</code></em>: This enables
+          support for linking <code class="filename">libbz2</code> into
+          <span class="application">Lynx</span>.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-ssl</code></em>: This enables
+          support for linking SSL into <span class="application">Lynx</span>.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-screen=ncursesw</code></em>:
+          This switch enables the use of advanced wide-character support
+          present in the system <span class="application">NCurses</span>
+          library. This is needed for proper display of characters and line
+          wrapping in multibyte locales.
+        </p>
+        <p>
+          <em class="parameter"><code>--enable-locale-charset</code></em>:
+          This switch allows <span class="application">Lynx</span> to deduce
+          the proper character encoding for terminal output from the current
+          locale. A configuration step is still needed (see below), but
+          unlike the situation without this switch, the configuration step
+          becomes the same for all users (without the switch one must specify
+          the display character set explicitly). This is important for
+          environments such as a LiveCD, where the amount of system-specific
+          configuration steps has to be reduced to the minimum.
+        </p>
+        <p>
+          <code class="option">--enable-nls</code>: This switch allows
+          <span class="application">Lynx</span> to print translated messages
+          (such as questions about cookies and SSL certificates).
+        </p>
+        <p>
+          <code class="option">--with-gnutls</code>: This enables
+          experimental support for linking <span class=
+          "application">GnuTLS</span> into <span class=
+          "application">Lynx</span>. Remove the <em class=
+          "parameter"><code>--with-ssl</code></em> switch if you want to use
+          gnutls.
+        </p>
+        <p>
+          <span class="command"><strong>make install-full</strong></span>: In
+          addition to the standard installation, this target installs the
+          documentation and help files.
+        </p>
+        <p>
+          <span class="command"><strong>chgrp -v -R root
+          /usr/share/doc/lynx-2.8.9rel.1/lynx_doc</strong></span>: This
+          command corrects the improper group ownership of installed
+          documentation files.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring Lynx
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="lynx-config" name="lynx-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="lynx-config" name="lynx-config"></a>Config Files
+          </h4>
+          <p>
+            <code class="filename">/etc/lynx/lynx.cfg</code>
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779257091024" name=
+            "idm45779257091024"></a>Configuration Information
+          </h4>
+          <p>
+            The proper way to get the display character set is to examine the
+            current locale. However, <span class="application">Lynx</span>
+            does not do this by default. As the <code class=
+            "systemitem">root</code> user, change this setting:
+          </p>
+          <pre class="root">
+<kbd class="command">sed -e '/#LOCALE/     a LOCALE_CHARSET:TRUE'     \
+    -i /etc/lynx/lynx.cfg</kbd>
+</pre>
+          <p>
+            The built-in editor in <span class="application">Lynx</span>
+            <a class="xref" href=
+            "../introduction/locale-issues.html#locale-wrong-multibyte-characters"
+            title=
+            "The Program Breaks Multibyte Characters or Doesn't Count Character Cells Correctly">
+            Breaks Multibyte Characters</a>. This issue manifests itself in
+            multibyte locales, e.g., as the Backspace key not erasing
+            non-ASCII characters properly, and as incorrect data being sent
+            to the network when one edits the contents of text areas. The
+            only solution to this problem is to configure <span class=
+            "application">Lynx</span> to use an external editor (bound to the
+            <span class="quote">&ldquo;<span class="quote">Ctrl+X
+            e</span>&rdquo;</span> key combination by default). Still as the
+            <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">sed -e '/#DEFAULT_ED/ a DEFAULT_EDITOR:vi'       \
+    -i /etc/lynx/lynx.cfg</kbd>
+</pre>
+          <p>
+            <span class="application">Lynx</span> handles the following
+            values of the DEFAULT_EDITOR option specially by adding
+            cursor-positioning arguments: <span class=
+            "quote">&ldquo;<span class="quote">emacs</span>&rdquo;</span>,
+            <span class="quote">&ldquo;<span class=
+            "quote">jed</span>&rdquo;</span>, <span class=
+            "quote">&ldquo;<span class="quote">jmacs</span>&rdquo;</span>,
+            <span class="quote">&ldquo;<span class=
+            "quote">joe</span>&rdquo;</span>, <span class=
+            "quote">&ldquo;<span class="quote">jove</span>&rdquo;</span>,
+            <span class="quote">&ldquo;<span class=
+            "quote">jpico</span>&rdquo;</span>, <span class=
+            "quote">&ldquo;<span class="quote">jstar</span>&rdquo;</span>,
+            <span class="quote">&ldquo;<span class=
+            "quote">nano</span>&rdquo;</span>, <span class=
+            "quote">&ldquo;<span class="quote">pico</span>&rdquo;</span>,
+            <span class="quote">&ldquo;<span class=
+            "quote">rjoe</span>&rdquo;</span>, <span class=
+            "quote">&ldquo;<span class="quote">vi</span>&rdquo;</span> (but
+            not <span class="quote">&ldquo;<span class=
+            "quote">vim</span>&rdquo;</span>: in order to position the cursor
+            in <a class="xref" href="../postlfs/vim.html" title=
+            "Vim-8.2.0190">Vim-8.2.0190</a>, set this option to <span class=
+            "quote">&ldquo;<span class="quote">vi</span>&rdquo;</span>).
+          </p>
+          <p>
+            By default, <span class="application">Lynx</span> doesn't save
+            cookies between sessions. Again as the <code class=
+            "systemitem">root</code> user, change this setting:
+          </p>
+          <pre class="root">
+<kbd class="command">sed -e '/#PERSIST/    a PERSISTENT_COOKIES:TRUE' \
+    -i /etc/lynx/lynx.cfg</kbd>
+</pre>
+          <p>
+            Many other system-wide settings such as proxies can also be set
+            in the <code class="filename">/etc/lynx/lynx.cfg</code> file.
+          </p>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">lynx</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/etc/lynx and
+              /usr/share/doc/lynx-2.8.9rel.1</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="lynx-prog" name="lynx-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>lynx</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a general purpose, text-based, distributed information
+                    browser for the World Wide Web.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-16 15:15:05 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="links.html" title="Links-2.20.2">Prev</a>
+          <p>
+            Links-2.20.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="mailnews.html" title=
+          "Mail/News Clients">Next</a>
+          <p>
+            Mail/News Clients
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="textweb.html" title=
+          "Chapter&nbsp;18.&nbsp;Text Web Browsers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

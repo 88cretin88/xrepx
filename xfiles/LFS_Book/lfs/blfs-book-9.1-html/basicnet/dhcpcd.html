@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      dhcpcd-8.1.6
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;14.&nbsp;Connecting to a Network
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="connect.html" title=
+          "Connecting to a Network">Prev</a>
+          <p>
+            Connecting to a Network
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="dhcp.html" title="DHCP-4.4.2">Next</a>
+          <p>
+            DHCP-4.4.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="connect.html" title=
+          "Chapter&nbsp;14.&nbsp;Connecting to a Network">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="dhcpcd" name="dhcpcd"></a>dhcpcd-8.1.6
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to dhcpcd
+        </h2>
+        <p>
+          <span class="application">dhcpcd</span> is an implementation of the
+          DHCP client specified in RFC2131. A DHCP client is useful for
+          connecting your computer to a network which uses DHCP to assign
+          network addresses. dhcpcd strives to be a fully featured, yet very
+          lightweight DHCP client.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://roy.marples.name/downloads/dhcpcd/dhcpcd-8.1.6.tar.xz">
+                https://roy.marples.name/downloads/dhcpcd/dhcpcd-8.1.6.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://roy.marples.name/pub/dhcpcd/dhcpcd-8.1.6.tar.xz">ftp://roy.marples.name/pub/dhcpcd/dhcpcd-8.1.6.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: e1eea03388d12c9ad21ecd7c135fdf8b
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 224 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 2.6 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU (with tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          dhcpcd Dependencies
+        </h3>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/llvm.html" title=
+          "LLVM-9.0.1">LLVM-9.0.1</a> (with Clang), <a class="xref" href=
+          "ntp.html" title="ntp-4.2.8p13">ntp-4.2.8p13</a>, <a class="ulink"
+          href="https://chrony.tuxfamily.org/">chronyd</a>, and <a class=
+          "ulink" href="https://github.com/thkukuk/ypbind-mt/">ypbind</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/dhcpcd">http://wiki.linuxfromscratch.org/blfs/wiki/dhcpcd</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of dhcpcd
+        </h2>
+        <p>
+          Install <span class="application">dhcpcd</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --libexecdir=/lib/dhcpcd \
+            --dbdir=/var/lib/dhcpcd  &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          test</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--libexecdir=/lib/dhcpcd</code></em>:
+          The default <code class="filename">/libexec</code> is not
+          FHS-compliant. Since this directory may need to be available early
+          in the boot, <code class="filename">/usr/libexec</code> cannot be
+          used either.
+        </p>
+        <p>
+          <em class="parameter"><code>--dbdir=/var/lib/dhcpcd</code></em>:
+          The default <code class="filename">/var/db</code> is not
+          FHS-compliant
+        </p>
+        <p>
+          <code class="option">--with-hook=...</code>: You can optionally
+          install more hooks, for example to install some configuration files
+          such as <code class="filename">ntp.conf</code>. The set of hooks is
+          in the <code class="filename">dhcpcd-hooks</code> directory in the
+          build tree.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring dhcpcd
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="dhcpcd-config" name="dhcpcd-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="dhcpcd-config" name="dhcpcd-config"></a>Config Files
+          </h4>
+          <p>
+            <code class="filename">/etc/dhcpcd.conf</code>
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="dhcpcd-init" name="dhcpcd-init"></a>
+          </h3>
+          <h4 class="title">
+            <a id="dhcpcd-init" name="dhcpcd-init"></a>General Configuration
+            Information
+          </h4>
+          <p>
+            To configure <span class=
+            "command"><strong>dhcpcd</strong></span>, you need to first
+            install the network service script, <code class=
+            "filename">/lib/services/dhcpcd</code> included in the <a class=
+            "xref" href="../introduction/bootscripts.html" title=
+            "BLFS Boot Scripts">blfs-bootscripts-20191204</a> package (as
+            user <code class="systemitem">root</code>):
+          </p>
+          <pre class="root">
+<kbd class="command">make install-service-dhcpcd</kbd>
+</pre>
+          <p>
+            Whenever <span class="command"><strong>dhcpcd</strong></span>
+            configures or shuts down a network interface, it executes hook
+            scripts. For more details about those scripts, see the
+            <span class="command"><strong>dhcpcd-run-hooks</strong></span>
+            and <span class="command"><strong>dhcpcd</strong></span> man
+            pages.
+          </p>
+          <p>
+            <a id="dhcpcd-config2" name="dhcpcd-config2"></a>Finally, as the
+            <code class="systemitem">root</code> user create the <code class=
+            "filename">/etc/sysconfig/ifconfig.eth0</code> configuration file
+            using the following commands. Adjust appropriately for additional
+            interfaces:
+          </p>
+          <pre class="root">
+<kbd class="command">cat &gt; /etc/sysconfig/ifconfig.eth0 &lt;&lt; "EOF"
+<code class="literal">ONBOOT="yes"
+IFACE="eth0"
+SERVICE="dhcpcd"
+DHCP_START="-b -q <em class=
+"replaceable"><code>&lt;insert appropriate start options here&gt;</code></em>"
+DHCP_STOP="-k <em class=
+"replaceable"><code>&lt;insert additional stop options here&gt;</code></em>"</code>
+EOF</kbd>
+</pre>
+          <p>
+            For more information on the appropriate <code class=
+            "envar">DHCP_START</code> and <code class=
+            "envar">DHCP_STOP</code> values, examine the man page for
+            <span class="command"><strong>dhcpcd</strong></span>.
+          </p>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              <a id="dhcpcd-config3" name="dhcpcd-config3"></a>The default
+              behavior of <span class=
+              "command"><strong>dhcpcd</strong></span> sets the hostname and
+              mtu settings. It also overwrites <code class=
+              "filename">/etc/resolv.conf</code> and <code class=
+              "filename">/etc/ntp.conf</code>. These modifications to system
+              files and settings on system configuration files are done by
+              hooks which are stored in <code class=
+              "filename">/lib/dhcpcd/dhcpcd-hooks</code>. Setup <span class=
+              "command"><strong>dhcpcd</strong></span> by removing or adding
+              hooks from/to that directory. The execution of hooks can be
+              disabled by using the <code class="option">--nohook</code>
+              (<code class="option">-C</code>) command line option or by the
+              <code class="option">nohook</code> option in the <code class=
+              "filename">/etc/dhcpcd.conf</code> file.
+            </p>
+            <p>
+              Review the <span class="command"><strong>dhcpcd</strong></span>
+              man page for switches to add to the <code class=
+              "envar">DHCP_START</code> value.
+            </p>
+          </div>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="dhcpcd-init2" name="dhcpcd-init2"></a>
+          </h3>
+          <h4 class="title">
+            <a id="dhcpcd-init2" name="dhcpcd-init2"></a>Configuration
+            Information: fixed ip
+          </h4>
+          <p>
+            <a id="dhcpcd-config4" name="dhcpcd-config4"></a>Although not
+            usual, it is possible that you need to configure <span class=
+            "application">dhcpcd</span> to use a fixed ip. Here, we give an
+            example. As the <code class="systemitem">root</code> user create
+            the <code class="filename">/etc/sysconfig/ifconfig.eth0</code>
+            configuration file using the following commands. Adjust
+            appropriately for additional interfaces and for the actual ip and
+            router you need:
+          </p>
+          <pre class="root">
+<kbd class="command">cat &gt; /etc/sysconfig/ifconfig.eth0 &lt;&lt; "EOF"
+<code class="literal">ONBOOT="yes"
+IFACE="eth0"
+SERVICE="dhcpcd"
+DHCP_START="-b -q -S ip_address=192.168.0.10/24 -S routers=192.168.0.1"
+DHCP_STOP="-k"</code>
+EOF</kbd>
+</pre>
+          <p>
+            You can either use DNS servers in <code class=
+            "filename">/etc/resolv.conf</code> from another system, your
+            preferred servers, or just the example <code class=
+            "filename">/etc/resolv.conf.head</code> file below as is:
+          </p>
+          <pre class="root">
+<kbd class="command">cat &gt; /etc/resolv.conf.head &lt;&lt; "EOF"
+<code class="literal"># OpenDNS servers
+nameserver 208.67.222.222
+nameserver 208.67.220.220</code>
+EOF</kbd>
+</pre>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">dhcpcd</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">/lib/dhcpcd/dev/udev.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/{,var/}lib/dhcpcd and
+              /usr/share/dhcpcd</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="dhcpcd-prog" name="dhcpcd-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>dhcpcd</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an implementation of the DHCP client specified in
+                    RFC2131.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="dhcpcd-udev" name="dhcpcd-udev"></a><span class=
+                    "term"><code class="filename">udev.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    adds udev support for interface arrival and departure;
+                    this is because udev likes to rename the interface, which
+                    it can't do if dhcpcd grabs it first.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 22:43:28 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="connect.html" title=
+          "Connecting to a Network">Prev</a>
+          <p>
+            Connecting to a Network
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="dhcp.html" title="DHCP-4.4.2">Next</a>
+          <p>
+            DHCP-4.4.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="connect.html" title=
+          "Chapter&nbsp;14.&nbsp;Connecting to a Network">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

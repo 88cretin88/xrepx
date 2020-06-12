@@ -1,0 +1,1416 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      LLVM-9.0.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;13.&nbsp;Programming
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="librep.html" title="Librep-0.92.7">Prev</a>
+          <p>
+            Librep-0.92.7
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="lua.html" title="Lua-5.3.5">Next</a>
+          <p>
+            Lua-5.3.5
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="llvm" name="llvm"></a>LLVM-9.0.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to LLVM
+        </h2>
+        <p>
+          The <span class="application">LLVM</span> package contains a
+          collection of modular and reusable compiler and toolchain
+          technologies. The Low Level Virtual Machine (LLVM) Core libraries
+          provide a modern source and target-independent optimizer, along
+          with code generation support for many popular CPUs (as well as some
+          less common ones!). These libraries are built around a well
+          specified code representation known as the LLVM intermediate
+          representation ("LLVM IR").
+        </p>
+        <p>
+          The optional <span class="application">Clang</span> and
+          <span class="application">Compiler RT</span> packages provide new
+          C, C++, Objective C and Objective C++ front-ends and runtime
+          libraries for the <span class="application">LLVM</span> and are
+          required by some packages which use <span class=
+          "application">Rust</span>, for example <span class=
+          "application">firefox</span>.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/llvm-9.0.1.src.tar.xz">
+                https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/llvm-9.0.1.src.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 31eb9ce73dd2a0f8dcab8319fb03f8fc
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 30 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 2.1 GB (with Clang, 655 MB
+                installed, add 19 GB for tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 30 SBU (with Clang and parallelism=4,
+                add 5.5 SBU for tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Optional Downloads
+        </h3>
+        <h4>
+          Clang
+        </h4>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download: <a class="ulink" href=
+                "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/clang-9.0.1.src.tar.xz">
+                https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/clang-9.0.1.src.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 13468e4a44940efef1b75e8641752f90
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 13 MB
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h4>
+          Compiler RT
+        </h4>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download: <a class="ulink" href=
+                "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/compiler-rt-9.0.1.src.tar.xz">
+                https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/compiler-rt-9.0.1.src.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 1b39b9b90007a2170ebe77d6214ec581
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 1.9 MB
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          LLVM Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="cmake.html" title=
+          "CMake-3.16.4">CMake-3.16.4</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="doxygen.html" title=
+          "Doxygen-1.8.17">Doxygen-1.8.17</a>, <a class="xref" href=
+          "graphviz.html" title="Graphviz-2.42.3">Graphviz-2.42.3</a>,
+          <a class="xref" href="libxml2.html" title=
+          "libxml2-2.9.10">libxml2-2.9.10</a>, <a class="xref" href=
+          "python2.html" title="Python-2.7.17">Python-2.7.17</a>, <a class=
+          "xref" href="../pst/texlive.html" title=
+          "texlive-20190410-source">texlive-20190410</a> (or <a class="xref"
+          href="../pst/tl-installer.html" title=
+          "install-tl-unx">install-tl-unx</a>), <a class="xref" href=
+          "valgrind.html" title="Valgrind-3.15.0">Valgrind-3.15.0</a>,
+          <a class="xref" href="python-modules.html#PyYAML" title=
+          "PyYAML-5.3">PyYAML-5.3</a>, <a class="xref" href="zip.html" title=
+          "Zip-3.0">Zip-3.0</a>, <a class="ulink" href=
+          "http://www.ocaml.org/">OCaml</a>, <a class="ulink" href=
+          "https://pypi.python.org/pypi/recommonmark">recommonmark</a>,
+          <a class="ulink" href=
+          "https://pypi.python.org/pypi/Sphinx">Sphinx</a>, and <a class=
+          "ulink" href="https://github.com/Z3Prover/z3">Z3</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/llvm">http://wiki.linuxfromscratch.org/blfs/wiki/llvm</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of LLVM
+        </h2>
+        <p>
+          If you have downloaded the optional packages, install them into the
+          source tree by running the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">tar -xf ../clang-9.0.1.src.tar.xz -C tools          &amp;&amp;
+tar -xf ../compiler-rt-9.0.1.src.tar.xz -C projects &amp;&amp;
+
+mv tools/clang-9.0.1.src tools/clang &amp;&amp;
+mv projects/compiler-rt-9.0.1.src projects/compiler-rt</kbd>
+</pre>
+        <p>
+          Fix a problem introduced by Glibc-2.31 if you are using
+          compiler-rt:
+        </p>
+        <pre class="userinput">
+<kbd class="command">sed -e '/ipc_perm, mode/s|^|//|' \
+    -i projects/compiler-rt/lib/sanitizer_common/sanitizer_platform_limits_posix.cc</kbd>
+</pre>
+        <p>
+          Install <span class="application">LLVM</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir -v build &amp;&amp;
+cd       build &amp;&amp;
+
+CC=gcc CXX=g++                                  \
+cmake -DCMAKE_INSTALL_PREFIX=/usr               \
+      -DLLVM_ENABLE_FFI=ON                      \
+      -DCMAKE_BUILD_TYPE=Release                \
+      -DLLVM_BUILD_LLVM_DYLIB=ON                \
+      -DLLVM_LINK_LLVM_DYLIB=ON                 \
+      -DLLVM_ENABLE_RTTI=ON                     \
+      -DLLVM_TARGETS_TO_BUILD="host;AMDGPU;BPF" \
+      -DLLVM_BUILD_TESTS=ON                     \
+      -Wno-dev -G Ninja ..                      &amp;&amp;
+ninja</kbd>
+</pre>
+        <p>
+          If you have installed <span class="application">Sphinx</span> and
+          <span class="application">recommonmark</span> and wish to generate
+          the html documentation and manual pages, issue the following
+          commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cmake -DLLVM_ENABLE_SPHINX=ON         \
+      -DSPHINX_WARNINGS_AS_ERRORS=OFF \
+      -Wno-dev -G Ninja ..            &amp;&amp;
+ninja docs-llvm-html  docs-llvm-man</kbd>
+</pre>
+        <p>
+          If you have downloaded the optional packages, the clang
+          documentation can be built too:
+        </p>
+        <pre class="userinput">
+<kbd class="command">ninja docs-clang-html docs-clang-man</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>ninja
+          check-all</strong></span>. Tests are built with all <span class=
+          "emphasis"><em>available</em></span> cores, but run using the
+          number of <span class="emphasis"><em>online</em></span> processors.
+          (The difference is that available cores can be limited using
+          <span class="command"><strong>taskset</strong></span>, but taking
+          them offline requires echoing 0 to <code class=
+          "filename">/sys/devices/system/cpu/cpu&lt;N&gt;/online</code> by
+          the <code class="systemitem">root</code> user and makes them
+          temporarily unusable by all jobs on the machine.) Note that the
+          Sanitizer based tests (387 of more than 38000 tests run) are known
+          to fail.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">ninja install</kbd>
+</pre>
+        <p>
+          If you have built the the llvm documentation, install it by running
+          the following commands as the <code class="systemitem">root</code>
+          user:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">install -v -m644 docs/man/* /usr/share/man/man1             &amp;&amp;
+install -v -d -m755 /usr/share/doc/llvm-9.0.1/llvm-html     &amp;&amp;
+cp -Rv docs/html/* /usr/share/doc/llvm-9.0.1/llvm-html</kbd>
+</pre>
+        <p>
+          If you have built the clang documentation, it can be installed in
+          the same way (again as the <code class="systemitem">root</code>
+          user):
+        </p>
+        <pre class="root">
+<kbd class=
+"command">install -v -m644 tools/clang/docs/man/* /usr/share/man/man1 &amp;&amp;
+install -v -d -m755 /usr/share/doc/llvm-9.0.1/clang-html    &amp;&amp;
+cp -Rv tools/clang/docs/html/* /usr/share/doc/llvm-9.0.1/clang-html</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>-DLLVM_ENABLE_FFI=ON</code></em>: This
+          switch enables <span class="application">LLVM</span> to use
+          <span class="application">libffi</span>.
+        </p>
+        <p>
+          <em class="parameter"><code>-DLLVM_BUILD_LLVM_DYLIB=ON</code></em>:
+          builds libraries as static and links all of them into an unique
+          shared one. This is the recommended way of building a shared
+          library.
+        </p>
+        <p>
+          <em class="parameter"><code>-DCMAKE_BUILD_TYPE=Release</code></em>:
+          This switch enables compiler optimizations in order to speed up the
+          code and reduce its size. It also disables some compile checks, not
+          necessary on a production system.
+        </p>
+        <p>
+          <em class=
+          "parameter"><code>-DLLVM_TARGETS_TO_BUILD="host;AMDGPU;BPF"</code></em>:
+          This switch enables building for the same target as the host, and
+          also for the r600 AMD GPU used by the Mesa r600 and radeonsi
+          drivers. The BPF target is required to build <a class="xref" href=
+          "../multimedia/v4l-utils.html" title=
+          "v4l-utils-1.18.0">v4l-utils-1.18.0</a>. Default is all. You can
+          use a semicolon separated list. Valid targets are: host, X86,
+          Sparc, PowerPC, ARM, AArch64, Mips, Hexagon, Xcore, MSP430, NVPTX,
+          SystemZ, AMDGPU, BPF, CppBackend, or all.
+        </p>
+        <p>
+          <em class="parameter"><code>-DLLVM_LINK_LLVM_DYLIB=ON</code></em>:
+          Used in conjunction with <em class=
+          "parameter"><code>-DLLVM_BUILD_LLVM_DYLIB=ON</code></em>, this
+          switch enables linking the tools against the shared library instead
+          of the static ones. It also slightly reduces their size and also
+          ensures that llvm-config will correctly use libLLVM-9.0.so.
+        </p>
+        <p>
+          <em class="parameter"><code>-DLLVM_ENABLE_RTTI=ON</code></em>: Used
+          to build LLVM with run-time type information. This is required for
+          building <a class="xref" href="../x/mesa.html" title=
+          "Mesa-19.3.4">Mesa-19.3.4</a>.
+        </p>
+        <p>
+          <code class="option">-DBUILD_SHARED_LIBS=ON</code>: if used instead
+          of <em class=
+          "parameter"><code>-DLLVM_BUILD_LLVM_DYLIB=ON</code></em> and
+          <em class="parameter"><code>-DLLVM_LINK_LLVM_DYLIB=ON</code></em>,
+          builds all the <span class="application">LLVM</span> libraries
+          (about 60) as shared libraries instead of static.
+        </p>
+        <p>
+          <code class="option">-DLLVM_ENABLE_DOXYGEN</code>: Enables the
+          generation of browsable HTML documentation if you have installed
+          <a class="xref" href="doxygen.html" title=
+          "Doxygen-1.8.17">Doxygen-1.8.17</a>. You should run <span class=
+          "command"><strong>make doxygen-html</strong></span> afterwards, and
+          install the generated documentation manually.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">bugpoint, c-index-test, clang, clang++
+              (symlinks to clang-&lt;version&gt;), clang-&lt;version&gt;,
+              clang-check, clang-cl, clang-cpp (last two symlinks to clang),
+              clang-format, clang-func-mapping clang-import-test,
+              clang-offload-bundler, clang-refactor, clang-rename, diagtool,
+              dsymutil, git-clang-format, hmap-tool, llc, lli, llvm-ar,
+              llvm-as, llvm-bcanalyzer, llvm-cat, llvm-cfi-verify,
+              llvm-config, llvm-cov, llvm-c-test, llvm-cvtres, llvm-cxxdump,
+              llvm-cxxfilt, llvm-diff, llvm-dis, llvm-dlltool (symlink to
+              llvm-ar), llvm-dwarfdump, llvm-dwp, llvm-exegenesis,
+              llvm-extract, llvm-lib (symlink to llvm-ar), llvm-link,
+              llvm-lto, llvm-lto2, llvm-mc, llvm-mca, llvm-modextract,
+              llvm-mt, llvm-nm, llvm-objcopy, llvm-objdump, llvm-opt-report,
+              llvm-pdbutil, llvm-profdata, llvm-ranlib (symlink to llvm-ar),
+              llvm-rc, llvm-readelf (symlink to llvm-readobj), llvm-readobj,
+              llvm-rtdyld, llvm-size, llvm-split, llvm-stress, llvm-strings,
+              llvm-strip (symlink to llvm-objcopy), llvm-symbolizer,
+              llvm-tblgen, llvm-undname, llvm-xray, obj2yaml, opt, sancov,
+              sanstats, scan-build, scan-view, verify-uselistorder, and
+              yaml2obj</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libLLVM.so, libLLVM*.a (75 libraries),
+              libLTO.so, libclang.so, and libclang*.a (63 libraries)</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/{clang,clang-c,llvm,llvm-c},
+              /usr/lib/{clang,cmake/{clang,llvm}},
+              /usr/share/{clang,opt-viewer,scan-build,scan-view}, and
+              /usr/share/doc/llvm-9.0.1}</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="bugpoint" name="bugpoint"></a><span class=
+                    "term"><span class=
+                    "command"><strong>bugpoint</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the automatic test case reduction tool.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="c-index-test" name="c-index-test"></a><span class=
+                    "term"><span class=
+                    "command"><strong>c-index-test</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to test the libclang API and demonstrate its
+                    usage.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="clang" name="clang"></a><span class=
+                    "term"><span class=
+                    "command"><strong>clang</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">Clang</span> C, C++, and
+                    Objective-C compiler.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="clang-check" name="clang-check"></a><span class=
+                    "term"><span class=
+                    "command"><strong>clang-check</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to perform static code analysis and display
+                    Abstract Syntax Trees (AST).
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="clang-format" name="clang-format"></a><span class=
+                    "term"><span class=
+                    "command"><strong>clang-format</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to format
+                    C/C++/Java/JavaScript/Objective-C/Protobuf code.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="clang-func-mapping" name=
+                    "clang-func-mapping"></a><span class="term"><span class=
+                    "command"><strong>clang-func-mapping</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    collects the name and location of all function
+                    definitions in the source files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="clang-offload-bundler" name=
+                    "clang-offload-bundler"></a><span class=
+                    "term"><span class=
+                    "command"><strong>clang-offload-bundler</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to bundle/unbundle openMP offloaded files
+                    associated with a common source file.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="clang-refactor" name=
+                    "clang-refactor"></a><span class="term"><span class=
+                    "command"><strong>clang-refactor</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a Clang-based refactoring tool for C, C++ and
+                    Objective.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="clang-rename" name="clang-rename"></a><span class=
+                    "term"><span class=
+                    "command"><strong>clang-rename</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to rename symbols in C/C++ programs.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="diagtool" name="diagtool"></a><span class=
+                    "term"><span class=
+                    "command"><strong>diagtool</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a combination of tools for dealing with diagnostics in
+                    clang.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="dsymutil" name="dsymutil"></a><span class=
+                    "term"><span class=
+                    "command"><strong>dsymutil</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool used to manipulate archived DWARF debug symbol
+                    files, compatible with the Darwin command <span class=
+                    "command"><strong>dsymutil</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="git-clang-format" name=
+                    "git-clang-format"></a><span class="term"><span class=
+                    "command"><strong>git-clang-format</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    runs clang-format on git generated patches (requires
+                    <a class="xref" href="git.html" title=
+                    "Git-2.25.0">git-2.25.0</a>)
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="hmaptool" name="hmaptool"></a><span class=
+                    "term"><span class=
+                    "command"><strong>hmaptool</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a Python tool to dump and construct header maps.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llc" name="llc"></a><span class=
+                    "term"><span class="command"><strong>llc</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">LLVM</span> static
+                    compiler.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="lli" name="lli"></a><span class=
+                    "term"><span class="command"><strong>lli</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to directly execute programs from <span class=
+                    "application">LLVM</span> bitcode.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-ar" name="llvm-ar"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-ar</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">LLVM</span> archiver.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-as" name="llvm-as"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-as</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">LLVM</span> assembler.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-bcanalyzer" name=
+                    "llvm-bcanalyzer"></a><span class="term"><span class=
+                    "command"><strong>llvm-bcanalyzer</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">LLVM</span> bitcode
+                    analyzer.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-cat" name="llvm-cat"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-cat</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to concatenate llvm modules.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-cfi-verify" name=
+                    "llvm-cfi-verify"></a><span class="term"><span class=
+                    "command"><strong>llvm-cfi-verify</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    identifies whether Control Flow Integrity protects all
+                    indirect control flow instructions in the provided object
+                    file, DSO, or binary.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-config" name="llvm-config"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-config</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    Prints <span class="application">LLVM</span> compilation
+                    options.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-cov" name="llvm-cov"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-cov</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to emit coverage information.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-c-test" name="llvm-c-test"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-c-test</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a bytecode disassembler.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-cvtres" name="llvm-cvtres"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-cvtres</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to convert Microsoft resource files to COFF.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-cxxdump" name="llvm-cxxdump"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-cxxdump</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used as a C++ ABI Data Dumper.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-cxxfilt" name="llvm-cxxfilt"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-cxxfilt</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to demangle C++ symbols in llvm code.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-diff" name="llvm-diff"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-diff</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">LLVM</span> structural
+                    '<span class="command"><strong>diff</strong></span>'.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-dis" name="llvm-dis"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-dis</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">LLVM</span>
+                    disassembler.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-dwarfdump" name=
+                    "llvm-dwarfdump"></a><span class="term"><span class=
+                    "command"><strong>llvm-dwarfdump</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    prints the content of DWARF sections in object files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-dwp" name="llvm-dwp"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-dwp</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    merges split DWARF files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-exegesis" name=
+                    "llvm-exegesis"></a><span class="term"><span class=
+                    "command"><strong>llvm-exegesis</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a benchmarking tool that uses information available in
+                    LLVM to measure host machine instruction characteristics
+                    like latency or port decomposition.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-extract" name="llvm-extract"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-extract</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to extract a function from an <span class=
+                    "application">LLVM</span> module.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-link" name="llvm-link"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-link</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">LLVM</span> linker.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-lto" name="llvm-lto"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-lto</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">LLVM</span> LTO (link
+                    time optimization) linker.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-lto2" name="llvm-lto2"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-lto2</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a test harness for the resolution based LTO interface.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-mc" name="llvm-mc"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-mc</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a standalone machine code assembler/disassembler.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-mca" name="llvm-mca"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-mca</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a is a performance analysis tool to statically measure
+                    the performance of machine code.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-modextract" name=
+                    "llvm-modextract"></a><span class="term"><span class=
+                    "command"><strong>llvm-modextract</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to extract one module from multimodule bitcode
+                    files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-mt" name="llvm-mt"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-mt</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to generate signed files and catalogs from a
+                    side-by-side assembly manifest (used for Microsoft SDK).
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-nm" name="llvm-nm"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-nm</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to list <span class="application">LLVM</span>
+                    bitcode and object file's symbol table.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-objcopy" name="llvm-objcopy"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-objcopy</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is LLVM's version of an objcopy tool.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-objdump" name="llvm-objdump"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-objdump</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an <span class="application">LLVM</span> object file
+                    dumper.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-opt-report" name=
+                    "llvm-opt-report"></a><span class="term"><span class=
+                    "command"><strong>llvm-opt-report</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to generate an optimization report from YAML
+                    optimization record files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-pdbutil" name="llvm-pdbutil"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-pdbutil</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a PDB (Program Database) dumper. PDB is a Microsoft
+                    format.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-profdata" name=
+                    "llvm-profdata"></a><span class="term"><span class=
+                    "command"><strong>llvm-profdata</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a small tool to manipulate and print profile data
+                    files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-ranlib" name="llvm-ranlib"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-ranlib</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to generate an index for a <span class=
+                    "application">LLVM</span> archive.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-rc" name="llvm-rc"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-rc</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a platform-independent tool to compile resource
+                    scripts into binary resource files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-readobj" name="llvm-readobj"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-readobj</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    displays low-level format-specific information about
+                    object files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-rtdyld" name="llvm-rtdyld"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-rtdyld</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">LLVM</span> MC-JIT tool.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-size" name="llvm-size"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-size</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">LLVM</span> object size
+                    dumper.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-split" name="llvm-split"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-split</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">LLVM</span> module
+                    splitter.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-stress" name="llvm-stress"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-stress</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to generate random <code class=
+                    "filename">.ll</code> files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-strings" name="llvm-strings"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-strings</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    print strings found in a binary (object file, executable,
+                    or archive library).
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-symbolizer" name=
+                    "llvm-symbolizer"></a><span class="term"><span class=
+                    "command"><strong>llvm-symbolizer</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    converts adresses into source code locations.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-tblgen" name="llvm-tblgen"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-tblgen</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">LLVM</span> Target
+                    Description To C++ Code Generator.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-undname" name="llvm-undname"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-undname</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool to demangle names.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="llvm-xray" name="llvm-xray"></a><span class=
+                    "term"><span class=
+                    "command"><strong>llvm-xray</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an implementation of Google's XRay function call
+                    tracing system.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="obj2yaml" name="obj2yaml"></a><span class=
+                    "term"><span class=
+                    "command"><strong>obj2yaml</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    takes an object file, and produces a YAML representation
+                    of the file.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="opt" name="opt"></a><span class=
+                    "term"><span class="command"><strong>opt</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">LLVM</span> optimizer.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="sancov" name="sancov"></a><span class=
+                    "term"><span class=
+                    "command"><strong>sancov</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the sanitizer coverage processing tool.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="sanstats" name="sanstats"></a><span class=
+                    "term"><span class=
+                    "command"><strong>sanstats</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the sanitizer statistics processing tool.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="scan-build" name="scan-build"></a><span class=
+                    "term"><span class=
+                    "command"><strong>scan-build</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a <span class="application">Perl</span> script that
+                    invokes the <span class="application">Clang</span> static
+                    analyzer.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="scan-view" name="scan-view"></a><span class=
+                    "term"><span class=
+                    "command"><strong>scan-view</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a viewer for <span class="application">Clang</span>
+                    static analyzer results.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="verify-uselistorder" name=
+                    "verify-uselistorder"></a><span class="term"><span class=
+                    "command"><strong>verify-uselistorder</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the <span class="application">LLVM</span> tool to
+                    verify use-list order.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="yaml2obj" name="yaml2obj"></a><span class=
+                    "term"><span class=
+                    "command"><strong>yaml2obj</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    takes a YAML representation of an object file and
+                    converts it to a binary file.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-28 15:29:49 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="librep.html" title="Librep-0.92.7">Prev</a>
+          <p>
+            Librep-0.92.7
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="lua.html" title="Lua-5.3.5">Next</a>
+          <p>
+            Lua-5.3.5
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

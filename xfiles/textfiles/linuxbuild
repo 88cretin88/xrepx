@@ -1,0 +1,58 @@
+==> Building image from preset: /etc/mkinitcpio.d/linux-lts.preset: 'default'
+  -> -k /boot/vmlinuz-linux-lts -c /etc/mkinitcpio.conf -g /boot/initramfs-linux-lts.img
+==> Starting build: 5.4.23-1-lts
+  -> Running build hook: [base]
+  -> Running build hook: [udev]
+  -> Running build hook: [autodetect]
+  -> Running build hook: [modconf]
+  -> Running build hook: [block]
+  -> Running build hook: [filesystems]
+  -> Running build hook: [keyboard]
+  -> Running build hook: [fsck]
+==> Generating module dependencies
+==> Creating gzip-compressed initcpio image: /boot/initramfs-linux-lts.img
+==> Image generation successful
+==> Building image from preset: /etc/mkinitcpio.d/linux-lts.preset: 'fallback'
+  -> -k /boot/vmlinuz-linux-lts -c /etc/mkinitcpio.conf -g /boot/initramfs-linux-lts-fallback.img -S autodetect
+==> Starting build: 5.4.23-1-lts
+  -> Running build hook: [base]
+  -> Running build hook: [udev]
+  -> Running build hook: [modconf]
+  -> Running build hook: [block]
+==> WARNING: Possibly missing firmware for module: aic94xx
+==> WARNING: Possibly missing firmware for module: wd719x
+  -> Running build hook: [filesystems]
+  -> Running build hook: [keyboard]
+  -> Running build hook: [fsck]
+==> Generating module dependencies
+==> Creating gzip-compressed initcpio image: /boot/initramfs-linux-lts-fallback.img
+==> Image generation successful
+==> Building image from preset: /etc/mkinitcpio.d/linux.preset: 'default'
+  -> -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux.img
+==> Starting build: 5.5.7-arch1-1
+  -> Running build hook: [base]
+  -> Running build hook: [udev]
+  -> Running build hook: [autodetect]
+  -> Running build hook: [modconf]
+  -> Running build hook: [block]
+  -> Running build hook: [filesystems]
+  -> Running build hook: [keyboard]
+  -> Running build hook: [fsck]
+==> Generating module dependencies
+==> Creating gzip-compressed initcpio image: /boot/initramfs-linux.img
+==> Image generation successful
+==> Building image from preset: /etc/mkinitcpio.d/linux.preset: 'fallback'
+  -> -k /boot/vmlinuz-linux -c /etc/mkinitcpio.conf -g /boot/initramfs-linux-fallback.img -S autodetect
+==> Starting build: 5.5.7-arch1-1
+  -> Running build hook: [base]
+  -> Running build hook: [udev]
+  -> Running build hook: [modconf]
+  -> Running build hook: [block]
+==> WARNING: Possibly missing firmware for module: aic94xx
+==> WARNING: Possibly missing firmware for module: wd719x
+  -> Running build hook: [filesystems]
+  -> Running build hook: [keyboard]
+  -> Running build hook: [fsck]
+==> Generating module dependencies
+==> Creating gzip-compressed initcpio image: /boot/initramfs-linux-fallback.img
+==> Image generation successful 

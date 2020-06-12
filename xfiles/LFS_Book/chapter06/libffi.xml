@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-libffi" role="wrap">
+  <?dbhtml filename="libffi.html"?>
+
+  <sect1info condition="script">
+    <productname>libffi</productname>
+    <productnumber>&libffi-version;</productnumber>
+    <address>&libffi-url;</address>
+  </sect1info>
+
+  <title>Libffi-&libffi-version;</title>
+
+  <indexterm zone="ch-system-libffi">
+    <primary sortas="a-libffi">libffi</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Переносимый, высокоуровневый интерфейс по различным соглашениям о вызовах. Программы во время компиляции могу не знать об аргументах, которые были переданы функции. Например, интерпретатору можно указать во время выполнения количество аргументов и указать их тип, для вызова функции. Libffi может использоваться в программах как "мост" от интерпретатора к скомпилированному коду.</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&libffi-ch6-sbu;</seg>
+        <seg>&libffi-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Установка пакета Libffi</title>
+
+	 <note>
+      <para>
+		 Подобно GMP, libffi собирается с оптимизацией, специфичной
+       для процессора. Если происходит сборка для другой системы, установите значения для
+       CFLAGS и CXXFLAGS, чтобы указать общую сборку для вашей архитектуры.
+       Если этого не сделать, все приложения, которые ссылаются на libffi, выдадут ошибку
+      Illegal Operation Errors.</para>
+    </note>
+
+    <para>Модифицируйте Makefile чтобы установить заголовочные файлы в стандартный каталог
+    <filename class="directory">/usr/include</filename> вместо
+    <filename class="directory">/usr/lib/libffi-&libffi-version;/include</filename>.</para>
+
+<screen><userinput remap="pre">sed -e '/^includesdir/ s/$(libdir).*$/$(includedir)/' \
+    -i include/Makefile.in
+
+sed -e '/^includedir/ s/=.*$/=@includedir@/' \
+    -e 's/^Cflags: -I${includedir}/Cflags:/' \
+    -i libffi.pc.in</userinput></screen>
+
+    <para>Подготовьте пакет libffi к компиляции:</para>
+
+<screen><userinput remap="configure">./configure --prefix=/usr --disable-static --with-gcc-arch=native</userinput></screen>
+   <variablelist>
+      <title>Значения параметров конфигурации:</title>
+
+      <varlistentry>
+        <term><parameter>--with-gcc-arch=native</parameter></term>
+        <listitem>
+          <para>Убедитесь, что GCC оптимизирован для текущей системы. Если аргумент явно не указан, то система будет определена автоматически, и генерируемый код может быть неправильным для некоторых систем. Если сгенерированный код будет скопирован из системы в менее совместимую, задайте её в качестве параметра. Подробнее об альтернативных типах систем см. <ulink
+          url='https://gcc.gnu.org/onlinedocs/gcc-&gcc-version;/gcc/x86-Options.html'> параметры x86 в руководстве GCC </ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>Скомпилируйте пакет:</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>Для выполнения тестов, выполните команду:</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>Установите пакет:</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-libffi" role="content">
+    <title>Содержимое пакета Libffi</title>
+
+    <segmentedlist>
+      <segtitle>Установленная библиотека</segtitle>
+
+      <seglistitem>
+        <seg>libffi.so</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Краткое описание</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="libffi">
+        <term><filename class="libraryfile">libffi</filename></term>
+        <listitem>
+          <para>Содержит libffi API функции</para>
+          <indexterm zone="ch-system-libffi">
+            <primary sortas="c-libffi">libffi</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </sect2>
+
+</sect1>
+

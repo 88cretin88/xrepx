@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      gnome-control-center-3.34.4
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;33.&nbsp;GNOME Libraries and Desktop
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gnome-settings-daemon.html" title=
+          "gnome-settings-daemon-3.34.2">Prev</a>
+          <p>
+            gnome-settings-daemon-3.34.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="mutter.html" title="Mutter-3.34.4">Next</a>
+          <p>
+            Mutter-3.34.4
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="core.html" title=
+          "Chapter&nbsp;33.&nbsp;GNOME Libraries and Desktop">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="gnome-control-center" name=
+        "gnome-control-center"></a>gnome-control-center-3.34.4
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to GNOME Control Center
+        </h2>
+        <p>
+          The <span class="application">GNOME Control Center</span> package
+          contains the <span class="application">GNOME</span> settings
+          manager.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.34/gnome-control-center-3.34.4.tar.xz">
+                http://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.34/gnome-control-center-3.34.4.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.34/gnome-control-center-3.34.4.tar.xz">
+                ftp://ftp.gnome.org/pub/gnome/sources/gnome-control-center/3.34/gnome-control-center-3.34.4.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 4a783c45d6775185a683f143a14d460e
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 5.9 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 170 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.4 SBU (Using parallelism=4; with
+                tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          GNOME Control Center Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../general/accountsservice.html" title=
+          "AccountsService-0.6.55">AccountsService-0.6.55</a>, <a class=
+          "xref" href="../x/clutter-gtk.html" title=
+          "clutter-gtk-1.8.4">clutter-gtk-1.8.4</a>, <a class="xref" href=
+          "../x/colord-gtk.html" title=
+          "colord-gtk-0.2.0">colord-gtk-0.2.0</a>, <a class="xref" href=
+          "gnome-online-accounts.html" title=
+          "gnome-online-accounts-3.34.1">gnome-online-accounts-3.34.1</a>,
+          <a class="xref" href="gnome-settings-daemon.html" title=
+          "gnome-settings-daemon-3.34.2">gnome-settings-daemon-3.34.2</a>,
+          <a class="xref" href="grilo.html" title=
+          "Grilo-0.3.12">Grilo-0.3.12</a>, <a class="xref" href="gsound.html"
+          title="GSound-1.0.2">gsound-1.0.2</a>, <a class="xref" href=
+          "libgtop.html" title="libgtop-2.40.0">libgtop-2.40.0</a>, <a class=
+          "xref" href="../postlfs/libpwquality.html" title=
+          "libpwquality-1.4.2">libpwquality-1.4.2</a>, <a class="xref" href=
+          "../postlfs/mitkrb.html" title="MIT Kerberos V5-1.18">MIT Kerberos
+          V5-1.18</a>, <a class="xref" href=
+          "../general/shared-mime-info.html" title=
+          "shared-mime-info-1.15">shared-mime-info-1.15</a>, and <a class=
+          "xref" href="../general/udisks2.html" title=
+          "UDisks-2.8.4">UDisks-2.8.4</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="cheese.html" title=
+          "Cheese-3.34.0">Cheese-3.34.0</a>, <a class="xref" href=
+          "../pst/cups.html" title="Cups-2.3.1">Cups-2.3.1</a> and <a class=
+          "xref" href="../basicnet/samba.html" title=
+          "Samba-4.11.6">Samba-4.11.6</a> (for the Printers Panel), <a class=
+          "xref" href="gnome-bluetooth.html" title=
+          "gnome-bluetooth-3.34.0">gnome-bluetooth-3.34.0</a>, <a class=
+          "xref" href="../general/ibus.html" title=
+          "ibus-1.5.21">ibus-1.5.21</a>, <a class="xref" href=
+          "../x/libhandy.html" title="Libhandy-0.0.11">libhandy-0.0.11</a>,
+          and <a class="xref" href="../general/ModemManager.html" title=
+          "ModemManager-1.12.6">ModemManager-1.12.6</a> and <a class="xref"
+          href="network-manager-applet.html" title=
+          "network-manager-applet-1.8.24">network-manager-applet-1.8.24</a>
+          (for the Network Panel)
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href=
+          "../general/python-modules.html#python-dbusmock" title=
+          "dbusmock-0.19">dbusmock-0.19</a> (for tests)
+        </p>
+        <h4>
+          Recommended (Runtime)
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/blocaled.html" title=
+          "blocaled-0.2">blocaled-0.2</a>
+        </p>
+        <h4>
+          Optional Runtime Dependencies
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/cups-pk-helper.html" title=
+          "cups-pk-helper-0.2.6">cups-pk-helper-0.2.6</a> (Printers panel),
+          <a class="xref" href="gnome-color-manager.html" title=
+          "gnome-color-manager-3.32.0">gnome-color-manager-3.32.0</a> (Color
+          panel), and <a class="xref" href=
+          "../multimedia/sound-theme-freedesktop.html" title=
+          "sound-theme-freedesktop-0.8">sound-theme-freedesktop-0.8</a>
+          (Additional Sound Effects in Sound panel)
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            Recommended dependencies are not strictly required for this
+            package to build and function, but you may not get expected
+            results at runtime if you don't install them.
+          </p>
+        </div>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/gnome-control-center">http://wiki.linuxfromscratch.org/blfs/wiki/gnome-control-center</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of GNOME Control Center
+        </h2>
+        <p>
+          Install <span class="application">GNOME Control Center</span> by
+          running the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson --prefix=/usr .. &amp;&amp;
+ninja</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>ninja
+          test</strong></span>. Note that you must have <span class=
+          "application">python-dbusmock</span> module installed in order for
+          the tests to complete successfully.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">ninja install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <code class="option">-Dcheese=false</code>: Use this switch if you
+          have not installed recommended dependency <span class=
+          "application">Cheese</span>.
+        </p>
+        <p>
+          <code class="option">-Dibus=false</code>: Use this switch if you
+          have not installed recommended dependency <span class=
+          "application">IBus</span>.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">gnome-control-center</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/share/gnome-control-center,
+              /usr/share/pixmaps/faces, and /usr/share/sounds/gnome</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gnome-control-center-prog" name=
+                    "gnome-control-center-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gnome-control-center</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a graphical user interface used to configure various
+                    aspects of <span class="application">GNOME</span>.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-26 22:00:52 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gnome-settings-daemon.html" title=
+          "gnome-settings-daemon-3.34.2">Prev</a>
+          <p>
+            gnome-settings-daemon-3.34.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="mutter.html" title="Mutter-3.34.4">Next</a>
+          <p>
+            Mutter-3.34.4
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="core.html" title=
+          "Chapter&nbsp;33.&nbsp;GNOME Libraries and Desktop">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

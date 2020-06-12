@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Uchardet-0.0.6
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-2020-04-02">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 2020-04-02
+      </h4>
+      <h3>
+        Chapter&nbsp;9.&nbsp;General Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="telepathy-glib.html" title=
+          "telepathy-glib-0.24.1">Prev</a>
+          <p>
+            telepathy-glib-0.24.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="wayland.html" title=
+          "Wayland-1.18.0">Next</a>
+          <p>
+            Wayland-1.18.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 2020-04-02">
+          Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="uchardet" name="uchardet"></a>Uchardet-0.0.6
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Uchardet
+        </h2>
+        <p>
+          The <span class="application">Uchardet</span> package contains an
+          encoding detectory library which takes a sequence of bytes in an
+          unknown character encoding and attempts to determine the encoding
+          of the text.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.6.tar.xz">
+                https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.6.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 03425c0bbe5faaf399e15e947d3e03c7
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 168 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 3.1 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Uchardet Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="cmake.html" title=
+          "CMake-3.17.0">CMake-3.17.0</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/uchardet">http://wiki.linuxfromscratch.org/blfs/wiki/uchardet</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Uchardet
+        </h2>
+        <p>
+          Install <span class="application">Uchardet</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+     
+cmake -DCMAKE_INSTALL_PREFIX=/usr \
+      -DBUILD_STATIC=OFF          \
+      -Wno-dev ..                 &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          test</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>-DBUILD_STATIC=OFF</code></em>: This
+          switch disables building the static version of the library.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">uchardet</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libuchardet.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/uchardet</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="uchardet-prog" name=
+                    "uchardet-prog"></a><span class="term"><span class=
+                    "command"><strong>uchardet</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    detects what character set is used inside of a file.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libuchardet" name="libuchardet"></a><span class=
+                    "term"><code class=
+                    "filename">libuchardet.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides an API for detecting the encoding of text in a
+                    file.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-03-27 15:16:34 -0500
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="telepathy-glib.html" title=
+          "telepathy-glib-0.24.1">Prev</a>
+          <p>
+            telepathy-glib-0.24.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="wayland.html" title=
+          "Wayland-1.18.0">Next</a>
+          <p>
+            Wayland-1.18.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 2020-04-02">
+          Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

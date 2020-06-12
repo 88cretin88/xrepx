@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      libmng-2.0.3
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;10.&nbsp;Graphics and Font Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libjpeg.html" title=
+          "libjpeg-turbo-2.0.4">Prev</a>
+          <p>
+            libjpeg-turbo-2.0.4
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libmypaint.html" title=
+          "libmypaint-1.5.0">Next</a>
+          <p>
+            libmypaint-1.5.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="graphlib.html" title=
+          "Chapter&nbsp;10.&nbsp;Graphics and Font Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="libmng" name="libmng"></a>libmng-2.0.3
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to libmng
+        </h2>
+        <p>
+          The <span class="application">libmng</span> libraries are used by
+          programs wanting to read and write Multiple-image Network Graphics
+          (MNG) files which are the animation equivalents to PNG files.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://downloads.sourceforge.net/libmng/libmng-2.0.3.tar.xz">
+                https://downloads.sourceforge.net/libmng/libmng-2.0.3.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: e9e899adb1b681b17f14d91e261878c5
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 932 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 15 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          libmng Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="libjpeg.html" title=
+          "libjpeg-turbo-2.0.4">libjpeg-turbo-2.0.4</a> and <a class="xref"
+          href="lcms2.html" title="Little CMS-2.9">Little CMS-2.9</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/libmng">http://wiki.linuxfromscratch.org/blfs/wiki/libmng</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of libmng
+        </h2>
+        <p>
+          Install <span class="application">libmng</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr --disable-static &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install &amp;&amp;
+
+install -v -m755 -d        /usr/share/doc/libmng-2.0.3 &amp;&amp;
+install -v -m644 doc/*.txt /usr/share/doc/libmng-2.0.3</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--disable-static</code></em>: This
+          switch prevents installation of static versions of the libraries.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">libmng.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/share/doc/libmng-2.0.3</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libmng-lib" name="libmng-lib"></a><span class=
+                    "term"><code class="filename">libmng.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides functions for programs wishing to read and write
+                    MNG files which are animation files without the patent
+                    problems associated with certain other formats.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-17 12:12:55 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libjpeg.html" title=
+          "libjpeg-turbo-2.0.4">Prev</a>
+          <p>
+            libjpeg-turbo-2.0.4
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libmypaint.html" title=
+          "libmypaint-1.5.0">Next</a>
+          <p>
+            libmypaint-1.5.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="graphlib.html" title=
+          "Chapter&nbsp;10.&nbsp;Graphics and Font Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

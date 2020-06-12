@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Libraries: Static or shared?
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;2.&nbsp;Important Information
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="la-files.html" title=
+          "About Libtool Archive (.la) files">Prev</a>
+          <p>
+            About Libtool Archive (.la) files
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="locale-issues.html" title=
+          "Locale Related Issues">Next</a>
+          <p>
+            Locale Related Issues
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="important.html" title=
+          "Chapter&nbsp;2.&nbsp;Important Information">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="libraries" name="libraries"></a>Libraries: Static or shared?
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Libraries: Static or shared?
+        </h2>
+        <p>
+          The original libraries were simply an archive of routines from
+          which the required routines were extracted and linked into the
+          executable program. These are described as static libraries
+          (libfoo.a). On some old operating systems they are the only type
+          available.
+        </p>
+        <p>
+          On almost all Linux platforms there are also shared libraries
+          (libfoo.so) - one copy of the library is loaded into virtual
+          memory, and shared by all the programs which call any of its
+          functions. This is space efficient.
+        </p>
+        <p>
+          In the past, essential programs such as a shell were often linked
+          statically so that some form of minimal recovery system would exist
+          even if shared libraries, such as libc.so, became damaged (e.g.
+          moved to <code class="filename">lost+found</code> after fsck
+          following an unclean shutdown). Nowadays, most people use an
+          alternative system install or a Live CD if they have to recover.
+          Journaling filesystems also reduce the likelihood of this sort of
+          problem.
+        </p>
+        <p>
+          Developers, at least while they are developing, often prefer to use
+          static versions of the libraries which their code links to.
+        </p>
+        <p>
+          Within the book, there are various places where configure switches
+          such as <span class=
+          "command"><strong>--disable-static</strong></span> are employed,
+          and other places where the possibility of using system versions of
+          libraries instead of the versions included within another package
+          is discussed. The main reason for this is to simplify updates of
+          libraries.
+        </p>
+        <p>
+          If a package is linked to a dynamic library, updating to a newer
+          library version is automatic once the newer library is installed
+          and the program is (re)started (provided the library major version
+          is unchanged, e.g. going from libfoo.so.2.0 to libfoo.so.2.1. Going
+          to libfoo.so.3 will require recompilation - <span class=
+          "command"><strong>ldd</strong></span> can be used to find which
+          programs use the old version). If a program is linked to a static
+          library, the program always has to be recompiled. If you know which
+          programs are linked to a particular static library, this is merely
+          an annoyance. But usually you will <span class=
+          "emphasis"><em>not</em></span> know which programs to recompile.
+        </p>
+        <p>
+          Most libraries are shared, but if you do something unusual, such as
+          moving a shared library to <code class="filename">/lib</code>
+          accidentally breaking the <code class="literal">.so</code> symlink
+          in <code class="filename">/usr/lib</code> while keeping the static
+          library in <code class="filename">/lib</code>, the static library
+          will be silently linked into the programs which need it.
+        </p>
+        <p>
+          One way to identify when a static library is used, is to deal with
+          it at the end of the installation of every package. Write a script
+          to find all the static libraries in <code class=
+          "filename">/usr/lib</code> or wherever you are installing to, and
+          either move them to another directory so that they are no longer
+          found by the linker, or rename them so that libfoo.a becomes e.g.
+          libfoo.a.hidden. The static library can then be temporarily
+          restored if it is ever needed, and the package needing it can be
+          identified. You may choose to exclude some of the static libraries
+          from glibc if you do this (<code class="filename">libc_nonshared.a,
+          libg.a, libieee.a, libm.a, libpthread_nonshared.a, librpcsvc.a,
+          libsupc++.a</code>) to simplify compilation.
+        </p>
+        <p>
+          If you use this approach, you may discover that more packages than
+          you were expecting use a static library. That was the case with
+          <span class="application">nettle-2.4</span> in its default
+          static-only configuration: It was required by <span class=
+          "application">GnuTLS-3.0.19</span>, but also linked into package(s)
+          which used <span class="application">GnuTLS</span>, such as
+          <span class="application">glib-networking-2.32.3</span>.
+        </p>
+        <p>
+          Many packages put some of their common functions into a static
+          library which is only used by the programs within the package and,
+          crucially, the library is <span class=
+          "emphasis"><em>not</em></span> installed as a standalone library.
+          These internal libraries are not a problem - if the package has to
+          be rebuilt to fix a bug or vulnerability, nothing else is linked to
+          them.
+        </p>
+        <p>
+          When BLFS mentions system libraries, it means shared versions of
+          libraries. Some packages such as <a class="xref" href=
+          "../xsoft/firefox.html" title="Firefox-68.5.0">Firefox-68.5.0</a>
+          and <a class="xref" href="../pst/gs.html" title=
+          "ghostscript-9.50">ghostscript-9.50</a> include many other
+          libraries. When they link to them, they link statically so this
+          also makes the programs bigger. The version they ship is often
+          older than the version used in the system, so it may contain bugs -
+          sometimes developers go to the trouble of fixing bugs in their
+          included libraries, other times they do not.
+        </p>
+        <p>
+          Sometimes, deciding to use system libraries is an easy decision.
+          Other times it may require you to alter the system version (e.g.
+          for <a class="xref" href="../general/libpng.html" title=
+          "libpng-1.6.37">libpng-1.6.37</a> if used for <a class="xref" href=
+          "../xsoft/firefox.html" title="Firefox-68.5.0">Firefox-68.5.0</a>).
+          Occasionally, a package ships an old library and can no longer link
+          to the current version, but can link to an older version. In this
+          case, BLFS will usually just use the shipped version. Sometimes the
+          included library is no longer developed separately, or its upstream
+          is now the same as the package's upstream and you have no other
+          packages which will use it. In those cases, you might decide to use
+          the included static library even if you usually prefer to use
+          system libraries.
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/libraries">http://wiki.linuxfromscratch.org/blfs/wiki/libraries</a>
+        </p>
+      </div>
+      <p class="updated">
+        Last updated on 2015-09-20 15:38:20 -0700
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="la-files.html" title=
+          "About Libtool Archive (.la) files">Prev</a>
+          <p>
+            About Libtool Archive (.la) files
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="locale-issues.html" title=
+          "Locale Related Issues">Next</a>
+          <p>
+            Locale Related Issues
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="important.html" title=
+          "Chapter&nbsp;2.&nbsp;Important Information">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang=ru id=faq>
+
+<title>Настольная книга по портам OpenBSD</title>
+<meta name= "description"   content= "the OpenBSD Porter's Handbook">
+<meta charset=utf-8>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../openbsd.css">
+<link rel="canonical" href="https://www.openbsd.org/faq/ports/">
+
+<h2 id=OpenBSD>
+<a href="../../index.html">
+<i>Open</i><b>BSD</b></a>
+Настольная книга по портам
+<small>
+<a href="../index.html">[FAQ - На главную]</a>
+</small>
+</h2>
+<hr>
+
+<h3><a href="ports.html">Работа с портами</a></h3>
+<ul>
+  <li><a href="ports.html#PortsIntro"   >Введение</a>
+  <li><a href="ports.html#PortsFetch"   >Скачиваем дерево портов</a>
+  <li><a href="ports.html#PortsConfig"  >Настройка системы портов</a>
+  <li><a href="ports.html#PortsSearch"  >Поиск дерева портов</a>
+  <li><a href="ports.html#PortsInstall" >Простой пример установки</a>
+  <li><a href="ports.html#PortsClean"   >Очистка после сборки</a>
+  <li><a href="ports.html#PortsDelete"  >Удаление пакета портов</a>
+  <li><a href="ports.html#PortsFlavors" >Использование Flavors и Subpackages</a>
+  <li><a href="ports.html#dpb"          >Использование dpb для сборки Multiple портов</a>
+  <li><a href="ports.html#PortsSecurity">Обновление безопасности (-stable)</a>
+  <li><a href="ports.html#PkgSig"       >Сигнатура пакетов</a>
+</ul>
+
+<h3><a href="guide.html">Руководство по портам OpenBSD</a></h3>
+<ul>
+  <li><a href="guide.html#Overview"         >Обзор</a>
+  <li><a href="guide.html#PortsChecklist"   >Porting Checklist</a>
+  <li><a href="guide.html#PortsComplex"     >Обработка сложных ситуаций</a>
+  <ul>
+    <li><a href="guide.html#Know"           >Будь знакомым с самой программой</a>
+    <li><a href="guide.html#Figure"         >Определить важные параметры</a>
+    <li><a href="guide.html#Ideal"          >Идеальный случай: MULTI_PACKAGES и PSEUDO_FLAVORS</a>
+    <li><a href="guide.html#Inter"          >Взаимозависимость между subpackages</a>
+    <li><a href="guide.html#True"           >Взаимозависимость FLAVORS и PKGNAMES</a>
+  </ul>
+  <li><a href="guide.html#PortsUpdate"      >Обновление портов</a>
+  <ul>
+    <li><a href="guide.html#UpdateChecklist">Обновление Checklist</a>
+  </ul>
+  <li><a href="guide.html#PortsPolicy"      >Политика OpenBSD касательно портов</a>
+  <li><a href="guide.html#PortsSecurity"    >Рекомендации безопасности</a>
+  <li><a href="guide.html#PortsGeneric"     >Основные советы по поводу портов</a>
+  <li><a href="guide.html#PortsOther"       >Другие советы, которые могут помочь</a>
+  <li><a href="guide.html#PortsAvail"       >Дополнительная информация</a>
+</ul>
+
+<h3><a href="https://openbsd.org/faq/ports/specialtopics.html">Особые темы, касательно портов</a></h3>
+<ul>
+  <li><a href="https://openbsd.org/faq/ports/specialtopics.html#SharedLibs">Разделяемые библиотеки (shared libraries)</a>
+  <li><a href="https://openbsd.org/faq/ports/specialtopics.html#Autoconf"  >GNU autoconf</a>
+  <li><a href="https://openbsd.org/faq/ports/specialtopics.html#Config"    >Файлы конфигурации</a>
+  <li><a href="https://openbsd.org/faq/ports/specialtopics.html#Audio"     >Audio программы</a>
+  <li><a href="https://openbsd.org/faq/ports/specialtopics.html#Mandoc"    >Страницы руководств (man-pages)</a>
+  <li><a href="https://openbsd.org/faq/ports/specialtopics.html#RcScripts" >rc.d(8) скрипты</a>
+</ul>
+
+<h3><a href="testing.html">Руководство по тестированию портов</a></h3>
+<ul>
+  <li><a href="testing.html#Introduction">Введение</a>
+  <li><a href="testing.html#Testing"     >Тестирование</a>
+  <li><a href="testing.html#Commenting"  >Комментирование</a>
+  <li><a href="testing.html#More"        >И снова тестирование</a>
+</ul>
+
+<h3><a href="differences.html">Отличие от других BSD проектов</a></h3>
+<ul>
+  <li><a href="differences.html#Extra"       >Дополнительная помощь</a>
+  <li><a href="differences.html#Generic"     >Общие вопросы по поводу инфраструктуры</a>
+  <li><a href="differences.html#Make"        >Правильное использование make</a>
+  <li><a href="differences.html#Fetch"       >Распаковка (извлечение исходников)</a>
+  <li><a href="differences.html#wrkdir"      >Инфраструктура <code>WRKDIR</code></a>
+  <li><a href="differences.html#Fake"        >Fake установка портов</a>
+  <ul>
+  <li><a href="differences.html#Introduction">Введение</a>
+  <li><a href="differences.html#Advantages"  >Преимущества</a>
+  <li><a href="differences.html#How"         >Как это использовать</a>
+  <li><a href="differences.html#Pitfalls"    >Ловушки</a>
+  </ul>
+  <li><a href="differences.html#Tools"       >Packaging-инструментарий</a>
+  <li><a href="differences.html#Flavors"     >Flavors</a>
+</ul>
+
+<hr>
+
+Настольная книга по портам OpenBSD представляет из себя дополнительную
+документацию к страницам руководств (man-pages), в особенности к
+<a href="https://man.openbsd.org/ports">ports(7)</a>.
+
+<p>
+Базовая часть операционной системы OpenBSD достаточно независима.
+Однако существует большое количество стороннего ПО, которое можно использовать
+в дополнение к базовой системе. Разработчики OpenBSD проделали большую работу,
+чтобы сделать многие тысячи сторонних программ доступными в виде
+<a href="../faq15.html">предварительно скомпилированных бинарных пакетов</a>.
+
+<p>
+Чтобы создать бинарный пакет, надо написать <code>Makefile</code>,
+который будет включать в себя список инструкций по поводу распаковки,
+обновления, настройки и компиляции исходного кода. Коллекцию всех этих вместе
+взятых <code>Makefile'ов</code> мы и называем системой портов.
+
+<p>
+В этой книге мы рассказываем как работает система портов и показываем как
+создавать или обновлять ваши собственные порты, включая правила по поводу
+добавления их в саму OpenBSD.
+
+<p>
+Чтобы понять весь материал из этой книги, вы должны хорошо знать семейство
+программ pkg_* и разбираться в устройстве самой системы.
+Больше информаци по теме пакетов можно найти в
+<a href="https://man.openbsd.org/packages">packages(7)</a>.
+
+<p>
+<b>ВНИМАНИЕ: коллекция пакетов и портов НЕ ПРОХОДИТ того аудита безопасности,
+который проходит базовая часть самой OpenBSD.</b>
+Хотя мы стремимся поддерживать высокое качество коллекции пакетов, у нас просто
+не хватает людей и времени для обеспечения того же уровня надежности и
+безопасности, что и в базовой части ОС.

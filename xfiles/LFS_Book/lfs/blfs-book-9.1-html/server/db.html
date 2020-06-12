@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Berkeley DB-5.3.28
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;22.&nbsp;Databases
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="databases.html" title="Databases">Prev</a>
+          <p>
+            Databases
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="lmdb.html" title="lmdb-0.9.24">Next</a>
+          <p>
+            lmdb-0.9.24
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="databases.html" title=
+          "Chapter&nbsp;22.&nbsp;Databases">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="db" name="db"></a>Berkeley DB-5.3.28
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Berkeley DB
+        </h2>
+        <p>
+          The <span class="application">Berkeley DB</span> package contains
+          programs and utilities used by many other applications for database
+          related functions.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://anduin.linuxfromscratch.org/BLFS/bdb/db-5.3.28.tar.gz">
+                http://anduin.linuxfromscratch.org/BLFS/bdb/db-5.3.28.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: b99454564d5b4479750567031d66fe24
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 34 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 265 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.6 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Berkeley DB Dependencies
+        </h3>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/tcl.html" title=
+          "Tcl-8.6.10">Tcl-8.6.10</a> and <a class="xref" href=
+          "../general/sharutils.html" title=
+          "Sharutils-4.15.2">Sharutils-4.15.2</a> (for the <span class=
+          "command"><strong>uudecode</strong></span> command)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/db">http://wiki.linuxfromscratch.org/blfs/wiki/db</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="bdb-installation" name="bdb-installation"></a>Installation
+          of Berkeley DB
+        </h2>
+        <p>
+          First apply a fix so that this will compile with current versions
+          of <span class="command"><strong>g++</strong></span>:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i 's/\(__atomic_compare_exchange\)/\1_db/' src/dbinc/atomic.h</kbd>
+</pre>
+        <p>
+          Install <span class="application">Berkeley DB</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cd build_unix                        &amp;&amp;
+../dist/configure --prefix=/usr      \
+                  --enable-compat185 \
+                  --enable-dbm       \
+                  --disable-static   \
+                  --enable-cxx       &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make docdir=/usr/share/doc/db-5.3.28 install &amp;&amp;
+
+chown -v -R root:root                        \
+      /usr/bin/db_*                          \
+      /usr/include/db{,_185,_cxx}.h          \
+      /usr/lib/libdb*.{so,la}                \
+      /usr/share/doc/db-5.3.28</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>cd build_unix &amp;&amp;
+          ../dist/configure --prefix=/usr...</strong></span>: This replaces
+          the normal <span class=
+          "command"><strong>./configure</strong></span> command, as
+          <span class="application">Berkeley DB</span> comes with various
+          build directories for different platforms.
+        </p>
+        <p>
+          <em class="parameter"><code>--enable-compat185</code></em>: This
+          switch enables building the DB-1.85 compatibility API.
+        </p>
+        <p>
+          <em class="parameter"><code>--enable-cxx</code></em>: This switch
+          enables building C++ API libraries.
+        </p>
+        <p>
+          <em class="parameter"><code>--enable-dbm</code></em>: Enables
+          legacy interface support needed by some older packages.
+        </p>
+        <p>
+          <span class="command"><strong>make docdir=/usr/share/doc/db-5.3.28
+          install</strong></span>: This installs the documentation in the
+          standard location instead of <code class=
+          "filename">/usr/docs</code>.
+        </p>
+        <p>
+          <span class="command"><strong>chown -v -R root:root
+          ...</strong></span>:This command changes the ownership of various
+          installed files from the uid:gid of the builder to root:root.
+        </p>
+        <p>
+          <code class="option">--enable-tcl --with-tcl=/usr/lib</code>:
+          Enables <span class="application">Tcl</span> support in DB and
+          creates the <code class="filename">libdb_tcl</code> libraries.
+        </p>
+        <p>
+          <code class="option">--enable-java</code>: Enables <span class=
+          "application">Java</span> support in DB and creates the
+          <code class="filename">libdb_java</code> libraries. Support is
+          currently broken with Java-10.x.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">db_archive, db_checkpoint, db_deadlock,
+              db_dump, db_hotbackup, db_load, db_log_verify, db_printlog,
+              db_recover, db_replicate, db_stat, db_tuner, db_upgrade, and
+              db_verify</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libdb.so, libdb_cxx.so, and
+              libdb_tcl.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/share/doc/db-5.3.28</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="db_archive" name="db_archive"></a><span class=
+                    "term"><span class=
+                    "command"><strong>db_archive</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    prints the pathnames of log files that are no longer in
+                    use.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="db_checkpoint" name=
+                    "db_checkpoint"></a><span class="term"><span class=
+                    "command"><strong>db_checkpoint</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a daemon process used to monitor and checkpoint
+                    database logs.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="db_deadlock" name="db_deadlock"></a><span class=
+                    "term"><span class=
+                    "command"><strong>db_deadlock</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to abort lock requests when deadlocks are
+                    detected.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="db_dump" name="db_dump"></a><span class=
+                    "term"><span class=
+                    "command"><strong>db_dump</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    converts database files to a flat file format readable by
+                    <span class="command"><strong>db_load</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="db_hotbackup" name="db_hotbackup"></a><span class=
+                    "term"><span class=
+                    "command"><strong>db_hotbackup</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    creates "hot backup" or "hot failover" snapshots of
+                    Berkeley DB databases.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="db_load" name="db_load"></a><span class=
+                    "term"><span class=
+                    "command"><strong>db_load</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to create database files from flat files created
+                    with <span class=
+                    "command"><strong>db_dump</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="db_log_verify" name=
+                    "db_log_verify"></a><span class="term"><span class=
+                    "command"><strong>db_log_verify</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    verifies the log files of a database.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="db_printlog" name="db_printlog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>db_printlog</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    converts database log files to human readable text.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="db_recover" name="db_recover"></a><span class=
+                    "term"><span class=
+                    "command"><strong>db_recover</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to restore a database to a consistent state after
+                    a failure.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="db_replicate" name="db_replicate"></a><span class=
+                    "term"><span class=
+                    "command"><strong>db_replicate</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a daemon process that provides replication/HA services
+                    on a transactional environment.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="db_stat" name="db_stat"></a><span class=
+                    "term"><span class=
+                    "command"><strong>db_stat</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    displays database environment statistics.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="db_tuner" name="db_tuner"></a><span class=
+                    "term"><span class=
+                    "command"><strong>db_tuner</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    analyzes the data in a btree database, and suggests a
+                    page size that is likely to deliver optimal operation.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="db_upgrade" name="db_upgrade"></a><span class=
+                    "term"><span class=
+                    "command"><strong>db_upgrade</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to upgrade database files to a newer version of
+                    <span class="application">Berkeley DB</span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="db_verify" name="db_verify"></a><span class=
+                    "term"><span class=
+                    "command"><strong>db_verify</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to run consistency checks on database files.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 08:54:30 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="databases.html" title="Databases">Prev</a>
+          <p>
+            Databases
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="lmdb.html" title="lmdb-0.9.24">Next</a>
+          <p>
+            lmdb-0.9.24
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="databases.html" title=
+          "Chapter&nbsp;22.&nbsp;Databases">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

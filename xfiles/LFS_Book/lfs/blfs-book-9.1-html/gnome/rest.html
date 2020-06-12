@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      rest-0.8.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;33.&nbsp;GNOME Libraries and Desktop
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libsecret.html" title=
+          "libsecret-0.20.1">Prev</a>
+          <p>
+            libsecret-0.20.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="totem-pl-parser.html" title=
+          "totem-pl-parser-3.26.4">Next</a>
+          <p>
+            totem-pl-parser-3.26.4
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="core.html" title=
+          "Chapter&nbsp;33.&nbsp;GNOME Libraries and Desktop">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="rest" name="rest"></a>rest-0.8.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to rest
+        </h2>
+        <p>
+          The <span class="application">rest</span> package contains a
+          library that was designed to make it easier to access web services
+          that claim to be "RESTful". It includes convenience wrappers for
+          libsoup and libxml to ease remote use of the RESTful API.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.gnome.org/pub/gnome/sources/rest/0.8/rest-0.8.1.tar.xz">
+                http://ftp.gnome.org/pub/gnome/sources/rest/0.8/rest-0.8.1.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnome.org/pub/gnome/sources/rest/0.8/rest-0.8.1.tar.xz">
+                ftp://ftp.gnome.org/pub/gnome/sources/rest/0.8/rest-0.8.1.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: ece4547298a81105f307369d73c21b9d
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 332 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 12.5 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.2 SBU (with tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          rest Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../postlfs/make-ca.html" title=
+          "make-ca-1.5">make-ca-1.5</a> and <a class="xref" href=
+          "../basicnet/libsoup.html" title=
+          "libsoup-2.68.3">libsoup-2.68.3</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/gobject-introspection.html" title=
+          "gobject-introspection-1.62.0">gobject-introspection-1.62.0</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/gtk-doc.html" title=
+          "GTK-Doc-1.32">GTK-Doc-1.32</a> and <a class="ulink" href=
+          "http://ltp.sourceforge.net/coverage/lcov.php">LCOV</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/rest">http://wiki.linuxfromscratch.org/blfs/wiki/rest</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of rest
+        </h2>
+        <p>
+          Install <span class="application">rest</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr \
+    --with-ca-certificates=/etc/pki/tls/certs/ca-bundle.crt &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span>. The flickr test will fail due to Public API
+          changes on their site. The OAuth tests will fail because the
+          website that it uses to test connectivity via OAuth no longer
+          exists.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class=
+          "parameter"><code>--with-ca-certificates=/etc/pki/tls/certs/ca-bundle.crt</code></em>:
+          This switch sets the location of the BLFS certificate authority
+          bundle.
+        </p>
+        <p>
+          <code class="option">--enable-gtk-doc</code>: Use this parameter if
+          <span class="application">GTK-Doc</span> is installed and you wish
+          to rebuild and install the API documentation.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">librest-0.7.so and
+              librest-extras-0.7.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/rest-0.7 and
+              /usr/share/gtk-doc/html/rest-0.7</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="librest-0.7" name="librest-0.7"></a><span class=
+                    "term"><code class=
+                    "filename">librest-0.7.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains the RESTful Web API Query functions.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="librest-extras-0.7" name=
+                    "librest-extras-0.7"></a><span class="term"><code class=
+                    "filename">librest-extras-0.7.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains extra RESTful Web API Query functions.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-17 12:12:55 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libsecret.html" title=
+          "libsecret-0.20.1">Prev</a>
+          <p>
+            libsecret-0.20.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="totem-pl-parser.html" title=
+          "totem-pl-parser-3.26.4">Next</a>
+          <p>
+            totem-pl-parser-3.26.4
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="core.html" title=
+          "Chapter&nbsp;33.&nbsp;GNOME Libraries and Desktop">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

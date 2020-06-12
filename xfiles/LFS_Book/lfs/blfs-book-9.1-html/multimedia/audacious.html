@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Audacious-3.10.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;43.&nbsp;Audio Utilities
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="audioutils.html" title=
+          "Audio Utilities">Prev</a>
+          <p>
+            Audio Utilities
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="cdparanoia.html" title=
+          "CDParanoia-III-10.2">Next</a>
+          <p>
+            CDParanoia-III-10.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="audioutils.html" title=
+          "Chapter&nbsp;43.&nbsp;Audio Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="audacious" name="audacious"></a>Audacious-3.10.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Audacious
+        </h2>
+        <p>
+          <span class="application">Audacious</span> is an audio player.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://distfiles.audacious-media-player.org/audacious-3.10.1.tar.bz2">
+                https://distfiles.audacious-media-player.org/audacious-3.10.1.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 9dfcf0290f766d91b0e195a232d4e4bf
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 552 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 22 MB (with Gtk user
+                interface)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.3 SBU (with Gtk user interface)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Additional Downloads
+        </h3>
+        <div class="itemizedlist">
+          <p class="title">
+            <strong>Required Plugins</strong>
+          </p>
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://distfiles.audacious-media-player.org/audacious-plugins-3.10.1.tar.bz2">
+                https://distfiles.audacious-media-player.org/audacious-plugins-3.10.1.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: c54e49a3a32c0df2beaf4fdf14a4bd75
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 1.6 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 49 MB (with Gtk user
+                interface)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.7 SBU (with Gtk user interface)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Audacious Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../x/gtk2.html" title=
+          "GTK+-2.24.32">GTK+-2.24.32</a> or <a class="xref" href=
+          "../x/qt5.html" title="Qt-5.14.1">Qt-5.14.1</a> (or both),
+          <a class="xref" href="../general/libxml2.html" title=
+          "libxml2-2.9.10">libxml2-2.9.10</a> (plugins), <a class="xref"
+          href="../x/xorg7.html#xorg-env" title=
+          "Setting up the Xorg Build Environment">Xorg build environment</a>
+          (plugins), and <a class="xref" href="../x/installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">X Window
+          System</a> (runtime)
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="optional">
+          <a class="xref" href="alsa.html" title="ALSA-1.2.1">ALSA-1.2.1</a>
+          and <a class="xref" href="../general/dbus.html" title=
+          "dbus-1.12.16">dbus-1.12.16</a>, also <a class="xref" href=
+          "../x/gnome-icon-theme.html" title=
+          "gnome-icon-theme-3.12.0">gnome-icon-theme-3.12.0</a> (runtime)
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/valgrind.html" title=
+          "Valgrind-3.15.0">Valgrind-3.15.0</a>
+        </p>
+        <h4>
+          Recommended (for Plugins)
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="mpg123.html" title=
+          "mpg123-1.25.13">mpg123-1.25.13</a> and <a class="xref" href=
+          "../basicnet/neon.html" title="neon-0.30.2">neon-0.30.2</a> (for
+          online mpg3 and ogg radio)
+        </p>
+        <h4>
+          Optional (for Plugins)
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../basicnet/curl.html" title=
+          "cURL-7.68.0">cURL-7.68.0</a>, <a class="xref" href="faad2.html"
+          title="FAAD2-2.8.8">FAAD2-2.8.8</a>, <a class="xref" href=
+          "ffmpeg.html" title="FFmpeg-4.2.2">FFmpeg-4.2.2</a>, <a class=
+          "xref" href="flac.html" title="FLAC-1.3.3">FLAC-1.3.3</a>,
+          <a class="xref" href="lame.html" title="LAME-3.100">LAME-3.100</a>,
+          <a class="xref" href="libcdio.html" title=
+          "libcdio-2.1.0">libcdio-2.1.0</a> (to identify and play CDs),
+          <a class="xref" href="../x/libnotify.html" title=
+          "libnotify-0.7.8">libnotify-0.7.8</a>, <a class="xref" href=
+          "libsamplerate.html" title=
+          "libsamplerate-0.1.9">libsamplerate-0.1.9</a>, <a class="xref"
+          href="libsndfile.html" title=
+          "libsndfile-1.0.28">libsndfile-1.0.28</a>, <a class="xref" href=
+          "libvorbis.html" title="libvorbis-1.3.6">libvorbis-1.3.6</a>,
+          <a class="xref" href="pulseaudio.html" title=
+          "PulseAudio-13.0">PulseAudio-13.0</a>, <a class="xref" href=
+          "sdl.html" title="SDL-1.2.15">SDL-1.2.15</a>, <a class="ulink"
+          href="http://sourceforge.net/projects/bs2b/">The Bauer
+          stereophonic-to-binaural DSP (bs2b) library</a>, <a class="ulink"
+          href="https://sourceforge.net/projects/fluidsynth/">FluidSynth</a>,
+          <a class="ulink" href="http://jackaudio.org/">JACK</a> (requires
+          <a class="xref" href="libsamplerate.html" title=
+          "libsamplerate-0.1.9">libsamplerate-0.1.9</a>), <a class="ulink"
+          href="http://sourceforge.net/projects/libcue/">libcue</a>,
+          <a class="ulink" href=
+          "http://sourceforge.net/projects/modplug-xmms/">libmodplug</a>,
+          <a class="ulink" href=
+          "http://sourceforge.net/projects/libmms">libmms</a>, <a class=
+          "ulink" href="http://www.lirc.org/">LIRC</a>, and <a class="ulink"
+          href="http://www.wavpack.com/">WavPack</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/audacious">http://wiki.linuxfromscratch.org/blfs/wiki/audacious</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Audacious
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779234146016" name=
+            "idm45779234146016"></a>Installation of the Main Audacious
+            Program
+          </h4>
+          <p>
+            Install <span class="application">Audacious</span> by running the
+            following commands (you may wish to change the stamp to another
+            string):
+          </p>
+          <pre class="userinput">
+<kbd class="command">TPUT=/bin/true ./configure --prefix=/usr \
+                           --with-buildstamp="BLFS" &amp;&amp;
+make</kbd>
+</pre>
+          <p>
+            This package does not come with a test suite.
+          </p>
+          <p>
+            Now, as the <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779234139472" name=
+            "idm45779234139472"></a>Installation of Audacious Plugins
+          </h4>
+          <p>
+            Install the required plugins package by issuing the following
+            commands:
+          </p>
+          <pre class="userinput">
+<kbd class=
+"command">tar -xf ../audacious-plugins-3.10.1.tar.bz2                &amp;&amp;
+cd audacious-plugins-3.10.1                                &amp;&amp;
+TPUT=/bin/true ./configure --prefix=/usr --disable-wavpack &amp;&amp;
+make</kbd>
+</pre>
+          <p>
+            Now, as the <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              This package installs icon files into the <code class=
+              "filename">/usr/share/icons/hicolor</code> hierarchy and
+              desktop files into the <code class=
+              "filename">/usr/share/applications</code> hierarchy. You can
+              improve system performance and memory usage by updating
+              <code class=
+              "filename">/usr/share/icons/hicolor/index.theme</code> and
+              <code class=
+              "filename">/usr/share/applications/mimeinfo.cache</code>. To
+              perform the update you must have <a class="xref" href=
+              "../x/gtk2.html" title="GTK+-2.24.32">GTK+-2.24.32</a> or
+              <a class="xref" href="../x/gtk3.html" title=
+              "GTK+-3.24.13">GTK+-3.24.13</a> installed (for the icon cache)
+              and <a class="xref" href="../general/desktop-file-utils.html"
+              title="desktop-file-utils-0.24">desktop-file-utils-0.24</a>
+              (for the desktop cache) and issue the following commands as the
+              <code class="systemitem">root</code> user:
+            </p>
+            <pre class="userinput">
+<kbd class=
+"command">gtk-update-icon-cache -qtf /usr/share/icons/hicolor &amp;&amp;
+update-desktop-database -q</kbd>
+</pre>
+          </div>
+        </div>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>TPUT=/bin/true</code></em>: the default
+          is for <span class="command"><strong>make</strong></span> to output
+          text in color. This is fine if you are building in a terminal, but
+          if you script the build process and pipe the output from
+          <span class="command"><strong>make</strong></span> to a log file
+          then the control characters used to color the text can make the
+          logfile unreadable. This option stops it coloring the text.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-buildstamp</code></em>: This
+          switch appends the given text to the version string.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-wavpack</code></em>: This
+          switch is required unless the optional WavPack package is
+          installed.
+        </p>
+        <p>
+          <code class="option">--disable-gtk</code>: Use this to disable GTK+
+          support.
+        </p>
+        <p>
+          <code class="option">--disable-mp3</code>: Use this for the plugins
+          if you have not installed mpg123 and do not wish to play mp3 files.
+        </p>
+        <p>
+          <code class="option">--enable-qt</code>: Use this to enable Qt
+          support.
+        </p>
+        <p>
+          <code class="option">--enable-valgrind</code>: Allow better
+          Valgrind leak checks.
+        </p>
+        <p>
+          <code class="option">--disable-neon</code>: Use this for the
+          plugins if you have not installed neon, and do not want to use
+          HTTP/HTTPS transport.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring Audacious
+        </h2>
+        <p>
+          If you prefer the old, smaller Winamp/XMMS interface, click on
+          View&gt; Interface&gt; Winamp Classic Interface.
+        </p>
+        <p>
+          If you built with both Gtk and Qt user interfaces, the Qt version
+          can be executed from a terminal, issuing <span class=
+          "command"><strong>audacious --qt</strong></span>. If you wish a
+          desktop menu entry to execute this Qt version, issue the following
+          commands as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">cp -v /usr/share/applications/audacious{,-qt}.desktop &amp;&amp;
+
+sed -e '/^Name/ s/$/ Qt/' \
+    -e '/Exec=/ s/audacious/&amp; --qt/' \
+    -i /usr/share/applications/audacious-qt.desktop</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">audacious and audtool</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libaudcore.so, libaudgui.so, libaudqt.so,
+              libaudtag.so, and several plugin libraries under
+              /usr/lib/audacious/ sub-directories</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class=
+              "segbody">/usr/include/{audacious,libaudcore,libaudgui,libaudqt},
+              /usr/lib/audacious and /usr/share/audacious</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="audacious-prog" name=
+                    "audacious-prog"></a><span class="term"><span class=
+                    "command"><strong>audacious</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a GTK+2 port of <span class="application">XMMS</span>
+                    based on the <span class="application">Beep Media
+                    Player</span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="audtool" name="audtool"></a><span class=
+                    "term"><span class=
+                    "command"><strong>audtool</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a small tool to modify the behavior of a running
+                    <span class="command"><strong>audacious</strong></span>
+                    instance.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-20 12:41:28 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="audioutils.html" title=
+          "Audio Utilities">Prev</a>
+          <p>
+            Audio Utilities
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="cdparanoia.html" title=
+          "CDParanoia-III-10.2">Next</a>
+          <p>
+            CDParanoia-III-10.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="audioutils.html" title=
+          "Chapter&nbsp;43.&nbsp;Audio Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

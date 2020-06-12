@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Установка Arch Linux</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Noto Sans', sans-serif;
+        background: #b6cdf526;
+      }
+
+      .in2 {
+        margin-left: 30px;
+      }
+
+      .code {
+        margin-top: 15px;
+        background-color: #ebf1f5;
+        border: 1px solid #bbccdd;
+        overflow: auto;
+        word-break: break-all;
+        padding-left: 10px;
+        height: auto;
+      }
+
+      .code_part {
+        margin-top: 0;
+        border-top-style: dashed;
+        background-color: #ebf1f5;
+        border: 1px solid #bbccdd;
+        overflow: auto;
+        word-break: break-all;
+        padding-left: 10px;
+        height: auto;
+      }
+
+      .code_end {
+        margin-top: 15px;
+        margin-bottom: 20px;
+        background-color: #ebf1f5;
+        border: 1px solid #bbccdd;
+        overflow: auto;
+        word-break: break-all;
+        padding-left: 10px;
+        height: auto;
+      }
+
+      .arch_logo {
+        width: 75%;
+        height: auto;
+      }
+
+      .commentary {
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Установка Arch Linux</h1>
+    <a target="_blank" href="https://www.archlinux.org/"><img class="arch_logo" src="https://i.imgur.com/niWBWRH.png"></a>
+          <details>
+            <summary><b>1. Загрузка</b></summary>
+              <div class="in2">
+                <p class="commentary">Скачать дистрибутив с официального сайта: <a target="_blank" href="https://www.archlinux.org/download">https://www.archlinux.org/download</a></p>
+              </div>
+          </details>
+          <details>
+            <summary><b>2. Перед установкой</b></summary>
+              <div class="in2">
+                <h3>Установка раскладки клавиатуры</h3>
+                <p class="commentary">Выбрать русскую раскладку</p>
+                <div class="code">
+                  <pre># loadkeys ru</pre>
+                </div>
+                <p class="commentary">Выбрать консольный шрифт, поддерживающий кириллицу</p>
+                <div class="code">
+                  <pre># setfont cyr-sun16</pre>
+                </div>
+
+                <h3>Соединение с интернетом</h3>
+                <p class="commentary">Подключить проводной интернет</p>
+                <div class="code">
+                  <pre># dhcpcd</pre>
+                </div>
+                <p class="commentary">Или Wi-Fi</p>
+                <div class="code">
+                  <pre># wifi-menu</pre>
+                </div>
+
+                <h3>Синхронизация системных часов</h3>
+                <div class="code">
+                  <pre># timedatectl set-ntp true</pre>
+                </div>
+
+                <h3>Разбиение дисков на разделы</h3>
+                <p class="commentary">Посмотреть какие диски есть</p>
+                <div class="code">
+                  <pre># fdisk -l</pre>
+                </div>
+                <p class="commentary">Запустить <i>fdisk</i> для создания разделов</p>
+                <div class="code">
+                  <pre># fdisk /dev/sda</pre>
+                </div>
+                <p class="commentary">Создать MBR таблицу</p>
+                <div class="code">
+                  <pre>o</pre>
+                </div>
+                <p class="commentary">Создание раздела <b>/boot</b></p>
+                <div class="code"><pre>n - создать новый раздел
+тип раздела (primary (основной) или extented (расширенный)), по умолчанию стоит primary (основной) - нажать <i>enter</i>
+выбор номера диска - нажать <i>enter</i>
+первый сектор раздела - нажать <i>enter</i>
+последний сектор раздела (определяется +объём_памятиM(МБ)/G(ГБ)) - +200M</pre>
+                </div>
+                <p class="commentary">Создание <b>корневого раздела</b></p>
+                <div class="code">
+                  <pre>n - создать новый раздел
+тип раздела (primary (основной) или extented (расширенный)), по умолчанию стоит primary (основной) - нажать <i>enter</i>
+выбор номера диска - нажать <i>enter</i>
+первый сектор раздела - нажать <i>enter</i>
+последний сектор раздела (определяется +объём_памятиM(МБ)/G(ГБ)) - +20G</pre>
+                </div>
+                <p class="commentary">Создание <b>раздела подкачки (swap)</b></p>
+                <div class="code">
+                  <pre>n - создать новый раздел
+тип раздела (primary (основной) или extented (расширенный)), по умолчанию стоит primary (основной) - нажать <i>enter</i>
+выбор номера диска - нажать <i>enter</i>
+первый сектор раздела - нажать <i>enter</i>
+последний сектор раздела (определяется +объём_памятиM(МБ)/G(ГБ)) - +2G</pre>
+                </div>
+                <p class="commentary">Создание раздела <b>/home</b></p>
+                <div class="code">
+                  <pre>n - создать новый раздел
+тип раздела (primary (основной) или extented (расширенный)), в этот раз по умолчанию будет extented (расширенный) - p
+первый сектор раздела - нажать <i>enter</i>
+последний сектор раздела - нажать <i>enter</i> (будет выделено всё оставшееся место)</pre>
+                </div>
+                <p class="commentary">Сделать раздел <b>/boot</b> загрузочным</p>
+                <div class="code">
+                  <pre>запустить определение загрузочного раздела - a
+выбрать номер диска - 1</pre>
+                </div>
+                <p class="commentary">Записать изменения</p>
+                <div class="code">
+                  <pre>w</pre>
+                </div>
+                <p class="commentary">Проверить разметку диска</p>
+                <div class="code">
+                  <pre># fdisk -l</pre>
+                </div>
+                <p class="commentary">Пример разметки диска объёмом 50 ГБ</p>
+                <img class="fdisk" src="https://i.imgur.com/VJGKU9m.png">
+
+                <h3>Форматирование разделов</h3>
+                <div class="code">
+                  <pre># mkfs.ext2 /dev/sda1 -L boot</pre>
+                </div>
+                <div class="code">
+                  <pre># mkfs.ext4 /dev/sda2 -L root</pre>
+                </div>
+                <div class="code">
+                  <pre># mkswap /dev/sda3 -L swap</pre>
+                </div>
+                <div class="code">
+                  <pre># mkfs.ext4 /dev/sda4 -L home</pre>
+                </div>
+
+                <h3>Монтирование разделов</h3>
+                <p class="commentary">Смонтировать файловую систему корневого каталога</p>
+                <div class="code">
+                  <pre># mount /dev/sda2 /mnt</pre>
+                </div>
+                <p class="commentary">Создать директории <b>boot</b> и <b>home</b> в <b>/mnt</b></p>
+                <div class="code">
+                  <pre># mkdir /mnt/{boot,home}</pre>
+                </div>
+                <p class="commentary">Смонтировать <b>boot</b></p>
+                <div class="code">
+                  <pre># mount /dev/sda1 /mnt/boot</pre>
+                </div>
+                <p class="commentary">Смонтировать <b>swap</b></p>
+                <div class="code">
+                  <pre># swapon /dev/sda3</pre>
+                </div>
+                <p class="commentary">Смонтировать <b>home</b></p>
+                <div class="code_end">
+                  <pre># mount /dev/sda4 /mnt/home</pre>
+                </div>
+              </div>
+          </details>
+          <details>
+            <summary><b>3. Установка</b></summary>
+              <div class="in2">
+                <h3>Выбор зеркал</h3>
+                <p class="commentary">Настроить зеркала. Поставить зеркало Яндекса выше всех остальных.</p>
+                <div class="code" title="CTRL+O - сохранить, CTRL+X - выйти">
+                  <pre># nano /etc/pacman.d/mirrorlist</pre>
+                </div>
+                <div class="code_part" title="CTRL+O - сохранить, CTRL+X - выйти">
+                  <pre>Server = http://mirror.yandex.ru/archlinux/$repo/os/$arch</pre>
+                </div>
+                <h3>Установка основных пакетов</h3>
+                <div class="code">
+                  <pre># pacstrap /mnt base base-devel</pre>
+                </div>
+                <h3>Настройка системы</h3>
+                <p class="commentary">Сгенерировать файл fstab</p>
+                <div class="code">
+                  <pre># genfstab -pU /mnt >> /mnt/etc/fstab</pre>
+                </div>
+                <p class="commentary">Перейти к корневому каталогу новой системы</p>
+                <div class="code">
+                  <pre># arch-chroot /mnt</pre>
+                </div>
+                <p class="commentary">Прописать имя компьютера</p>
+                <div class="code" title="CTRL+O - сохранить, CTRL+X - выйти">
+                  <pre># nano /etc/hostname</pre>
+                </div>
+                <p class="commentary">Настроить часовой пояс для Московского времени</p>
+                <div class="code">
+                  <pre># ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime</pre>
+                </div>
+                <p class="commentary">Настроить локаль. Раскомментировать строки en_US.UTF-8 и ru_RU.UTF-8</p>
+                <div class="code" title="CTRL+O - сохранить, CTRL+X - выйти">
+                  <pre># nano /etc/locale.gen</pre>
+                </div>
+                <div class="code_part" title="CTRL+O - сохранить, CTRL+X - выйти">
+                  <pre>en_US.UTF-8 UTF-8
+ru_RU.UTF-8 UTF-8</pre>
+                </div>
+                <p class="commentary">Сгенерировать локаль</p>
+                <div class="code">
+                  <pre># locale-gen</pre>
+                </div>
+                <p class="commentary">Указать язык системы</p>
+                <div class="code" title="CTRL+O - сохранить, CTRL+X - выйти">
+                  <pre># nano /etc/locale.conf</pre>
+                </div>
+                <div class="code_part" title="CTRL+O - сохранить, CTRL+X - выйти">
+                  <pre>LANG=ru_RU.UTF-8</pre>
+                </div>
+                <p class="commentary">Указать keymap и шрифт</p>
+                <div class="code" title="CTRL+O - сохранить, CTRL+X - выйти">
+                  <pre># nano /etc/vconsole.conf</pre>
+                </div>
+                <div class="code_part" title="CTRL+O - сохранить, CTRL+X - выйти">
+                  <pre>KEYMAP=ru
+FONT=cyr-sun16</pre>
+                </div>
+                <p class="commentary">Создать загрузочный RAM диск</p>
+                <div class="code">
+                  <pre># mkinitcpio -p linux</pre>
+                </div>
+                <p class="commentary">Изменить пароль суперпользователя</p>
+                <div class="code">
+                  <pre># passwd</pre>
+                </div>
+                <p class="commentary">Установить GRUB</p>
+                <div class="code">
+                  <pre># pacman -S grub</pre>
+                </div>
+                <p class="commentary">Если будет несколько ОС, то нужно установить нижеуказанные пакеты</p>
+                <div class="code">
+                  <pre># pacman -S os-prober mtools fuse</pre>
+                </div>
+                <p class="commentary">Установить загрузчик</p>
+                <div class="code">
+                  <pre># grub-install /dev/sda</pre>
+                </div>
+                <p class="commentary">Обновить grub.cfg</p>
+                <div class="code">
+                  <pre># grub-mkconfig -o /boot/grub/grub.cfg</pre>
+                </div>
+                <p class="commentary">Установить программу для Wi-Fi</p>
+                <div class="code">
+                  <pre># pacman -S dialog wpa_supplicant</pre>
+                </div>
+                <p class="commentary">Выйти из окружения chroot</p>
+                <div class="code">
+                  <pre># exit</pre>
+                </div>
+                <p class="commentary">Размонтировать все разделы</p>
+                <div class="code">
+                  <pre># umount -R /mnt</pre>
+                </div>
+                <p class="commentary">Перезагрузить систему</p>
+                <div class="code_end">
+                  <pre># reboot</pre>
+                </div>
+              </div>
+          </details>
+          <details>
+            <summary><b>4. После установки</b></summary>
+              <div class="in2">
+                <p class="commentary">Войти в систему. Логин - root, пароль - тот, что установили</p><br>
+                <p class="commentary">Подключить проводной интернет</p>
+                <div class="code">
+                  <pre># dhcpcd</pre>
+                </div>
+                <div class="code">
+                  <pre># wifi-menu</pre>
+                </div>
+                <p class="commentary">Создать нового пользователя. Вместо MYUSERNAME вписать имя пользователя</p>
+                <div class="code">
+                  <pre># useradd -m -g users -G wheel -s /bin/bash MYUSERNAME</pre>
+                </div>
+                <p class="commentary">Установить пароль для нового пользователя. Вместо MYUSERNAME вписать имя пользователя</p>
+                <div class="code">
+                  <pre># passwd MYUSERNAME</pre>
+                </div>
+                <p class="commentary">Настроить sudo для нового пользователя. Раскомментировать нижеуказанную строку</p>
+                <div class="code" title="CTRL+O - сохранить, CTRL+X - выйти">
+                  <pre># nano /etc/sudoers</pre>
+                </div>
+                <div class="code_part" title="CTRL+O - сохранить, CTRL+X - выйти">
+                  <pre># Uncomment to allow members of group wheel to execute any command
+  %wheel ALL=(ALL) ALL</pre>
+                </div>
+                <p class="commentary">Добавить репозиторий multilib (только для x86_64). Раскомментировать нижеуказанные строки</p>
+                <div class="code" title="CTRL+O - сохранить, CTRL+X - выйти">
+                  <pre># nano /etc/pacman.conf</pre>
+                </div>
+                <div class="code_part" title="CTRL+O - сохранить, CTRL+X - выйти">
+                  <pre>[multilib]
+Include = /etc/pacman.d/mirrorlist</pre>
+                </div>
+                <p class="commentary">Обновить базы данных пакетов</p>
+                <div class="code">
+                  <pre># pacman -Syy</pre>
+                </div>
+                <p class="commentary">Установить иксы и драйвера</p>
+                <div class="code">
+                  <pre># pacman -S xorg-server xorg-drivers xorg-xinit</pre>
+                </div>
+                <p class="commentary">Установить гостевые дополнения VirtualBox для корректной работы системы на виртуальной машине (если устанавливаете на виртуальную машину)</p>
+                <div class="code">
+                  <pre># pacman -S virtualbox-guest-utils</pre>
+                </div>
+                <p class="commentary">Установить GNOME, GNOME Tweak Tool и GDM</p>
+                <div class="code">
+                  <pre># pacman -S gnome gnome-tweak-tool gdm</pre>
+                </div>
+                <p class="commentary">Если хотите Xfce, то нужно установить это</p>
+                <div class="code">
+                  <pre># pacman -S xfce4 xfce4-goodies lxdm ttf-dejavu</pre>
+                </div>
+                <p class="commentary">Установить менеджер сети</p>
+                <div class="code">
+                  <pre># pacman -S networkmanager network-manager-applet ppp</pre>
+                </div>
+                <p class="commentary">Включить автозагрузку менеджера входа и интернет (с соблюдением регистра для NetworkManager)</p>
+                <div class="code">
+                  <pre># systemctl enable gdm NetworkManager</pre>
+                </div>
+                <p class="commentary">Перезагрузить систему</p>
+                <div class="code_end">
+                  <pre># reboot</pre>
+                </div>
+              </div>
+          </details>
+          <details>
+            <summary><b>5. Дополнительные настройки</b></summary>
+              <div class="in2">
+                <h3>Установка AUR</h3>
+                <p class="commentary">Обновить базы данных пакетов</p>
+                <div class="code">
+                  <pre># sudo pacman -Syy</pre>
+                </div>
+                <p class="commentary">Если в системе не установлен <b>Git</b>, то нужно его установить</p>
+                <div class="code">
+                  <pre># sudo pacman -S git</pre>
+                </div>
+                <p class="commentary">Установить зависимость expac-git</p>
+                <div class="code">
+                  <pre># git clone https://aur.archlinux.org/expac-git.git
+# cd expac-git
+# makepkg -si --noconfirm
+# cd ..
+# rm -rf expac-git</pre>
+                </div>
+                <p class="commentary">Установить <b>aurman</b></p>
+                <div class="code">
+                  <pre># git clone https://github.com/polygamma/aurman.git
+# cd aurman
+# makepkg -si
+# cd ..
+# rm -rf aurman</pre>
+                </div>
+<!--
+                <br>
+                <p class="commentary">Добавить репозиторий archlinuxfr. Вписать нижеуказанные строки</p>
+                <div class="code">
+                  <pre># sudo nano /etc/pacman.conf</pre>
+                </div>
+                <div class="code_part">
+                  <pre>[archlinuxfr]
+SigLevel = Never
+Server = http://repo.archlinux.fr/$arch</pre>
+                </div>
+                <p class="commentary">Обновить базы данных пакетов</p>
+                <div class="code">
+                  <pre># sudo pacman -Syu</pre>
+                </div>
+                <p class="commentary">Установить <b>yaourt</b></p>
+                <div class="code">
+                  <pre># sudo pacman -Sy yaourt</pre>
+                </div>
+                <p class="commentary">Yaourt рекомендуется запускать от обычного пользователя ($), не от root (#)</p>
+              -->
+                <h3>Установка программ</h3>
+                <div class="code">
+                  <pre># sudo pacman -S <i>имя_пакета1 имя_пакета2 ...</i></pre>
+                </div>
+                <div class="code">
+                  <pre>firefox gimp inkscape libreoffice libreoffice-fresh-ru audacity screenfetch vlc gparted alsa-lib alsa-utils gnome-calculator p7zip unrar pulseaudio</pre>
+                </div>
+                <p class="commentary">Установка AUR программ</p>
+                <div class="code">
+                  <!--<pre># yaourt -S <i>имя_пакета1 имя_пакета2 ...</i></pre>-->
+                  <pre># aurman -S <i>имя_пакета1 имя_пакета2 ...</i></pre>
+                </div>
+                <div class="code">
+                  <pre>discord</pre>
+                </div>
+                <h3>Обновление системы</h3>
+                <p class="commentary">Обновление всей системы (самого ядра, окружения рабочего стола, программ из pacman и из AUR) производится одной командой через Yaourt</p>
+                <div class="code_end">
+                  <!--<pre># yaourt -Syua</pre>-->
+                  <pre># aurman -Syu</pre>
+                </div>
+              </div>
+          </details>
+          <hr>
+          <p class="commentary" align="center"><i>Эта инструкция по установке Arch Linux сделана на основе <a href="https://wiki.archlinux.org/index.php/Installation_guide_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9)">инструкции по установке из Arch Wiki</a> и <a href="https://docs.google.com/document/d/1IsTwkhYvYde9y3zTD1EscqockzdtdUYcItnAglYfZdU">чек листа по установке и настройке Arch Linux Xfce от Алексея Бойко</a> </i></p>
+  </body>
+</html>

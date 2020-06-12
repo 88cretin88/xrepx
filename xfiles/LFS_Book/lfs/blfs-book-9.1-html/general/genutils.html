@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Chapter&nbsp;11.&nbsp;General Utilities
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Part&nbsp;III.&nbsp;General Libraries and Utilities
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="woff2.html" title="woff2-1.0.2">Prev</a>
+          <p>
+            woff2-1.0.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="asciidoc.html" title=
+          "Asciidoc-8.6.9">Next</a>
+          <p>
+            Asciidoc-8.6.9
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="general.html" title=
+          "Part&nbsp;III.&nbsp;General Libraries and Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="chapter" lang="en" xml:lang="en">
+      <h1 class="chapter">
+        <a id="general-genutils" name="general-genutils"></a>General
+        Utilities
+      </h1>
+      <p>
+        This chapter contains various utilities that do not fit conveniently
+        into other chapters. Programs include a command line calculator,
+        several utilities for manipulating text and graphics, a program to
+        interface with a palm-pilot, a program for entering PIN numbers and
+        pass-phrases, and a hash generator.
+      </p>
+      <div class="toc">
+        <h3>
+          Table of Contents
+        </h3>
+        <ul>
+          <li class="sect1">
+            <a href="asciidoc.html">Asciidoc-8.6.9</a>
+          </li>
+          <li class="sect1">
+            <a href="bogofilter.html">Bogofilter-1.2.5</a>
+          </li>
+          <li class="sect1">
+            <a href="compface.html">Compface-1.5.2</a>
+          </li>
+          <li class="sect1">
+            <a href="desktop-file-utils.html">desktop-file-utils-0.24</a>
+          </li>
+          <li class="sect1">
+            <a href="graphviz.html">Graphviz-2.42.3</a>
+          </li>
+          <li class="sect1">
+            <a href="gtk-doc.html">GTK-Doc-1.32</a>
+          </li>
+          <li class="sect1">
+            <a href="hd2u.html">Hd2u-1.0.4</a>
+          </li>
+          <li class="sect1">
+            <a href="highlight.html">Highlight-3.55</a>
+          </li>
+          <li class="sect1">
+            <a href="ibus.html">ibus-1.5.21</a>
+          </li>
+          <li class="sect1">
+            <a href="imagemagick6.html">ImageMagick-6.9.10-93</a>
+          </li>
+          <li class="sect1">
+            <a href="imagemagick.html">ImageMagick-7.0.9-23</a>
+          </li>
+          <li class="sect1">
+            <a href="iso-codes.html">ISO Codes-4.4</a>
+          </li>
+          <li class="sect1">
+            <a href="lsof.html">lsof-4.91</a>
+          </li>
+          <li class="sect1">
+            <a href="pinentry.html">pinentry-1.1.0</a>
+          </li>
+          <li class="sect1">
+            <a href="rarian.html">Rarian-0.8.1</a>
+          </li>
+          <li class="sect1">
+            <a href="rep-gtk.html">Rep-gtk-0.90.8.3</a>
+          </li>
+          <li class="sect1">
+            <a href="screen.html">Screen-4.8.0</a>
+          </li>
+          <li class="sect1">
+            <a href="shared-mime-info.html">shared-mime-info-1.15</a>
+          </li>
+          <li class="sect1">
+            <a href="sharutils.html">Sharutils-4.15.2</a>
+          </li>
+          <li class="sect1">
+            <a href="telepathy-logger.html">telepathy-logger-0.8.2</a>
+          </li>
+          <li class="sect1">
+            <a href=
+            "telepathy-mission-control.html">telepathy-mission-control-5.16.5</a>
+          </li>
+          <li class="sect1">
+            <a href="tidy-html5.html">tidy-html5-5.6.0</a>
+          </li>
+          <li class="sect1">
+            <a href="time.html">Time-1.9</a>
+          </li>
+          <li class="sect1">
+            <a href="tree.html">tree-1.8.0</a>
+          </li>
+          <li class="sect1">
+            <a href="unixodbc.html">unixODBC-2.3.7</a>
+          </li>
+          <li class="sect1">
+            <a href="xdg-user-dirs.html">Xdg-user-dirs-0.17</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="woff2.html" title="woff2-1.0.2">Prev</a>
+          <p>
+            woff2-1.0.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="asciidoc.html" title=
+          "Asciidoc-8.6.9">Next</a>
+          <p>
+            Asciidoc-8.6.9
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="general.html" title=
+          "Part&nbsp;III.&nbsp;General Libraries and Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

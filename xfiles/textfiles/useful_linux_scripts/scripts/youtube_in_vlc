@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+url="$(xsel -o)"
+vlc $url
+#cvlc $url
+#mpv $url

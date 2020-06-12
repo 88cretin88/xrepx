@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-bash" role="wrap">
+  <?dbhtml filename="bash.html"?>
+
+  <sect1info condition="script">
+    <productname>bash</productname>
+    <productnumber>&bash-version;</productnumber>
+    <address>&bash-url;</address>
+  </sect1info>
+
+  <title>Bash-&bash-version;</title>
+
+  <indexterm zone="ch-tools-bash">
+    <primary sortas="a-Bash">Bash</primary>
+    <secondary>tools</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/bash.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&bash-ch5-sbu;</seg>
+        <seg>&bash-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Установка пакета Bash</title>
+<!--
+    <para>First, apply the following patch to fix various bugs that have been
+    addressed upstream:</para>
+
+<screen><userinput remap="pre">patch -Np1 -i ../&bash-fixes-patch;</userinput></screen>
+-->
+    <para>Подготовьте пакет Bash к компиляции:</para>
+
+<screen><userinput remap="configure">./configure --prefix=/tools --without-bash-malloc</userinput></screen>
+
+    <variablelist>
+      <title>Значение параметров конфигурации:</title>
+
+      <varlistentry>
+        <term><parameter>--without-bash-malloc</parameter></term>
+        <listitem><para>Эта опция отключает использование функций выделения памяти Bash  (<function>malloc</function>) которые, как известно, вызывают  ошибки сегментации. При использовании этого аргумента, Bash будет использовать более надежные функции <function>malloc</function> из библиотеки Glibc.</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>Скомпилируйте пакет:</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>Компиляция завершена. Как обсуждалось ранее выполнение тестов не является обязательным для набора временных инструментов в этой главе. Чтобы запустить выполнение тестов, в любом случае, выполните следующую команду:</para>
+
+
+<screen><userinput remap="test">make tests</userinput></screen>
+
+    <para>Установите пакет:</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+    <para>Создайте символическую ссылку для программ, которые используют <command>sh</command> для работы с оболочкой:</para>
+
+<screen><userinput remap="install">ln -sv bash /tools/bin/sh</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>Подробная информация об этом пакете находится в
+    <xref linkend="contents-bash" role="."/></para>
+
+  </sect2>
+
+</sect1>

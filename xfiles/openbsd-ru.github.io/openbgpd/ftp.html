@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang=ru>
+<meta charset=utf-8>
+
+<title>OpenBGPD: Зеркала</title>
+<meta name="description" content="OpenBGPD for OpenBSD">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="openbsd.css">
+<link rel="canonical" href="http://www.openbgpd.org/ftp.html">
+
+<h2 id=OpenBSD>
+<a href="index.html">
+<i>Open</i><b>BGPD</b></a>
+Зеркала
+</h2>
+<hr>
+
+<p>
+Последний релиз портированной версии OpenBGPD 6.6p0 состоялся
+первого ноябрая 2019 года.
+
+<p>
+Портированная OpenBGPD - это версия/порт для других операционных систем.
+Он основан на коде портированных версий
+<a href="../openntpd/index.html">OpenNTPD</a>,
+<a href="../openssh/index.html">OpenSSH</a> и
+<a href="../libressl/index.html">LibreSSL</a>.
+
+<h3>Требования к платформе</h3>
+
+<p>
+Портированная версия OpenBGPD собирается и работет на следующих платформах:
+
+
+<ul>
+	<li>OpenBSD
+	<li>Linux (Debian 9, Ubuntu 14.04)
+	<li>FreeBSD (12.x)
+</ul>
+
+<p>
+OpenBGPD может работать и на других операционных системах, более новых или
+старых, но на вышеперечисленные системах OpenBGPD регулярно тестируется
+разработчиками. Отчеты (успех или нет) приветствуются.
+Вы можете сообщить нам о проблемах/ошибках/багах или отправить pull requests
+в <a href="https://github.com/openbgpd-portable">GitHub проект</a>.
+
+<h3>Цифровая подпись</h3>
+
+<p>
+Релизы портированной версии OpenBGPD подписываются при помощи
+<a href="https://man.openbsd.org/signify.1">signify(1)</a>.
+Для этого используется public key:
+<a href="https://ftp.openbsd.org/pub/OpenBSD/OpenBGPD/openbgpd.pub"
+style="font-family:monospace">RWTGJEPobKfXIP1+foh6O3ZGQIDIxwB0Hp4rH6fMYGdYPQMFH2IEqxcY</a>
+
+<p>
+Они так же подписанны при помощи этого
+<a href="https://ftp.openbsd.org/pub/OpenBSD/OpenBGPD/openbgpd.asc">public GPG ключа</a>.
+
+<p>
+Подпись релизов может быть проверена при помощи программы signify,
+которая доступна как в самой <a href="../index.html">OpenBSD</a>, так и при помощи
+<a href="https://github.com/aperezdc/signify">портированной версии signify</a>,
+которая доступна в
+<a href="https://packages.debian.org/search?keywords=signify-openbsd">Debian</a>,
+<a href="http://packages.ubuntu.com/search?keywords=signify-openbsd">Ubuntu</a> и
+<a href="https://aur.archlinux.org/packages/signify/">Arch Linux</a>,
+или же при помощи GPG.
+
+<h2>Зеркала</h2>
+
+<ul>
+<li><a href="http://openbgpd.org/ftp.html#http">HTTP зеркала</a>
+<li><a href="http://openbgpd.org/ftp.html#ftp">FTP зеркала</a>
+<li><a href="http://openbgpd.org/ftp.html#rsync">RSYNC зеркала</a>
+</ul>

@@ -1,0 +1,23 @@
+#!/bin/bash
+cd configs
+loadkeys ru
+setfont cyr-sun16
+echo 'Форматирование дисков'
+mkfs.ext2  /dev/sda5 -L boot
+mkfs.ext4  /dev/sda6 -L root
+mkswap /dev/sda7 -L swap
+mkfs.ext4  /dev/sda8 -L home
+echo 'Монтирование дисков'
+mount /dev/sda6 /mnt
+mkdir /mnt/{boot,home}
+mount /dev/sda5 /mnt/boot
+swapon /dev/sda7
+mount /dev/sda8 /mnt/home
+echo 'Установка "ArchLinux"'
+pacman -Sy --noconfirm --noprogressbar --quiet reflector
+pacman -S --noconfirm --needed --noprogressbar --quiet reflector
+reflector -l 3 --sort rate --save /etc/pacman.d/mirrorlist
+pacstrap /mnt base base-devel
+genfstab -pU /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+echo 'Последняя команда arch-chroot /mnt'

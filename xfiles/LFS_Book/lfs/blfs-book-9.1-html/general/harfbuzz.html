@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      HarfBuzz-2.6.4
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;10.&nbsp;Graphics and Font Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="graphite2.html" title=
+          "Graphite2-1.3.13">Prev</a>
+          <p>
+            Graphite2-1.3.13
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="jasper.html" title="JasPer-2.0.14">Next</a>
+          <p>
+            JasPer-2.0.14
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="graphlib.html" title=
+          "Chapter&nbsp;10.&nbsp;Graphics and Font Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="harfbuzz" name="harfbuzz"></a>HarfBuzz-2.6.4
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Harfbuzz
+        </h2>
+        <p>
+          The <span class="application">HarfBuzz</span> package contains an
+          OpenType text shaping engine.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://www.freedesktop.org/software/harfbuzz/release/harfbuzz-2.6.4.tar.xz">
+                https://www.freedesktop.org/software/harfbuzz/release/harfbuzz-2.6.4.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 2b3a4dfdb3e5e50055f941978944da9f
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 5.7 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 163 MB (add 24 MB for tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.5 SBU (Using parallelism=4; add 0.4
+                SBU for tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          HarfBuzz Dependencies
+        </h3>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="glib2.html" title=
+          "GLib-2.62.4">GLib-2.62.4</a> (required for Pango), <a class="xref"
+          href="graphite2.html" title="Graphite2-1.3.13">Graphite2-1.3.13</a>
+          (required for building <a class="xref" href="../pst/texlive.html"
+          title="texlive-20190410-source">texlive-20190410</a> or <a class=
+          "xref" href="../xsoft/libreoffice.html" title=
+          "LibreOffice-6.4.0">LibreOffice-6.4.0.3</a> with system harfbuzz),
+          <a class="xref" href="icu.html" title="ICU-65.1">ICU-65.1</a>, and
+          <a class="xref" href="freetype2.html" title=
+          "FreeType-2.10.1">FreeType-2.10.1</a> (after <a class="xref" href=
+          "harfbuzz.html" title="HarfBuzz-2.6.4">HarfBuzz-2.6.4</a> is
+          installed, reinstall <a class="xref" href="freetype2.html" title=
+          "FreeType-2.10.1">FreeType-2.10.1</a>)
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../x/cairo.html" title=
+          "Cairo-1.17.2+f93fc72c03e">Cairo-1.17.2+f93fc72c03e</a> (circular:
+          build cairo and all its recommended dependencies, including
+          harfbuzz, first, then rebuild harfbuzz if the cairo backend is
+          needed), <a class="xref" href="gobject-introspection.html" title=
+          "gobject-introspection-1.62.0">gobject-introspection-1.62.0</a>,
+          <a class="xref" href="gtk-doc.html" title=
+          "GTK-Doc-1.32">GTK-Doc-1.32</a>, and <a class="ulink" href=
+          "https://pypi.org/project/FontTools/">FontTools</a> (Python 2 or
+          Python 3 module, for the testsuite)
+        </p>
+        <div class="admon warning">
+          <img alt="[Warning]" src="../images/warning.png" />
+          <h3>
+            Warning
+          </h3>
+          <p>
+            Recommended dependencies are not strictly required to build the
+            package. However, you might not get expected results at runtime
+            if you don't install them. Please do not report bugs with this
+            package if you <span class="emphasis"><em>have not</em></span>
+            installed the recommended dependencies.
+          </p>
+        </div>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/harfbuzz">http://wiki.linuxfromscratch.org/blfs/wiki/harfbuzz</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of HarfBuzz
+        </h2>
+        <p>
+          Install <span class="application">HarfBuzz</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">./configure --prefix=/usr --with-gobject --with-graphite2 &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          If FontTools is installed for Python 3 and you want to test the
+          results with it, adjust the test suite: <span class=
+          "command"><strong>find -name \*.py -exec sed '1s@python@&amp;3@' -i
+          {} \;</strong></span> . To test the results, issue: <span class=
+          "command"><strong>make check</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--with-gobject</code></em>: This switch
+          enables building of the <span class="application">HarfBuzz</span>
+          GObject wrapper. Remove it if you did not install <span class=
+          "application">GLib</span>.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-graphite2</code></em>: This
+          switch enables <span class="application">Graphite2</span> support,
+          which is required for building <a class="xref" href=
+          "../pst/texlive.html" title=
+          "texlive-20190410-source">texlive-20190410</a> or <a class="xref"
+          href="../xsoft/libreoffice.html" title=
+          "LibreOffice-6.4.0">LibreOffice-6.4.0.3</a> with system harfbuzz.
+        </p>
+        <p>
+          <code class="option">--enable-gtk-doc</code>: Use this parameter if
+          <span class="application">GTK-Doc</span> is installed and you wish
+          to rebuild and install the API documentation.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">hb-ot-shape-closure, hb-shape, hb-subset,
+              and hb-view (only if cairo is installed)</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libharfbuzz.so, libharfbuzz-gobject.so,
+              libharfbuzz-icu.so, and libharfbuzz-subset.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class=
+              "segbody">/usr/{include,lib/cmake,share/gtk-doc/html}/harfbuzz</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="hb-ot-shape-closure" name=
+                    "hb-ot-shape-closure"></a><span class="term"><span class=
+                    "command"><strong>hb-ot-shape-closure</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    gives the set of characters contained in a string,
+                    represented as single characters and/or single character
+                    names. Example: <span class=
+                    "command"><strong>hb-ot-shape-closure
+                    /usr/share/fonts/dejavu/DejaVuSans.ttf "Hello
+                    World."</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="hb-shape" name="hb-shape"></a><span class=
+                    "term"><span class=
+                    "command"><strong>hb-shape</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used for the conversion of text strings into
+                    positioned glyphs.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="hb-subset" name="hb-subset"></a><span class=
+                    "term"><span class=
+                    "command"><strong>hb-subset</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to create subsets of fonts, and display text
+                    using them.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="hb-view" name="hb-view"></a><span class=
+                    "term"><span class=
+                    "command"><strong>hb-view</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    may be used for a graphical view of a string shape, using
+                    a particular font, as a set of glyphs. Output format is
+                    automatically defined by the file extension, the
+                    supported ones being ansi/png/svg/pdf/ps/eps. Example:
+                    <span class="command"><strong>hb-view
+                    --output-file=hello.png
+                    /usr/share/fonts/dejavu/DejaVuSans.ttf "Hello
+                    World."</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libharfbuzz" name="libharfbuzz"></a><span class=
+                    "term"><code class=
+                    "filename">libharfbuzz.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    HarfBuzz text shaping library.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libharfbuzz-gobject" name=
+                    "libharfbuzz-gobject"></a><span class="term"><code class=
+                    "filename">libharfbuzz-gobject.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    HarfBuzz text shaping library GObject integration.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libharfbuzz-icu" name=
+                    "libharfbuzz-icu"></a><span class="term"><code class=
+                    "filename">libharfbuzz-icu.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    HarfBuzz text shaping library ICU integration.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 20:23:35 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="graphite2.html" title=
+          "Graphite2-1.3.13">Prev</a>
+          <p>
+            Graphite2-1.3.13
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="jasper.html" title="JasPer-2.0.14">Next</a>
+          <p>
+            JasPer-2.0.14
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="graphlib.html" title=
+          "Chapter&nbsp;10.&nbsp;Graphics and Font Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

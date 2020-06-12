@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      glib-networking-2.62.3
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;17.&nbsp;Networking Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="geoclue2.html" title=
+          "GeoClue-2.5.5">Prev</a>
+          <p>
+            GeoClue-2.5.5
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="ldns.html" title="ldns-1.7.1">Next</a>
+          <p>
+            ldns-1.7.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netlibs.html" title=
+          "Chapter&nbsp;17.&nbsp;Networking Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="glib-networking" name=
+        "glib-networking"></a>glib-networking-2.62.3
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to GLib Networking
+        </h2>
+        <p>
+          The <span class="application">GLib Networking</span> package
+          contains Network related gio modules for <span class=
+          "application">GLib</span>.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.gnome.org/pub/gnome/sources/glib-networking/2.62/glib-networking-2.62.3.tar.xz">
+                http://ftp.gnome.org/pub/gnome/sources/glib-networking/2.62/glib-networking-2.62.3.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnome.org/pub/gnome/sources/glib-networking/2.62/glib-networking-2.62.3.tar.xz">
+                ftp://ftp.gnome.org/pub/gnome/sources/glib-networking/2.62/glib-networking-2.62.3.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: a758ca62bd54982a798b39c744cbf783
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 180 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 4.4 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU (with tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          GLib Networking Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../general/glib2.html" title=
+          "GLib-2.62.4">GLib-2.62.4</a>, <a class="xref" href=
+          "../postlfs/gnutls.html" title="GnuTLS-3.6.12">GnuTLS-3.6.12</a>,
+          and <a class="xref" href="../gnome/gsettings-desktop-schemas.html"
+          title=
+          "gsettings-desktop-schemas-3.34.0">gsettings-desktop-schemas-3.34.0</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../postlfs/make-ca.html" title=
+          "make-ca-1.5">make-ca-1.5</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="ulink" href=
+          "https://github.com/libproxy/libproxy">libproxy</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/glib-networking">http://wiki.linuxfromscratch.org/blfs/wiki/glib-networking</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of GLib Networking
+        </h2>
+        <p>
+          Install <span class="application">GLib Networking</span> by running
+          the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson --prefix=/usr          \
+      -Dlibproxy=disabled .. &amp;&amp;
+ninja</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>ninja
+          test</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">ninja install</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libgiognomeproxy.so and libgiognutls.so
+              (GIO Modules installed in <code class=
+              "filename">/usr/lib/gio/modules</code>)</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">None</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-16 18:46:23 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="geoclue2.html" title=
+          "GeoClue-2.5.5">Prev</a>
+          <p>
+            GeoClue-2.5.5
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="ldns.html" title="ldns-1.7.1">Next</a>
+          <p>
+            ldns-1.7.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netlibs.html" title=
+          "Chapter&nbsp;17.&nbsp;Networking Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

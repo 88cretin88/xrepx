@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang=ru id=faq>
+
+<!-- If you make edits to any FAQ documents, please start each sentence
+     on a new line, and try to keep the general formatting consistent
+     with the rest of the pages -->
+
+<title>OpenBSD FAQ: Работаем с дисками</title>
+<meta charset=utf-8>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../openbsd.css">
+<link rel="canonical" href="https://www.openbsd.org/faq/faq14.html">
+
+<h2 id=OpenBSD>
+<a href="../index.html">
+<i>Open</i><b>BSD</b></a>
+FAQ - Работаем с дисками
+<small>
+<a href="index.html">[FAQ - На главную]</a>
+</small>
+</h2>
+<hr>
+
+<ul>
+<li><a href="#intro"           >Диски и разделы</a>
+<li><a href="#fdisk"           >Использование fdisk</a>
+<li><a href="#disklabel"       >Использование disklabel</a>
+<li><a href="#BootAmd64"       >Процесс загрузки в amd64</a>
+<li><a href="#SoftUpdates"     >Soft-обновление</a>
+<li><a href="#altroot"         >Резервное копирование (backup) корневого раздела (/altroot)</a>
+<li><a href="#DupFS"           >Дублирование ФС</a>
+<li><a href="#Quotas"          >Дисковые квоты</a>
+<li><a href="#foreignfs"       >Доступ и работа с другими ФС</a>
+<li><a href="#MountImage"      >Монтирование дисковых образов</a>
+<li><a href="#GrowPartition"   >Расширение разделов</a>
+<li><a href="#softraid"        >RAID и шифрование дисков</a>
+  <ul>
+  <li><a href="#softraidDI"    >Установка на зеркальную пару дисков (RAID 1)</a>
+  <li><a href="#softraidFDE"   >Полное шифрование диска</a>
+  <li><a href="#softraidCrypto">Шифрование внешних дисков</a>
+  </ul>
+</ul>
+<hr>
+
+<h2 id="intro">Диски и разделы</h2>
+
+Руководство по настройке дисков в OpenBSD варьируется в зависимости
+от используемой <a href="../plat.html">платформы</a>, поэтому вы
+должны ознакомиться с инструкцией в файле <code>INSTALL.&lt;arch&gt;</code>
+в вашей системе.
+
+<h3>Определение дисков</h3>
+
+На большинстве платформ OpenBSD использует два драйвера для работы с почти
+всеми жесткими дисками:
+
+<ul>
+  <li><a href="https://man.openbsd.org/wd">wd(4)</a>:
+    IDE диски: IDE, SATA, MFM или ESDI диски, или флешки, подключенные
+    к <a href="https://man.openbsd.org/wdc">wdc(4)</a> или
+    <a href="https://man.openbsd.org/pciide">pciide(4)</a> интерфейсу.
+  <li><a href="https://man.openbsd.org/sd">sd(4)</a>:
+    SCSI диски: устройства, использующие SCSI комманды, USB диски, SATA диски
+    подключенные к <a href="https://man.openbsd.org/ahci">ahci(4)</a> интерфейсу,
+    и группы дисков (disk arrays), подключенные к RAID контроллеру.
+</ul>
+
+Устройства нумеруются в порядке их обнаружения во время загрузки, начиная с нуля.
+Первый IDE-подобный диск будет <code>wd0</code>, а третий SCSI-подобный диск будет
+<code>sd2</code>. Обратите внимание, что OpenBSD не обязательно нумерует диски в
+том же порядке, что и ваш boot ROM.
+
+<h3>Разделы и файловые системы (ФС)</h3>
+
+Понятие "раздел" (partition) имеют два разных значения в OpenBSD:
+
+<ul>
+  <li>
+    <a href="https://man.openbsd.org/disklabel">disklabel(8)</a> раздел,
+    который также называют разедом со своей ФС(filesystem partitions).
+  <li>
+    <a href="https://man.openbsd.org/fdisk">fdisk(8)</a> раздел, иногда
+    называемый Master Boot Record (MBR) разделом.
+</ul>
+
+На всех поддерживаемых платформах OpenBSD использует программу disklabel как
+основной метод управления ФС разделами.
+На платформах, использующих fdisk, один раздел MBR используется для хранения
+всех файловых систем OpenBSD. Этот раздел можно разбить на 16 disklabel
+разделов, обозначенных от <code>a</code> до <code>p</code>.
+Несколько label являются особенными:
+
+<ul>
+  <li><code>a</code>:
+    Раздел <code>a</code> загрузочного диска является вашим root разделом.
+  <li><code>b</code>:
+    Раздел <code>b</code> загрузочного диска является вашим swap разделом.
+  <li><code>c</code>:
+    Раздел <code>c</code> всегда весь диск (entire disk).
+</ul>
+
+Чтобы создать новую ФС на disklabel разделе, используйте команду
+<a href="https://man.openbsd.org/newfs">newfs(8)</a>:
+
+<pre class="cmdbox">
+# <b>newfs sd2a</b>
+</pre>
+
+Таким образом, имя устройства плюс disklabel идентифицируют файловую систему
+OpenBSD. Например, идентификатор <code>sd2a</code> относится к файловой системе
+в разделе <code>a</code> третьего устройства <code>sd</code>.
+Его файлы устройства будут <code>/dev/sd2a</code> для блочного устройства и
+<code>/dev/rsd2a</code> для raw (character) устройства.
+Для того, чтобы определить какое устройство необходимо использовать
+(block или character), многие команды используют функцию
+<a href="https://man.openbsd.org/opendev">opendev(3)</a>, которая автоматически
+расширяет <code>sd0</code> до <code>/dev/rsd0c</code> или <code>/dev/sd0c</code>
+в зависимости от ситуации.
+
+<h3 id="DUID">Уникальные disklabel идентификаторы (DUID)</h3>
+
+По умолчанию диски идентифицируются по так называемым уникальным
+идентификаторам диска (Disklabel Unique Identifiers, DUID) в файле
+<a href="https://man.openbsd.org/fstab">fstab(5)</a>.
+DUID представляет из себя 16 шестнадцатеричных случайных чисел, которые
+генерируются при первом создании метки диска. Они управляются устройством
+<a href="https://man.openbsd.org/diskmap">diskmap(4)</a>.
+Просмотреть DUID всех дисков можно вот так:
+
+<pre class="cmdbox">
+$ <b>sysctl hw.disknames</b>
+hw.disknames=wd0:bfb4775bb8397569,cd0:,wd1:56845c8da732ee7b,wd2:f18e359c8fa2522b
+</pre>
+
+Вы можете указать разделы на диске, добавив точку и букву раздела.
+Например, <code>f18e359c8fa2522b.d</code> является разделом <code>d</code> диска
+<code>f18e359c8fa2522b</code> и всегда будет ссылаться на одну и ту же область диска
+(refer to the same chunk of storage), независимо от того, в какой
+последовательности или к какому интерфейсу был подключен.
+Если вы поместите данные на <code>wd2d</code>, а затем удалите <code>wd1</code>
+из системы и перезагрузитесь, ваши данные будут на <code>wd1d</code>, так как ваш
+старый <code>wd2</code> теперь стал <code>wd1</code>.
+Тем не менее, DUID диска не изменится после загрузки.
+
+<h2 id="fdisk">Использование fdisk</h2>
+
+Утилита <a href="https://man.openbsd.org/fdisk">fdisk(8)</a> обычно используется
+на некоторых платформах (i386, amd64 и macppc) с целью создания разделов,
+распознаваемых boot ROM системы.
+Обычно только один fdisk раздел OpenBSD создается на диске. Внутри этого раздела
+затем создаются disklabel разделы.
+
+<p>
+Увидеть таблицу разделов на диске можно так:
+
+<pre class="cmdbox">
+# <b>fdisk sd0</b>
+Disk: sd0       geometry: 553/255/63 [8883945 Sectors]
+Offset: 0       Signature: 0xAA55
+         Starting       Ending       LBA Info:
+ #: id    C   H  S -    C   H  S [       start:      size   ]
+------------------------------------------------------------------------
+ 0: 12    0   1  1 -    2 254 63 [          63:       48132 ] Compaq Diag.
+ 1: 00    0   0  0 -    0   0  0 [           0:           0 ] unused
+ 2: 00    0   0  0 -    0   0  0 [           0:           0 ] unused
+*3: A6    3   0  1 -  552 254 63 [       48195:     8835750 ] OpenBSD
+</pre>
+
+Тут раздел с OpenBSD (id <code>A6</code>) помечен при помощи символа <code>*</code>.
+Это говорит о том, что это загрузочный раздел (bootable partition).
+
+<p>
+На полностью чистом диске должен быть boot code в MBR (master boot record), прежде
+чем его можно будет использовать для загрузки.
+Обычно все, что вам нужно сделать для его создания, это:
+
+<pre class="cmdbox">
+# <b>fdisk -iy sd0</b>
+</pre>
+
+В качестве альтернативы, используйте команды <code>reinit</code> или
+<code>update</code> в интерактивном режиме.
+
+<p>
+При помощи <code>-e</code> можно активировать интерактивный режим редактирования:
+
+<pre class="cmdbox">
+# <b>fdisk -e sd0</b>
+Enter 'help' for information
+fdisk: 1>
+</pre>
+
+Помните, что <code>q</code> сохраняет изменения и выходит из программы, а <code>x</code>
+выходит без сохранения.
+Это противоположно тому, к чему многие из нас привыкли. Также обратите внимание, что
+fdisk не предупреждает перед сохранением изменений.
+
+<p>
+Если в вашей системе вы специально создали раздел для maintenance или диагностики,
+рекомендуется его не трогать или создать его <b>перед</b> установкой OpenBSD.
+
+<h2 id="disklabel">Использование disklabel</h2>
+
+Метки диска (disk labels) используются для управления разделами файловой системы OpenBSD.
+Они содержат информацию о вашем диске, такие как геометрия диска и информация
+о файловой системе, как подробно описано в
+<a href="https://man.openbsd.org/disklabel.5">disklabel(5)</a>.
+Используйте команду <a href="https://man.openbsd.org/disklabel">disklabel(8)</a> для
+редактирования меток (to edit the labels).
+
+<p>
+Это может помочь преодолеть ограничения на количество разделов на диске на некоторых
+архитектурах.
+Например, на i386 доступно только четыре основных раздела MBR. При помощи disk labels
+один из этих основных разделов будет содержит все ваши разделы OpenBSD, а остальные три
+могут использоваться другими операционными системами.
+
+<p>
+На платформах, использующих fdisk, вы должны оставить первую логическую дорожку
+(first logical track) неиспользованной ни disklabel ни fdisk.
+По этой причине, по умолчанию первый раздел начинается с блока 64.
+
+<p>
+Не устанавливайте swap в самом начале вашего диска на sparc64.
+В то время как Solaris часто это делал, OpenBSD требует, чтобы именно загрузочный
+раздел находился в начале диска.
+
+<h3>Восстановление разделов после удаления метки диска (Disk Label)</h3>
+
+Если у вас поврежденна таблица разделов, ее можно попытаться восстановить.
+
+<p>
+Копия disklabel для каждого диска сохраняется в <code>/var/backups</code> как
+часть ежедневного system maintenance.
+Если у вас все все еще есть раздел <code>/var</code>, вы можете просто считать
+вывод и поместить его обратно в disklabel при помощи флага <code>-R</code>.
+
+<p>
+Если же вы больше не имеете доступа к этому разделу, остается еще два варианта:
+восстановить достаточно данных на диске, чтобы можно было снова увидеть этот
+раздел или чтобы вы могли по крайней мере извлечь оттуда свои данные.
+Утилита <a href="https://man.openbsd.org/scan_ffs">scan_ffs(8)</a> просматривает
+диск, с целью поиска разделов на нем.
+Вы можете использовать найденную информацию для воссоздания метки диска (recreate
+the disklabel).
+Если вы просто хотите вернуть <code>/var</code>, вы можете заново создать раздел
+для <code>/var</code>, затем восстановить backup метки и добавить оставшуюся часть.
+Утилита <a href="https://man.openbsd.org/disklabel">disklabel(8)</a> поможет ядру
+распознать disklabel и попытается записать метку на диск.
+Поэтому, даже если область диска, содержащая disklabel, не читается, вы сможете
+подмонтировать ее и испрользовать до следующей перезагрузки.
+
+<h2 id="BootAmd64">Процесс загрузки в amd64</h2>
+
+О процедуре загрузки bootstrapping для amd64 можно найти в
+<a href="https://man.openbsd.org/boot_amd64">boot_amd64(8)</a>.
+Процесс загрузки выглядит следующим образом:
+
+<ol>
+  <li>Master Boot Record (MBR) и GUID Partition Table (GPT).
+    Подробную информацию можно найти в
+    <a href="https://man.openbsd.org/fdisk">fdisk(8)</a>.
+  <li>Partition Boot Record (PBR).
+    Первые 512 байт OpenBSD раздела на загрузочном диске содержат first
+    stage boot loader
+    <a href="https://man.openbsd.org/biosboot">biosboot(8)</a>.
+    Он устанавливается при помощи утилиты
+    <a href="https://man.openbsd.org/installboot">installboot(8)</a>.
+  <li>Second stage boot loader <code>/boot</code>.
+    PBR запускает программу <a href="https://man.openbsd.org/boot.8">boot(8)</a>,
+    задача которой - поиск и загрука ядра.
+</ol>
+
+Самое начало загрузки выглядит следующим образом:
+
+<pre class="cmdbox">
+Using drive 0, partition 3.                      <b>&lt;- MBR</b>
+Loading......                                    <b>&lt;- PBR</b>
+probing: pc0 com0 com1 mem[638K 1918M a20=on]    <b>&lt;- /boot</b>
+disk: hd0+ hd1+
+>> OpenBSD/amd64 BOOT 3.33
+boot>
+booting hd0a:/bsd 4464500+838332 [58+204240+181750]=0x56cfd0
+entry point at 0x100120
+
+[ using 386464 bytes of bsd ELF symbol table ]
+Copyright (c) 1982, 1986, 1989, 1991, 1993       <b>&lt;- Kernel</b>
+        The Regents of the University of California.  All rights reserved.
+</pre>
+
+<h2 id="SoftUpdates">Soft-обновление</h2>
+
+Soft-обновление основано на идее, предложенной
+<a href="https://www.ece.cmu.edu/~ganger/papers/CSE-TR-254-95/">Greg Ganger
+и Yale Patt</a> и разработанное для FreeBSD
+<a href="https://www.mckusick.com/softdep/">Kirk McKusick</a>.
+При soft-обновлениях имеет место частичный порядок операций с буферным
+кешем, что позволяет удалить требование к синхронной записи каталогов
+из кода FFS. В результате заметно значительное увеличение производительности
+записи на диск.
+
+<p>
+Активация или включение soft-updates происходит во время подключения раздела.
+При монтировании раздела при помощи утилиты
+<a href="https://man.openbsd.org/mount">mount(8)</a>
+вы можете указать, что вы хотите, чтобы в этом разделе были включены
+soft updates.
+Ниже приведен пример <a href="https://man.openbsd.org/fstab">fstab(5)</a>,
+в котором есть раздел <code>sd0a</code>, который мы монтируем таким образом,
+чтобы активировать там soft updates.
+
+<pre class="cmdbox">
+/dev/sd0a / ffs rw,softdep 1 1
+</pre>
+
+<h2 id="altroot">Резервное копирование (backup) корневого раздела (/altroot)</h2>
+
+OpenBSD предоставляет возможность резервного копирования в <code>/altroot</code>
+при помощи <a href="https://man.openbsd.org/daily">daily(8)</a> скриптов.
+Если переменная окружения (environment variable) установлена в <code>ROOTBACKUP=1</code>
+в <code>/etc/daily.local</code> или root'овском
+<a href="https://man.openbsd.org/crontab.5">crontab(5)</a>, и соответствующий
+раздел сконфигурирован в <a href="https://man.openbsd.org/fstab">fstab(5)</a>
+на монтирование в <code>/altroot</code> и имеет mount options <code>xx</code>,
+то каждую ночь содержимое корневого раздела (contents of the root partition)
+будет скопированно в раздел <code>/altroot</code>.
+
+<p>
+Предположим, вы хотите сделать резервную копию своего корневого раздела в раздел
+с <a href="faq14.html#DUID">DUID</a> <code>bfb4775bb8397569.a</code>. Для этого
+добавьте следующее в <code>/etc/fstab</code>
+
+<pre class="cmdbox">
+bfb4775bb8397569.a /altroot ffs xx 0 0
+</pre>
+
+и установите соответствующее значение переменной окружения в
+<code>/etc/daily.local</code>:
+
+<pre class="cmdbox">
+# <b>echo ROOTBACKUP=1 >>/etc/daily.local</b>
+</pre>
+
+Так как данные, регулярно копирующиеся в <code>/altroot</code>, будую включать и
+ваш <code>/etc</code>, это гарантирует, что копии любых изменений в конфигурации
+системы будут обновляться ежедневно.
+
+Это "disk image" копия, созданная при помощи
+<a href="https://man.openbsd.org/dd">dd(1)</a>, а не копия file-by-file,
+поэтому размер вашего <code>/altroot</code> должен быть как минимум того же
+размера, что и корневой раздел.
+Как правило, имеет смысл размещать <code>/altroot</code> раздел на отдельном
+диске, который настроен таким образом, чтобы в случае сбоя основного диска,
+загружаться с него.
+
+<h2 id="DupFS">Дублирование ФС</h2>
+
+Вот так можно сделать дубликат содержимого каталога <code>/SRC</code> в каталог
+<code>/DST</code> при помощи <a href="https://man.openbsd.org/dump">dump(8)</a> и
+<a href="https://man.openbsd.org/restore">restore(8)</a>:
+
+<pre class="cmdbox">
+# <b>cd /SRC && dump 0f - . | (cd /DST && restore -rf - )</b>
+</pre>
+
+или при помощи <a href="https://man.openbsd.org/tar">tar(1)</a>:
+
+<pre class="cmdbox">
+# <b>cd /SRC && tar cf - . | (cd /DST && tar xpf - )</b>
+</pre>
+
+<h2 id="Quotas">Дисковые квоты</h2>
+
+Квоты (quotas) используются для ограничения количества места на диске,
+доступного для определенных пользователей и групп.
+
+<p>
+Используйте keywords <code>userquota</code> и <code>groupquota</code>
+для настройки каждой ФС в <a href="https://man.openbsd.org/fstab">fstab(5)</a>,
+для которой вы хотите использовать квоты.
+По умолчанию файлы <code>quota.user</code> и <code>quota.group</code> будут
+создаваться в корне этих файловых систем.
+Вот пример из <code>/etc/fstab</code>:
+
+<pre class="cmdbox">
+0123456789abcdef.k /home ffs rw,nodev,nosuid,userquota 1 2
+</pre>
+
+Чтобы установить квоты для пользователей, используйте
+<a href="https://man.openbsd.org/edquota">edquota(8)</a>.
+Например, вот так:
+
+<pre class="cmdbox">
+# <b>edquota ericj</b>
+</pre>
+
+и установите soft и hard limits:
+
+<pre class="cmdbox">
+Quotas for user ericj:
+/home: KBytes in use: 62, limits (soft = <b>1000000</b>, hard = <b>1500000</b>)
+        inodes in use: 25, limits (soft = <b>0</b>, hard = <b>0</b>)
+</pre>
+
+В этом примере soft limit установлен в 1000000k, а hard limit установлен в
+1500000k.
+Ограничения на количество inodes не будут применяться, поскольку соответствующие
+soft и hard limits установлены на 0. Пользователи, превышающие свои soft limits,
+получают предупреждение, и им предоставляется время, так называемый grace period,
+чтобы использование ими места на диске снова было ниже их пределов.
+Grace periods можно установить с помощью опции <code>-t</code> в
+<a href="https://man.openbsd.org/edquota">edquota(8)</a>.
+По истечении grace period soft limit обрабатывается как hard limit.
+Это обычно приводит к ошибке allocation failure.
+
+<p>
+Используйте <a href="https://man.openbsd.org/quotaon">quotaon(8)</a> для
+включения квот:
+
+<pre class="cmdbox">
+# <b>quotaon -a</b>
+</pre>
+
+Это проверит <a href="https://man.openbsd.org/fstab">fstab(5)</a> и включит
+квоты для ФС с опциями квот. Просмотр статистики квот осуществляется при помощи
+<a href="https://man.openbsd.org/quota">quota(1)</a>.
+
+<h2 id="foreignfs">Доступ и работа с другими ФС</h2>
+
+Материал по этой теме можно найти в руководстве по
+<a href="https://man.openbsd.org/mount">mount(8)</a>,
+где содержатся примеры, разъясняющие как подключать наиболее используемые ФС.
+
+Список
+<a href="https://man.openbsd.org/?query=mount_&amp;sec=8&amp;apropos=1">
+поддерживаемых ФС</a> и соответствующие для этого комманды можно посмотреть
+при помощи:
+
+<pre class="cmdbox">
+$ <b>man -k -s 8 mount</b>
+</pre>
+
+Не забывайте, что поддержка может быть ограничена лишь read-only операциями.
+
+<h2 id="MountImage">Монтирование дисковых образов</h2>
+
+Чтобы смонтировать образ диска (disk image) в OpenBSD, надо сконфигурировать
+устройство <a href="https://man.openbsd.org/vnd">vnd(4)</a>. К примеру, вот так
+можно смонтировать ISO-образ, который находится в <code>/tmp/ISO.image</code>:
+
+<pre class="cmdbox">
+# <b>vnconfig vnd0 /tmp/ISO.image</b>
+# <b>mount -t cd9660 /dev/vnd0c /mnt</b>
+</pre>
+
+Поскольку это ISO 9660 образ, который используется на CD- и DVD-дисках,
+вы должны указать тип <code>cd9660</code> при его монтировании.
+
+<p>
+Вот так можно размонтировать образ и отключить (unconfigure) устройство
+<a href="https://man.openbsd.org/vnd">vnd(4)</a>:
+
+<pre class="cmdbox">
+# <b>umount /mnt</b>
+# <b>vnconfig -u vnd0</b>
+</pre>
+
+Больше информации можно найти в руководствах
+<a href="https://man.openbsd.org/vnconfig">vnconfig(8)</a>
+и <a href="https://man.openbsd.org/mount">mount(8)</a>.
+
+<h2 id="GrowPartition">Расширение разделов</h2>
+
+Если за существующим разделом на диске следует неиспользованное
+(unallocated) свободное место, вы можете увеличить его размер при
+помощи утилиты <a href="https://man.openbsd.org/growfs">growfs(8)</a>.
+Убедитесь, что раздел в данный момент не смонтирован.
+Отредактируйте таблицу разделов в интерактивном режиме при помощи
+<code>disklabel -E sd0</code> и изменяйте размер раздела при помощи
+команды <code>m</code>.
+Переконфигурировать файловую систему для использования всего раздела
+можно при помощи <a href="https://man.openbsd.org/growfs">growfs(8)</a>:
+
+<pre class="cmdbox">
+# <b>growfs sd0h</b>
+</pre>
+
+Прежде чем раздел будет смонтирован снова, его целостность должна быть
+проверена при помощи <a href="https://man.openbsd.org/fsck">fsck(8)</a>:
+
+<pre class="cmdbox">
+# <b>fsck /dev/sd0h</b>
+</pre>
+
+<h2 id="softraid">RAID и шифрование дисков</h2>
+
+Подсистема <a href="https://man.openbsd.org/softraid">softraid(4)</a>
+работает, эмулируя <a href="https://man.openbsd.org/scsibus">scsibus(4)</a>,
+с устройствами <a href="https://man.openbsd.org/sd">sd(4)</a>, созданными путем
+объединения нескольких <a href="https://man.openbsd.org/disklabel">disklabel(8)</a>
+разделов OpenBSD в виртуальный диск с требуемым типом RAID.
+С этим виртуальным диском мы работаем как и с любым другим в системе. Сначала
+он разбивается на разделы при помощи <a href="#fdisk">fdisk</a> (на платформах,
+поддерживаемых fdisk), а затем, как и обычно, создаются
+<a href="#disklabel">disklabels</a>.
+Обратите внимание, что на данный момент полностью поддерживаются только
+RAID0, RAID1, RAID5 и crypto.
+
+
+<h3 id="softraidDI">Установка на зеркальную пару дисков (RAID 1)</h3>
+
+В этом разделе описан процесс установки OpenBSD на зеркальную пару жестких дисков,
+и предполагается, что вы знакомы с <a href="faq4.html">процессом установки</a>.
+Настройка диска может варьироваться от платформы к платформе, и <b>загрузка с
+устройств softraid поддерживается не на всех из них</b>.
+В настоящее время можно загружаться только с RAID1 и crypto томов на i386,
+amd64, sparc64 и arm64.
+
+<p>
+Перед использованием install скрипта перейдете в shell и настройте
+устройство <a href="https://man.openbsd.org/softraid">softraid(4)</a>.
+
+<p>
+Ядро, используемое во время установки, содержит только <code>/dev</code>
+записи для одного устройства
+<a href="https://man.openbsd.org/wd">wd(4)</a> и одного устройства
+<a href="https://man.openbsd.org/sd">sd(4)</a>, поэтому вам нужно будет
+вручную создать еще пару таких устройств, если они требуются для желаемой
+настройки softraid.
+Например, если вам потребуется второе и третье устройство
+<a href="https://man.openbsd.org/sd">sd(4)</a> для создания "зеркала",
+сделайте следующее в консоли:
+
+<pre class="cmdbox">
+Welcome to the OpenBSD/amd64 X.X installation program.
+(I)nstall, (U)pgrade, (A)utoinstall or (S)hell? <b>s</b>
+# <b>cd /dev</b>
+# <b>sh MAKEDEV sd0 sd1 sd2</b>
+</pre>
+
+Теперь у вас есть полностью поддерживаемые <code>sd0</code>,
+<code>sd1</code> и <code>sd2</code> устройства.
+
+<p>
+Далее, инициализируйте диски при помощи
+<a href="https://man.openbsd.org/fdisk">fdisk(8)</a> и создайте RAID разделы
+при помощи <a href="https://man.openbsd.org/disklabel">disklabel(8)</a>.
+
+<p>
+Если вы загружаетесь из MBR, сделайте следующее:
+
+<pre class="cmdbox">
+# <b>fdisk -iy sd0</b>
+# <b>fdisk -iy sd1</b>
+</pre>
+
+Если же вы используете GPT для UEFI загрузки, сделайте следующее:
+
+<pre class="cmdbox">
+# <b>fdisk -iy -g -b 960 sd0</b>
+# <b>fdisk -iy -g -b 960 sd1</b>
+</pre>
+
+Создайте таблицу разделов (partition layout) на первом устройстве:
+
+<pre class="cmdbox">
+# <b>disklabel -E sd0</b>
+Label editor (enter '?' for help at any prompt)
+sd0> <b>a a</b>
+offset: [64]
+size: [39825135] <b>*</b>
+FS type: [4.2BSD] <b>RAID</b>
+sd0> <b>w</b>
+sd0> <b>q</b>
+No label changes.
+</pre>
+
+Скопируйте созданную таблицу разделов (partition layout) на второе устройство:
+
+<pre class="cmdbox">
+# <b>disklabel sd0 > layout</b>
+# <b>disklabel -R sd1 layout</b>
+# <b>rm layout</b>
+</pre>
+
+Создайте (assemble) зеркало при помощи комманды
+<a href="https://man.openbsd.org/bioctl">bioctl(8)</a>:
+
+<pre class="cmdbox">
+# <b>bioctl -c 1 -l sd0a,sd1a softraid0</b>
+scsibus1 at softraid0: 1 targets
+sd2 at scsibus2 targ 0 lun 0: &lt;OPENBSD, SR RAID 1, 005&gt; SCSI2 0/direct fixed
+sd2: 10244MB, 512 bytes/sec, 20980362 sec total
+</pre>
+
+Вывод команды показывает, что теперь у нас есть новая SCSI bus и новый
+диск <code>sd2</code>. Этот том (volume) будет автоматически обнаружен
+и собран (assemble) во время загрузке системы.
+
+<p>
+Даже если вы создадите несколько RAID-массивов, имя устройства всегда будет
+<code>softraid0</code>.
+Там не будет <code>softraid1</code> или что-нибудь еще.
+
+<p>
+Поскольку новое устройство, где вы планируете создать основную загрузочную
+запись (master boot record) и метку диска (disklabel), скорее всего содержит
+много мусора, настоятельно рекомендуется обнуление первого фрагмента (chunk).
+Будьте <b>очень осторожны</b> с этой командой; использование его не с тем
+устройством может сильно испортить ваш день.
+Использование команды ниже подразумевает, что созданным новым softraid
+устройством является <code>sd2</code>.
+
+<pre class="cmdbox">
+# <b>dd if=/dev/zero of=/dev/rsd2c bs=1m count=1</b>
+</pre>
+
+Теперь вы готовы начать установку OpenBSD.
+К процессу установки пререходим как обычно, выбрав «install» или «exit» в консоли.
+Создайте все разделы на вашем новом softraid диске (<code>sd2</code> в нашем примере
+здесь), который должен быть там, а не на <code>sd0</code> или <code>sd1</code>
+(это не-RAID диски).
+
+<p>
+Используйте следующую команду, чтобы проверить состояние (status) вашего
+"зеркала":
+
+<pre class="cmdbox">
+# <b>bioctl sd2</b>
+</pre>
+
+Хорошей идеей может быть создание cron job, с целью проверки состояния
+"зеркала".
+
+<h4>Пересборка зеркала</h4>
+
+В случае проблем с диском, вы замените его, создадите разделы RAID и другие
+метки диска (disklabel partitions), а затем восстановите зеркало.
+Предполагая, что вашим RAID volume является <code>sd2</code>, и вы заменяете
+поломанный диск на <code>sd1m</code>, следующие команды должны быть
+выполнены:
+
+<pre class="cmdbox">
+# <b>bioctl -R /dev/sd1m sd2</b>
+</pre>
+
+Это также может быть сделано в
+<a href="faq8.html#LostPW">однопользовательском режиме</a>
+или при помощи процедуры <a href="faq4.html#bsd.rd">установки ядра</a>.
+
+<h3 id="softraidFDE">Полное шифрование диска</h3>
+
+Как и в случае с RAID, для шифрования дисков (full disk encryption) в OpenBSD
+используется подсистема
+<a href="https://man.openbsd.org/softraid">softraid(4)</a> и программа
+<a href="https://man.openbsd.org/bioctl">bioctl(8)</a>.
+В этом разделе описан пример установки OpenBSD на один зашифрованный диск. Этот
+процесс очень похож на предыдущий. Обратите внимание, что в настоящее время
+«стекирование» режимов softraid (например, создание зеркала и параллельное
+шифрование) <b>не поддерживается</b>.
+
+<p>
+Выберете <code>(S)hell</code> во время установки чтобы перейти в консоль.
+
+<pre class="cmdbox">
+Welcome to the OpenBSD/amd64 X.X installation program.
+(I)nstall, (U)pgrade, (A)utoinstall or (S)hell? <b>s</b>
+</pre>
+
+Далее, после этого, вам будет предоставлен shell, из которого вы сможете
+работать с дисками. В этом примере мы установим <code>sd0</code> SATA
+диск, удалив все его предыдущее содержимое.
+
+<p>
+Так как установщик по умолчанию видит не все устройства, убедитесь,
+что устройство <code>/dev/sd0</code> распознано:
+
+<pre class="cmdbox">
+# <b>cd /dev && sh MAKEDEV sd0</b>
+</pre>
+
+Неплохой идеей будет запись случайных данных на диск. Это делается следующим
+образом:
+
+<pre class="cmdbox">
+# <b>dd if=/dev/urandom of=/dev/rsd0c bs=1m</b>
+</pre>
+
+Это может быть очень долгим (time-consuming) процессом, в зависимости от
+скорости вашего процессора, а также скорости и размера диска. Если вы не
+запишите случайные данные на весь диск, злоумышленник может определить,
+сколько используется места на диске.
+
+<p>
+Далее, инициализируйте диск при помощи
+<a href="https://man.openbsd.org/fdisk">fdisk(8)</a> и создайте
+softraid раздел при помощи
+<a href="https://man.openbsd.org/disklabel">disklabel(8)</a>.
+
+<p>
+Если вы загружаетесь с MBR, сделайте:
+
+<pre class="cmdbox">
+# <b>fdisk -iy sd0</b>
+</pre>
+
+Если же вы используете GPT для UEFI, сделайте:
+
+<pre class="cmdbox">
+# <b>fdisk -iy -g -b 960 sd0</b>
+</pre>
+
+Далее, создайте таблицу разделов:
+
+<pre class="cmdbox">
+# <b>disklabel -E sd0</b>
+Label editor (enter '?' for help at any prompt)
+sd0> <b>a a</b>			<!-- sparc64 users MUST use 'a a' here -->
+offset: [64]
+size: [39825135] <b>*</b>
+FS type: [4.2BSD] <b>RAID</b>
+sd0> <b>w</b>
+sd0> <b>q</b>
+No label changes.
+</pre>
+
+В этом примере мы будем использовать весь диск. Помните, что зашифрованный
+диск можно разбить на несколько разделов, как и обычный жесткий диск.
+
+<p>
+Теперь мы можем создать зашифрованное устройство на нашем разделе «а».
+
+<pre class="cmdbox">
+# <b>bioctl -c C -l sd0a softraid0</b>
+New passphrase:
+Re-type passphrase:
+sd1 at scsibus2 targ 1 lun 0: &lt;OPENBSD, SR CRYPTO, 005&gt; SCSI2 0/direct fixed
+sd1: 19445MB, 512 bytes/sector, 39824607 sectors
+softraid0: CRYPTO volume attached as sd1
+</pre>
+
+Вместо passphrase вы можете
+<a href="#softraidFDEkeydisk">использовать и keydisk</a>.
+
+<p>
+Удостоверьтесь, что устройство <code>/dev/sd1</code> распознано системой:
+
+<pre class="cmdbox">
+# <b>cd /dev && sh MAKEDEV sd1</b>
+</pre>
+
+Все данные, записанные на <code>sd1</code>, теперь будут зашифрованы при
+помощьи AES в режиме XTS.
+
+<p>
+Как и в предыдущем примере, мы перезапишем первый мегабайт нашего нового
+псевдо-устройства.
+
+<pre class="cmdbox">
+# <b>dd if=/dev/zero of=/dev/rsd1c bs=1m count=1</b>
+</pre>
+
+Введите команду <code>exit</code>, чтобы вернуться в программу-установщик,
+затем выберите это новое устройство для установки.
+
+<pre class="cmdbox">
+[...]
+Available disks are: sd0 sd1.
+Which disk is the root disk? ('?' for details) [sd0] <b>sd1</b>
+</pre>
+
+Во время загрузки вам будет предложено ввести passphrase, в остальном процесс
+загрузки проходит как и обычно.
+
+<h4 id="softraidFDEkeydisk">Использование keydisk</h4>
+
+В качестве альтернативы использованию passphrase можно использовать ключ,
+хранящийся на другом отдельном устройстве (например, на USB-накопителе).
+
+<p>
+Инициализируйте ваш keydisk при помощи
+<a href="https://man.openbsd.org/fdisk">fdisk(8)</a>, затем используйте
+<a href="https://man.openbsd.org/disklabel">disklabel(8)</a>, чтобы создать
+раздел RAID объемом 1 МБ для ключа.
+Если ваш keydisk - <code>sd1</code>, а диск, который вы хотите зашифровать,
+- <code>sd0</code>, вывод будет выглядеть примерно так:
+
+<pre class="cmdbox">
+# <b>bioctl -c C -k sd1a -l sd0a softraid0</b>
+sd2 at scsibus3 targ 1 lun 0: &lt;OPENBSD, SR CRYPTO, 005&gt; SCSI2 0/direct fixed
+sd2: 19445MB, 512 bytes/sector, 39824607 sectors
+softraid0: CRYPTO volume attached as sd2
+</pre>
+
+Вам не будет предложено ввести passphrase, потому что вместо этого вы
+использовали keydisk. Keydisk должен быть вставлен во время загрузки.
+
+<p>
+Вы можете создать backup и восстановить ваш keydisk при помощи
+<a href="https://man.openbsd.org/dd">dd(1)</a>:
+
+<pre class="cmdbox">
+# <b>dd bs=8192 skip=1 if=/dev/rsd1a of=backup-keydisk.img</b>
+# <b>dd bs=8192 seek=1 if=backup-keydisk.img of=/dev/rsd1a</b>
+</pre>
+
+<h3 id="softraidCrypto">Шифрование внешних дисков</h3>
+
+В этом разделе объясняется, как вы можете настроить зашифрованный softraid
+для внешнего USB-накопителя. Если вы уже прочитали раздел о шифровании диска,
+то согласитесь, что разница тут совсем не большая.
+Схема шагов выглядит следующим образом:
+
+<ul>
+  <li>Перезаписать содержимое диска случайными данными
+  <li>Создайте нужный RAID раздел при помощи
+      <a href="https://man.openbsd.org/disklabel">disklabel(8)</a>
+  <li>Зашифруйте необходимое усторйство при помощи
+      <a href="https://man.openbsd.org/bioctl">bioctl(8)</a>
+  <li>Заполните нулями первый мегабайт нового псевдо-устройства
+  <li>Создайте ФС на псево-устройстве при помощи
+      <a href="https://man.openbsd.org/newfs">newfs(8)</a>
+  <li>Разблокируйте и подключите новое псевдо-устройство при помощи
+      <a href="https://man.openbsd.org/mount">mount(8)</a>
+  <li>Работайте с файлами
+  <li>Отключите устройство и отсоедините зашифрованный контейнер
+</ul>
+
+Ниже приведен краткий пример шагов, где <code>sd3</code> - USB-накопитель.
+
+<pre class="cmdbox">
+# <b>dd if=/dev/urandom of=/dev/rsd3c bs=1m</b>
+# <b>fdisk -iy sd3</b>
+# <b>disklabel -E sd3</b> # make an "a" partition of type RAID
+# <b>bioctl -c C -l sd3a softraid0</b>
+New passphrase:
+Re-type passphrase:
+softraid0: CRYPTO volume attached as sd4
+# <b>dd if=/dev/zero of=/dev/rsd4c bs=1m count=1</b>
+# <b>fdisk -iy sd4</b>
+# <b>disklabel -E sd4</b> # make an "i" partition
+# <b>newfs sd4i</b>
+# <b>mkdir -p /mnt/secretstuff</b>
+# <b>mount /dev/sd4i /mnt/secretstuff</b>
+# <b>mv somefile /mnt/secretstuff/</b>
+# <b>umount /mnt/secretstuff</b>
+# <b>bioctl -d sd4</b>
+</pre>
+
+Та же программа <a href="https://man.openbsd.org/bioctl">bioctl(8)</a>,
+использованная для создания тома, может быть использована для его подключения
+позже.

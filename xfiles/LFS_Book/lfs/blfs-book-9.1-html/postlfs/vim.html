@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Vim-8.2.0190
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;6.&nbsp;Editors
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="nano.html" title="Nano-4.8">Prev</a>
+          <p>
+            Nano-4.8
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="others.html" title="Other Editors">Next</a>
+          <p>
+            Other Editors
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="editors.html" title=
+          "Chapter&nbsp;6.&nbsp;Editors">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="vim" name="vim"></a>Vim-8.2.0190
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Vim
+        </h2>
+        <p>
+          The <span class="application">Vim</span> package, which is an
+          abbreviation for VI IMproved, contains a <span class=
+          "command"><strong>vi</strong></span> clone with extra features as
+          compared to the original <span class=
+          "command"><strong>vi</strong></span>.
+        </p>
+        <p>
+          The default LFS instructions install <span class=
+          "application">vim</span> as a part of the base system. If you would
+          prefer to link <span class="application">vim</span> against
+          <span class="application">X</span>, you should recompile
+          <span class="application">vim</span> to enable GUI mode. There is
+          no need for special instructions since <span class=
+          "application">X</span> support is automatically detected.
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            The version of vim changes daily. The get the latest version, go
+            to <a class="ulink" href=
+            "https://github.com/vim/vim/releases">https://github.com/vim/vim/releases</a>.
+          </p>
+        </div>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://anduin.linuxfromscratch.org/BLFS/vim/vim-8.2.0190.tar.gz">
+                http://anduin.linuxfromscratch.org/BLFS/vim/vim-8.2.0190.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: f5337b1170df90e644a636539a0313a3
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 14 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 146 MB (add 71 MB for tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 1 SBU (add 2.4 SBU for tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Vim Dependencies
+        </h3>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../x/installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">X Window
+          System</a> and <a class="xref" href="../x/gtk3.html" title=
+          "GTK+-3.24.13">GTK+-3.24.13</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/gpm.html" title=
+          "GPM-1.20.7">GPM-1.20.7</a>, <a class="xref" href=
+          "../general/lua.html" title="Lua-5.3.5">Lua-5.3.5</a>, <a class=
+          "xref" href="../general/python2.html" title=
+          "Python-2.7.17">Python-2.7.17</a>, <a class="xref" href=
+          "../basicnet/rsync.html" title="rsync-3.1.3">rsync-3.1.3</a>,
+          <a class="xref" href="../general/ruby.html" title=
+          "Ruby-2.7.0">Ruby-2.7.0</a>, and <a class="xref" href=
+          "../general/tcl.html" title="Tcl-8.6.10">Tcl-8.6.10</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/vim">http://wiki.linuxfromscratch.org/blfs/wiki/vim</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Vim
+        </h2>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            If you recompile <span class="application">Vim</span> to link
+            against <span class="application">X</span> and your <span class=
+            "application">X</span> libraries are not on the root partition,
+            you will no longer have an editor for use in emergencies. You may
+            choose to install an additional editor, not link <span class=
+            "application">Vim</span> against <span class=
+            "application">X</span>, or move the current <span class=
+            "command"><strong>vim</strong></span> executable to the
+            <code class="filename">/bin</code> directory under a different
+            name such as <code class="filename">vi</code>.
+          </p>
+        </div>
+        <p>
+          Install <span class="application">Vim</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">echo '#define SYS_VIMRC_FILE  "/etc/vimrc"' &gt;&gt;  src/feature.h &amp;&amp;
+echo '#define SYS_GVIMRC_FILE "/etc/gvimrc"' &gt;&gt; src/feature.h &amp;&amp;
+
+./configure --prefix=/usr        \
+            --with-features=huge \
+            --enable-gui=gtk3    \
+            --with-tlib=ncursesw &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          test</strong></span>. The <span class="application">vim</span> test
+          suite outputs a lot of binary data to the screen, which can cause
+          issues with the settings of the current terminal. This can be
+          resolved by redirecting the output to a log file. Even if one of
+          the tests fails to produce the file <code class=
+          "filename">test.out</code> in <code class=
+          "filename">src/testdir</code>, the remaining tests will still be
+          executed. If all goes well,the log will report <code class=
+          "literal">ALL DONE</code>. <span class=
+          "emphasis"><em>Note</em></span>: Some color tests expect to be
+          executed under the <span class=
+          "command"><strong>xterm</strong></span> terminal emulator. Three
+          tests are known to fail occasionally and can be ignored.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+        <p>
+          By default, Vim's documentation is installed in <code class=
+          "filename">/usr/share/vim</code>. The following symlink allows the
+          documentation to be accessed via <code class=
+          "filename">/usr/share/doc/vim-8.2.0190</code>, making it consistent
+          with the location of documentation for other packages:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">ln -snfv ../vim/vim82/doc /usr/share/doc/vim-8.2.0190</kbd>
+</pre>
+        <p>
+          If you wish to update the runtime files, issue the following
+          command (requires <a class="xref" href="../basicnet/rsync.html"
+          title="rsync-3.1.3">rsync-3.1.3</a>):
+        </p>
+        <pre class="userinput">
+<kbd class="command">rsync -avzcP --exclude="/dos/" --exclude="/spell/" \
+    ftp.nluug.nl::Vim/runtime/ ./runtime/</kbd>
+</pre>
+        <p>
+          To install the runtime files and regenerate the <code class=
+          "filename">tags</code> file, as the <code class=
+          "systemitem">root</code> user issue:
+        </p>
+        <pre class="root">
+<kbd class="command">make -C src installruntime &amp;&amp;
+vim -c ":helptags /usr/share/doc/vim-8.2.0190" -c ":q"</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--with-features=huge</code></em>: This
+          switch enables all the additional features available in
+          <span class="application">Vim</span>, including support for
+          multibyte characters.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-tlib=ncursesw</code></em>: This
+          switch forces Vim to link against the <code class=
+          "filename">libncursesw</code> library.
+        </p>
+        <p>
+          <code class="option">--enable-gui=no</code>: This will prevent
+          compilation of the GUI. <span class="application">Vim</span> will
+          still link against <span class="application">X</span>, so that some
+          features such as the client-server model or the x11-selection
+          (clipboard) are still available.
+        </p>
+        <p>
+          <code class="option">--without-x</code>: If you prefer not to link
+          <span class="application">Vim</span> against <span class=
+          "application">X</span>, use this switch.
+        </p>
+        <p>
+          <code class="option">--enable-perlinterp</code>, <code class=
+          "option">--enable-pythoninterp</code>, <code class=
+          "option">--enable-tclinterp</code>, <code class=
+          "option">--enable-rubyinterp</code>: These options include the
+          Perl, Python, Tcl, or Ruby interpreters that allow using other
+          application code in <span class="application">vim</span> scripts.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring Vim
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="vim-config" name="vim-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="vim-config" name="vim-config"></a>Config Files
+          </h4>
+          <p>
+            <code class="filename">/etc/vimrc</code> and <code class=
+            "filename">~/.vimrc</code>
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="vim-desktop" name="vim-desktop"></a>
+          </h3>
+          <h4 class="title">
+            <a id="vim-desktop" name="vim-desktop"></a>Desktop File
+          </h4>
+          <p>
+            If desired, create a menu entry for graphical vim, <code class=
+            "filename">gvim.desktop</code>, as the <code class=
+            "systemitem">root</code> user
+          </p>
+          <pre class="root">
+<kbd class=
+"command">cat &gt; /usr/share/applications/gvim.desktop &lt;&lt; "EOF"
+<code class="literal">[Desktop Entry]
+Name=GVim Text Editor
+Comment=Edit text files
+Comment[pt_BR]=Edite arquivos de texto
+TryExec=gvim
+Exec=gvim -f %F
+Terminal=false
+Type=Application
+Icon=gvim.png
+Categories=Utility;TextEditor;
+StartupNotify=true
+MimeType=text/plain;</code>
+EOF</kbd>
+</pre>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="vim-init" name="vim-init"></a>
+          </h3>
+          <h4 class="title">
+            <a id="vim-init" name="vim-init"></a>Configuration Information
+          </h4>
+          <p>
+            <span class="application">Vim</span> has an integrated spell
+            checker which you can enable it if you issue the following in a
+            vim window:
+          </p>
+          <pre class="screen">
+<code class="literal">:setlocal spell spelllang=ru</code>
+</pre>
+          <p>
+            This setting will enable spell checking for the Russian language
+            for the current session.
+          </p>
+          <p>
+            By default, <span class="application">Vim</span> only installs
+            spell files for the English language. If a spell file is not
+            available for a language, then <span class=
+            "application">Vim</span> will call the <code class=
+            "filename">$VIMRUNTIME/plugin/spellfile.vim</code> plugin and
+            will try to obtain the *.spl and optionally *.sug from the vim
+            ftp server, by using the <code class=
+            "filename">$VIMRUNTIME/plugin/netrwPlugin.vim</code> plugin.
+          </p>
+          <p>
+            Alternatively you can manually download the *.spl and *.sug files
+            from: <a class="ulink" href=
+            "ftp://ftp.vim.org/pub/vim/runtime/spell/">ftp://ftp.vim.org/pub/vim/runtime/spell/</a>
+            and save them to <code class="filename">~/.vim/spell</code> or in
+            <code class="filename">/usr/share/vim/vim82/spell/</code>.
+          </p>
+          <p>
+            To find out what's new in <span class=
+            "application">Vim-8.2.0190</span> issue the following command:
+          </p>
+          <pre class="screen">
+<code class="literal">:help version-8.2.0190</code>
+</pre>
+          <p>
+            For additional information on setting up <span class=
+            "application">Vim</span> configuration files, see <a class="xref"
+            href="vimrc.html" title="The /etc/vimrc and ~/.vimrc Files">The
+            vimrc Files</a> and <a class="ulink" href=
+            "http://vim.wikia.com/wiki/Example_vimrc">http://vim.wikia.com/wiki/Example_vimrc</a>.
+          </p>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <p>
+          A list of the reinstalled files, along with their short
+          descriptions can be found in the <a class="ulink" href=
+          "../../../../lfs/view/9.1/chapter06/vim.html#contents-vim">LFS Vim
+          Installation Instructions</a>
+        </p>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">gview, gvim, gvimdiff, gvimtutor, rgview,
+              and rgvim</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/share/vim</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gview" name="gview"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gview</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    starts <span class="command"><strong>gvim</strong></span>
+                    in read-only mode.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gvim" name="gvim"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gvim</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the editor that runs under <span class=
+                    "application">X</span> and includes a GUI.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gvimdiff" name="gvimdiff"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gvimdiff</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    edits two or three versions of a file with <span class=
+                    "command"><strong>gvim</strong></span> and shows the
+                    differences.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gvimtutor" name="gvimtutor"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gvimtutor</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    teaches the basic keys and commands of <span class=
+                    "command"><strong>gvim</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="rgview" name="rgview"></a><span class=
+                    "term"><span class=
+                    "command"><strong>rgview</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a restricted version of <span class=
+                    "command"><strong>gview</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="rgvim" name="rgvim"></a><span class=
+                    "term"><span class=
+                    "command"><strong>rgvim</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a restricted version of <span class=
+                    "command"><strong>gvim</strong></span>.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-20 08:59:05 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="nano.html" title="Nano-4.8">Prev</a>
+          <p>
+            Nano-4.8
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="others.html" title="Other Editors">Next</a>
+          <p>
+            Other Editors
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="editors.html" title=
+          "Chapter&nbsp;6.&nbsp;Editors">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

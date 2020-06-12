@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      bridge-utils-1.6
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;15.&nbsp;Networking Programs
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="netprogs.html" title=
+          "Networking Programs">Prev</a>
+          <p>
+            Networking Programs
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="cifsutils.html" title=
+          "cifs-utils-6.10">Next</a>
+          <p>
+            cifs-utils-6.10
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netprogs.html" title=
+          "Chapter&nbsp;15.&nbsp;Networking Programs">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="bridgeutils" name="bridgeutils"></a>bridge-utils-1.6
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to bridge-utils
+        </h2>
+        <p>
+          The <span class="application">bridge-utils</span> package contains
+          a utility needed to create and manage bridge devices. This is
+          useful in setting up networks for a hosted virtual machine (VM).
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://www.kernel.org/pub/linux/utils/net/bridge-utils/bridge-utils-1.6.tar.xz">
+                https://www.kernel.org/pub/linux/utils/net/bridge-utils/bridge-utils-1.6.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 541ae1c50cc268056693608920e6c908
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 32 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 916 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          bridge-utils Dependencies
+        </h3>
+        <h4>
+          Optional (to run tests)
+        </h4>
+        <p class="optional">
+          <a class="xref" href="net-tools.html" title=
+          "Net-tools-CVS_20101030">Net-tools-CVS_20101030</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/bridge">http://wiki.linuxfromscratch.org/blfs/wiki/bridge</a>
+        </p>
+      </div>
+      <div class="kernel" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="bridgeutils-kernel" name="bridgeutils-kernel"></a>Kernel
+          Configuration
+        </h2>
+        <p>
+          Enable the following options in the kernel configuration and
+          recompile the kernel if necessary:
+        </p>
+        <pre class="screen">
+<code class="literal">[*] Networking support ---&gt;            [CONFIG_NET]
+      Networking options ---&gt;
+        &lt;*/M&gt; 802.1d Ethernet Bridging [CONFIG_BRIDGE]</code>
+</pre>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of bridge-utils
+        </h2>
+        <p>
+          Install <span class="application">bridge-utils</span> by running
+          the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">autoconf                  &amp;&amp;
+./configure --prefix=/usr &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          Testing the results requires running the six shell scripts in the
+          <code class="filename">tools/</code> directory. Two of the tests
+          require two ethernet ports. Some tests will not preserve the
+          current network configuration. See <code class=
+          "filename">tests/README</code> for details.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring bridge-utils
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="bridgeutils-init" name="bridgeutils-init"></a>
+          </h3>
+          <h4 class="title">
+            <a id="bridgeutils-init" name=
+            "bridgeutils-init"></a>Configuration Information
+          </h4>
+          <p>
+            To automate bridge creation and configuration, install the
+            <code class="filename">/lib/services/etc/bridge</code> service
+            script included in the <a class="xref" href=
+            "../introduction/bootscripts.html" title=
+            "BLFS Boot Scripts">blfs-bootscripts-20191204</a> package.
+          </p>
+          <pre class="root">
+<kbd class="command">make install-service-bridge</kbd>
+</pre>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              The <code class="filename">bridge</code> script depends on the
+              commands <span class=
+              "command"><strong>/sbin/ifup</strong></span> and <span class=
+              "command"><strong>/sbin/ifdown</strong></span> and the service
+              script <span class="emphasis"><em>ipv4-static</em></span> from
+              the <span class="emphasis"><em>LFS</em></span> bootscripts
+              dated January 27, 2012 or later.
+            </p>
+          </div>
+          <p>
+            The following configuration file will create a bridge device at
+            boot time and attach the eth0 device to it. If more than one
+            device is desired, use a space separated list of
+            INTERFACE_COMPONENTS. This configuration is useful when planning
+            to run a virtual machine such as kvm/qemu.
+          </p>
+          <p>
+            Other SERVICE combinations are possible, for example,
+            SERVICES="bridge dhcp". In that case, the address parameters are
+            not needed, but do not interfere if present. The bridge service
+            may also be used alone, but will require additional subsequent
+            configuration.
+          </p>
+          <div class="admon caution">
+            <img alt="[Caution]" src="../images/caution.png" />
+            <h3>
+              Caution
+            </h3>
+            <p>
+              Do not run a parallel configuration for a device in the
+              INTERFACE_COMPONENTS list. For instance, in the example below,
+              do not configure <code class=
+              "filename">/etc/sysconfig/ifconfig.eth0</code> to run at boot
+              time. The command <span class="command"><strong>ifdown
+              br0</strong></span> followed by command <span class=
+              "command"><strong>ifup eth0</strong></span> will work, but
+              don't try to have both up at the same time.
+            </p>
+          </div>
+          <pre class="root">
+<kbd class="command">cat &gt; /etc/sysconfig/ifconfig.br0 &lt;&lt; "EOF"
+<code class="literal">ONBOOT=yes
+IFACE=br0
+VIRTINT=yes
+SERVICE="bridge ipv4-static"  # Space separated
+IP=192.168.1.32
+GATEWAY=192.168.1.1
+PREFIX=24
+BROADCAST=192.168.1.255
+CHECK_LINK=no                 # Don't check before bridge is created
+STP=no                        # Spanning tree protocol, default no
+INTERFACE_COMPONENTS="eth0"   # Add to IFACE, space separated devices
+IP_FORWARD=true</code>
+EOF</kbd>
+</pre>
+          <p>
+            All addresses should be changed to meet your circumstance.
+          </p>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">brctl</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">None</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="brctl" name="brctl"></a><span class=
+                    "term"><span class=
+                    "command"><strong>brctl</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a program used to set up, maintain, and inspect the
+                    ethernet bridge configuration in the linux kernel.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-17 12:12:55 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="netprogs.html" title=
+          "Networking Programs">Prev</a>
+          <p>
+            Networking Programs
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="cifsutils.html" title=
+          "cifs-utils-6.10">Next</a>
+          <p>
+            cifs-utils-6.10
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netprogs.html" title=
+          "Chapter&nbsp;15.&nbsp;Networking Programs">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

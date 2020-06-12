@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      ghostscript-9.50
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;46.&nbsp;Printing
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="cups-filters.html" title=
+          "cups-filters-1.27.1">Prev</a>
+          <p>
+            cups-filters-1.27.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gutenprint.html" title=
+          "Gutenprint-5.3.3">Next</a>
+          <p>
+            Gutenprint-5.3.3
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="printing.html" title=
+          "Chapter&nbsp;46.&nbsp;Printing">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="gs" name="gs"></a>ghostscript-9.50
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Ghostscript
+        </h2>
+        <p>
+          <span class="application">Ghostscript</span> is a versatile
+          processor for PostScript data with the ability to render PostScript
+          to different targets. It is a mandatory part of the cups printing
+          stack.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs950/ghostscript-9.50.tar.xz">
+                https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs950/ghostscript-9.50.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 6cea6bae4a7cdfac6ccb09f07f0caf8c
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 33 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 161 MB (with fonts and
+                libgs.so)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 1.6 SBU (Using parallelism=4; with
+                libgs.so)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Additional Downloads
+        </h3>
+        <p>
+          If you wish, you can download additional fonts.
+        </p>
+        <div class="itemizedlist">
+          <p class="title">
+            <strong>Standard Fonts</strong>
+          </p>
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://downloads.sourceforge.net/gs-fonts/ghostscript-fonts-std-8.11.tar.gz">
+                https://downloads.sourceforge.net/gs-fonts/ghostscript-fonts-std-8.11.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 6865682b095f8c4500c54b285ff05ef6
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 3.7 MB
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="itemizedlist">
+          <p class="title">
+            <strong>Other Fonts</strong>
+          </p>
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://downloads.sourceforge.net/gs-fonts/gnu-gs-fonts-other-6.0.tar.gz">
+                https://downloads.sourceforge.net/gs-fonts/gnu-gs-fonts-other-6.0.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 33457d3f37de7ef03d2eea05a9e6aa4f
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 796 KB
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Ghostscript Dependencies
+        </h3>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="cups.html" title="Cups-2.3.1">Cups-2.3.1</a>
+          (required for building the <span class="quote">&ldquo;<span class=
+          "quote">cups</span>&rdquo;</span> device backend, which is needed
+          by <span class="application">cups-filters</span>), <a class="xref"
+          href="../general/fontconfig.html" title=
+          "Fontconfig-2.13.1">Fontconfig-2.13.1</a> (required, if you are
+          installing any suggested font), <a class="xref" href=
+          "../general/freetype2.html" title=
+          "FreeType-2.10.1">FreeType-2.10.1</a>, <a class="xref" href=
+          "../general/libjpeg.html" title=
+          "libjpeg-turbo-2.0.4">libjpeg-turbo-2.0.4</a>, <a class="xref"
+          href="../general/libpng.html" title=
+          "libpng-1.6.37">libpng-1.6.37</a>, <a class="xref" href=
+          "../general/libtiff.html" title="LibTIFF-4.1.0">LibTIFF-4.1.0</a>,
+          <a class="xref" href="../general/lcms2.html" title=
+          "Little CMS-2.9">Little CMS-2.9</a>, and <a class="xref" href=
+          "../general/openjpeg2.html" title=
+          "OpenJPEG-2.3.1">OpenJPEG-2.3.1</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../x/cairo.html" title=
+          "Cairo-1.17.2+f93fc72c03e">Cairo-1.17.2+f93fc72c03e</a>, <a class=
+          "xref" href="../x/gtk3.html" title="GTK+-3.24.13">GTK+-3.24.13</a>,
+          <a class="xref" href="../general/libidn.html" title=
+          "libidn-1.35">libidn-1.35</a>, <a class="xref" href=
+          "../general/libpaper.html" title=
+          "libpaper-1.1.24+nmu5">libpaper-1.1.24+nmu5</a>, <a class="xref"
+          href="../general/lcms.html" title="Little CMS-1.19">Little
+          CMS-1.19</a> (not used by default, nor if lcms2 is present or
+          found), and <a class="xref" href="../x/installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">X Window
+          System</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/gs">http://wiki.linuxfromscratch.org/blfs/wiki/gs</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Ghostscript
+        </h2>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            The <span class="application">Ghostscript</span> build system is
+            not user-friendly. In order to use system copies of various
+            graphics libraries, you must do it using unconventional methods.
+          </p>
+        </div>
+        <p>
+          <span class="application">Ghostscript</span> includes (old) copies
+          of several libraries. Some of these seem to have been patched to
+          fix known vulnerabilities, but others of these copies are less-well
+          maintained. To ensure that any future fixes are applied throughout
+          the whole system, it is recommended that you first install the
+          released versions of these libraries and then configure
+          <span class="application">Ghostscript</span> to link to them.
+        </p>
+        <p>
+          If you have installed the recommended dependencies on your system,
+          remove the copies of <span class="application">freetype</span>,
+          <span class="application">lcms2</span>, <span class=
+          "application">libjpeg</span>, <span class=
+          "application">libpng</span>, and <span class=
+          "application">openjpeg</span>:
+        </p>
+        <pre class="userinput">
+<kbd class="command">rm -rf freetype lcms2mt jpeg libpng openjpeg</kbd>
+</pre>
+        <p>
+          Compile <span class="application">Ghostscript</span>:
+        </p>
+        <pre class="userinput">
+<kbd class="command">rm -rf zlib &amp;&amp;
+
+./configure --prefix=/usr           \
+            --disable-compile-inits \
+            --enable-dynamic        \
+            --with-system-libtiff   &amp;&amp;
+make</kbd>
+</pre>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            The shared library depends on <a class="xref" href=
+            "../x/gtk3.html" title="GTK+-3.24.13">GTK+-3.24.13</a>. It is
+            only used by external programs like <a class="xref" href=
+            "asymptote.html" title="asymptote-2.62">asymptote-2.62</a>,
+            <a class="xref" href="dvisvgm.html" title=
+            "dvisvgm-2.8.2">dvisvgm-2.8.2</a>, <a class="xref" href=
+            "../general/imagemagick.html" title=
+            "ImageMagick-7.0.9-23">ImageMagick-7.0.9-23</a>, and <a class=
+            "xref" href="texlive.html" title=
+            "texlive-20190410-source">texlive-20190410</a>.
+          </p>
+        </div>
+        <p>
+          To compile the shared library <code class=
+          "filename">libgs.so</code>, run the following additional command as
+          an unprivileged user:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make so</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite. A set of example
+          files may be used for testing, but it is only possible after
+          installation of the package.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+        <p>
+          If you want the shared library too:
+        </p>
+        <pre class="root">
+<kbd class="command">make soinstall &amp;&amp;
+install -v -m644 base/*.h /usr/include/ghostscript &amp;&amp;
+ln -sfvn ghostscript /usr/include/ps</kbd>
+</pre>
+        <p>
+          Now make the documentation accessible from the normal place:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">mv -v /usr/share/doc/ghostscript/9.50 /usr/share/doc/ghostscript-9.50  &amp;&amp;
+rm -rfv /usr/share/doc/ghostscript &amp;&amp;
+cp -a examples/ /usr/share/ghostscript/9.50/</kbd>
+</pre>
+        <p>
+          If you have downloaded the fonts, unpack them to <code class=
+          "filename">/usr/share/ghostscript</code> and ensure the ownerships
+          of the files are <code class="systemitem">root</code>: <code class=
+          "systemitem">root</code>.
+        </p>
+        <pre class="root">
+<kbd class=
+"command">tar -xvf ../ghostscript-fonts-std-8.11.tar.gz -C /usr/share/ghostscript --no-same-owner &amp;&amp;
+tar -xvf ../gnu-gs-fonts-other-6.0.tar.gz     -C /usr/share/ghostscript --no-same-owner &amp;&amp;
+fc-cache -v /usr/share/ghostscript/fonts/</kbd>
+</pre>
+        <p>
+          You can now test the rendering of various postscript and pdf files
+          from the <code class=
+          "filename">/usr/share/ghostscript/9.50/examples</code> , for
+          example (you need an X window system display):
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">gs -q -dBATCH /usr/share/ghostscript/9.50/examples/tiger.eps</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>rm -rf zlib</strong></span> :
+          <span class="application">zlib</span> was installed as part of LFS.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-compile-inits</code></em>:
+          This option makes <span class="command"><strong>gs</strong></span>
+          and <code class="filename">libgs.so</code> slightly smaller.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-system-libtiff</code></em>:
+          Remove this option if you've not installed <a class="xref" href=
+          "../general/libtiff.html" title="LibTIFF-4.1.0">LibTIFF-4.1.0</a>.
+        </p>
+        <p>
+          <span class="command"><strong>install -v -m644
+          base/*.h...</strong></span> : Some packages (<span class=
+          "application">ImageMagick</span> is one) need the <span class=
+          "application">Ghostscript</span> interface headers in place to link
+          to the shared library. These commands install the headers.
+        </p>
+        <p>
+          <span class="command"><strong>ln -sfvn ghostscript
+          /usr/include/ps</strong></span>: Some packages expect to find the
+          interface headers in an alternate location.
+        </p>
+        <p>
+          <span class="command"><strong>mv -v /usr/share/doc/ghostscript/9.50
+          /usr/share/doc/ghostscript-9.50</strong></span>: This moves the
+          documentation where it is expected to be found.
+        </p>
+        <p>
+          <code class="option">--disable-cups</code>: this option will save a
+          tiny amount of space by not linking <span class=
+          "command"><strong>gs</strong></span> and <code class=
+          "filename">libgs.so</code> to the <a class="xref" href="cups.html"
+          title="Cups-2.3.1">Cups-2.3.1</a> libraries if you have installed
+          those.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">dvipdf, eps2eps, gs, gsbj, gsc (from
+              soinstall), gsdj, gsdj500, gslj, gslp, gsnd, gsx (from
+              soinstall), lprsetup.sh, pdf2dsc, pdf2ps, pf2afm, pfbtopfa,
+              pphs, printafm, ps2ascii, ps2epsi, ps2pdf, ps2pdf12, ps2pdf13,
+              ps2pdf14, ps2pdfwr, ps2ps, ps2ps2, and unix-lpr.sh</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">libgs.so and
+              /usr/lib/ghostscript/9.50/X11.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/ghostscript,
+              /usr/lib/ghostscript, /usr/share/ghostscript, and
+              /usr/share/doc/ghostscript-9.50</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gplgs-prog" name="gplgs-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gs</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an interpreter for Adobe Systems' PostScript(tm) and
+                    Portable Document Format (PDF).
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgs.so" name="libgs.so"></a><span class=
+                    "term"><code class="filename">libgs.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides <span class="application">Ghostscript</span>
+                    functionality to other programs, such as <span class=
+                    "application">GSView</span>, <span class=
+                    "application">ImageMagick</span>, and <span class=
+                    "application">libspectre</span>.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <span class="application">Ghostscript</span> provides many
+          different scripts used to convert PostScript, PDF, and other
+          formats. Please refer to the HTML documentation or the man pages
+          for information about the capabilities provided.
+        </p>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-19 16:31:22 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="cups-filters.html" title=
+          "cups-filters-1.27.1">Prev</a>
+          <p>
+            cups-filters-1.27.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gutenprint.html" title=
+          "Gutenprint-5.3.3">Next</a>
+          <p>
+            Gutenprint-5.3.3
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="printing.html" title=
+          "Chapter&nbsp;46.&nbsp;Printing">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang=ru>
+<meta charset=utf-8>
+
+<title>Анонимный CVS OpenBSD</title>
+<meta name="description" content="How to get OpenBSD updates via Internet using Anonymous CVS">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="openbsd.css">
+<link rel="canonical" href="https://www.openbsd.org/anoncvs.html">
+
+<h2 id=OpenBSD>
+<a href="index.html">
+<i>Open</i><b>BSD</b></a>
+Анонимные CVS сервера
+</h2>
+
+<hr>
+
+<p>
+Анонимный CVS позволяет поддерживать локальный репозиторий с исходниками
+OpenBSD в актуальном состоянии, учитывая изменения в репозитории OpenBSD.
+С его помощью можно так же отслеживать
+<a href="faq/faq10.html#Patches">исправления ошибок</a>, допущенных в релизе.
+
+<p>
+Анонимный CVS работает напрямую с центральным репозиторием.
+Это значит, что вам предлагается полный набор CVS-команд для обновления
+и объединения ваших изменений с другими изменениями в коде, создания diff'ов,
+просмотра истории изменений и других запросов к центральному репозиторию.
+В случае, если изменения не могут быть полностью объединены, CVS
+обеспечивает возможность "мягкого отката", отмечая изменения в локальной
+копии, сохраняет немодифицированную копию ваших изменений и продолжает
+обновление других запрошенных модулей.
+
+<p>
+Проект OpenBSD на текущий момент имеет четыре репозитория:
+
+<ul>
+  <li><b>src</b> - содержит исходники базового компонента системы
+  <li><b>ports</b> - содержит <a href="faq/ports">дерево портов</a>
+  <li><b>www</b> - репозиторий с web-страницами
+  <li><b>xenocara</b> - содержит исходники xenocara
+</ul>
+
+<h3 id="CVS">Что такое CVS?</h3>
+
+<p>
+<a href="https://savannah.nongnu.org/projects/cvs">CVS</a> это
+централизованная система управления версиями, используемая для работы с
+деревом исходных кодов OpenBSD. CVS использует центральный репозиторий для
+хранения исходников с их историей изменений, что позволяет разработчикам
+поддерживать свои локальные копии исходников с внесенными в них изменениями.
+
+<p>
+Существуют два уровня доступа к дереву исходных кодов:
+
+<ul>
+<li>Доступ с правами read-write для разработчиков
+<li>Доступ с правами read-only для всех остальных
+</ul>
+
+<h3 id="starting">Предварительная загрузка исходников</h3>
+
+<p>
+Хотя вы можете скачать себе весь репозиторий с исходниками, используя
+AnonCVS, можно сберечь и время и пропускную способность сети, предварительно
+загрузив себе тарболы с исходниками.
+Этот способ особенно подходит при использовании <a href="stable.html">-stable</a>,
+так как разница между -release и -stable как правило незначительна.
+
+<p>
+Файлы с исходными кодами для загрузки с <a href="ftp.html">зеркал</a>
+разделены на две части, чтобы сократить время загрузки для тех, кто хочет
+работать только с одной из них.
+Исходники ядра находятся в <code>sys.tar.gz</code>, а исходники userland
+- в <code>src.tar.gz</code>.
+
+<p>
+При выполнении следующих командах подразумевается, что вы выполнили
+<a href="faq/faq5.html#wsrc">эти инструкции</a>, наделив не-root-пользователя
+правами на запись в каталогах <code>src</code>, <code>ports</code> и
+<code>xenocara</code>.
+
+<pre class="cmdbox">
+$ <b>cd /usr/src</b>
+$ <b>tar xzf /tmp/src.tar.gz</b>
+$ <b>tar xzf /tmp/sys.tar.gz</b>
+$ <b>cd /usr</b>
+$ <b>tar xzf /tmp/ports.tar.gz</b>
+$ <b>cd /usr/xenocara</b>
+$ <b>tar xzf /tmp/xenocara.tar.gz</b>
+</pre>
+
+<h3 id="using">Использование CVS для загрузки или обновления исходников (source trees)</h3>
+
+<p>
+<a href="https://man.openbsd.org/cvs">cvs(1)</a> был разработан таким
+образом, чтобы у пользователей не возникало никаких проблем с загрузкой
+и обновлением исходников. Сначала надо решить, с каким branch вы хотите
+работать: с -current или <a href="stable.html">-stable</a>.
+В -current branch есть все последние изменения, в то время как в -stable
+содержится только исходники последнего релиза, плюс патчи
+<a href="errata.html">критических багов</a> и другие исправления проблем.
+Для получения дополнительной информации о flavors OpenBSD, смотрите
+<a href="faq/faq5.html#Flavors">пятую главу FAQ</a>.
+
+<p>
+Для начала <a href="#CVSROOT">выберите анонимный CVS-сервер</a>, которым
+собираетесь пользоваться. Если вы начинаете с <code>src.tar.gz</code> и
+<code>sys.tar.gz</code>, как указано выше, вы можете пропустить команду
+<kbd>checkout</kbd> и перейти к обновлению.
+
+<p>
+<b>Внимание:</b>
+при использовании cvs помните о том, что текущий каталог должен
+находится либо в корне дерева, на которое вы ссылаетесь, либо в
+другом месте, например в <code>/tmp</code>.
+Некоторые команды, такие как <kbd>cvs checkout</kbd>, могут создать
+произвольное поддерево (sub-tree) в текущем каталоге, и последующее
+обновление рекурсивно расширит это поддерево.
+
+<h4 id="getting">Загрузка исходного дерева с файлами</h4>
+
+<p>
+Следующая комада подразумевает, что вы уже входите в <code>wsrc</code>
+группу:
+
+<p>
+Если вы хотите использовать -current:
+
+<pre class="cmdbox">
+$ <b>cd /usr</b>
+$ <b>cvs -qd anoncvs@anoncvs.ca.openbsd.org:/cvs checkout -P src</b>
+</pre>
+
+<p>
+Если вы хотите использовать 6.6 -stable branch:
+
+<pre class="cmdbox">
+$ <b>cd /usr</b>
+$ <b>cvs -qd anoncvs@anoncvs.ca.openbsd.org:/cvs checkout -rOPENBSD_6_6 -P src</b>
+</pre>
+<!-- DO NOT EDIT ANONCVS.HTML MANUALLY - IT IS GENERATED FROM TEMPLATES! -->
+
+<p>
+Анонимный CVS использует SSH для транспортировки данных. Пароль не нужен.
+Если вы впервые подключаетесь к anoncvs серверу, вам будет предложено
+подтвердить SSH fingerprint, чтобы убедиться, что вы подключаетесь к
+ожидаемому серверу:
+
+<pre class="cmdbox">
+$ <b>cvs -d anoncvs@anoncvs.spacehopper.org:/cvs checkout -P src</b>
+The authenticity of host 'anoncvs.spacehopper.org (2001:67c:15f4:a423::28)' can't be established.
+ED25519 key fingerprint is SHA256:oaJ7VEyjt2EHMeixzKn9zJGiV5YlWHIUls070tKdBzI.
+Are you sure you want to continue connecting (yes/no)?
+</pre>
+
+<p>
+Приведенный ниже список как правило включает в себя и fingerprint
+сервера, поэтому вы можете сравнить его с отображаемым при подключении
+fingerprint в качестве дополнительной проверки того, что подключаетесь
+к нужному серверу. Подтвердите установку соединения, и fingerprint
+будет сохранен (как и обычно при нормальном SSH соединении).
+
+<pre class="cmdbox">
+Are you sure you want to continue connecting (yes/no)? <b>yes</b>
+Warning: Permanently added 'anoncvs.spacehopper.org' (ED25519) to the list of known hosts.
+</pre>
+
+<h4 id="updating">Обновление существующего дерева с исходниками</h4>
+
+<p>
+Если вы используете -current:
+
+<pre class="cmdbox">
+$ <b>cd /usr/src</b>
+$ <b>cvs -q up -Pd -A</b>
+</pre>
+
+<p>
+Если вы используете 6.6 -stable branch:
+
+<pre class="cmdbox">
+$ <b>cd /usr/src</b>
+$ <b>cvs -q up -Pd -rOPENBSD_6_6</b>
+</pre>
+
+<p>
+Каждый раз, когда вы запустите приведенную выше команду,
+<a href="https://man.openbsd.org/cvs">cvs(1)</a> попытается синхронизировать
+ваш <code>/usr/src</code> с изменениями, добавленными на сервере.
+Это не поломает какие-любо локальные изменения; вместо этого cvs
+попытается объединить (merge) их.
+
+<h4>Использование другого сервера</h4>
+
+<p>
+Если вы хотите обновить дерево каталогов с исходниками, которые
+загрузили себе первоночально с другого сервера или распаковали из
+тарбола, вы <b>должны</b> добавить <em>-d [cvsroot]</em> параметр
+<a href="https://man.openbsd.org/cvs">cvs(1)</a>. 
+
+<pre class="cmdbox">
+$ <b>cd /usr/src</b>
+$ <b>cvs -d anoncvs@anoncvs.ca.openbsd.org:/cvs -q up -Pd</b>
+</pre>
+
+<h4>Загрузка исходников, содержащих ports и xenocara</h4>
+
+<p>
+Убедитесь, что ваш пользователь входит в группу <code>wsrc</code>
+и каталог <code>/usr/ports</code> открыт на запись группе <code>wsrc</code>.
+Замените <kbd>ports</kbd> на <kbd>xenocara</kbd>, чтобы загрузить или
+обновить дерево с исходниками <kbd>xenocara</kbd>.
+
+<ul><li>
+
+<p>
+Если нужен -current:
+
+<pre class="cmdbox">
+$ <b>cd /usr</b>
+$ <b>cvs -qd anoncvs@anoncvs.ca.openbsd.org:/cvs checkout -P ports</b>
+</pre>
+
+<p>
+Если нужен 6.6 -stable branch:
+
+<pre class="cmdbox">
+$ <b>cd /usr</b>
+$ <b>cvs -qd anoncvs@anoncvs.ca.openbsd.org:/cvs checkout -rOPENBSD_6_6 -P ports</b>
+</pre>
+
+<li> В любое время обновить это дерево можно так:
+
+<p>
+В случае с -current:
+
+<pre class="cmdbox">
+$ <b>cd /usr/ports</b>
+$ <b>cvs -q up -Pd -A</b>
+</pre>
+
+<p>
+В случае с 6.6 -stable branch:
+
+<pre class="cmdbox">
+$ <b>cd /usr/ports</b>
+$ <b>cvs -q up -Pd -rOPENBSD_6_6</b>
+</pre>
+
+</ul>
+
+<h4>Создание diff</h4>
+
+<p>
+Чтобы создать diff того или иного файла, после того как вы его
+изменили (в это примере это файл <code>cd.c</code>) для, к примеру,
+использования в отчете об ошибке:
+
+<pre class="cmdbox">
+$ <b>cd /usr/src</b>
+$ <b>cvs diff -u sys/scsi/cd.c &gt; /tmp/patch</b>
+</pre>
+
+<h3 id="EXAMPLE">Пример использования cvs(1)</h3>
+
+<p>
+Пример использования anoncvs сервера выглядит так:
+
+<pre class="cmdbox">
+$ <b>cd /tmp</b>
+$ <b>cvs -d anoncvs@anoncvs.ca.openbsd.org:/cvs checkout -P src/sys/arch/sparc</b>
+[copies the files from the repository to your machine]
+$ <b>cd src/sys/arch/sparc</b>
+$ <b>cvs log locore.s</b>
+[shows the commit log for the chosen file]
+$ <b>cvs diff -bc -r1.1 -r1.5 locore.s</b>
+[shows the changes between revisions 1.1 and rev 1.5]
+</pre>
+
+<h3 id="rsync">Зеркалим репозиторий</h3>
+
+<p>
+Как уже упоминалось, некоторые зеркала с репозиториями поддерживают rsync.
+Используйте скрипт <tt>reposync</tt>, который проверяет наличие обновлений
+CVSROOT/ChangeLog и в некоторых случаях избегает полного сканирования
+каталогов, когда обновление не обнаружено.
+Он также поддерживает SSH port-forwarding для зеркал, где это возможно,
+позволяя подключаться к серверу "rsync --daemon" по аутентифицированному
+и зашифрованному каналу.
+
+<p>
+Установите пакет <tt>reposync</tt>, создайте нового пользователя и каталог,
+куда будет скачен репозиторий, а также каталог, необходимый для самого reposync:
+
+<pre class="cmdbox">
+# <b>pkg_add reposync</b>
+# <b>useradd cvs</b>
+# <b>install -d -o cvs /home/cvs /var/db/reposync</b>
+</pre>
+
+<p>
+После этого следующая команда может использоваться для зеркалирования или
+обновления репозитория. Если выбранное вами зеркало не поддерживает SSH port-forwarding,
+либо переключитесь на другое зеркало, либо используйте «reposync -p».
+
+<pre class="cmdbox">
+# <b>su -m cvs -c "reposync rsync://mirror.example.org/cvs /home/cvs"</b>
+</pre>
+
+<p>
+После создания зеркала можно использовать локальный каталог в качестве вашего
+cvsroot, например:
+
+<pre class="cmdbox">
+$ <b>cd /usr/src</b>
+$ <b>cvs -d /home/cvs -q up -Pd</b>
+</pre>
+
+В ноябре 2019 года размер репозиториев был таким:
+
+<pre class="cmdbox">
+$ <b>du -shc *</b>
+175M    CVSROOT
+1.1G    ports
+2.9G    src
+787M    www
+1.7G    xenocara
+6.6G    total
+</pre>
+
+<p>
+Общий размер репозитория в настоящее время увеличивается примерно
+на <b>400</b> МБ в год. Репозиторий src увеличивается примерно на
+<b>150</b> МБ.
+
+<h3 id="CVSROOT">Доступные анонимные CVS сервера</h3>
+
+Список anoncvs серверов можно найти на
+<a href="https://www.openbsd.org/anoncvs.html#CVSROOT">оригинальной английской странице</a>.
+Нет смысла дублировать этот список сюда, так как его синхронизация
+займет слишком много сил в времени.
+
+<p>
+Используйте <a href="https://man.openbsd.org/traceroute">traceroute(8)</a>
+чтобы найти ближайший к вам сервер.
+При возникновении проблем с сервером свяжитесь с его <b>мейнтейнером</b>.
+
+<p>
+В случае, если вы в целях безопасности не хотите или не можете использовать
+исходящие SSH-соединения на 22 порт (используется по умолчанию), некоторые
+CVS-серверы позволяют подключаться на альтернативный порт (обычно 2022).
+Об этом должно быть указано в списке серверов.
+Для использования другого порта настройте ваш ssh-клиент добавив <code>Host</code>
+секцию в <code>$HOME/.ssh/config</code>, например:
+<pre class="cmdbox">
+Host anoncvs.ca.openbsd.org
+    Port 2022
+</pre>
+
+<h3 id="MIRROR">Настройка anoncvs зеркала</h3>
+
+<p>
+Anoncvs зеркала в настоящее время требуется около 6 ГБ свободного места на
+диске (и со временем будут требовать больше!). И для каждого anoncvs-пользователя
+требуется до 64 МБ swap (при условии, что пользователь выполняет сложные операции;
+в то время как простые операции используют меньше ресурсов, anoncvs по-прежнему
+требует гораздо большее ресурсов чем ftp).
+Такие anoncvs-машины должны иметь быстрое и стабильное сетевое соединение.
+Ознакомьтесь с <a href="https://www.openbsd.org/anoncvs.shar">документом</a>,
+где описывается процесс настройки anoncvs-серверов.
+
+<h3 id="NOTES">Пару слов вместо заключения</h3>
+
+<p>
+После обновления дерева с исходниками вы должны прочитать комментарии в верхней
+части <code>/usr/src/Makefile</code> файла, прежде чем пытаться выполнить сборку.
+Кроме того, вы должны собрать новое ядро <strong>прежде</strong> чем делать
+<kbd>make build</kbd>, если это возможно.
+В некоторых случаях может потребоваться пересобрать и установить утилиту
+<code>config</code>, прежде чем вы сможете собрать ядро.
+Например, если <kbd>config GENERIC</kbd> по той или иной причине у вас не
+сработает.
+
+<p>
+Важно отметить, что обновление с release до current путем пересборки/компиляции
+исходников может быть довольно трудным процессом из-за зависимостей, которые часто
+не очевидны. Поэтому рекомендуется сначала установить последний snapshot, прежде
+чем пытаться собрать current из исходников.

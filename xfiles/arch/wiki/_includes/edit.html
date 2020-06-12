@@ -1,0 +1,8 @@
+<!-- <a href="{{github_repo_url}}/blob/master/{{page.path}}">Edit this page</a> -->
+<!-- <a href="{{github_repo_url}}/blob/master/{{ page.relative_path }}">Edit this page</a>
+<a target=_blank href="https://prose.io/#ctlos/wiki/edit/master/{{ page.path }}">Отредактировать/Дополнить статью</a> -->
+{% if page.edit %}
+<div class="edit-link">
+	<a target=_blank href="{{ site.github_repo_url }}/blob/master/{{ page.relative_path }}">Отредактировать/Дополнить статью</a>
+</div>
+{% endif %}

@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Falkon-3.1.0
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;40.&nbsp;Graphical Web Browsers
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="epiphany.html" title=
+          "Epiphany-3.34.4">Prev</a>
+          <p>
+            Epiphany-3.34.4
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="firefox.html" title=
+          "Firefox-68.5.0">Next</a>
+          <p>
+            Firefox-68.5.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="graphweb.html" title=
+          "Chapter&nbsp;40.&nbsp;Graphical Web Browsers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="falkon" name="falkon"></a>Falkon-3.1.0
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to falkon
+        </h2>
+        <p>
+          <span class="application">Falkon</span> is a KDE web browser using
+          the QtWebEngine rendering engine. It was previously known as
+          <span class="application">QupZilla</span>. It aims to be a
+          lightweight web browser available through all major platforms.
+        </p>
+        <p>
+          Although <span class="application">falkon</span> is now part of
+          KDE, it can be installed without KDE (with the loss of <span class=
+          "application">kwallet</span> functionality).
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://download.kde.org/stable/falkon/3.1/falkon-3.1.0.tar.xz">
+                https://download.kde.org/stable/falkon/3.1/falkon-3.1.0.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 9255fb335d3ba361dea44b7b297ddf7d
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 2.2 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 60 MB (without optional
+                dependencies)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 2.2 SBU (Using parallelism=4)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          falkon Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../kde/extra-cmake-modules.html" title=
+          "extra-cmake-modules-5.67.0">extra-cmake-modules-5.67.0</a>,
+          <a class="xref" href="../x/qtwebengine.html" title=
+          "QtWebEngine-5.14.1">qtwebengine-5.14.1</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../gnome/gnome-keyring.html" title=
+          "gnome-keyring-3.34.0">gnome-keyring-3.34.0</a>, <a class="xref"
+          href="../kde/krameworks5.html" title=
+          "Building KDE Frameworks 5 (KF5)">KDE Frameworks-5.67.0</a> and
+          <a class="ulink" href=
+          "http://download.qt.io/official_releases/QtForPython/pyside2/">PySide2</a>
+          for experimental <span class="application">Python</span> plugins
+          (compiling this from source is very slow).
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/falkon">http://wiki.linuxfromscratch.org/blfs/wiki/falkon</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of falkon
+        </h2>
+        <p>
+          Install <span class="application">falkon</span> by running the
+          following commands:
+        </p>
+        <p>
+          Unless you have installed both PySide2 and ki18n, remove the
+          translations for the sample <span class=
+          "command"><strong>hellopython.py</strong></span> script:
+        </p>
+        <pre class="userinput">
+<kbd class="command">rm -rf po/</kbd>
+</pre>
+        <p>
+          Fix a missing include in Qt-5.14:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i '/#include &lt;QSettings&gt;/a#include &lt;QFile&gt;' \
+  src/plugins/VerticalTabs/verticaltabsplugin.cpp</kbd>
+</pre>
+        <p>
+          Now build the program:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+cmake -DCMAKE_INSTALL_PREFIX=/usr \
+      -DCMAKE_BUILD_TYPE=Release  \
+      .. &amp;&amp;
+
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          test</strong></span>. All tests should pass. If any fail, the full
+          results will be in <code class=
+          "filename">Testing/Temporary/LastTest.log</code>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+        <p>
+          If you have installed <span class="application">Pyside2</span> you
+          will want to examine the <span class=
+          "command"><strong>hellopython.py</strong></span> which is in the
+          <code class="filename">scripts/</code> directory, and perhaps copy
+          it to your home directory.
+        </p>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <code class="option">-DBUILD_TESTING=OFF</code>: This will save a
+          little time and space by not building the test programs, use this
+          if you do not wish to run the test.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">falkon</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">libFalkonPrivate.so.3</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">${FALKON_PREFIX}/lib/plugins,
+              ${FALKON_PREFIX}/share/falkon.</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="falkon-prog" name="falkon-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>falkon</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a web browser which uses qtwebengine.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libFalkonPrivate.so.3" name=
+                    "libFalkonPrivate.so.3"></a><span class=
+                    "term"><code class=
+                    "filename">libFalkonPrivate.so.3</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains functions used by falkon.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-18 13:55:17 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="epiphany.html" title=
+          "Epiphany-3.34.4">Prev</a>
+          <p>
+            Epiphany-3.34.4
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="firefox.html" title=
+          "Firefox-68.5.0">Next</a>
+          <p>
+            Firefox-68.5.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="graphweb.html" title=
+          "Chapter&nbsp;40.&nbsp;Graphical Web Browsers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

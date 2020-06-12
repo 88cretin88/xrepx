@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-openssl" role="wrap">
+  <?dbhtml filename="openssl.html"?>
+
+  <sect1info condition="script">
+    <productname>openssl</productname>
+    <productnumber>&openssl-version;</productnumber>
+    <address>&openssl-url;</address>
+  </sect1info>
+
+  <title>OpenSSL-&openssl-version;</title>
+
+  <indexterm zone="ch-system-openssl">
+    <primary sortas="a-OpenSSL">OpenSSL</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>The OpenSSL пакет содержит инструменты управления и библиотеки
+     криптографии. Они полезны для предоставления криптографических функций
+     к другим пакетам, таким как OpenSSH, почтовым приложениям и веб-браузерам
+     (для доступа к сайтам HTTPS).</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&openssl-ch6-sbu;</seg>
+        <seg>&openssl-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Установка пакета OpenSSL</title>
+
+    <para>Подготовьте пакет OpenSSL к компиляции:</para>
+
+<screen><userinput remap="configure">./config --prefix=/usr         \
+         --openssldir=/etc/ssl \
+         --libdir=lib          \
+         shared                \
+         zlib-dynamic</userinput></screen>
+
+    <para>Скомпилируйте пакет:</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>Для выполнения тестов, выполните команду:</para>
+
+<screen><userinput remap="test">make test</userinput></screen>
+
+    <!--
+	 <para>Один тест 40-test_rehash.t не проходит в окружении chroot, но выполнится корректно при его перезапуске в обычном окружении.</para>
+	 -->
+
+    <para>Установите пакет:</para>
+
+<screen><userinput remap="install">sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
+make MANSUFFIX=ssl install</userinput></screen>
+
+    <para>При желании, можно установить документацию:</para>
+
+<screen><userinput remap="install">mv -v /usr/share/doc/openssl /usr/share/doc/openssl-&openssl-version;
+cp -vfr doc/* /usr/share/doc/openssl-&openssl-version;</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-openssl" role="content">
+    <title>Содержимое пакета OpenSSL</title>
+
+    <segmentedlist>
+      <segtitle>Установленные программы</segtitle>
+      <segtitle>Установленные библиотеки</segtitle>
+      <segtitle>Установленные каталоги</segtitle>
+
+      <seglistitem>
+        <seg>
+          c_rehash and openssl
+        </seg>
+        <seg>
+          libcrypto.{so,a} and libssl.{so,a}
+        </seg>
+        <seg>
+          /etc/ssl,
+          /usr/include/openssl,
+          /usr/lib/engines and
+          /usr/share/doc/openssl-&openssl-version;
+        </seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Краткое описание</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="c_rehash">
+        <term><command>c_rehash</command></term>
+        <listitem>
+          <para>
+            Сценарий <application>Perl</application>, который сканирует все файлы в каталоге и добавляет символические ссылки к их хэш-значениям
+          </para>
+          <indexterm zone="ch-system-openssl c_rehash">
+            <primary sortas="b-c_rehash">c_rehash</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="openssl-prog">
+        <term><command>openssl</command></term>
+        <listitem>
+          <para>
+			 	Инструмент командной строки для использования различных криптографических функций
+				библиотеки <application>OpenSSL</application> из оболочки. Его можно использовать для различных функций которые документированы в <command>man 1 openssl</command>.
+          </para>
+          <indexterm zone="ch-system-openssl openssl-prog">
+            <primary sortas="b-openssl">openssl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libcrypto">
+        <term><filename class="libraryfile">libcrypto.so</filename></term>
+        <listitem>
+          <para>реализует широкий спектр криптографических алгоритмов, используемых в различных Internet стандартах. Сервисы, предоставляемые библиотекой используются <application>OpenSSL</application> реализацией SSL, TLS и S/MIME, и также используются в реализации
+            <application>OpenSSH</application>,
+            <application>OpenPGP</application>, и других криптографических стандартах
+          </para>
+          <indexterm zone="ch-system-openssl libcrypto">
+            <primary sortas="c-libcrypto">libcrypto.so</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libssl">
+        <term><filename class="libraryfile">libssl.so</filename></term>
+        <listitem>
+          <para>
+			 	Реализация протокола защиты транспортного уровня (TLS v1). Предоставляет функции API, документацию
+				с которой можно ознакомиться, выполнив команду <command>man 3 ssl</command>.
+          </para>
+          <indexterm zone="ch-system-openssl libssl">
+            <primary sortas="c-libssl">libssl.so</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

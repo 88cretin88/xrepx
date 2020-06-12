@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      XSane-0.999
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;47.&nbsp;Scanning
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="sane.html" title="SANE-1.0.27">Prev</a>
+          <p>
+            SANE-1.0.27
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="sgml.html" title=
+          "Standard Generalized Markup Language (SGML)">Next</a>
+          <p>
+            Standard Generalized Markup Language (SGML)
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="scanning.html" title=
+          "Chapter&nbsp;47.&nbsp;Scanning">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="xsane" name="xsane"></a>XSane-0.999
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to XSane
+        </h2>
+        <p>
+          <span class="application">XSane</span> is another front end for
+          <a class="xref" href="sane.html" title=
+          "SANE-1.0.27">SANE-1.0.27</a>. It has additional features to
+          improve the image quality and ease of use compared to <span class=
+          "command"><strong>xscanimage</strong></span>.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://anduin.linuxfromscratch.org/BLFS/xsane/xsane-0.999.tar.gz">
+                http://anduin.linuxfromscratch.org/BLFS/xsane/xsane-0.999.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://anduin.linuxfromscratch.org/BLFS/xsane/xsane-0.999.tar.gz">
+                ftp://anduin.linuxfromscratch.org/BLFS/xsane/xsane-0.999.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 9927f21e1ab6ba96315e7f0e30746deb
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 2.9 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 23 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.2 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          XSane Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../x/gtk2.html" title=
+          "GTK+-2.24.32">GTK+-2.24.32</a> and <a class="xref" href=
+          "sane.html" title="SANE-1.0.27">SANE-1.0.27</a> (back ends)
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/lcms.html" title=
+          "Little CMS-1.19">Little CMS-1.19</a> and <a class="xref" href=
+          "../xsoft/gimp.html" title="Gimp-2.10.18">Gimp-2.10.18</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/xsane">http://wiki.linuxfromscratch.org/blfs/wiki/xsane</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of XSane
+        </h2>
+        <p>
+          Install <span class="application">XSane</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i -e 's/png_ptr-&gt;jmpbuf/png_jmpbuf(png_ptr)/' src/xsane-save.c &amp;&amp;
+./configure --prefix=/usr                                           &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">make xsanedocdir=/usr/share/doc/xsane-0.999 install &amp;&amp;
+ln -v -s ../../doc/xsane-0.999 /usr/share/sane/xsane/doc</kbd>
+</pre>
+        <p>
+          A browser of your choice can be used to get inline help, using the
+          following command, as the <code class="systemitem">root</code>
+          user:
+        </p>
+        <pre class="root">
+<kbd class="command">ln -v -s &lt;browser&gt; /usr/bin/netscape</kbd>
+</pre>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            Be sure to replace &lt;browser&gt; with the browser of your
+            choice on your system.
+          </p>
+        </div>
+        <p>
+          Alternatively, if the environment variable BROWSER is set to the
+          browser you want to use, eg, BROWSER="/usr/bin/firefox", the first
+          time you run <span class="command"><strong>xsane</strong></span>,
+          it will be recorded in ~/.sane/xsane/xsane.rc. If you wish to
+          change it, edit this file, or remove it, and use the instructions
+          above, so that a new one is created.
+        </p>
+        <p>
+          If <span class="application">GIMP</span> is installed, issue the
+          following command as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">ln -v -s /usr/bin/xsane /usr/lib/gimp/2.0/plug-ins/</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>ln -v -s ../../doc/xsane-0.999
+          /usr/share/sane/xsane/doc</strong></span>: This symlink is created
+          to ensure that any program that looks for the <span class=
+          "application">XSane</span> documentation in the default location
+          will find it, as the documentation is installed in an alternate
+          location specified in the <span class="command"><strong>make
+          install</strong></span> command.
+        </p>
+        <p>
+          <span class="command"><strong>ln -v -s /usr/bin/xsane
+          /usr/lib/gimp/2.0/plug-ins/</strong></span>: This creates a link in
+          the system-wide <span class="application">GIMP</span> <code class=
+          "filename">plug-ins</code> directory so that users can access
+          <span class="application">XSane</span> directly from <span class=
+          "application">GIMP</span>. <span class="application">GIMP</span>
+          must be available before building <span class=
+          "application">XSane</span> for this to work. Alternatively, create
+          the link in <code class="filename">~/.gimp-2.0/plug-ins/</code> to
+          provide individual user access. <span class="command"><strong>man
+          xsane</strong></span> for additional information.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">xsane</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/share/doc/xsane-0.999 and
+              /usr/share/sane/xsane</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="xsane-prog" name="xsane-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>xsane</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a graphical user-interface to control an image
+                    acquisition device such as a flatbed scanner.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-19 16:31:22 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="sane.html" title="SANE-1.0.27">Prev</a>
+          <p>
+            SANE-1.0.27
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="sgml.html" title=
+          "Standard Generalized Markup Language (SGML)">Next</a>
+          <p>
+            Standard Generalized Markup Language (SGML)
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="scanning.html" title=
+          "Chapter&nbsp;47.&nbsp;Scanning">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

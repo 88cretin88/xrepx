@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Vulnerabilities
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;4.&nbsp;Security
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="security.html" title="Security">Prev</a>
+          <p>
+            Security
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="make-ca.html" title="make-ca-1.5">Next</a>
+          <p>
+            make-ca-1.5
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="security.html" title=
+          "Chapter&nbsp;4.&nbsp;Security">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="vulnerabilities" name="vulnerabilities"></a>Vulnerabilities
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          About vulnerabilities
+        </h2>
+        <p>
+          All software has bugs. Sometimes, a bug can be exploited, for
+          example to allow users to gain enhanced privileges (perhaps gaining
+          a root shell, or simply accessing or deleting other user's files),
+          or to allow a remote site to crash an application (denial of
+          service), or for theft of data. These bugs are labelled as
+          vulnerabilities.
+        </p>
+        <p>
+          The main place where vulnerabilities get logged is <a class="ulink"
+          href="http://cve.mitre.org">cve.mitre.org</a>. Unfortunately, many
+          vulnerability numbers (CVE-yyyy-nnnn) are initially only labelled
+          as "reserved" when distributions start issuing fixes. Also, some
+          vulnerabilities apply to particular combinations of <span class=
+          "command"><strong>configure</strong></span> options, or only apply
+          to old versions of packages which have long since been updated in
+          BLFS.
+        </p>
+        <p>
+          BLFS differs from distributions - there is no BLFS security team,
+          and the editors only become aware of vulnerabilities after they are
+          public knowledge. Sometimes, a package with a vulnerability will
+          not be updated in the book for a long time. Issues can be logged in
+          the Trac system, which might speed up resolution.
+        </p>
+        <p>
+          The normal way for BLFS to fix a vulnerability is, ideally, to
+          update the book to a new fixed release of the package. Sometimes
+          that happens even before the vulnerability is public knowledge, so
+          there is no guarantee that it will be shown as a vulnerability fix
+          in the Changelog. Alternatively, a <span class=
+          "command"><strong>sed</strong></span> command, or a patch taken
+          from a distribution, may be appropriate.
+        </p>
+        <p>
+          The bottom line is that you are responsible for your own security,
+          and for assessing the potential impact of any problems.
+        </p>
+        <p>
+          To keep track of what is being discovered, you may wish to follow
+          the security announcements of one or more distributions. For
+          example, Debian has <a class="ulink" href=
+          "http://www.debian.org/security">Debian security</a>. Fedora's
+          links on security are at <a class="ulink" href=
+          "http://fedoraproject.org/wiki/Security">the Fedora wiki</a>.
+          Details of Gentoo linux security announcements are discussed at
+          <a class="ulink" href="https://security.gentoo.org">Gentoo
+          security</a>. Finally, the Slackware archives of security
+          announcements are at <a class="ulink" href=
+          "http://slackware.com/security">Slackware security</a>.
+        </p>
+        <p>
+          The most general English source is perhaps <a class="ulink" href=
+          "http://seclists.org/fulldisclosure">the Full Disclosure Mailing
+          List</a>, but please read the comment on that page. If you use
+          other languages you may prefer other sites such as
+          http://www.heise.de/security <a class="ulink" href=
+          "http://www.heise.de/security">heise.de</a> (German) or <a class=
+          "ulink" href="http://www.cert.hr">cert.hr</a> (Croatian). These are
+          not linux-specific. There is also a daily update at lwn.net for
+          subscribers (free access to the data after 2 weeks, but their
+          vulnerabilities database at <a class="ulink" href=
+          "http://lwn.net/Vulnerabilities/">lwn.net/Vulnerabilities</a> is
+          unrestricted).
+        </p>
+        <p>
+          For some packages, subscribing to their 'announce' lists will
+          provide prompt news of newer versions.
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/vulnerabilities">http://wiki.linuxfromscratch.org/blfs/wiki/vulnerabilities</a>
+        </p>
+      </div>
+      <p class="updated">
+        Last updated on 2015-09-20 15:38:20 -0700
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="security.html" title="Security">Prev</a>
+          <p>
+            Security
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="make-ca.html" title="make-ca-1.5">Next</a>
+          <p>
+            make-ca-1.5
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="security.html" title=
+          "Chapter&nbsp;4.&nbsp;Security">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

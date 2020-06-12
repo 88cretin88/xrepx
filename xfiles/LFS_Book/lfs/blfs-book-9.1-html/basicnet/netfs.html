@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Configuring for Network Filesystems
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;15.&nbsp;Networking Programs
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="nfs-utils.html" title=
+          "NFS-Utils-2.4.3">Prev</a>
+          <p>
+            NFS-Utils-2.4.3
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="ntp.html" title="ntp-4.2.8p13">Next</a>
+          <p>
+            ntp-4.2.8p13
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netprogs.html" title=
+          "Chapter&nbsp;15.&nbsp;Networking Programs">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="postlfs-config-netfs" name=
+        "postlfs-config-netfs"></a>Configuring for Network Filesystems
+      </h1>
+      <p>
+        While LFS is capable of mounting network file systems such as NFS,
+        these are not mounted by the <code class="filename">mountfs</code>
+        init script. Network file systems must be mounted after the
+        networking is activated and unmounted before the network goes down.
+        The <code class="filename">netfs</code> bootscript was written to
+        handle both boot-time mounting of network filesystems, if the entry
+        in <code class="filename">/etc/fstab</code> contains the <code class=
+        "option">_netdev</code> option, and unmounting of all network
+        filesystems before the network is brought down.
+      </p>
+      <p>
+        As the <code class="systemitem">root</code> user, install the
+        <code class="filename">/etc/rc.d/init.d/netfs</code> bootscript
+        included with the <a class="xref" href=
+        "../introduction/bootscripts.html" title=
+        "BLFS Boot Scripts">blfs-bootscripts-20191204</a> package.
+      </p>
+      <pre class="root">
+<kbd class="command">make install-netfs</kbd>
+</pre>
+      <p class="updated">
+        Last updated on 2016-06-10 22:26:20 -0700
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="nfs-utils.html" title=
+          "NFS-Utils-2.4.3">Prev</a>
+          <p>
+            NFS-Utils-2.4.3
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="ntp.html" title="ntp-4.2.8p13">Next</a>
+          <p>
+            ntp-4.2.8p13
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netprogs.html" title=
+          "Chapter&nbsp;15.&nbsp;Networking Programs">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

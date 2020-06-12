@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      fop-2.4
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;50.&nbsp;PostScript
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="epdfview.html" title=
+          "ePDFView-0.1.8">Prev</a>
+          <p>
+            ePDFView-0.1.8
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="mupdf.html" title="MuPDF-1.16.1">Next</a>
+          <p>
+            MuPDF-1.16.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="ps.html" title=
+          "Chapter&nbsp;50.&nbsp;PostScript">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="fop" name="fop"></a>fop-2.4
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to fop
+        </h2>
+        <p>
+          The <span class="application">FOP</span> (Formatting Objects
+          Processor) package contains a print formatter driven by XSL
+          formatting objects (XSL-FO). It is a <span class=
+          "application">Java</span> application that reads a formatting
+          object tree and renders the resulting pages to a specified output.
+          Output formats currently supported include PDF, PCL, PostScript,
+          SVG, XML (area tree representation), print, AWT, MIF and ASCII
+          text. The primary output target is PDF.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://archive.apache.org/dist/xmlgraphics/fop/source/fop-2.4-src.tar.gz">
+                https://archive.apache.org/dist/xmlgraphics/fop/source/fop-2.4-src.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: e379d5916bc705b6fd3808a77f5d8478
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 26 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 252 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.4 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Additional Downloads
+        </h3>
+        <div class="itemizedlist">
+          <p class="title">
+            <strong>Required Additional Downloads:</strong>
+          </p>
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                PDFBox:<br />
+                <a class="ulink" href=
+                "http://mirror.reverse.net/pub/apache/pdfbox/2.0.18/pdfbox-2.0.18.jar">
+                http://mirror.reverse.net/pub/apache/pdfbox/2.0.18/pdfbox-2.0.18.jar</a><br />
+
+                d4b837bba123ee8a4279da65c096c311<br />
+                2.6 MB<br />
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                PDFBox Fonts:<br />
+                <a class="ulink" href=
+                "http://mirror.reverse.net/pub/apache/pdfbox/2.0.18/fontbox-2.0.18.jar">
+                http://mirror.reverse.net/pub/apache/pdfbox/2.0.18/fontbox-2.0.18.jar</a><br />
+
+                f7f35e37225dcb3248c199f1d603a5b0<br />
+                1.5 MB<br />
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="itemizedlist">
+          <p class="title">
+            <strong>Recommended packages</strong>
+          </p>
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Objects for Formatting Objects (OFFO) hyphenation
+                patterns:<br />
+                <a class="ulink" href=
+                "https://downloads.sourceforge.net/offo/2.2/offo-hyphenation.zip">
+                https://downloads.sourceforge.net/offo/2.2/offo-hyphenation.zip</a><br />
+
+                bf9c09bf05108ef9661b8f08d91c2336<br />
+                862 KB<br />
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          fop Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../general/apache-ant.html" title=
+          "apache-ant-1.10.7">apache-ant-1.10.7</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../x/installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">X Window
+          System</a> (to run tests), <a class="ulink" href=
+          "http://jai-tools.blogspot.com/">JAI Image I/O Tools</a>, and
+          <a class="ulink" href="http://jeuclid.sourceforge.net/">JEuclid</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/fop">http://wiki.linuxfromscratch.org/blfs/wiki/fop</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of fop
+        </h2>
+        <p>
+          Ensure <code class="envar">$JAVA_HOME</code> is set correctly
+          before beginning the build. To build the <span class=
+          "application">JIMI SDK</span> and/or <span class=
+          "application">XMLUnit</span> extension classes, ensure the
+          corresponding <code class="filename">.jar</code> files can be found
+          via the <code class="envar">CLASSPATH</code> environment variable.
+        </p>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779230389584" name="idm45779230389584"></a>Installing
+            OFFO Hyphenation Patterns
+          </h4>
+          <p>
+            Copy the XML hyphenation patterns into the fop source tree by
+            running the following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">unzip ../offo-hyphenation.zip &amp;&amp;
+cp offo-hyphenation/hyph/* fop/hyph &amp;&amp;
+rm -rf offo-hyphenation</kbd>
+</pre>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779230386976" name="idm45779230386976"></a>Installing
+            fop Components
+          </h4>
+          <p>
+            The <span class="command"><strong>javadoc</strong></span> command
+            that ships with OpenJDK 10 and later has become much stricter
+            than previous versions regarding conformance of the Javadoc
+            comments in source code to HTML. The FOP documentation does not
+            meet those standards, so the conformance checks have to be
+            disabled. This can be done with the following command:
+          </p>
+          <pre class="userinput">
+<kbd class="command">sed -i '\@&lt;/javad@i\
+&lt;arg value="-Xdoclint:none"/&gt;\
+&lt;arg value="--allow-script-in-comments"/&gt;\
+&lt;arg value="--ignore-source-errors"/&gt;' \
+    fop/build.xml</kbd>
+</pre>
+          <p>
+            The stack size set in <code class="filename">build.xml</code> for
+            building the hyphenation patterns is not large enough. Change it
+            by running:
+          </p>
+          <pre class="userinput">
+<kbd class="command">sed -e '/hyph\.stack/s/512k/1M/' \
+    -i fop/build.xml</kbd>
+</pre>
+          <p>
+            With <a class="xref" href="../general/openjdk.html" title=
+            "OpenJDK-12.0.2">OpenJDK-12.0.2</a>, the minimum source version
+            is 1.7, while <span class="application">FOP</span> build system
+            has 1.6. Change that:
+          </p>
+          <pre class="userinput">
+<kbd class="command">sed -e 's/1\.6/1.7/' \
+    -i fop/build.xml</kbd>
+</pre>
+          <p>
+            The <code class="filename">build.xml</code> file calls for an old
+            version of <span class="application">PDFBox</span> components
+            that are no longer available. Copy the updated PDFBox components
+            into the source tree:
+          </p>
+          <pre class="userinput">
+<kbd class="command">cp ../{pdf,font}box-2.0.18.jar fop/lib</kbd>
+</pre>
+          <p>
+            Compile <span class="application">fop</span> by running the
+            following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">cd fop                    &amp;&amp;
+export LC_ALL=en_US.UTF-8 &amp;&amp;
+ant all javadocs          &amp;&amp;
+mv build/javadocs .</kbd>
+</pre>
+          <p>
+            The <span class="application">junit</span> test suite was run as
+            part of the above commands.
+          </p>
+          <p>
+            Now, install <span class="application">Fop</span> as the
+            <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class=
+"command">install -v -d -m755 -o root -g root          /opt/fop-2.4 &amp;&amp;
+cp -vR build conf examples fop* javadocs lib /opt/fop-2.4 &amp;&amp;
+chmod a+x /opt/fop-2.4/fop                                &amp;&amp;
+ln -v -sfn fop-2.4 /opt/fop</kbd>
+</pre>
+        </div>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>sed -i ... build.xml</strong></span>:
+          This adds two switches to the <span class=
+          "command"><strong>javadoc</strong></span> command, preventing some
+          errors to occur when building the documentation.
+        </p>
+        <p>
+          <span class="command"><strong>export
+          LC_ALL=en_US.UTF-8</strong></span>: the compiler fails if using an
+          ASCII locale.
+        </p>
+        <p>
+          <span class="command"><strong>ant <code class=
+          "option">target</code></strong></span>: This reads the file
+          <code class="filename">build.xml</code> and builds the target:
+          <code class="option">compile</code> compiles the java sources,
+          <code class="option">jar-main</code> generates jar archives,
+          <code class="option">jar-hyphenation</code> generates the
+          hyphenation patterns for FOP, <code class="option">junit</code>
+          runs the <span class="application">junit</span> tests, and
+          <code class="option">javadocs</code> builds the documentation. The
+          <code class="option">all</code> target runs all of the above.
+        </p>
+        <p>
+          <span class="command"><strong>ln -v -sf fop-2.4
+          /opt/fop</strong></span>: This is optional and creates a
+          convenience symlink so that <code class="envar">$FOP_HOME</code>
+          doesn't have to be changed each time there's a package version
+          change.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring fop
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="fop-config" name="fop-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="fop-config" name="fop-config"></a>Config Files
+          </h4>
+          <p>
+            <code class="filename">~/.foprc</code>
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779230350928" name=
+            "idm45779230350928"></a>Configuration Information
+          </h4>
+          <p>
+            Using <span class="application">fop</span> to process some large
+            FO's (including the FO derived from the BLFS XML sources), can
+            lead to memory errors. Unless you add a parameter to the
+            <span class="command"><strong>java</strong></span> command used
+            in the <span class="command"><strong>fop</strong></span> script
+            you may receive messages similar to the one shown below:
+          </p>
+          <p>
+            <code class="computeroutput">Exception in thread "main"
+            java.lang.OutOfMemoryError: Java heap space</code>
+          </p>
+          <p>
+            To avoid errors like this, you need to pass an extra parameter to
+            the <span class="command"><strong>java</strong></span> command
+            used in the <span class="command"><strong>fop</strong></span>
+            script. This can be accomplished by creating a <code class=
+            "filename">~/.foprc</code> (which is sourced by the <span class=
+            "command"><strong>fop</strong></span> script) and adding the
+            parameter to the <code class="envar">FOP_OPTS</code> environment
+            variable.
+          </p>
+          <p>
+            The <span class="command"><strong>fop</strong></span> script
+            looks for a <code class="envar">FOP_HOME</code> environment
+            variable to locate the <span class="application">fop</span> class
+            libraries. You can create this variable using the <code class=
+            "filename">~/.foprc</code> file as well. Create a <code class=
+            "filename">~/.foprc</code> file using the following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">cat &gt; ~/.foprc &lt;&lt; "EOF"
+<code class="literal">FOP_OPTS="-Xmx<em class=
+"replaceable"><code>&lt;RAM_Installed&gt;</code></em>m"
+FOP_HOME="/opt/fop"</code>
+EOF</kbd>
+</pre>
+          <p>
+            Replace <em class=
+            "replaceable"><code>&lt;RAM_Installed&gt;</code></em> with a
+            number representing the amount of RAM installed in your computer
+            (in megabytes). An example would be <strong class=
+            "userinput"><code>FOP_OPTS="-Xmx768m"</code></strong>.
+          </p>
+          <p>
+            To include the <span class="command"><strong>fop</strong></span>
+            script in your path, update the system-wide profile with the
+            following command as the <code class="systemitem">root</code>
+            user:
+          </p>
+          <pre class="root">
+<kbd class="command">cat &gt; /etc/profile.d/fop.sh &lt;&lt; "EOF"
+<code class="literal"># Begin /etc/profile.d/fop.sh
+
+pathappend /opt/fop
+
+# End /etc/profile.d/fop.sh</code>
+EOF</kbd>
+</pre>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              Running <span class="command"><strong>fop</strong></span> can
+              be somewhat verbose. The default logging level can be changed
+              from INFO to any of FINEST, FINER, FINE, CONFIG, INFO, WARNING,
+              SEVERE, ALL, or OFF. To do this, edit <code class=
+              "filename">$JAVA_HOME/jre/lib/logging.properties</code> and
+              change the entries for <code class="option">.level</code> and
+              <code class=
+              "option">java.util.logging.ConsoleHandler.level</code> to the
+              desired value.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">fop</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">fop.jar and numerous support library
+              classes located in <code class=
+              "filename">/opt/fop/{build,lib}</code>; JAI components include
+              libmlib_jai.so, jai_codec.jar, jai_core.jar, and
+              mlibwrapper_jai.jar</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/opt/fop-2.4</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="fop-prog" name="fop-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>fop</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a wrapper script to the <span class=
+                    "command"><strong>java</strong></span> command which sets
+                    up the <span class="application">fop</span> environment
+                    and passes the required parameters.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="fop.jar" name="fop.jar"></a><span class=
+                    "term"><code class="filename">fop.jar</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains all the <span class="application">fop</span>
+                    <span class="application">Java</span> classes.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-18 12:45:12 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="epdfview.html" title=
+          "ePDFView-0.1.8">Prev</a>
+          <p>
+            ePDFView-0.1.8
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="mupdf.html" title="MuPDF-1.16.1">Next</a>
+          <p>
+            MuPDF-1.16.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="ps.html" title=
+          "Chapter&nbsp;50.&nbsp;PostScript">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-procps" role="wrap">
+  <?dbhtml filename="procps-ng.html"?>
+
+  <sect1info condition="script">
+    <productname>procps-ng</productname>
+    <productnumber>&procps-ng-version;</productnumber>
+    <address>&procps-ng-url;</address>
+  </sect1info>
+
+  <title>Procps-ng-&procps-ng-version;</title>
+
+  <indexterm zone="ch-system-procps">
+    <primary sortas="a-Procps">Procps-ng</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <para>Пакет Procps-ng содержит программы для мониторинга за процессами.</para>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&procps-ng-ch6-sbu;</seg>
+        <seg>&procps-ng-ch6-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Установка пакета Procps-ng</title>
+
+    <para>Подготовьте пакет procps-ng к компиляции:</para>
+
+<screen revision="sysv"><userinput remap="configure">./configure --prefix=/usr                            \
+            --exec-prefix=                           \
+            --libdir=/usr/lib                        \
+            --docdir=/usr/share/doc/procps-ng-&procps-ng-version; \
+            --disable-static                         \
+            --disable-kill</userinput></screen>
+
+<screen revision="systemd"><userinput remap="configure">./configure --prefix=/usr                            \
+            --exec-prefix=                           \
+            --libdir=/usr/lib                        \
+            --docdir=/usr/share/doc/procps-ng-&procps-ng-version; \
+            --disable-static                         \
+            --disable-kill                           \
+            --with-systemd</userinput></screen>
+
+    <variablelist>
+      <title>Значение параметров конфигурации:</title>
+
+      <varlistentry>
+        <term><parameter>--disable-kill</parameter></term>
+        <listitem>
+          <para>Этот аргумент отключает сборку программы <command>kill</command>
+          которая будет содержится в пакете Util-linux и будет установлена позднее.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Скомпилируйте пакет:</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>Для выполнения набора тестов в среде LFS, требуется внести некоторые модификации. Удалите тесто которые не работает когда используется tty устройство и исправьте два других. Для выполнения тестов, выполните следующую команду:</para>
+
+<screen><userinput remap="test">sed -i -r 's|(pmap_initname)\\\$|\1|' testsuite/pmap.test/pmap.exp
+sed -i '/set tty/d' testsuite/pkill.test/pkill.exp
+rm testsuite/pgrep.test/pgrep.exp
+make check</userinput></screen>
+
+    <para>Установите пакет:</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+<para>Наконец, переместите необходимые библиотеки в каталог, который может быть найден, если каталог
+<filename class="directory">/usr</filename> не примонтирован.</para>
+
+<screen><userinput remap="install">mv -v /usr/lib/libprocps.so.* /lib
+ln -sfv ../../lib/$(readlink /usr/lib/libprocps.so) /usr/lib/libprocps.so</userinput></screen>
+
+  </sect2>
+
+  <sect2 id="contents-procps" role="content">
+    <title>Содержимое пакета Procps-ng</title>
+
+    <segmentedlist>
+      <segtitle>Установленные программы</segtitle>
+      <segtitle>Установленная библиотека</segtitle>
+      <segtitle>Установленные каталоги</segtitle>
+
+      <seglistitem>
+        <seg>free, pgrep, pidof, pkill, pmap, ps, pwdx, slabtop,
+        sysctl, tload, top, uptime, vmstat, w, and watch</seg>
+        <seg>libprocps.so</seg>
+        <seg>/usr/include/proc and /usr/share/doc/procps-ng-&procps-ng-version;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Краткое описание</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="free">
+        <term><command>free</command></term>
+        <listitem>
+          <para>Сообщает количество свободной и используемой памяти (как физических, так и
+           файла подкачки) в системе</para>
+          <indexterm zone="ch-system-procps free">
+            <primary sortas="b-free">free</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pgrep">
+        <term><command>pgrep</command></term>
+        <listitem>
+          <para>Поиск процессов на основе их имени и других атрибутов</para>
+          <indexterm zone="ch-system-procps pgrep">
+            <primary sortas="b-pgrep">pgrep</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pidof">
+        <term><command>pidof</command></term>
+        <listitem>
+          <para>Сообщает PID указанной программы</para>
+          <indexterm zone="ch-system-procps pidof">
+            <primary sortas="b-pidof">pidof</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pkill">
+        <term><command>pkill</command></term>
+        <listitem>
+          <para>Обработка сигналов на основе их имени и других атрибутов</para>
+          <indexterm zone="ch-system-procps pkill">
+            <primary sortas="b-pkill">pkill</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pmap">
+        <term><command>pmap</command></term>
+        <listitem>
+          <para>Сообщает карту памяти данного процесса</para>
+          <indexterm zone="ch-system-procps pmap">
+            <primary sortas="b-pmap">pmap</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="ps">
+        <term><command>ps</command></term>
+        <listitem>
+          <para>Перечисляет текущие запущенные процессы</para>
+          <indexterm zone="ch-system-procps ps">
+            <primary sortas="b-ps">ps</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="pwdx">
+        <term><command>pwdx</command></term>
+        <listitem>
+          <para>Сообщает текущий рабочий каталог процесса</para>
+          <indexterm zone="ch-system-procps pwdx">
+            <primary sortas="b-pwdx">pwdx</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="slabtop">
+        <term><command>slabtop</command></term>
+        <listitem>
+          <para>Отображает подробную информацию о slab кеше в реальном времени</para>
+          <indexterm zone="ch-system-procps slabtop">
+            <primary sortas="b-slabtop">slabtop</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="sysctl">
+        <term><command>sysctl</command></term>
+        <listitem>
+          <para>Изменяет параметры ядра во время выполнения</para>
+          <indexterm zone="ch-system-procps sysctl">
+            <primary sortas="b-sysctl">sysctl</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="tload">
+        <term><command>tload</command></term>
+        <listitem>
+          <para>Распечатывает график текущей средней загрузки системы</para>
+          <indexterm zone="ch-system-procps tload">
+            <primary sortas="b-tload">tload</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="top">
+        <term><command>top</command></term>
+        <listitem>
+          <para>Отображает список наиболее интенсивных процессов; Это
+           обеспечивает постоянный просмотр активности процессора в режиме реального времени</para>
+          <indexterm zone="ch-system-procps top">
+            <primary sortas="b-top">top</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="uptime">
+        <term><command>uptime</command></term>
+        <listitem>
+          <para>Сообщает, сколько времени работает система, сколько пользователей
+           вошедшие в систему и средние значения загрузки системы</para>
+          <indexterm zone="ch-system-procps uptime">
+            <primary sortas="b-uptime">uptime</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="vmstat">
+        <term><command>vmstat</command></term>
+        <listitem>
+          <para>Статистика виртуальной памяти, информация о
+           процессах, памяти, пейджинге, блоке ввода / вывода (IO), ловушки и активность центрального процессора
+           </para>
+          <indexterm zone="ch-system-procps vmstat">
+            <primary sortas="b-vmstat">vmstat</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="w">
+        <term><command>w</command></term>
+        <listitem>
+          <para>Показывает, какие пользователи в настоящее время зарегистрированы, где и с каких пор</para>
+          <indexterm zone="ch-system-procps w">
+            <primary sortas="b-w">w</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="watch">
+        <term><command>watch</command></term>
+        <listitem>
+          <para>Повторно запускает заданную команду, отображая первый
+           полный экран его вывода; это позволяет пользователю наблюдать за
+           изменениеми с течением времени</para>
+          <indexterm zone="ch-system-procps watch">
+            <primary sortas="b-watch">watch</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="libprocps">
+        <term><filename class="libraryfile">libprocps</filename></term>
+        <listitem>
+          <para>Содержит функции используемые многими проограммами пакета</para>
+          <indexterm zone="ch-system-procps libprocps">
+            <primary sortas="c-libprocps">libprocps</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1>

@@ -1,0 +1,430 @@
+﻿sudo setfont ter-u14n
+
+
+01. После чистой установки первым делом нам надо будет включить менеджеры сети:
+
+
+sudo systemctl enable --now NetworkManager wpa_supplicant
+
+
+manjaro-settings-manager
+
+
+02. Далее устанавляем и настраиваем Pamac
+
+
+sudo pacman -S pamac
+
+￼
+
+￼
+
+￼
+
+03. Устанавливаем драйвера для вашей видеокарты, у меня например это Nvidia
+
+￼
+
+￼
+
+Щелкаем правой кнопкой по первой строке "video-nvidia" и нажимаем "Установить" и перезапускаемся!
+
+
+￼
+
+04. Удаляем все ненужные нам пакеты, через Pamac и жмем "Применить"
+
+
+￼
+
+Помните! Лучше удалять пакеты поочередно, если вы неуверены в их надобности. Пакет за пакетом читайте, что вам выдает Pamac и о каких зависимостях вас предупреждает. Такие приложения например как Cheese удалять не рекомендуется ... Есть большой риск сломать Gnome.
+
+
+Вот список приложеий, который обычно сношу я без каких либо последствий для системы:
+
+￼
+
+В любом случае можно попытаться удалить приложение, при этом сохранив зависимости, командой:
+
+
+sudo pacman -Rdd [название пакеты]
+
+
+В итоге после очистки системы от ненужного мне хлама, получаем следующую картину (можно лучше, но мне так гуд): 
+
+
+P.S. Для вывода всех данных о вашей системе нужно установить несколько доп. пакетов:
+
+
+sudo pacman -S neofetch inxi htop
+
+
+￼
+
+
+05. Устанавливаем приложение Доп. настройки Gnome: gnome-tweaks 
+
+
+￼
+
+
+06. Установка расширений для Gnome 3 и их настройка
+
+
+Для начала нам будет необходимо установить браузер, в моем случае Chromium и еще пару пакетов:
+
+
+- chromium                                // Непосредственно сам браузер
+
+- chrome-gnome-shell           // Прослойка между Gnome 3 и Chromium
+
+- chromium-widevine             // Дополнение которое позволит вам смотреть DRM контент, например Netflix
+
+
+И уже после установки браузера, надо скачать дополнение для Chromium: Gnome Shell Integration
+
+
+Далее переходим на сайт с расширениями и устанавливаем нужные нам ... Ниже представлен список расширений, которые использую я сам и непосредственно мои настройки для этих расширений.
+
+
+-  Dash to Dock - использую это расширение в качестве нижнего дока, где вывожу все нужные мне приложения
+
+￼￼
+
+￼
+
+- Dash to Panel - использую это расширение в качестве верхней панели 
+
+
+Из преимуществ: кнопка сворачивания окон как в Windows, более компактная организация виджетов верхнего бара (часы, погода, расскаладка и т.д.)
+
+
+￼
+
+
+
+￼
+
+￼
+
+￼
+
+￼
+
+- Arc Menu - использую как меню "Пуск" 
+
+
+￼
+
+￼
+
+￼
+
+￼
+
+
+- Appfolders Management extension - позволит создавать папки в гномовском меню приложений. Я например, создаю папку "Хлам" и прихаю туда все ненужные мне иконки, чтобы не мешали и не было мешанины.
+
+￼
+
+- More columns in applications view - расширение позволяет добавить дополниетльные колонки в меню приложений Gnome 3. Для того чтобы настройки вступили в силу требуется презагрузка ПК.
+
+￼
+
+￼
+
+- Arch Linux Updates Indicator - поможет держать вашу систему в актуальном состоянии и не пропускать важных обновлений
+
+- TopIcons Redux - Выносит в верхний правый трей, все свернытые приложения
+
+- Sound Settings - Добавляет в верхний правый трей, кнопку для быстрого перехода к настройкам звука
+
+- Sound Input & Output Device Chooser - Раширяет правое меню и позволяет вам выбирать нужные Входы/Выходы
+
+
+Правый и левый углы в верхнем баре Gnome 3, изначально занимает много места и очень мозолит глаза, особенно на ноутбках... Исправляем это расширениями:
+
+
+Icon Area Horizontal Spacing - Максимально сдвигает иконки в левом верхнем углу
+
+Status Area Horizontal Spacing - Максимально сдвигает иконки в правом верхнем углу
+
+Remove Dropdown Arrows - Удаляет "мини-стрелочки" у каждой иконки в статус-трее (верхний левый угол)
+
+
+
+- Убираем сфетофор с трее
+
+
+yay -S hardcode-tray-git sni-qt-patched-git lib32-sni-qt-patched-git
+
+
+После установки вы може заменить светофорные иконки командой:
+
+
+sudo -E hardcode-tray —conversion-tool RSVGConvert —size 16 —theme Papirus-Dark
+
+
+Где —theme Papirus-Dark или Papirus-Light, —size 16 или 20 или 24
+
+
+
+включить функцию разгона для видеокарт Nvidia, для этого нужно следующе
+
+Создать файл с доп.конфигурацией для видеокарты
+
+sudo mkdir /etc/X11/xorg.conf.d/
+
+sudo gedit /etc/X11/xorg.conf.d/20-nvidia.conf
+
+далее нужно добавить в него это:
+
+Section "Device"
+
+Identifier "Device0"
+
+Driver "nvidia"
+
+VendorName "NVIDIA Corporation"
+
+BoardName "GeForce GTX 660"
+
+#если у вас уже есть настройки в файле, достаточно добавить два пункта ниже.
+
+Option "RegistryDwords" "PerfLevelSrc=0x2222"
+
+Option "TripleBuffer" "True"
+
+Option "Coolbits" "28"
+
+EndSection
+
+Section "Screen"
+
+Identifier "Screen0"
+
+Device "Device0"
+
+Monitor "Monitor0"
+
+DefaultDepth 24
+
+Option "Stereo" "0"
+
+Option "nvidiaXineramaInfoOrder" "DFP-0"
+
+#если у вас уже есть настройки в файле, достаточно добавить пункт ниже.
+
+Option "metamodes" "nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
+
+Option "SLI" "Off"
+
+Option "MultiGPU" "Off"
+
+Option "BaseMosaic" "off"
+
+SubSection "Display"
+
+Depth 24
+
+EndSubSection
+
+EndSection
+
+после сохранитесь и перезагрузите ПК.
+
+
+
+
+
+Улучшаем Gnome 3
+
+
+
+Улучшаем Gnome 3 - #шпаргалки@godofgnome
+
+
+- Патчи Performance (улучшения производительности и плавности, которые будут добавлены в Gnome 3.34): mutter-performance и gnome-shell-performance
+
+- Демон отслеживающий вашу оперативную память и "бьющий по рукам" слишком "прожорливые" приложения: low-memory-monitor-git
+
+
+Все пакеты есть в AUR. Для их установки я использую графическую утилиту Pamac, предварительно включив эту опцию в настройках утилиты.
+
+
+Устанавливать лучше на чистую систему, после установки перезагрузится. Перед любыми манипуляциями с вашей ОС, не забудьте сделать бэкап системы с помощью TimeShift.
+
+
+Любое действие, производите лишь вы сами, на свой страх и риск! Сообщество God of Gnome™ | Manjaro | Gnome 3 ни несет никакой ответственность за целостность вашей ОС и железа в целом.
+
+
+6.2.УМЕНЬШЕНИЕ ИСПОЛЬЗОВАНИЯ ФАЙЛА ПОДКАЧКИ(использовать если у вас памяти более 3гб):
+
+echo -e "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf
+
+# Параметр ниже использовать только если у вас надежный SSD и 8Гб+ Памяти
+
+echo -e "vm.vfs_cache_pressure=1000" | sudo tee -a /etc/sysctl.conf
+
+
+Автор: Яцына М.А.
+
+
+6.3.УСКОРЕНИЕ UBUNTU ЕСЛИ У ВАС ССД ДИСК + ПАМЯТЬ 8Гб+ [НЕ ВСЕМ ПОДОЙДЕТ]
+
+vm.dirty_background_ratio - размер оперативной памяти для размещения подготовленных для записи страниц кэша.
+
+vm.dirty_ratio - размер оперативной памяти для размещения общего кэша записи.
+
+Все эти параметры записываются в файл sudo gedit /etc/sysctl.conf.
+
+Узнать текущие значения этих параметров можно командой sysctl -a | grep dirty. dirty
+
+Пример 1. Увеличение размера кэша записи (ускорение работы системы):
+
+vm.dirty_background_ratio = 50
+
+vm.dirty_ratio = 80
+
+Пример 2. Уменьшение размера кэша записи:
+
+vm.dirty_background_ratio = 5
+
+vm.dirty_ratio = 10
+
+ввести эти команды в терминал для ускарения системы
+
+echo -e "vm.dirty_background_ratio = 50" | sudo tee -a /etc/sysctl.conf
+
+echo -e "vm.dirty_ratio = 80" | sudo tee -a /etc/sysctl.conf
+
+
+Автор: Яцына М.А.
+
+
+
+
+6.3a TMP ПАПКУ В ОПЕРАТИВНУЮ ПАМЯТЬ
+
+echo 'tmpfs /tmp tmpfs noatime,nodiratime,mode=1777,size=50% 0 0' | sudo tee -a /etc/fstab
+
+Здесь size=50% устанавливает максимальный объём диска в половину всей физической памяти (это также и значение по умолчанию). Изменения вступят в силу после перезагрузки.
+
+
+Автор: Яцына М.А.
+
+
+
+Расширяем neofetch
+
+
+mkdir -p ~/.config/neofetch
+
+neofetch --print_config > ~/.config/neofetch/config.conf
+
+gedit ~/.config/neofetch/config.conf
+
+
+И в файле конфига надо раскоментировать, те опции которые интересны ... 
+
+
+Прыгаем с ветки на ветку 
+
+stable, testing, unstable               https://wiki.manjaro.org/index.php?title=Switching_Branches
+
+
+sudo pacman-mirrors --api --set-branch testing
+
+sudo pacman-mirrors --fasttrack && sudo pacman -Syyuu
+
+
+
+Сервисы, которые сделают вашу жизнь лучше
+
+
+МУЗЫКА:
+
+
+Любой музыкальный сервис (30 штук) можно подключить через систему модулей в Nuvola Player: https://nuvola.tiliado.eu/index/
+
+
+Как установить: https://nuvola.tiliado.eu/nuvola/archlinux/
+
+
+sudo pacman -S flatpak  
+
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+flatpak remote-add --if-not-exists nuvola https://dl.tiliado.eu/flatpak/nuvola.flatpakrepo
+
+flatpak update
+
+
+Google Play Music [flatpak install nuvola eu.tiliado.NuvolaAppGooglePlayMusic]
+
+YouTube Music [flatpak install nuvola eu.tiliado.NuvolaAppYoutubeMusic] 
+
+
+Все сервисы доступные в Nuvola Player: https://nuvola.tiliado.eu/#services
+
+
+Как альтернатива, которую лично использую:  https://vk.com/godofgnome?w=wall-151303502_3350 
+
+
+КИНО, СЕРИАЛЫ
+
+
+Filmix Pro++ - Не совсем легальный сервис, но фильмы в 4К с русской озвучкой и без региональных ограничений
+
+Netflix - семейный аккант на 6 устройсв, 4K качество, начала появлятся русская озвучка 
+
+
+ФОТО
+
+
+Google Photo [google-photos-desktop] - больше не надо думать где хранить тонны своих фотографий ... Для всех андройд устройств есть сервис от Google, который позволит сохранить все ваши фотографии в безлимитном облаке сервиса ... 
+
+
+АРХИВАЦИЯ/СИНХРОНИЗАЦИЯ
+
+
+Google Drive [Добавляем аккаунт в Gnome 3]- основное облако, где храню все свои файлы настроек системы и вообще это моя свалка файлов или сканов чеков) Очень хорошо интегрируется в Nautilus в Gnome 3
+
+
+РАБОТА С ДОКУМЕНТАМИ
+
+
+Gnome Документы - в них легко интегрируется сервис Google Docs и можно с легкостью редактировать документы прямо в облаке
+
+Evernote [tusk] - неофициальный клиент дл Evernote, мне хватает и бесплатной версии 
+
+
+ИГРЫ
+
+
+Steam [steam-manjaro] - один из самых крутых клиентов для линукс-гейминга ... Конечно-же не стоит забывать, что это Linux, но все радикально меняется и очень много игр теперь работают стабильно ... 
+
+
+VPN 
+
+
+CyberGhost - крутой VPN, очень легко интегрируется в Gnome 3, можно пропускать весь торрент трафик ... 20 евро в год
+
+
+СОЦ. СЕТИ/МЕССЕНДЖЕРЫ
+
+
+- Telegram [telegram-desktop]
+
+- WhatsApp [whatsapp-nativefier]
+
+- VK Messenger [vk-messenger]
+
+
+
+
+
+
+
+
+

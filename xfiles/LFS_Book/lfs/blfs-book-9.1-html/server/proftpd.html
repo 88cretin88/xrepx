@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      ProFTPD-1.3.6c
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;20.&nbsp;Major Servers
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="bind.html" title="BIND-9.14.10">Prev</a>
+          <p>
+            BIND-9.14.10
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="vsftpd.html" title="vsftpd-3.0.3">Next</a>
+          <p>
+            vsftpd-3.0.3
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="majorservers.html" title=
+          "Chapter&nbsp;20.&nbsp;Major Servers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="proftpd" name="proftpd"></a>ProFTPD-1.3.6c
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to ProFTPD
+        </h2>
+        <p>
+          The <span class="application">ProFTPD</span> package contains a
+          secure and highly configurable FTP daemon. This is useful for
+          serving large file archives over a network.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.proftpd.org/distrib/source/proftpd-1.3.6c.tar.gz">ftp://ftp.proftpd.org/distrib/source/proftpd-1.3.6c.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 5680a462144e94770d6e5478ffd60254
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 19 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 66 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.3 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          ProFTPD Dependencies
+        </h3>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../postlfs/libcap.html" title=
+          "libcap-2.31 with PAM">libcap-2.31 with PAM</a>, <a class="xref"
+          href="../general/libssh2.html" title=
+          "libssh2-1.9.0">libssh2-1.9.0</a>, <a class="xref" href=
+          "../postlfs/linux-pam.html" title=
+          "Linux-PAM-1.3.1">Linux-PAM-1.3.1</a>, <a class="xref" href=
+          "mariadb.html" title="MariaDB-10.4.12">MariaDB-10.4.12</a> or
+          <a class="ulink" href="http://www.mysql.com/">MySQL</a>, <a class=
+          "xref" href="../general/pcre.html" title="PCRE-8.44">PCRE-8.44</a>,
+          <a class="xref" href="postgresql.html" title=
+          "PostgreSQL-12.2">PostgreSQL-12.2</a>, and <a class="ulink" href=
+          "https://metacpan.org/pod/Net::SSH2">Net::SSH2</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/proftpd">http://wiki.linuxfromscratch.org/blfs/wiki/proftpd</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of ProFTPD
+        </h2>
+        <p>
+          For security reasons, you should install <span class=
+          "application">ProFTPD</span> using an unprivileged user and group.
+          As the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">groupadd -g 46 proftpd                             &amp;&amp;
+useradd -c proftpd -d /srv/ftp -g proftpd \
+        -s /usr/bin/proftpdshell -u 46 proftpd     &amp;&amp;
+
+install -v -d -m775 -o proftpd -g proftpd /srv/ftp &amp;&amp;
+ln -v -s /bin/false /usr/bin/proftpdshell          &amp;&amp;
+echo /usr/bin/proftpdshell &gt;&gt; /etc/shells</kbd>
+</pre>
+        <p>
+          Install <span class="application">ProFTPD</span> as an unprivileged
+          user by running the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var/run &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This packages does not come with a usable test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">make install                                   &amp;&amp;
+install -d -m755 /usr/share/doc/proftpd-1.3.6c &amp;&amp;
+cp -Rv doc/*     /usr/share/doc/proftpd-1.3.6c</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>install -v -d -m775 -o proftpd -g
+          proftpd /srv/ftp</strong></span>: Create the home directory for
+          <span class="application">ProFTPD</span>.
+        </p>
+        <p>
+          <span class="command"><strong>ln -v -s /bin/false
+          /usr/bin/proftpdshell</strong></span>: Set the default shell as a
+          link to an invalid shell.
+        </p>
+        <p>
+          <span class="command"><strong>echo /usr/bin/proftpdshell &gt;&gt;
+          /etc/shells</strong></span>: Fake a valid shell for compatibility
+          purposes.
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            The above two commands can be omitted if the following directive
+            is placed in the configuration file:
+          </p>
+          <pre class="screen">
+<code class="literal">RequireValidShell off</code>
+</pre>
+          <p>
+            By default, proftpd will require that users logging in have valid
+            shells. The RequireValidShell directive turns off this
+            requirement. This is only recommended if you are setting up your
+            FTP server exclusively for anonymous downloads.
+          </p>
+        </div>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            Support for most of the dependency packages requires using
+            options passed to the <span class=
+            "command"><strong>configure</strong></span> script. View the
+            output from <span class="command"><strong>./configure
+            --help</strong></span> for complete information about enabling
+            dependency packages.
+          </p>
+        </div>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring ProFTPD
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="proftpd-config" name="proftpd-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="proftpd-config" name="proftpd-config"></a>Config Files
+          </h4>
+          <p>
+            <code class="filename">/etc/proftpd.conf</code>
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779256187264" name=
+            "idm45779256187264"></a>Configuration Information
+          </h4>
+          <p>
+            This is a simple, download-only sample configuration. See the
+            <span class="application">ProFTPD</span> documentation in
+            <code class="filename">/usr/share/doc/proftpd</code> and consult
+            the website at <a class="ulink" href=
+            "http://www.proftpd.org/">http://www.proftpd.org/</a> for example
+            configurations.
+          </p>
+          <pre class="root">
+<kbd class="command">cat &gt; /etc/proftpd.conf &lt;&lt; "EOF"
+<code class="literal"># This is a basic ProFTPD configuration file
+# It establishes a single server and a single anonymous login.
+
+ServerName                      "ProFTPD Default Installation"
+ServerType                      standalone
+DefaultServer                   on
+
+# Port 21 is the standard FTP port.
+Port                            21
+# Umask 022 is a good standard umask to prevent new dirs and files
+# from being group and world writable.
+Umask                           022
+
+# To prevent DoS attacks, set the maximum number of child processes
+# to 30.  If you need to allow more than 30 concurrent connections
+# at once, simply increase this value.  Note that this ONLY works
+# in standalone mode, in inetd mode you should use an inetd server
+# that allows you to limit maximum number of processes per service
+
+MaxInstances                    30
+
+# Set the user and group that the server normally runs at.
+User                            proftpd
+Group                           proftpd
+
+# To cause every FTP user to be "jailed" (chrooted) into their home
+# directory, uncomment this line.
+#DefaultRoot ~
+
+
+# Normally, files should be overwritable.
+&lt;Directory /*&gt;
+  AllowOverwrite                on
+&lt;/Directory&gt;
+
+# A basic anonymous configuration, no upload directories.
+&lt;Anonymous ~proftpd&gt;
+  User                          proftpd
+  Group                         proftpd
+  # Clients should be able to login with "anonymous" as well as "proftpd"
+  UserAlias                     anonymous proftpd
+
+  # Limit the maximum number of anonymous logins
+  MaxClients                    10
+
+  # 'welcome.msg' should be displayed at login, and '.message' displayed
+  # in each newly chdired directory.
+  DisplayLogin                  welcome.msg
+  DisplayChdir                  .message
+
+  # Limit WRITE everywhere in the anonymous chroot
+  &lt;Limit WRITE&gt;
+    DenyAll
+  &lt;/Limit&gt;
+&lt;/Anonymous&gt;</code>
+EOF</kbd>
+</pre>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="proftpd-init" name="proftpd-init"></a>
+          </h3>
+          <h4 class="title">
+            <a id="proftpd-init" name="proftpd-init"></a><span class=
+            "phrase">Boot Script</span>
+          </h4>
+          <p>
+            Install the <span class="phrase"><code class=
+            "filename">/etc/rc.d/init.d/proftpd</code> init script</span>
+            included in the <a class="xref" href=
+            "../introduction/bootscripts.html" title=
+            "BLFS Boot Scripts">blfs-bootscripts-20191204</a> package.
+          </p>
+          <pre class="root">
+<kbd class="command">make install-proftpd</kbd>
+</pre>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">ftpasswd, ftpcount, ftpdctl, ftpmail,
+              ftpquota, ftpscrub, ftpshut, ftptop, ftpwho, in.proftpd
+              (symlink to proftpd), proftpd, and prxs</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/{include,lib}/proftpd</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="proftpd-prog" name="proftpd-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>proftpd</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the FTP daemon.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ftpcount" name="ftpcount"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ftpcount</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    shows the current number of connections.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ftpdctl" name="ftpdctl"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ftpdctl</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to control the proftpd daemon while it is
+                    running.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ftpasswd" name="ftpasswd"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ftpasswd</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a Perl script designed to create and manage
+                    AuthUserFiles and AuthGroupFiles of the correct format
+                    for proftpd.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ftpmail" name="ftpmail"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ftpmail</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a Perl script for sending email based on the proftpd
+                    TransferLog.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ftpquota" name="ftpquota"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ftpquota</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a Perl script designed to create and manage limits and
+                    tally files for the mod_quotatab + mod_quotatab_file
+                    module combination for proftpd.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ftpscrub" name="ftpscrub"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ftpscrub</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides a way to scrub the scoreboard file on demand.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ftpshut" name="ftpshut"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ftpshut</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    shuts down all <span class="application">proftpd</span>
+                    servers at a given time.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ftptop" name="ftptop"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ftptop</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    displays running status on connections.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ftpwho" name="ftpwho"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ftpwho</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    shows current process information for each session.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="prxs" name="prxs"></a><span class=
+                    "term"><span class=
+                    "command"><strong>prxs</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a Perl script designed to compile and install
+                    third-party modules, from source code, as DSO modules for
+                    the installed proftpd.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-19 08:47:37 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="bind.html" title="BIND-9.14.10">Prev</a>
+          <p>
+            BIND-9.14.10
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="vsftpd.html" title="vsftpd-3.0.3">Next</a>
+          <p>
+            vsftpd-3.0.3
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="majorservers.html" title=
+          "Chapter&nbsp;20.&nbsp;Major Servers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

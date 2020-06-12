@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-system-chroot">
+  <?dbhtml filename="chroot.html"?>
+
+  <title>Вход в окружение Chroot</title>
+
+  <para>Теперь, необходимо войти в окружение Chroot, для начала сборки и установки окончательной системы LFS. Как пользователь <systemitem
+  class="username">root</systemitem> выполните следующую команду, для входа, с использованием созданного ранее набора временных инструментов, находящихся во временном каталоге tools:</para>
+
+<screen role="nodump"><userinput>chroot "$LFS" /tools/bin/env -i \
+    HOME=/root                  \
+    TERM="$TERM"                \
+    PS1='(lfs chroot) \u:\w\$ ' \
+    PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin \
+    /tools/bin/bash --login +h</userinput></screen>
+
+  <para>Аргумент <parameter>-i</parameter> передаёт команде <command>env</command> значение, которое указывает полностью очистить все переменные окружения в окружении chroot. После чего, только переменные окружения <envar>HOME</envar>, <envar>TERM</envar>, <envar>PS1</envar> и <envar>PATH</envar> будут указаны заново. Параметр
+  <parameter>TERM=$TERM</parameter> устанавливает значение переменной окружения за пределами chroot окружения. Эта переменная необходима таким программам как <command>vim</command> и <command>less</command> для корректной работы. Если необходимы другие переменные окружения, такие как <envar>CFLAGS</envar> или <envar>CXXFLAGS</envar>, это как раз то место, где их можно указать.</para>
+
+  <para>Теперь нет необходимости использовать переменную окружения <envar>LFS</envar>, потому что вся работа будет ограничена файловой системой LFS. Так происходит, потому что оболочке Bash ранее сообщался в значении переменной  <filename class="directory">$LFS путь до корня файловой системы, но на данный момент, она является корневым каталогом  (<filename class="directory">/</filename>).</filename></para>
+
+  <para>Необходимо обратить внимание что  в переменной окружения <envar>PATH</envar> путь <filename class="directory">/tools/bin</filename> записан в последнюю очередь. Это означает, что временный инструмент не будет более использоваться после установки его окончательной версии. Это происходит, когда оболочка не <quote>запоминает</quote> пути к исполняемым бинарным файлам&mdash; по этой причине, хэширование выключено, указанием параметра <parameter>+h</parameter> к программе <command>bash</command>.</para>
+
+    <para>Когда оболочка запустится, <command>bash</command> выдаст приглашение командной строки вида <computeroutput>I have no name!</computeroutput>. Это нормально, потому что файл <filename>/etc/passwd</filename> ещё не создан.</para>
+
+  <note>
+    <para>Очень важно чтобы все команды в этой и последующих главах запускались из среды chroot. Если был сделан выход из среды chroot по каким-либо причинам (перезагрузка, например), необходимо убедиться в том, что виртуальные файловые системы были заново примонтированы, как рассказано в главе <xref linkend="ch-system-bindmount"/> и <xref linkend="ch-system-kernfsmount"/>. Далее войдите в окружение chroot снова, чтобы продолжить установку.</para>
+  </note>
+
+</sect1>

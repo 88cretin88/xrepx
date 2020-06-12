@@ -1,0 +1,12 @@
+[Unit]
+Description=Arch Linux installer Web GUI
+Wants=Wants=network-online.target
+After=Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/srv/archinstall_gui
+ExecStart=/srv/archinstall_gui/webgui.py
+
+[Install]
+WantedBy=multi-user.target

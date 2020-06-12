@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang=ru>
+<meta charset=utf-8>
+
+<title>OpenSSH: Портированная версия</title>
+<meta name="description" content="the OpenSSH project portable version page">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://www.openssh.com/portable.html">
+<link rel="stylesheet" type="text/css" href="openbsd.css">
+
+<h2 id=OpenBSD>
+<a href="index.html">
+<i>Open</i><b>SSH</b></a>
+Портированная версия
+</h2>
+<hr>
+
+<p>
+Разработка OpenSSH прдразумевает разработку небольшой, безопасной
+и простой в использовании и поддержке версии для проекта OpenBSD. 
+<a href="history.html#portable">Команда портирования OpenSSH</a>
+берет эту версию и добавляет код, обеспечивающий ее запуск на других
+операционных системах (к сожалению, это приводит к <strong>серьезным 
+отличиям</strong> в реализациях OpenSSH для разных UNIX систем).
+
+<p>
+Портировання версия OpenSSH, представленная здесь, предназначена
+для работы на следующих UNIX системах:
+
+<ul>
+<li>AIX
+<li>HP-UX
+<li>Irix
+<li>Linux
+<li>NeXT
+<li>SCO
+<li>SNI/Reliant Unix
+<li>Solaris
+<li>Digital Unix/Tru64/OSF
+<li>Mac OS X
+<li>Cygwin
+<li>... список постоянно продолжает расти.
+</ul>
+
+<p>
+Портированная версия OpenSSH основанна на коде официальной версии, но их
+релизы не синхронизированы. Релизы портированной версии помечены суффиком "р"
+(например, 4.0p1). Официальная версия для OpenBSD никогда не использует суффикс
+"р", но вместо этого просто увеличивает номер своей версии, когда она достигает
+стабильного состояния.
+
+<p id="downloads">
+В следующих файлах описывается процесс разработки портированной версии OpenSSH.
+Файлы релизов подписаны открытым PGP-ключом, содержащийся в файле
+<a href="https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/RELEASE_KEY.asc">RELEASE_KEY.asc</a>,
+доступном на FTP сервере.
+Этот ключ также доступны через <a href="http://www.keyserver.net/">key server network</a>.
+
+<ul>
+<li><a href="https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/ChangeLog">
+	ChangeLog (портированной версии)</a>
+<li><a href="https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/INSTALL">
+	Инструкции по установке</a>
+</ul>
+
+<h2 id="cvs"><span id="git"></span>Разработка</h2>
+<p>
+Последние снапшоты (собираются каждую ночь) доступны
+<a href="https://www.mindrot.org/openssh_snap/">здесь</a>.
+Исходники портированной версии OpenSSH находятся на git-сервере:
+
+<ul>
+<li><code>git://anongit.mindrot.org/openssh.git</code> (только clone)
+<li><code>https://anongit.mindrot.org/openssh.git</code> (web и clone)
+</ul>
+
+<p>
+Этот репозиторий предоставил и поддерживается 
+<a href="mailto:djm@openbsd.org">Damien Miller</a>.
+Зеркало этого репозитория есть на
+<a href="https://github.com/openssh/openssh-portable">Github</a>.
+
+<h2 id="building">Сборка</h2>
+<p>
+После загрузки исходников необходимо создать <code>configure</code> файл.
+Это делается при помощи запуска <code>autoreconf</code> из пакета
+<a href="https://www.gnu.org/software/autoconf/">autoconf</a>
+(требуемая версия указана в файле INSTALL).
+Его нужно будет запустить снова, если будут внесены какие-либо изменения
+в файл <code>configure.ac</code>.
+
+<p>
+Мы просим прочитать и не забывать об
+<a href="https://man.openbsd.org/style">этих правилах</a> при отправке кода.
+Патчи должны быть отправлены в унифицированном формате diff.
+
+<h2>
+Загрузка
+</h2>
+<a href="https://openssh.com/portable.html#http">Список HTTP зеркал</a><br>
+<a href="https://openssh.com/portable.html#ftp">Список FTP зеркал</a><br>
+<a href="https://openssh.com/portable.html#rsync">Список RSYNC зеркал</a><br>

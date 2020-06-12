@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-stripping">
+  <?dbhtml filename="stripping.html"?>
+
+  <title>Удаление ненужных файлов</title>
+
+  <para>Инструкции в этом разделе являются необязательными для выполнения. Однако, если дисковый раздел небольшой, полезно знать какие элементы могут быть удалены. Исполняемые файлы и библиотеки, которые были скомпилированы, имеют файлы отладочных символов, общим размером около 70 Мегабайт. Их можно удалить, выполнив команду:</para>
+
+<screen><userinput>strip --strip-debug /tools/lib/*
+/usr/bin/strip --strip-unneeded /tools/{,s}bin/*</userinput></screen>
+
+  <para>Этот набор команд пропустит некоторые файлы, сообщив что не удается распознать формат. Большинство из них являются файлами сценариев а не библиотеками. Также, используется системная команда очистки бинарных файлов в каталоге /tools.</para>
+
+  <para>Будьте осторожны, и <emphasis>не</emphasis> применяйте аргумент <parameter>--strip-unneeded</parameter> к библиотекам. Статические библиотеки будут уничтожены и пакеты временного набора инструментов придется компилировать заново.</para>
+
+  <para>Чтобы сохранить ещё больше места, можно удалить документацию:</para>
+
+<screen><userinput>rm -rf /tools/{,share}/{info,man,doc}</userinput></screen>
+
+  <para>Удаление ненужных файлов:</para>
+
+<screen><userinput>find /tools/{lib,libexec} -name \*.la -delete</userinput></screen>
+
+  <para>На этом этапе у вас должно быть не менее 3 ГБ свободного места в каталоге <envar>$LFS</envar>, которое будет занято при сборке пакетов Glibc и Gcc на следующем этапе. Если можно выполнить сборку пакета Glibc, то можно создавать и устанавливать остальные пакеты также.</para>
+
+</sect1>

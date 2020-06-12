@@ -1,0 +1,33 @@
+body{
+	background-color: white;
+}
+header{
+	background-color: darkgrey;
+}
+main{
+	background-color: grey;
+}
+img{
+	height: 285px;
+	width: 435px;
+}
+h1{
+	text-transform: uppercase;
+	color: white;
+	text-align: center;
+	font-size: 40px;
+}
+h2{
+	text-transform: uppercase;
+	color: darkblue;
+	font-size: 35px;
+}
+p{
+	font-family: ubuntu;
+	font-size: 20px;
+}
+a{
+	background-color: #c0c3c6;
+	text-decoration-color: black;
+	color: black;
+}

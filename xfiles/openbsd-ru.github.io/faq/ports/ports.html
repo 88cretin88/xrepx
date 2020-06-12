@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang=ru id=faq>
+
+<title>Порты OpenBSD: Работа с портами</title>
+<meta charset=utf-8>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../openbsd.css">
+<link rel="canonical" href="https://www.openbsd.org/faq/ports/ports.html">
+<style>
+table {
+	border-collapse: collapse;
+	margin: 1em auto 0;
+}
+
+td, th {
+	text-align: center;
+	border: #000 1px solid;
+	padding: 2px;
+}
+</style>
+
+<h2 id=OpenBSD>
+<a href="../../index.html">
+<i>Open</i><b>BSD</b></a>
+Порты - Работа с портами
+<small>
+<a href="index.html">[Порты - На главную]</a>
+</small>
+</h2>
+<hr>
+
+<ul>
+  <li><a href="#PortsIntro"   >Введение</a>
+  <li><a href="#PortsFetch"   >Загрузка дерева портов</a>
+  <li><a href="#PortsConfig"  >Настройка системы портов</a>
+  <li><a href="#PortsSearch"  >Поиск в дереве портов</a>
+  <li><a href="#PortsInstall" >Пример простой установки</a>
+  <li><a href="#PortsClean"   >Отчистка после сборки</a>
+  <li><a href="#PortsDelete"  >Удаление пакета, собранного из порта</a>
+  <li><a href="#PortsFlavors" >Использование Flavors и Subpackages</a>
+  <li><a href="#dpb"          >Использование dpb для сборки Multiple портов</a>
+  <li><a href="#PortsSecurity">Обновления безопасности (-stable)</a>
+  <li><a href="#PkgSig"       >Подписи пакетов</a>
+  <li><a href="#Problems"     >Сообщить об ошибке</a>
+  <li><a href="#Helping"      >Как помочь нам</a>
+</ul>
+
+<hr>
+
+<h2 id="PortsIntro">Введение</h2>
+
+Использование портов предназначено для опытных пользователей.
+<b>Всем рекомендуется использовать предварительно скомпилированные бинарные
+пакеты.</b>
+Если вы задаете вопросы по теме портов, то подразумевается, что вы не просто
+умеете работать с портами, но и как минимум прочли соответствующие
+man-страницы и этот FAQ.
+
+<p>
+Дерево портов представляет из себя набор Makefile'ов, по одному для каждой
+программы, которые управляют:
+
+<ul>
+  <li>Откуда и как именно скачать исходники программы
+  <li>От каких других программ оно зависит
+  <li>Как вносить изменения в исходники (если потребуется)
+  <li>Как его собрать и сконфигурировать
+  <li>Как его протестировать (встречается не для всех программ)
+  <li>Как его установить
+</ul>
+
+Помимо файла Makefile, каждый порт как минимум содержит следующее:
+
+<ul>
+  <li><code>PLIST</code> - инструкции по созданию пакета, после того как
+      программа была собрана
+  <li><code>DESCR</code> - описание программы
+  <li><code>distinfo</code> - размер и checksum архива с исходниками
+</ul>
+
+Вся эта информация хранится в подкаталогах в <code>/usr/ports</code>.
+В иерархии подкаталогов стоит выделить три особенных:
+
+<ul>
+  <li><code>distfiles/</code> - где храняться скаченные архивы (software
+      distribution sets) после загрузки из сети
+  <li><code>infrastructure/</code> - все необходимые скрипты и makefiles,
+      необходимые для инфраструктуры порта
+  <li><code>packages/</code> - бинарные пакеты, собранные системой портов
+</ul>
+
+Все остальные образуют разные категории приложений, в подкаталогах которых
+находятся порты. Сложные порты могут быть организованы на более глубоком уровне,
+например, если они разделены на основную часть и набор расширений, или
+стабильную версию и версию снапшота.
+Каждый каталог портов должен содержать подкаталог <code>pkg/</code> со списком
+PLIST и файлом с описанием DESCR.
+Также порт может содержать каталог <code>patches/</code>, где содержатся патчи
+для этого порта, и <code>files/</code> для других дополнительных файлов.
+
+<p>
+Когда пользователь запускает <a href="https://man.openbsd.org/make">make(1)</a>
+в подкаталоге того или иного порта, система рекурсивно просматривает свое дерево
+зависимостей, проверяет, установлены ли требуемые зависимости, собирает и
+устанавливает любые недостающие зависимости, а затем продолжает сборку
+нужного порта.
+Весь процесс сборки происходит внутри так называемого <i>рабочего каталога</i> 
+(working directory), который создает порт.
+Обычно это <code>${WRKOBJDIR}</code>, для которой по умолчанию используется
+<code>/usr/ports/pobj</code>, но вы можете переопределить это
+(см. <a href="#PortsConfig">настройка системы портов</a>).
+
+<p>
+Дерево портов связано с <a href="../faq5.html#Flavors">разновидностями</a>
+OpenBSD. Не стоит ожидать, что порты из дерева портов -current будут работать
+в системе -release или -stable. <b>Если вы используете -current, вам нужны
+и -current base system и дерево портов -current</b>.
+Поскольку в -stable не вносятся навязчивые изменения, в системе -release
+можно использовать дерево портов -stable и наоборот.
+
+<p>
+Еще одна распространенная ошибка - отсутствующая установка X11.
+Даже если порт, который вы пытаетесь собрать, не имеет прямой зависимости к
+X11, для его подпакета или его зависимостей могут потребоваться headers и
+библиотеки X11. <b>Сборка портов в системах без X11 не поддерживается</b>.
+
+<p>
+Более исчерпывающая информация по теме системы портов находится в man-страницах:
+
+<ul>
+  <li><a href="https://man.openbsd.org/ports">ports(7)</a>
+  - описывает различные stages (цели параметры make) установки портов,
+  использования flavors, subpackages и некоторые другие вопросы.
+  <li><a href="https://man.openbsd.org/bsd.port.mk">bsd.port.mk(5)</a>
+  - более глубокая информация о целях параметров make, переменных окружения и т.д.
+</ul>
+
+<h2 id="PortsFetch">Загрузка дерева портов</h2>
+
+После того, как вы определились с тем, какой flavor дерева портов вам нужен,
+вы можете загрузить его себе из разных мест. В таблице ниже дается объяснение
+по поводу того, где вы можете найти тот или иной flavor, и в каком формате.
+«&#x2713;» обозначает, что flavor доступнен, а «&#x2717;» наоборот - невозможность
+загрузить исходники, используя этот источник.
+
+<table>
+<thead>
+<tr>
+<th scope=col style="text-align: left">Источник
+<th scope=col>Формат
+<th scope=col colspan=4>Flavor
+</thead>
+<tr>
+<td colspan=2>
+<th scope=col>-release
+<th scope=col>-stable
+<th scope=col>snapshots
+<th scope=col>-current
+<tr>
+<th scope=row style="text-align: left"><a href="../../ftp.html">Зеркала</a>
+<td>.tar.gz
+<td>&#x2713;</td>
+<td>&#x2717;</td>
+<td>&#x2713;</td>
+<td>&#x2717;</td>
+<tr>
+<th scope=row style="text-align: left"><a href="../../anoncvs.html">AnonCVS</a>
+<td>cvs checkout</td>
+<td>&#x2713;</td>
+<td>&#x2713;</td>
+<td>&#x2717;</td>
+<td>&#x2713;</td>
+</table>
+
+<p>
+Обратите внимание на файл <code>ports.tar.gz</code>, который можно найти на
+наших зеркалах.
+
+<pre class="cmdbox">
+$ <b>cd /tmp</b>
+$ <b>ftp https://cdn.openbsd.org/pub/OpenBSD/$(uname -r)/{ports.tar.gz,SHA256.sig}</b>
+$ <b>signify -Cp /etc/signify/openbsd-$(uname -r | cut -c 1,3)-base.pub -x SHA256.sig ports.tar.gz</b>
+</pre>
+
+Его надо распаковать в каталог <code>/usr</code>, что приведет к созданию
+<code>/usr/ports</code> и множества других подкаталогов внутри него.
+
+<pre class="cmdbox">
+# <b>cd /usr</b>
+# <b>tar xzf /tmp/ports.tar.gz</b>
+</pre>
+
+Снапшоты, доступные на наших зеркалах, генерируются ежедневно из дерева портов
+-current. Вы можете найти их в каталоге <code>/pub/OpenBSD/snapshots/</code>.
+Если вы решили установить снапшот того или иного дерева портов, вы должны
+использовать и соответствующий снапшот OpenBSD.
+Не забвайте синхронизировать установленное дерево портов с используемой OpenBSD!
+
+<p>
+Для получения дополнительной информации о загрузке дерева портов через CVS
+прочитайте страницу, посвященную <a href="../../anoncvs.html">AnonCVS</a>.
+Там можно найти список доступных серверов и ряд полезных примеров.
+
+<h2 id="PortsConfig">Настройка системы портов</h2>
+
+В этом разделе рассказывается о некоторых дополнительных глобальных настройках,
+полезных при сборке портов. Вы можете пропустить его, но тогда вам потребуется
+выполнить многие команды <a href="https://man.openbsd.org/make">make(1)</a>
+в последующих примерах от root.
+
+<p>
+Поскольку у проекта OpenBSD нет ресурсов для полного review всего исходного
+кода в дереве портов, вы можете предпринять нескоторые меры предосторожности,
+при помощи соответствующих настроек.
+Система портов, которую иногда называют «инфраструктурой портов», позволяет
+почти полностью собирать порты от имени обычного пользователя, и лишь некоторые
+шаги, которые требуют привилегий суперпользователя, от имени root (например,
+команда make <code>install</code>). Подробнее о том, как настроить разделение
+привилегий, рассказывается в man-странице
+<a href="https://man.openbsd.org/bsd.port.mk#PORTS_PRIVSEP">bsd.port.mk(5)</a>.
+
+<p>
+Можно использовать read-only дерево портов при помощи разделения от каталогов, в
+которые производится запись во время сборки порта:
+
+<ul>
+  <li>Рабочий каталог портов.
+      Он указывается при помощи переменной <code>WRKOBJDIR</code>. Ее значение
+      указывает на каталог, который будет содержать рабочие каталоги.
+  <li>Каталог, содержащий distribution файлы. Он указывается при помощи
+      переменной <code>DISTDIR</code>.
+  <li>Каталог, куда будут складываться новые бинарные пакеты. Он указывается
+      при помощи переменной <code>PACKAGE_REPOSITORY</code>.
+</ul>
+
+К примеру, вы можете добавить следующую строчку в файл
+<code>/etc/mk.conf</code>:
+
+<pre class="cmdbox">
+WRKOBJDIR=/usr/obj/ports
+DISTDIR=/usr/distfiles
+PACKAGE_REPOSITORY=/usr/packages
+</pre>
+
+При желании вы также можете изменить владельца (ownership) этих каталогов
+на свое локальное имя пользователя и группу, чтобы система портов могла
+создавать базовые рабочие каталоги от имени обычного пользователя.
+Опять же, порты могут быть собраны от имени обычного пользователя, но
+установленны должны быть только пользователем root или при помощи
+<a href="https://man.openbsd.org/doas">doas(1)</a>.
+
+<h2 id="PortsSearch">Поиск в дереве портов</h2>
+Как только вы скачали себе дерево портов и установили пакет portslist,
+можно начинать поиск доступного ПО.
+Для этого используйте команду <code>make search key="searchkey"</code>
+как показано в примере ниже:
+
+<pre class="cmdbox">
+$ <b>cd /usr/ports</b>
+$ <b>doas pkg_add portslist</b>
+$ <b>make search key=rsnapshot</b>
+Port:   rsnapshot-1.4.2
+Path:   net/rsnapshot
+Info:   remote filesystem snapshot utility
+Maint:  Antoine Jacoutot &lt;ajacoutot@openbsd.org&gt;
+Index:  net sysutils
+L-deps:
+B-deps: devel/autoconf/2.69 devel/automake/1.15 devel/metaauto net/rsync
+R-deps: devel/p5-Lchown net/rsync
+Archs:  any
+</pre>
+
+Результат поиска содержит не только название порта, но и предоставляет
+некоторую дополнительную информацию: PATH к порту, короткое описание,
+имя и почтовый адрес мейнтейнера, ключевые слова, связанные с портом,
+library/build/runtime зависимости и список архитектур, на которых порт
+поддерживается и работает.
+
+<p>
+Описанный способ очень прост. Тут просто запускается awk(1), который
+парсит index файл порта.
+Порт под названием «sqlports» напротив позволяет осуществлять очень
+детальный поиск при помощи поиска в базе данных. Это база данных SQLite,
+но практически любой формат базы данных может быть создан при помощи
+инфраструктуры портов.
+Порт <code>sqlports</code> включает в себя скрипт для создания базы
+данных, который можно использовать для создания баз данных различных
+форматах.
+
+<p>
+Просто установите пакет <code>sqlports</code>, чтобы попробовать.
+Пример сеанса может выглядеть так:
+
+<pre class="cmdbox">
+$ <b>sqlite3 /usr/local/share/sqlports</b>
+sqlite> SELECT FULLPKGNAME,COMMENT FROM Ports WHERE COMMENT LIKE '%statistics%';
+pg_statsinfo-3.3.0p0|monitor PostgreSQL activity & statistics
+kactivities-stats-5.51.0|statistics for the KDE Activity concept
+p5-Devel-Cover-Report-Clover-0.35|backend for Clover reporting of coverage statistics
+mailgraph-1.14p1|RRDtool frontend for Postfix statistics
+R-3.5.1p1|powerful math/statistics/graphics language
+p5-Math-VecStat-0.08p0|provides basic statistics on numerical vectors
+py-probstat-0.912p8|probability and statistics utilities for Python
+py-statistics-1.0.3.5|port of Python 3.4 statistics module to Python 2
+darkstat-3.0.719p1|network statistics gatherer with graphs
+pfstat-2.5p2|packet filter statistics visualization
+rtg-0.7.4p12|SNMP statistics monitoring system
+slurm-0.4.3|network traffic monitor and statistics
+tcpstat-1.5p0|report network interface statistics
+libstatgrab-0.91p3|system statistics gathering library
+p5-Unix-Statgrab-0.109p0|interface to libstatgrab system statistics library
+diffstat-1.62|accumulates and displays statistics from a diff file
+fragistics-1.7.0p2|Quake 3 statistics program
+drupal7-google_analytics-1.2p2|add the Google Analytics web statistics to your site
+dstat-0.5p0|dwm status bar statistics
+kdf-4.14.3p4|KDE storage device statistics
+libsysstat-0.4.1|library used to query system info and statistics
+qdirstat-1.4p1|Qt-based directory statistics
+sqlite>
+</pre>
+
+Выше описан все же достаточно простой поиск.
+При помощи SQL можно искать практически все, что угодно, включая зависимости,
+флаги настройки, shared libraries и т.д.
+
+<h2 id="PortsInstall">Пример простой установки</h2>
+
+Для ясности рассмотрим простой пример: rsnapshot.
+Это приложение имеет несколько build зависимостей: <code>devel/autoconf/2.69</code>,
+<code>devel/automake/1.15</code>, <code>devel/metaauto</code> и <code>net/rsync</code>.
+Выполнение следующей команды подразумевает, что вы настроили
+PORTS_PRIVSEP, как описано в man-странице
+<a href="https://man.openbsd.org/bsd.port.mk#PORTS_PRIVSEP">bsd.port.mk</a>.
+
+<pre class="cmdbox">
+$ <b>cd /usr/ports/net/rsnapshot</b>
+$ <b>make install</b>
+===&gt;  Checking files for rsnapshot-1.4.2
+&gt;&gt; Fetch https://github.com/rsnapshot/rsnapshot/archive/1.4.2/rsnapshot-1.4.2.tar.gz
+100% |**************************************************|   365 KB    00:02
+&gt;&gt; (SHA256) rsnapshot-1.4.2.tar.gz: OK
+===&gt; rsnapshot-1.4.2 depends on: metaauto-* - not found
+===&gt;  Verifying install for metaauto-* in devel/metaauto
+===&gt;  Checking files for metaauto-1.0p1
+[...]
+===&gt;  Installing metaauto-1.0p1 from /build/source/ports/packages/amd64/all/
+metaauto-1.0p1: ok
+===&gt; Returning to build of rsnapshot-1.4.2
+===&gt; rsnapshot-1.4.2 depends on: metaauto-* -&gt; metaauto-1.0p1
+===&gt; rsnapshot-1.4.2 depends on: autoconf-2.69 - not found
+[...]
+===&gt; Returning to build of rsnapshot-1.4.2
+===&gt;  Extracting for rsnapshot-1.4.2
+===&gt;  Patching for rsnapshot-1.4.2
+[...]
+===&gt;  Compiler link: clang -&gt; /usr/bin/clang
+===&gt;  Compiler link: clang++ -&gt; /usr/bin/clang++
+===&gt;  Compiler link: cc -&gt; /usr/bin/cc
+===&gt;  Compiler link: c++ -&gt; /usr/bin/c++
+===&gt;  Generating configure for rsnapshot-1.4.2
+===&gt;  Configuring for rsnapshot-1.4.2
+[...]
+===&gt;  Building for rsnapshot-1.4.2
+[...]
+===&gt;  Faking installation for rsnapshot-1.4.2
+[...]
+===&gt;  Building package for rsnapshot-1.4.2
+[...]
+Link to /build/source/ports/packages/amd64/all/rsnapshot-1.4.2.tgz
+Link to /build/source/ports/packages/amd64/ftp/rsnapshot-1.4.2.tgz
+Link to /build/source/ports/packages/amd64/cdrom/rsnapshot-1.4.2.tgz
+===&gt; rsnapshot-1.4.2 depends on: p5-Lchown-* - not found
+[...]
+===&gt;  Installing rsnapshot-1.4.2 from /build/source/ports/packages/amd64/all/
+rsnapshot-1.4.2: ok
+</pre>
+
+<p>
+Как вы видете, много делается автоматически. Система портов загружает, распаковывает
+и накладывает патчи на исходники, настраивает и собирает (компилирует) их,
+устанавливает файлы в fake каталог, создает пакет (или даже список пакетов) и
+устанавливает этот пакет в вашу систему (обычно в <code>/usr/local/</code>).
+И все это проделывается рекурсивно <b>для всех зависимостей порта</b>.
+
+Обратите внимание на строки
+"<code>===&gt; Verifying install for ...</code>" и
+"<code>===&gt; Returning to build of ...</code>"
+в приведенном выше выводе, указывающие на обход дерева зависимостей.
+
+<p>
+Если вы хотите установить какую-то программу, а она уже установленна
+в вашей системе, но установленна её старая версия,
+используйте <code>make update</code> вместо <code>make install</code>.
+Это запустит <a href="https://man.openbsd.org/pkg_add">pkg_add(1)</a>
+с флагом <code>-r</code>.
+
+<p>
+Большие программы потребуют много системных ресурсов для сборки.
+Если вы получаете ошибки типа «out of memory» при попытке сборки такого
+порта, это обычно присходит по одной из двух причин:
+
+<ul>
+  <li>Установленное значение limits ограничивает изспользование ресурсов.
+      Настройте ограничения при помощи ksh команды <code>ulimit</code>
+      или csh команды <code>limit</code>.
+  <li>Вам просто не хватает оперативной памяти (RAM).
+</ul>
+
+<h2 id="PortsClean">Очистка после сборки</h2>
+
+Скорее всего вы захотите почистить (не путать с "удалить") рабочий
+каталог порта после того, как соберете пакет и установите его.
+
+<pre class="cmdbox">
+$ <b>make clean</b>
+===&gt;  Cleaning for rsnapshot-1.4.2
+</pre>
+
+По умолчанию зависимости workdir автоматически очищаются.
+Вы можете удалить установленные пакеты, которые были необходимы только
+для сборки порта.
+
+<pre class="cmdbox">
+# <b>pkg_delete -a</b>
+p5-Module-Build-0.4224: ok
+autoconf-2.69p2:automake-1.15.1: ok
+autoconf-2.69p2: ok
+metaauto-1.0p1: ok
+Read shared items: ok
+</pre>
+
+Если вы хотите удалить исходники порта (source distribution set(s) of
+the port), сделайте следующее:
+
+<pre class="cmdbox">
+$ <b>make clean=dist</b>
+===&gt;  Cleaning for rsnapshot-1.4.2
+===&gt;  Dist cleaning for rsnapshot-1.4.2
+</pre>
+
+Если вы компилировали несколько версий одного и того же порта,
+вы можете очистить рабочие каталоги всех этих версий одновременно:
+
+<pre class="cmdbox">
+$ <b>make clean=flavors</b>
+</pre>
+
+Вы также можете очищать все после каждой сборки, изменив <code>BULK</code>
+с <code>auto</code> на <code>Yes</code>.
+
+<pre class="cmdbox">
+$ <b>make package BULK=Yes</b>
+</pre>
+
+<h2 id="PortsDelete">Удаление пакета, собранного из порта</h2>
+
+Удалить порт очень просто:
+
+<pre class="cmdbox">
+$ <b>make uninstall</b>
+===&gt; Deinstalling for rsnapshot-1.4.2
+rsnapshot-1.4.2: ok
+Read shared items: ok
+</pre>
+
+Это запустит <a href="https://man.openbsd.org/pkg_delete">pkg_delete(1)</a>,
+который удалит соответствующий пакет из системы.
+
+Если вы хотите избавиться от только что собранных пакетов, это можно сделать
+следующим образом:
+
+<pre class="cmdbox">
+$ <b>make clean=packages</b>
+===&gt;  Cleaning for rsnapshot-1.4.2
+rm -f /usr/ports/packages/amd64/all/rsnapshot-1.4.2.tgz
+</pre>
+
+<h2 id="PortsFlavors">Использование Flavors и Subpackages</h2>
+
+Мы настоятельно советуем прочитать
+<a href="https://man.openbsd.org/ports">ports(7)</a>, которая представляет
+из себя хороший обзор и введение в эту тему. Существует два различных
+механизма работы с пакетами в соответствии с их потребностями.
+
+<p>
+Первый механизм называется <b>flavors</b>. Flavor обычно указывает на
+определенный набор параметров компиляции. Например, некоторые приложения
+имеют flavor «no_x11», который предназначен для использования в системах
+без X. Некоторые оболочки имеют «статический» flavor, который создает
+статически связанную версию.
+Существуют порты, которые имеют разные flavors для их сборки с использованием
+различных графических инструментов.
+Другие примеры включают в себя поддержку различных форматов баз данных,
+различных параметры сети (SSL, IPv6, ...), различных размеров бумаги и т.д.
+
+<p>
+<b>Подводим итог:</b>
+Скорее всего, вы будете использовать flavors, если пакет не предоставляет
+(не поддерживает) flavor, который вам нужен. В этом случае вы можете указать
+желаемый flavor и собрать порт самостоятельно.
+
+<p>
+Большинство flavors портов имеют свой собственный рабочий каталог во время
+компиляции, и каждый flavor собирается в пакете с соответствующим именем,
+чтобы избежать путаницы. Чтобы увидеть различные flavor того или иного порта,
+посмотрите в его подкаталог и выполнить команду:
+
+<pre class="cmdbox">
+$ <b>make show=FLAVORS</b>
+</pre>
+
+Вы также можете посмотреть файлы <code>DESCR</code> порта, где более подробно
+объясняются доступные flavors.
+
+<p>
+Второй механизм называется <b>subpackages</b>.
+Мэйнтейнер может решить создать подпакеты (subpackages) для разных
+частей одной программы, если они могут быть логически разделены.
+Вы будете часто видеть subpackages для клиентской части и серверной
+части программы.
+Иногда обширная документация упакована в отдельный subpackage, поскольку
+она занимает много места на диске.
+Другим примером могут быть дополнительный функционал программы, который
+тянет кучу зависимостей, и который часто упаковываются отдельно.
+Мэйнтейнер также решит, какой subpackage является основным, и будет
+установлен по умолчанию. Другими примерами являются обширные тестовые наборы,
+которые поставляются с программами, отдельные модули с поддержкой всего
+возможного и т.д.
+
+<p>
+<b>Подводим итог:</b>
+Некоторые порты могут быть разделены на несколько частей (или пакетов).
+<code>make install</code> установит только главную из них (main subpackage).
+
+<p>
+Список packages, на которые разделен порт, можно увидеть при помощи команды:
+<pre class="cmdbox">
+$ <b>make show=PKGNAMES</b>
+</pre>
+
+<code>make install</code> установит только главный subpackage.
+Для того, чтобы установить их всех, используй команду:
+
+<pre class="cmdbox">
+$ <b>make install-all</b>
+</pre>
+
+Список subpackages, доступных для порта, можно увидеть при помощи команды:
+
+<pre class="cmdbox">
+$ <b>make show=MULTI_PACKAGES</b>
+</pre>
+
+Можно выбрать какие подпакеты (subpackage(s)) установить из дерева портов.
+После некоторых тестов эта процедура просто вызовет
+<a href="https://man.openbsd.org/pkg_add">pkg_add(1)</a> для установки
+нужного subpackage(s).
+
+<pre class="cmdbox">
+# <b>env SUBPACKAGE="-server" make install</b>
+</pre>
+
+subpackages механизм обрабатывает только packages.
+Он не изменяет никакие параметры конфигурации перед сборкой порта.
+Вы должны использовать flavors для этой цели.
+
+<h2 id="dpb">Использование dpb для сборки Multiple портов</h2>
+
+Если вам нужно создать более одного порта одновременно, вы можете
+использовать для этого <code>/usr/ports/infrastructure/bin/dpb</code>.
+
+<a href="https://man.openbsd.org/dpb">dpb(1)</a> ожидает список портов
+для сборки и автоматически собирает их все параллельно в оптимальном порядке.
+Он также может использовать несколько машин для сборки, а также создает
+подробные build-logs, которые можно будет найти в <code>/usr/ports/logs</code>,
+и которые можно будет использовать для troubleshooting.
+
+<pre class="cmdbox">
+# <b>/usr/ports/infrastructure/bin/dpb -P ~/localports</b>
+</pre>
+
+Эта команда запустит dpb, который прочтет список
+<a href="https://man.openbsd.org/pkgpath">pkgpaths</a> из
+<code>~/localports</code> и соберет все перечисленные там пакеты.
+Он также может установить пакеты после их сборки.
+Файл <code>~/localports</code> выглядит следующим образом:
+
+<pre class="cmdbox">
+net/rsync
+www/mozilla-firefox
+editors/vim
+</pre>
+
+Если вы не передадите список портов для сборки в командной строке или
+через <code>-P</code> или <code>-I</code>,
+<a href="https://man.openbsd.org/dpb">dpb(1)</a> соберет все порты в
+дереве портов. При запуске от пользователя root, dpb автоматически отбрасывает
+привилегии, присвоенные пользователям для загрузки файлов с исходниками
+и сборки портов. Это рекомендуемый способ его использования, но он также
+может запускаться от имени обычного пользователя.
+Кроме того, утилита <a href="https://man.openbsd.org/proot">proot(1)</a>
+может использоваться для дальнейшей изоляции build операций.
+
+<h2 id="PortsSecurity">Обновления безопасности (-stable)</h2>
+
+Когда в портах (third party software) обнаруживаются серьезные ошибки
+или проблемы безопасности, они исправляются в -stable branch дерева портов.
+В отличие от базовой системы, дерево портов -stable обновляется только из-за
+добавления в нее security backports для последней версии.
+
+<p>
+Это означает, что все, что вам нужно сделать, это убедиться, что вы
+проверили правильный branch дерева портов и собрали необходимые
+программы из него. Вы можете поддерживать свое дерево в актуальном состоянии
+(up to date) при помощи <a href="../../anoncvs.html">CVS</a> и подписаться
+на <a href="../../mail.html">почтовую рассылку</a> ports-changes, чтобы
+получать уведомления о безопасности, связанные портами.
+
+<h2 id="PkgSig">Подписи пакетов</h2>
+
+Цифровые подписи являются хорошим способом быть уверенным в целостности
+загружаемых из сети пакетов.
+Они позволяют проверить не были ли пакеты кем-то умышленно измененны
+или просто повреждены при копировании. OpenBSD предоставляет официальные
+подписанные пакеты при помощи
+<a href="https://man.openbsd.org/signify">signify(1)</a>.
+Не требуется никаких дополнительных шагов со стороны пользователя, чтобы
+быть уверенным, что пакеты не были скомпрометированы.
+
+<p>
+Если вы хотите собрать <i>свой собственный</i> подписанный пакет, вам сначала
+понадобится создать/сгенерировать пару ключей.
+
+<pre class="cmdbox">
+# <b>signify -Gns /etc/signify/my-pkg.sec -p /etc/signify/my-pkg.pub</b>
+</pre>
+
+Замечание по поводу имен: ключи, используемые для подписи пакетов, должны
+заканчиваться на <code>pkg</code>.
+
+<p>
+Существующие пакеты могуть быть подписаны при помощи
+<a href="https://man.openbsd.org/pkg_sign">pkg_sign(1)</a> после их сборки.
+
+<pre class="cmdbox">
+# <b>cd /usr/ports/packages/$(uname -p)</b>
+# <b>pkg_sign -s signify2 -s /etc/signify/my-pkg.sec -o signed -S all</b>
+</pre>
+
+В случае установки такого пакета на другой машине,
+public key <code>my-pkg.pub</code> должен быть скопирован туда в каталог
+<code>/etc/signify</code>.
+
+<h2 id="Problems">Сообщить об ошибке</h2>
+
+Если у вас возникли какие-то проблемы с портом, отправьте email мэйнрейнеру
+(или как их еще называют в рунете - <i>сопровождающему</i>) порта. Узнать о том,
+кто поддерживает порт, можно вот так:
+
+<pre class="cmdbox">
+$ <b>cd /usr/ports/archivers/unzip</b>
+$ <b>make show=MAINTAINER</b>
+</pre>
+
+Если мэйнтейнер не указан, или же если по той или иной причине
+с ним не получается связаться, отправьте письмо в рассылку
+<a href="mailto:ports@openbsd.org">ports@openbsd.org</a>.
+
+<p>
+Так или иначе, не забудьте предоставить следующую информацию:
+
+<ul>
+  <li>Версию используемой OpenBSD, включая все патчи, которые были установленны.
+      Версию ядра, которую можно посмотреть при помощи
+      <code>sysctl -n kern.version</code>.
+
+  <li>Версию дерева портов: если существует файл <code>/usr/ports/CVS/Tag</code>,
+      покажие его содержимое. Отсутствие этого файла говорит о том, что
+      используется дерево портов -current.
+
+  <li>Полное развернутое описание проблемы. Не бойтесь предоставлять подробности.
+      Опишите все шаги, которые в итоге привели к проблеме.
+      Получается ли воспроизвести проблему снова и снова? Чем больше информации
+      вы предоставите, тем больше вероятность, что вам помогут.
+</ul>
+
+Для портов, которые не собираются, почти всегда требуется полная <i>стенограмма
+процесса сборки</i>. Для этого вы можете использовать скрипт <code>portslogger</code>,
+находящийся в <code>/usr/ports/infrastructure/bin</code>.
+Пример может выглядеть так:
+
+<pre class="cmdbox">
+$ <b>mkdir ~/portlog</b>
+$ <b>cd /usr/ports/archivers/unzip</b>
+$ <b>make 2&gt;&amp;1 | /usr/ports/infrastructure/bin/portslogger ~/portlog</b>
+</pre>
+
+После этого, в каталоге <code>~/portlog</code> должен быть файл журнала
+сборки, который вы можете отправить мэйнтейнеру порта. Также убедитесь,
+что вы не используете никаких своих специальных параметров во время сборки,
+указанных например в <code>/etc/mk.conf</code>.
+
+<p>
+В качестве альтернативы вы можете сделать следующее:
+
+<ul>
+  <li>Использовать <a href="https://man.openbsd.org/script">script(1)</a>
+	  для создания полной <i>стенограммы процесса сборки</i>.
+  <li>Прикрепить вывод <a href="https://man.openbsd.org/pkg_info">pkg_info(1)</a>,
+      если он покажется вам как-то связанным с возникшей проблемой.
+  <li>Некоторые internal ошибки компилятора
+      <a href="https://man.openbsd.org/gcc">gcc(1)</a> стоит направить в рассылку
+      gcc. Это сэкономит время, если вы последуете их указаниям и предоставите
+      как минимум различные файлы, созданные при помощи <code>gcc -save-temps</code>.
+</ul>
+
+<h2 id="Helping">Как помочь нам</h2>
+
+Есть много способов помочь нам.
+Они перечисленны ниже, в порядке увеличения сложности.
+
+<ul>
+  <li><a href="#Problems">Сообщайте о проблемах</a> по мере их возникновения.
+  <li>Вы можете систематически тестировать порты и сообщать о проблемах или
+      просто о тех из них, которые сломанны, или предлагать те или иные улучшения.
+      Ознакомьтесь с <a href="testing.html">руководством по тестированию портов</a>.
+      Вы <b>должны работать в -current</b>, если тестируете порты или работаете
+      над созданием новых.
+  <li>Тестируйте обновления портов, которые присылают в ports рассылке.
+  <li>Отправляйте обновления или патчи мейнтейнеру или в рассылку ports,
+      если у порта нет мейнтейнера.
+      Как правило, это оценивается высоко, но только если ваши патчи не заставят
+      разработчиков тратить еще больше времени, вместо того, чтобы экономить его,
+      благодаря вашей работе.
+  <li><a href="guide.html">Создавайте новые порты</a>.
+</ul>
+
+<p>
+Пожертвования <a href="https://www.openbsd.org/want.html">железа</a>
+может помочь в тестировании портов на поддерживаемых OpenBSD
+<a href="../../plat.html">платформах</a>.

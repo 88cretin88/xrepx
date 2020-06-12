@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i%7CRoboto:400,400i,700,700i&amp;subset=cyrillic">
+		<link rel="stylesheet" href="https://use.fontawesome.com/2a93ab338e.css">
+		<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+
+		<link rel="shortcut icon" href="{{ site.url }}/assets/img/favicon/favicon.ico">
+
+		<link rel="icon" type="image/png" href="{{ site.url }}/assets/img/favicon/favicon-196x196.png" sizes="196x196">
+		<link rel="icon" type="image/png" href="{{ site.url }}/assets/img/favicon/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="{{ site.url }}/assets/img/favicon/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="{{ site.url }}/assets/img/favicon/favicon-128.png" sizes="128x128">
+		<meta name="application-name" content="Ctlos Linux">
+		<meta name="apple-mobile-web-app-title" content="Ctlos Linux">
+		<meta name="msapplication-TileColor" content="#407AFC">
+		<meta name="msapplication-square310x310logo" content="{{ site.url }}/assets/img/favicon/mstile-310x310.png">
+		<meta name="msapplication-config" content="{{ site.url }}/assets/img/favicon/browserconfig.xml">
+		<meta name="theme-color" content="#407afc">
+
+		<link type="application/atom+xml" rel="alternate" href="{{ site.baseurl }}/feed.xml" title="Change Log | Ctlos Wiki" />
+		{% seo %}
+
+		{% if jekyll.environment == 'production' and site.google_verification != '' %}
+		<meta name="google-site-verification" content="{{ site.google_verification }}" />
+		{% endif %}
+
+		{% if jekyll.environment == 'production' and site.google_analytics != '' %}
+		<script src="https://cdn.jsdelivr.net/npm/ga-lite@1/dist/ga-lite.min.js" async></script>
+		<script>
+			var galite = galite || {};
+			galite.UA = '{{ site.google_analytics }}';
+		</script>
+		{% endif %}
+		
+	</head>
+
+	<body>
+		<header id="header">
+			<div id="scroll">
+				<h1>
+					<!-- <a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/assets/img/emblem.svg" width="40" height="40" alt="{{ site.title }} logo"></a> -->
+					<a href="{{ site.baseurl }}/" class="logo">{{ site.display_title }}</a>
+					<button type="button" class="open-nav" id="open-nav"></button>
+				</h1>
+
+				<form action="{{ site.baseurl }}/search/" method="get" class="search-input-container">
+					<input type="text" name="q" id="search-input" placeholder="Поиск" data-autofocus>
+					<div class="search-input-icon">{% include icons/search.svg %}</div>
+
+					<input type="submit" value="Search" style="display: none;">
+				</form>
+
+				<nav {% if site.show_full_navigation %}class="full-navigation"{% endif %}>
+					<ul>
+						<li class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">
+							{% assign changelog = site.html_pages | where: 'url', '/changelog/' | first %}
+							<a href="{{ site.baseurl }}/changelog/">{{ changelog.title }}</a>
+						</li>
+					</ul>
+					
+					<ul>
+						{% assign grouped = site.docs | group_by: 'category' %}
+
+						{% for group in grouped %}
+						<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
+							{% assign items = group.items | sort: 'order' %}
+							<a href="{{ site.baseurl }}{{ items.first.url }}">{{ group.name }}</a>
+							<ul>
+								{% for item in items %}
+								<li class="nav-item {% if item.url == page.url %}current{% endif %}"><a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></li>
+								{% endfor %}
+							</ul>
+						</li>
+						{% endfor %}
+					</ul>
+
+				</nav>
+			</div>
+		</header>
+
+		<section class="main">
+			<div class="page-header">
+				<img class="logo" width="60" height="60" src="{{ site.baseurl }}/assets/img/logo.svg" alt="CtlosLinux logo">
+				<h2>{% if page.category %}{{ page.category }}{% else %}{{ site.title }}{% endif %}</h2>
+				<h3>{{ page.title }}</h3>
+			</div>
+			<article class="content">
+				{% include edit.html %}
+				{% if page.post_video %}
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ page.post_video }}?autoplay=0&showinfo=0&controls=1&color=red&disablekb=1&rel=0" modestbranding="1" frameborder="0" theme="dark" allowfullscreen></iframe>
+				</div>
+				{% endif %}
+				{% if page.post_photo_path %}<img class="post-img" src="{{ page.post_photo_path }}" alt="{{ page.title }}">{% endif %}
+				{{ content }}
+				{% include edit.html %}
+				{% if site.disqus_shortname %}
+				{% include disqus.html %}
+				{% endif %}
+			</article>
+			{% include footer-page.html %}
+		</section>
+
+		<div id="scrollup"><i class="fa fa-chevron-circle-up up" aria-hidden="true"></i></div>
+
+		<script>
+			{% include js/menu.js %}
+			{% include js/autofocus.js %}
+		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<script src="{{ site.baseurl }}/assets/js/jquery.scroolly.js"></script>
+		<script src="{{ site.baseurl }}/assets/js/jquery.slimscroll.min.js"></script>
+		<script src="{{ site.baseurl }}/assets/js/main.js"></script>		
+
+		{% if jekyll.environment == 'production' and site.ya_metrika != '' %}
+		<!-- Yandex.Metrika counter --> <script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter{{ site.ya_metrika }} = new Ya.Metrika2({ id:{{ site.ya_metrika }}, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/tag.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks2"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/{{ site.ya_metrika }}" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+		{% endif %}
+
+		<script id="chatBroEmbedCode">/* Chatbro Widget Embed Code Start */function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','//www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}/* Chatbro Widget Embed Code End */ChatbroLoader({encodedChatId: '52xuJ'});</script>
+
+	</body>
+</html>

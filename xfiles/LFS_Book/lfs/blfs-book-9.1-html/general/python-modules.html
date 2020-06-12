@@ -1,0 +1,3351 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Python Modules
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;13.&nbsp;Programming
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="python3.html" title="Python-3.8.1">Prev</a>
+          <p>
+            Python-3.8.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="ruby.html" title="Ruby-2.7.0">Next</a>
+          <p>
+            Ruby-2.7.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="python-modules" name="python-modules"></a>Python Modules
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Python Modules
+        </h2>
+        <p>
+          The <span class="application">Python</span> module packages add
+          useful objects to the <span class="application">Python</span>
+          language. Modules utilized by packages throughout BLFS are listed
+          here, along with their dependencies.
+        </p>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#dbus-python" title=
+                "D-Bus Python-1.2.16">D-Bus Python-1.2.16</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#decorator" title=
+                "decorator-4.4.1">decorator-4.4.1</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#docutils" title=
+                "docutils-0.16">docutils-0.16</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#pyatspi2" title=
+                "PyAtSpi2-2.34.0">PyAtSpi2-2.34.0</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#pycairo" title=
+                "PyCairo-1.19.0">PyCairo-1.19.0</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#pycairo2" title=
+                "PyCairo-1.18.2">PyCairo-1.18.2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#pycryptodome"
+                title="PyCryptodome-3.9.6">PyCryptodome-3.9.6</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#python-dbusmock"
+                title="dbusmock-0.19">dbusmock-0.19</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#pygments" title=
+                "Pygments-2.5.2">Pygments-2.5.2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#pygobject2" title=
+                "PyGObject-2.28.7">PyGObject-2.28.7</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#pygobject3" title=
+                "PyGObject-3.34.0">PyGObject-3.34.0</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#pygtk" title=
+                "PyGTK-2.24.0">PyGTK-2.24.0</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#pyxdg" title=
+                "PyXDG-0.25">PyXDG-0.25</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#libxml2py2" title=
+                "libxml2-2.9.10 (for its Python2 module)">libxml2-2.9.10 (for
+                Python2)</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#lxml" title=
+                "lxml-4.5.0">lxml-4.5.0</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#MarkupSafe" title=
+                "MarkupSafe-1.1.1">MarkupSafe-1.1.1</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#Jinja2" title=
+                "Jinja2-2.11.1">Jinja2-2.11.1</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#Mako" title=
+                "Mako-1.1.1">Mako-1.1.1</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#python-slip" title=
+                "python-slip-0.6.5">python-slip-0.6.5</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#scour" title=
+                "Scour-0.37">Scour-0.37</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#six" title=
+                "six-1.14.0">six-1.14.0</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                <a class="xref" href="python-modules.html#PyYAML" title=
+                "PyYAML-5.3">PyYAML-5.3</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="dbus-python" name="dbus-python"></a>D-Bus Python-1.2.16
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263844064" name=
+            "idm45779263844064"></a>Introduction to D-Bus Python Module
+          </h4>
+          <p>
+            <span class="application">D-Bus Python</span> provides
+            <span class="application">Python</span> bindings to the
+            <span class="application">D-Bus</span> API interface.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://dbus.freedesktop.org/releases/dbus-python/dbus-python-1.2.16.tar.gz">
+                  https://dbus.freedesktop.org/releases/dbus-python/dbus-python-1.2.16.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: 51a45c973d82bedff033a4b57d69d5d8
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 564 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 11 MB (both versions, with
+                  tests)
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: 0.4 SBU (both versions, with tests)
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            D-Bus Python Dependencies
+          </h4>
+          <h5>
+            Required
+          </h5>
+          <p class="required">
+            <a class="xref" href="dbus.html" title=
+            "dbus-1.12.16">dbus-1.12.16</a> and <a class="xref" href=
+            "glib2.html" title="GLib-2.62.4">GLib-2.62.4</a>
+          </p>
+          <h5>
+            Recommended
+          </h5>
+          <p class="recommended">
+            <a class="xref" href="python2.html" title=
+            "Python-2.7.17">Python-2.7.17</a> (some applications in the book
+            require the Python 2 module)
+          </p>
+          <h5>
+            Optional
+          </h5>
+          <p class="optional">
+            <a class="xref" href="python-modules.html#pygobject3" title=
+            "PyGObject-3.34.0">PyGObject-3.34.0</a> and <a class="ulink"
+            href="https://pypi.python.org/pypi/tap.py/">tap.py</a> (required
+            for some tests)
+          </p>
+          <h5>
+            Optional (Required to build the API and HTML Documentation)
+          </h5>
+          <p class="optional">
+            <a class="xref" href="python-modules.html#docutils" title=
+            "docutils-0.16">docutils-0.16</a> and <a class="ulink" href=
+            "http://www.sphinx-doc.org/en/master/">Sphinx</a> with <a class=
+            "ulink" href=
+            "https://github.com/rtfd/sphinx_rtd_theme">sphinx_rtd_theme</a>
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/dbus-python">http://wiki.linuxfromscratch.org/blfs/wiki/dbus-python</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263819136" name=
+            "idm45779263819136"></a>Installation of D-Bus Python
+          </h4>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              Both <span class="application">Python 2</span> and <span class=
+              "application">Python 3</span> modules can be built and
+              installed without any conflicts.
+            </p>
+          </div>
+          <p>
+            To build <span class="application">D-Bus Python</span> as the
+            <span class="application">Python 2</span> module, run the
+            following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">mkdir python2 &amp;&amp;
+pushd python2 &amp;&amp;
+PYTHON=/usr/bin/python2     \
+../configure --prefix=/usr --docdir=/usr/share/doc/dbus-python-1.2.16 &amp;&amp;
+make &amp;&amp;
+popd</kbd>
+</pre>
+          <p>
+            To test the results, issue: <span class="command"><strong>make -C
+            python2 check</strong></span>. One test reports error due to dbus
+            issues.
+          </p>
+          <p>
+            To build <span class="application">D-Bus Python</span> as the
+            <span class="application">Python 3</span> module, run the
+            following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">mkdir python3 &amp;&amp;
+pushd python3 &amp;&amp;
+PYTHON=/usr/bin/python3    \
+../configure --prefix=/usr --docdir=/usr/share/doc/dbus-python-1.2.16 &amp;&amp;
+make &amp;&amp;
+popd</kbd>
+</pre>
+          <p>
+            To test the results, issue: <span class="command"><strong>make -C
+            python3 check</strong></span>.
+          </p>
+          <p>
+            To install the <span class="application">Python 2</span> module,
+            run the following command as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">make -C python2 install</kbd>
+</pre>
+          <p>
+            To install the <span class="application">Python 3</span> module,
+            run the following command as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">make -C python3 install</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263799696" name="idm45779263799696"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class="segbody">/usr/share/doc/dbus-python-1.2.16 and
+                /usr/lib/python2.7/site-packages/dbus and/or
+                /usr/lib/python3.8/site-packages/dbus</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="decorator" name="decorator"></a>decorator-4.4.1
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263791584" name=
+            "idm45779263791584"></a>Introduction to decorator Module
+          </h4>
+          <p>
+            The goal of the <span class="application">decorator</span> module
+            is to make it easy to define signature-preserving function
+            decorators and decorator factories.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://files.pythonhosted.org/packages/source/d/decorator/decorator-4.4.1.tar.gz">
+                  https://files.pythonhosted.org/packages/source/d/decorator/decorator-4.4.1.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: 933981f288c4230816b5beee8d40e6ea
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 36 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 240 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: less than 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/decorator">http://wiki.linuxfromscratch.org/blfs/wiki/decorator</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263779744" name=
+            "idm45779263779744"></a>Installation of decorator
+          </h4>
+          <p>
+            Install decorator with the following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">python3 setup.py build</kbd>
+</pre>
+          <p>
+            This package does not come with a test suite.
+          </p>
+          <p>
+            To install the decorator package with the following command as
+            the <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python3 setup.py install --optimize=1</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263773808" name="idm45779263773808"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class=
+                "segbody">/usr/lib/python3.8/site-packages/decorator/decorator-4.4.1-py3.8.egg-info</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class=
+                "segbody">/usr/lib/python3.8/site-packages/decorator</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="docutils" name="docutils"></a>docutils-0.16
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263765744" name=
+            "idm45779263765744"></a>Introduction to docutils
+          </h4>
+          <p>
+            <span class="application">docutils</span> is a set of
+            <span class="application">Python</span> modules and programs for
+            processing plaintext docs into formats such as HTML, XML, or
+            LaTeX.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "http://downloads.sourceforge.net/docutils/docutils-0.16.tar.gz">
+                  http://downloads.sourceforge.net/docutils/docutils-0.16.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: 9ccb6f332e23360f964de72c8ea5f0ed
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 1.8 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 12 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: less than 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            Docutils Dependencies
+          </h4>
+          <h5>
+            Optional
+          </h5>
+          <p class="optional">
+            <a class="xref" href="python2.html" title=
+            "Python-2.7.17">Python-2.7.17</a>
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/docutils">http://wiki.linuxfromscratch.org/blfs/wiki/docutils</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263750592" name=
+            "idm45779263750592"></a>Installation of docutils
+          </h4>
+          <p>
+            To build the <span class="application">Python 3</span>
+            applications, run the following command:
+          </p>
+          <pre class="userinput">
+<kbd class="command">python3 setup.py build</kbd>
+</pre>
+          <p>
+            To install the <span class="application">Python</span>
+            applications run the following as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python3 setup.py install --optimize=1 &amp;&amp;
+
+for f in /usr/bin/rst*.py; do
+  ln -svf $(basename $f) /usr/bin/$(basename $f .py)
+done</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263743008" name="idm45779263743008"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">rst2html4, rst2html5, rst2html,
+                rst2latex, rst2man, rst2odt_prepstyles, rst2odt,
+                rst2pseudoxml, rst2s5, rst2xetex, rst2xml, and
+                rstpep2html</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class=
+                "segbody">/usr/lib/python3.8/site-packages/docutils</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="pyatspi2" name="pyatspi2"></a>PyAtSpi2-2.34.0
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263734848" name=
+            "idm45779263734848"></a>Introduction to PyAtSpi2
+          </h4>
+          <p>
+            The <span class="application">PyAtSpi2</span> package contains
+            <span class="application">Python</span> bindings for the core
+            components of the <span class="application">GNOME</span>
+            Accessibility.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "http://ftp.gnome.org/pub/gnome/sources/pyatspi/2.34/pyatspi-2.34.0.tar.xz">
+                  http://ftp.gnome.org/pub/gnome/sources/pyatspi/2.34/pyatspi-2.34.0.tar.xz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download (FTP): <a class="ulink" href=
+                  "ftp://ftp.gnome.org/pub/gnome/sources/pyatspi/2.34/pyatspi-2.34.0.tar.xz">
+                  ftp://ftp.gnome.org/pub/gnome/sources/pyatspi/2.34/pyatspi-2.34.0.tar.xz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: bbe80f95f09091dac306a62d286bd19b
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 308 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 3.0 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: less than 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            PyAtSpi2 Dependencies
+          </h4>
+          <h5>
+            Required
+          </h5>
+          <p class="required">
+            <a class="xref" href="python-modules.html#pygobject3" title=
+            "PyGObject-3.34.0">PyGObject-3.34.0</a>
+          </p>
+          <h5>
+            Recommended
+          </h5>
+          <p class="recommended">
+            <a class="xref" href="../x/at-spi2-core.html" title=
+            "at-spi2-core-2.34.0">at-spi2-core-2.34.0</a>
+          </p>
+          <h5>
+            Optional
+          </h5>
+          <p class="optional">
+            <a class="xref" href="python2.html" title=
+            "Python-2.7.17">Python-2.7.17</a>
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/pyatspi2">http://wiki.linuxfromscratch.org/blfs/wiki/pyatspi2</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263714720" name=
+            "idm45779263714720"></a>Installation of PyAtSpi2
+          </h4>
+          <p>
+            To build <span class="application">PyAtSpi2</span> as a
+            <span class="application">Python 3</span> module, run the
+            following commands:
+          </p>
+          <pre class="userinput">
+<kbd class=
+"command">./configure --prefix=/usr --with-python=/usr/bin/python3</kbd>
+</pre>
+          <p>
+            This package does not come with a testsuite.
+          </p>
+          <p>
+            To install the <span class="application">Python 3</span> module,
+            run the following command as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263706592" name="idm45779263706592"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class=
+                "segbody">/usr/lib/python2.7/site-packages/pyatspi and/or
+                /usr/lib/python3.8/site-packages/pyatspi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="pycairo" name="pycairo"></a>PyCairo-1.19.0
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263698048" name=
+            "idm45779263698048"></a>Introduction to PyCairo Module
+          </h4>
+          <p>
+            PyCairo provides <span class="application">Python</span> bindings
+            to <span class="application">Cairo</span>.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://github.com/pygobject/pycairo/releases/download/v1.19.0/pycairo-1.19.0.tar.gz">
+                  https://github.com/pygobject/pycairo/releases/download/v1.19.0/pycairo-1.19.0.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: 38b84416021640b01250c8f8ec4c52d4
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 200 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 3.7 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: less than 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            PyCairo Dependencies
+          </h4>
+          <h5>
+            Required
+          </h5>
+          <p class="required">
+            <a class="xref" href="../x/cairo.html" title=
+            "Cairo-1.17.2+f93fc72c03e">Cairo-1.17.2+f93fc72c03e</a>
+          </p>
+          <h5>
+            Optional
+          </h5>
+          <p class="optional">
+            <a class="ulink" href=
+            "https://hypothesis.readthedocs.io">Hypothesis</a> (for tests)
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/pycairo">http://wiki.linuxfromscratch.org/blfs/wiki/pycairo</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263680608" name=
+            "idm45779263680608"></a>Installation of PyCairo
+          </h4>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              The current version of pycairo no longer builds the Python2
+              module. If you need that module for packages sych as <a class=
+              "xref" href="../xsoft/gimp.html" title=
+              "Gimp-2.10.18">Gimp-2.10.18</a>, use <a class="xref" href=
+              "python-modules.html#pycairo2" title=
+              "PyCairo-1.18.2">PyCairo-1.18.2</a>
+            </p>
+          </div>
+          <p>
+            Install <span class="application">PyCairo</span> for Python3 by
+            running the following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">python3 setup.py build</kbd>
+</pre>
+          <p>
+            This package does not come with a test suite.
+          </p>
+          <p>
+            Now, as the <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python3 setup.py install --optimize=1   &amp;&amp;
+python3 setup.py install_pycairo_header &amp;&amp;
+python3 setup.py install_pkgconfig</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263671024" name="idm45779263671024"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Program:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Library:</strong>
+                <span class=
+                "segbody">_cairo.cpython-38m-x86_64-linux-gnu.so</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class="segbody">/usr/include/pycairo, and
+                /usr/lib/python3.8/site-packages/pycairo-1.19.0-py3.8.egg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="pycairo2" name="pycairo2"></a>PyCairo-1.18.2
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263661728" name=
+            "idm45779263661728"></a>Introduction to PyCairo for Python2
+            Module
+          </h4>
+          <p>
+            This version of PyCairo provides <span class=
+            "application">Python2</span> bindings to <span class=
+            "application">Cairo</span>.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://github.com/pygobject/pycairo/releases/download/v1.18.2/pycairo-1.18.2.tar.gz">
+                  https://github.com/pygobject/pycairo/releases/download/v1.18.2/pycairo-1.18.2.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: be2ba51f234270dec340f28f1695a95e
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 196 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 2.3 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: less than 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            PyCairo Dependencies
+          </h4>
+          <h5>
+            Required
+          </h5>
+          <p class="required">
+            <a class="xref" href="../x/cairo.html" title=
+            "Cairo-1.17.2+f93fc72c03e">Cairo-1.17.2+f93fc72c03e</a>,
+            <a class="xref" href="python2.html" title=
+            "Python-2.7.17">Python-2.7.17</a>
+          </p>
+          <h5>
+            Optional
+          </h5>
+          <p class="optional">
+            <a class="ulink" href=
+            "https://hypothesis.readthedocs.io">Hypothesis</a> (for tests)
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/pycairo">http://wiki.linuxfromscratch.org/blfs/wiki/pycairo</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263643488" name=
+            "idm45779263643488"></a>Installation of PyCairo
+          </h4>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              This version of PyCairo is only retained for packages such as
+              <a class="xref" href="../xsoft/gimp.html" title=
+              "Gimp-2.10.18">Gimp-2.10.18</a> which is stuck on Python2 until
+              Gimp-3 is released.
+            </p>
+          </div>
+          <p>
+            Install <span class="application">PyCairo</span> for Python2 by
+            running the following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">python2 setup.py build</kbd>
+</pre>
+          <p>
+            This package does not come with a test suite.
+          </p>
+          <p>
+            Now, as the <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python2 setup.py install --optimize=1   &amp;&amp;
+python2 setup.py install_pycairo_header &amp;&amp;
+python2 setup.py install_pkgconfig</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263635168" name="idm45779263635168"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Program:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Library:</strong>
+                <span class="segbody">_cairo.so</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class="segbody">/usr/include/pycairo,
+                /usr/lib/python2.7/site-packages/cairo,
+                /usr/lib/python2.7/site-packages/pycairo-1.18.2-py2.7.egg,</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="pycryptodome" name="pycryptodome"></a>PyCryptodome-3.9.6
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263626784" name=
+            "idm45779263626784"></a>Introduction to the PyCryptodome Module
+          </h4>
+          <p>
+            <span class="application">PyCryptodome</span> is a collection of
+            both secure hash functions (such as SHA256 and RIPEMD160), and
+            various encryption algorithms (AES, DES, RSA, ElGamal, etc.), and
+            is a drop-in replacement for PyCrypto.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://files.pythonhosted.org/packages/source/p/pycryptodome/pycryptodome-3.9.6.tar.gz">
+                  https://files.pythonhosted.org/packages/source/p/pycryptodome/pycryptodome-3.9.6.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: 9d0a8b1a2367248f9d3f46c48c70f2d0
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 15 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 148 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: 0.3 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            PyCryptodome Dependencies
+          </h4>
+          <h5>
+            Recommended
+          </h5>
+          <p class="recommended">
+            <a class="xref" href="python2.html" title=
+            "Python-2.7.17">Python-2.7.17</a>
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/pycryptodome">http://wiki.linuxfromscratch.org/blfs/wiki/pycryptodome</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263612224" name=
+            "idm45779263612224"></a>Installation of PyCryptodome
+          </h4>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              Both <span class="application">Python 2</span> and <span class=
+              "application">Python 3</span> modules can be built and
+              installed without any conflicts.
+            </p>
+          </div>
+          <p>
+            To build the <span class="application">Python 2</span> and
+            <span class="application">Python 3</span> modules, run the
+            following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">python2 setup.py build &amp;&amp;
+python3 setup.py build</kbd>
+</pre>
+          <p>
+            To install both modules, run the following commands as the
+            <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python2 setup.py install --optimize=1 &amp;&amp;
+python3 setup.py install --optimize=1</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263602560" name="idm45779263602560"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">pycryptodome-3.9.6-py2.7.egg-info
+                and/or pycryptodome-3.9.6-py3.8.egg-info</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class="segbody">/usr/lib/python2.7/site-packages/Crypto
+                and/or /usr/lib/python3.8/site-packages/Crypto</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="python-dbusmock" name="python-dbusmock"></a>dbusmock-0.19
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263594416" name=
+            "idm45779263594416"></a>Introduction to dbusmock
+          </h4>
+          <p>
+            <span class="application">dbusmock</span> a Python library useful
+            for writing tests for software which talks to D-Bus services.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://github.com/martinpitt/python-dbusmock/releases/download/0.19/python-dbusmock-0.19.tar.gz">
+                  https://github.com/martinpitt/python-dbusmock/releases/download/0.19/python-dbusmock-0.19.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: 565aaae672e065c9c17e7fafd1843701
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 72 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 888 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: less than 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/dbusmock">http://wiki.linuxfromscratch.org/blfs/wiki/dbusmock</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263582640" name=
+            "idm45779263582640"></a>Installation of dbusmock
+          </h4>
+          <p>
+            Build the package with:
+          </p>
+          <pre class="userinput">
+<kbd class="command">python3 setup.py build</kbd>
+</pre>
+          <p>
+            To install the package run the following as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python3 setup.py install --optimize=1</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263577200" name="idm45779263577200"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">python_dbusmock-0.19-py3.8.egg</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class="segbody">None</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="pygments" name="pygments"></a>Pygments-2.5.2
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263569216" name=
+            "idm45779263569216"></a>Introduction to Pygments Module
+          </h4>
+          <p>
+            <span class="application">Pygments</span> is a general syntax
+            highlighter written in <span class="application">Python</span>,
+            for more than 300 languages.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://files.pythonhosted.org/packages/source/P/Pygments/Pygments-2.5.2.tar.gz">
+                  https://files.pythonhosted.org/packages/source/P/Pygments/Pygments-2.5.2.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: 465a35559863089d959d783a69f79b9f
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 19.3 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 70 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: less than 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/pygments">http://wiki.linuxfromscratch.org/blfs/wiki/pygments</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263556752" name=
+            "idm45779263556752"></a>Installation of Pygments
+          </h4>
+          <p>
+            Build and install the <span class="application">Python 3</span>
+            module by running the following commands as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python3 setup.py install --optimize=1</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263552096" name="idm45779263552096"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">pygmentize</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Library:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class=
+                "segbody">/usr/lib/python3.8/site-packages/Pygments-2.5.2-py3.8.egg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="pygobject2" name="pygobject2"></a>PyGObject-2.28.7
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263544144" name=
+            "idm45779263544144"></a>Introduction to PyGObject Module
+          </h4>
+          <p>
+            PyGObject-2.28.7 provides <span class="application">Python
+            2</span> bindings to the GObject class from <span class=
+            "application">GLib</span>.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "http://ftp.gnome.org/pub/gnome/sources/pygobject/2.28/pygobject-2.28.7.tar.xz">
+                  http://ftp.gnome.org/pub/gnome/sources/pygobject/2.28/pygobject-2.28.7.tar.xz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download (FTP): <a class="ulink" href=
+                  "ftp://ftp.gnome.org/pub/gnome/sources/pygobject/2.28/pygobject-2.28.7.tar.xz">
+                  ftp://ftp.gnome.org/pub/gnome/sources/pygobject/2.28/pygobject-2.28.7.tar.xz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: ae48b60c690c4aa894e69e0c97802745
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 728 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 17 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            PyGObject Dependencies
+          </h4>
+          <h5>
+            Required
+          </h5>
+          <p class="required">
+            <a class="xref" href="glib2.html" title=
+            "GLib-2.62.4">GLib-2.62.4</a>, <a class="xref" href=
+            "python-modules.html#pycairo2" title=
+            "PyCairo-1.18.2">PyCairo-1.18.2</a> and <a class="xref" href=
+            "python2.html" title="Python-2.7.17">Python-2.7.17</a>
+          </p>
+          <h5>
+            Optional
+          </h5>
+          <p class="optional">
+            <a class="xref" href="gobject-introspection.html" title=
+            "gobject-introspection-1.62.0">gobject-introspection-1.62.0</a>
+            and <a class="xref" href="libxslt.html" title=
+            "libxslt-1.1.34">libxslt-1.1.34</a> (to Build Documentation)
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/pygobject2">http://wiki.linuxfromscratch.org/blfs/wiki/pygobject2</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263524224" name=
+            "idm45779263524224"></a>Installation of PyGObject
+          </h4>
+          <p>
+            Install <span class="application">PyGObject</span> by running the
+            following commands:
+          </p>
+          <pre class="userinput">
+<kbd class=
+"command">./configure --prefix=/usr --disable-introspection &amp;&amp;
+make</kbd>
+</pre>
+          <p>
+            This package does not have a working testsuite.
+          </p>
+          <p>
+            Now, as the <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+        </div>
+        <div class="commands" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263517568" name="idm45779263517568"></a>Command
+            Explanations
+          </h4>
+          <p>
+            <code class="option">--disable-introspection</code>: Omit this
+            switch if you have installed <a class="xref" href=
+            "gobject-introspection.html" title=
+            "gobject-introspection-1.62.0">gobject-introspection-1.62.0</a>.
+            Note that it conflicts with <a class="xref" href=
+            "python-modules.html#pygobject3" title=
+            "PyGObject-3.34.0">PyGObject-3.34.0</a>.
+          </p>
+          <p>
+            <code class="option">--disable-docs</code>: This option disables
+            the rebuilding of the html documentation if <a class="xref" href=
+            "libxslt.html" title="libxslt-1.1.34">libxslt-1.1.34</a> is
+            installed.
+          </p>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263512704" name="idm45779263512704"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">pygobject-codegen-2.0</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">libpyglib-2.0-python.so, _gio.so,
+                unix.so, _glib.so and _gobject.so.</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class="segbody">/usr/include/pygtk-2.0,
+                /usr/lib/python2.7/site-packages/gtk-2.0/{gio,glib,gobject},
+                /usr/share/gtk-doc/html/pygobject and
+                /usr/share/pygobject/2.0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="pygobject3" name="pygobject3"></a>PyGObject-3.34.0
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263504528" name=
+            "idm45779263504528"></a>Introduction to PyGObject3 Module
+          </h4>
+          <p>
+            <span class="application">PyGObject3</span> provides <span class=
+            "application">Python</span> bindings to the GObject class from
+            <span class="application">GLib</span>.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "http://ftp.gnome.org/pub/gnome/sources/pygobject/3.34/pygobject-3.34.0.tar.xz">
+                  http://ftp.gnome.org/pub/gnome/sources/pygobject/3.34/pygobject-3.34.0.tar.xz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download (FTP): <a class="ulink" href=
+                  "ftp://ftp.gnome.org/pub/gnome/sources/pygobject/3.34/pygobject-3.34.0.tar.xz">
+                  ftp://ftp.gnome.org/pub/gnome/sources/pygobject/3.34/pygobject-3.34.0.tar.xz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: ca1dc4f31c1d6d283758e8f315a88ab6
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 540 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 20 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: 0.1 SBU (Using parallelism=4)
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            PyGObject3 Dependencies
+          </h4>
+          <h5>
+            Required
+          </h5>
+          <p class="required">
+            <a class="xref" href="gobject-introspection.html" title=
+            "gobject-introspection-1.62.0">gobject-introspection-1.62.0</a>
+            and <a class="xref" href="python-modules.html#pycairo" title=
+            "PyCairo-1.19.0">PyCairo-1.19.0</a> (<span class=
+            "application">Python 3</span> module)
+          </p>
+          <h5>
+            Recommended
+          </h5>
+          <p class="recommended">
+            <a class="xref" href="python2.html" title=
+            "Python-2.7.17">Python-2.7.17</a> and <a class="xref" href=
+            "python-modules.html#pycairo" title=
+            "PyCairo-1.19.0">PyCairo-1.19.0</a> (<span class=
+            "application">Python 2</span> module)
+          </p>
+          <h5>
+            Optional (for the tests)
+          </h5>
+          <p class="optional">
+            <a class="ulink" href=
+            "https://pypi.python.org/pypi/pep8">pep8</a>, <a class="ulink"
+            href="https://pypi.python.org/pypi/pyflakes">pyflakes</a>, and
+            <a class="ulink" href=
+            "https://pypi.python.org/pypi/pytest">pytest</a>
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/pygobject3">http://wiki.linuxfromscratch.org/blfs/wiki/pygobject3</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263479856" name=
+            "idm45779263479856"></a>Installation of PyGObject3
+          </h4>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              Both <span class="application">Python 2</span> and <span class=
+              "application">Python 3</span> modules can be built and
+              installed without any conflicts.
+            </p>
+          </div>
+          <p>
+            To build <span class="application">PyGObject3</span> as a
+            <span class="application">Python 2</span> module, run the
+            following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">mkdir python2                           &amp;&amp;
+pushd python2                           &amp;&amp;
+meson --prefix=/usr -Dpython=python2 .. &amp;&amp;
+ninja                                   &amp;&amp;
+popd</kbd>
+</pre>
+          <p>
+            To test the results, issue: <span class="command"><strong>ninja
+            -C python2 test</strong></span>. An already active graphical
+            session with bus address is necessary to run the tests. Two tests
+            fail due to a search for GTK+-4, which has not been released yet.
+          </p>
+          <p>
+            To build <span class="application">PyGObject3</span> as a
+            <span class="application">Python 3</span> module, run the
+            following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">mkdir python3                           &amp;&amp;
+pushd python3                           &amp;&amp;
+meson --prefix=/usr -Dpython=python3 .. &amp;&amp;
+ninja                                   &amp;&amp;
+popd</kbd>
+</pre>
+          <p>
+            To test the results, issue: <span class="command"><strong>ninja
+            -C python3 test</strong></span>. An already active graphical
+            session with bus address is necessary to run the tests. Two tests
+            fail due to a search for GTK+-4, which has not been released yet.
+          </p>
+          <p>
+            To install the <span class="application">Python 2</span> module,
+            run the following command as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">ninja -C python2 install</kbd>
+</pre>
+          <p>
+            To install the <span class="application">Python 3</span> module,
+            run the following command as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">ninja -C python3 install</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263460080" name="idm45779263460080"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Library:</strong>
+                <span class=
+                "segbody">/usr/lib/python2.7/site-packages/gi/_gi{,_cairo}.so
+                and/or
+                /usr/lib/python3.8/site-packages/gi/_gi{,_cairo}.cpython-38m-&lt;arch&gt;-linux-gnu.so</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class="segbody">/usr/include/pygobject-3.0, and
+                /usr/lib/python2.7/site-packages/{gi,pygtkcompat} and/or
+                /usr/lib/python3.8/site-packages/{gi,pygtkcompat}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="pygtk" name="pygtk"></a>PyGTK-2.24.0
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263451696" name=
+            "idm45779263451696"></a>Introduction to PyGTK Module
+          </h4>
+          <p>
+            PyGTK lets you to easily create programs with a graphical user
+            interface using the <span class="application">Python</span>
+            programming language.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "http://ftp.gnome.org/pub/gnome/sources/pygtk/2.24/pygtk-2.24.0.tar.bz2">
+                  http://ftp.gnome.org/pub/gnome/sources/pygtk/2.24/pygtk-2.24.0.tar.bz2</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download (FTP): <a class="ulink" href=
+                  "ftp://ftp.gnome.org/pub/gnome/sources/pygtk/2.24/pygtk-2.24.0.tar.bz2">
+                  ftp://ftp.gnome.org/pub/gnome/sources/pygtk/2.24/pygtk-2.24.0.tar.bz2</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: a1051d5794fd7696d3c1af6422d17a49
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 2.2 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 83 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: 0.7 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            PyGTK Dependencies
+          </h4>
+          <h5>
+            Required
+          </h5>
+          <p class="required">
+            <a class="xref" href="python-modules.html#pygobject2" title=
+            "PyGObject-2.28.7">PyGObject-2.28.7</a> and <a class="xref" href=
+            "python2.html" title="Python-2.7.17">Python-2.7.17</a>
+          </p>
+          <h5>
+            Required (atk module)
+          </h5>
+          <p class="required">
+            <a class="xref" href="../x/atk.html" title=
+            "ATK-2.34.1">ATK-2.34.1</a>
+          </p>
+          <h5>
+            Required (pango module)
+          </h5>
+          <p class="required">
+            <a class="xref" href="../x/pango.html" title=
+            "Pango-1.44.7">Pango-1.44.7</a>
+          </p>
+          <h5>
+            Required (pangocairo module)
+          </h5>
+          <p class="required">
+            <a class="xref" href="python-modules.html#pycairo2" title=
+            "PyCairo-1.18.2">PyCairo-1.18.2</a> and <a class="xref" href=
+            "../x/pango.html" title="Pango-1.44.7">Pango-1.44.7</a>
+          </p>
+          <h5>
+            Required (gtk and gtk.unixprint modules)
+          </h5>
+          <p class="required">
+            <a class="xref" href="python-modules.html#pycairo2" title=
+            "PyCairo-1.18.2">PyCairo-1.18.2</a> and <a class="xref" href=
+            "../x/gtk2.html" title="GTK+-2.24.32">GTK+-2.24.32</a>.
+          </p>
+          <h5>
+            Required (gtk.glade module)
+          </h5>
+          <p class="required">
+            <a class="xref" href="python-modules.html#pycairo2" title=
+            "PyCairo-1.18.2">PyCairo-1.18.2</a> and <a class="xref" href=
+            "../x/libglade.html" title="libglade-2.6.4">libglade-2.6.4</a>.
+          </p>
+          <h5>
+            Optional
+          </h5>
+          <p class="optional">
+            <a class="ulink" href="http://www.numpy.org/">NumPy</a>
+          </p>
+          <h5>
+            Optional (to Build Documentation)
+          </h5>
+          <p class="optional">
+            <a class="xref" href="libxslt.html" title=
+            "libxslt-1.1.34">libxslt-1.1.34</a>
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/pygtk">http://wiki.linuxfromscratch.org/blfs/wiki/pygtk</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263420304" name=
+            "idm45779263420304"></a>Installation of PyGTK
+          </h4>
+          <p>
+            First, adapt PyGTK to changes in Pango by removing undefined
+            APIs:
+          </p>
+          <pre class="userinput">
+<kbd class="command">sed -i '1394,1402 d' pango.defs</kbd>
+</pre>
+          <p>
+            Install <span class="application">PyGTK</span> by running the
+            following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr &amp;&amp;
+make</kbd>
+</pre>
+          <p>
+            The tests must be run from an active X display. If this is so,
+            issue: <span class="command"><strong>make check</strong></span>.
+          </p>
+          <p>
+            Now, as the <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+        </div>
+        <div class="commands" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263411136" name="idm45779263411136"></a>Command
+            Explanations
+          </h4>
+          <p>
+            <em class="parameter"><code>--enable-docs</code></em>: This
+            option enables rebuilding the html documentation if <a class=
+            "xref" href="libxslt.html" title=
+            "libxslt-1.1.34">libxslt-1.1.34</a> is installed.
+          </p>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263408240" name="idm45779263408240"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">pygtk-codegen-2.0 and
+                pygtk-demo.</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">atk.so, _gtk.so, glade.so,
+                gtkunixprint.so, pango.so and pangocairo.so.</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class="segbody">/usr/include/pygtk-2.0, /usr/lib/pygtk,
+                /usr/lib/python2.7/site-packages/gtk-2.0,
+                /usr/share/gtk-doc/html/pygtk and /usr/share/pygtk.</span>
+              </div>
+            </div>
+          </div>
+          <div class="variablelist">
+            <h4>
+              Short Descriptions
+            </h4>
+            <table border="0" class="variablelist">
+              <colgroup>
+                <col align="left" valign="top" />
+                <col />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <td>
+                    <p>
+                      <a id="pygtk-codegen-2.0" name=
+                      "pygtk-codegen-2.0"></a><span class="term"><span class=
+                      "command"><strong>pygtk-codegen-2.0</strong></span></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      is a wrapper script to run the <span class=
+                      "application">PyGTK</span> codegen module.
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>
+                      <a id="pygtk-demo" name="pygtk-demo"></a><span class=
+                      "term"><span class=
+                      "command"><strong>pygtk-demo</strong></span></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      is a Python wrapper to run the <span class=
+                      "application">PyGTK</span> demo program.
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="pyxdg" name="pyxdg"></a>PyXDG-0.25
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263388064" name=
+            "idm45779263388064"></a>Introduction to PyXDG Module
+          </h4>
+          <p>
+            <span class="application">PyXDG</span> is a <span class=
+            "application">Python</span> library to access freedesktop.org
+            standards.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://people.freedesktop.org/~takluyver/pyxdg-0.25.tar.gz">
+                  https://people.freedesktop.org/~takluyver/pyxdg-0.25.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: bedcdb3a0ed85986d40044c87f23477c
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 48 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 800 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: less than 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            PyXDG Dependencies
+          </h4>
+          <h5>
+            Optional
+          </h5>
+          <p class="optional">
+            <a class="xref" href="python2.html" title=
+            "Python-2.7.17">Python-2.7.17</a>
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/pyxdg">http://wiki.linuxfromscratch.org/blfs/wiki/pyxdg</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263372960" name=
+            "idm45779263372960"></a>Installation of PyXDG
+          </h4>
+          <p>
+            To install the module, run the following command as the
+            <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python3 setup.py install --optimize=1</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263368672" name="idm45779263368672"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Directory:</strong>
+                <span class=
+                "segbody">/usr/lib/python3.8/site-packages/xdg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="libxml2py2" name="libxml2py2"></a>libxml2-2.9.10 (for its
+          Python2 module)
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263361088" name=
+            "idm45779263361088"></a>Introduction to the libxml2 Python2
+            module
+          </h4>
+          <p>
+            These instructions provide the <span class=
+            "application">Python2</span> bindings for <span class=
+            "application">libxml2</span>: the <span class=
+            "application">Python3</span> bindings are built as part of
+            <a class="xref" href="libxml2.html" title=
+            "libxml2-2.9.10">libxml2-2.9.10</a> and most packages in the book
+            do not use these bindings for the older <span class=
+            "application">Python2</span>.
+          </p>
+          <p>
+            By building these bindings after <a class="xref" href=
+            "libxml2.html" title="libxml2-2.9.10">libxml2-2.9.10</a> has been
+            installed, there is no need to rebuild the time-consuming (if all
+            dependencies are used) main part of that package.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "http://xmlsoft.org/sources/libxml2-2.9.10.tar.gz">http://xmlsoft.org/sources/libxml2-2.9.10.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download (FTP): <a class="ulink" href=
+                  "ftp://xmlsoft.org/libxml2/libxml2-2.9.10.tar.gz">ftp://xmlsoft.org/libxml2/libxml2-2.9.10.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: 10942a1dc23137a8aa07f0639cbfece5
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 5.4 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 53 MB (2.3 MB installed)
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: less than 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            libxml2 (Python2) Dependencies
+          </h4>
+          <h5>
+            Required
+          </h5>
+          <p class="required">
+            <a class="xref" href="libxml2.html" title=
+            "libxml2-2.9.10">libxml2-2.9.10</a> and <a class="xref" href=
+            "python2.html" title="Python-2.7.17">Python-2.7.17</a>
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/libxml2">http://wiki.linuxfromscratch.org/blfs/wiki/libxml2</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263341856" name=
+            "idm45779263341856"></a>Installation of libxml2 Python2 module
+          </h4>
+          <p>
+            To build the <span class="application">Python 2</span> module,
+            run:
+          </p>
+          <pre class="userinput">
+<kbd class="command">cd python             &amp;&amp;
+python2 setup.py build</kbd>
+</pre>
+          <p>
+            To install the <span class="application">Python 2</span> module,
+            as the <code class="systemitem">root</code> user run:
+          </p>
+          <pre class="root">
+<kbd class="command">python2 setup.py install --optimize=1</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263334608" name="idm45779263334608"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">drv_libxml2.py, libxml2.py</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">libxml2mod.so</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class="segbody">None</span>
+              </div>
+            </div>
+          </div>
+          <div class="variablelist">
+            <h3>
+              Short Descriptions
+            </h3>
+            <table border="0" class="variablelist">
+              <colgroup>
+                <col align="left" valign="top" />
+                <col />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <td>
+                    <p>
+                      <a id="drv_libxml2.py2" name=
+                      "drv_libxml2.py2"></a><span class="term"><span class=
+                      "command"><strong>drv_libxml2.py</strong></span></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      is a SAX <span class="application">Python2</span>
+                      driver for libxml2.
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>
+                      <a id="libxml2.py2" name="libxml2.py2"></a><span class=
+                      "term"><span class=
+                      "command"><strong>libxml2.py</strong></span></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      is the <span class="application">Python2</span> binding
+                      for libxml2.
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>
+                      <a id="libxml2mod2" name="libxml2mod2"></a><span class=
+                      "term"><code class=
+                      "filename">libxml2mod.so</code></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      is the interface for <span class=
+                      "application">Python2</span> to use <code class=
+                      "filename">libxml2.so</code>.
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="lxml" name="lxml"></a>lxml-4.5.0
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263308560" name=
+            "idm45779263308560"></a>Introduction to lxml
+          </h4>
+          <p>
+            <span class="application">lxml</span> provides <span class=
+            "application">Python</span> bindings for <a class="xref" href=
+            "libxslt.html" title="libxslt-1.1.34">libxslt-1.1.34</a> and
+            <a class="xref" href="libxml2.html" title=
+            "libxml2-2.9.10">libxml2-2.9.10</a>.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://files.pythonhosted.org/packages/source/l/lxml/lxml-4.5.0.tar.gz">
+                  https://files.pythonhosted.org/packages/source/l/lxml/lxml-4.5.0.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: f088e452ed45b030b6f84269f1e84d11
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 4.3 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 223 MB (add 60 MB for tests)
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: 2.4 SBU (add 2.3 SBU for tests)
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            lxml Dependencies
+          </h4>
+          <h5>
+            Required
+          </h5>
+          <p class="required">
+            <a class="xref" href="libxslt.html" title=
+            "libxslt-1.1.34">libxslt-1.1.34</a>
+          </p>
+          <h5>
+            Recommended
+          </h5>
+          <p class="recommended">
+            <a class="xref" href="python2.html" title=
+            "Python-2.7.17">Python-2.7.17</a>
+          </p>
+          <h5>
+            Optional (to run more tests)
+          </h5>
+          <p class="optional">
+            <a class="xref" href="gdb.html" title="GDB-9.1">GDB-9.1</a>,
+            <a class="xref" href="valgrind.html" title=
+            "Valgrind-3.15.0">Valgrind-3.15.0</a>, and <a class="ulink" href=
+            "https://pypi.python.org/pypi/cssselect/">cssselect</a>
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/lxml">http://wiki.linuxfromscratch.org/blfs/wiki/lxml</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263286784" name=
+            "idm45779263286784"></a>Installation of lxml
+          </h4>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              Both <span class="application">Python 2</span> and <span class=
+              "application">Python 3</span> modules can be built and
+              installed without any conflicts.
+            </p>
+          </div>
+          <p>
+            To build both <span class="application">Python 2</span> and
+            <span class="application">Python 3</span> modules, run:
+          </p>
+          <pre class="userinput">
+<kbd class="command">python2 setup.py build &amp;&amp;
+python3 setup.py build</kbd>
+</pre>
+          <p>
+            If you wish to run the tests, enter: <span class=
+            "command"><strong>make PYTHON=python2 test</strong></span> and
+            <span class="command"><strong>make PYTHON=python3
+            test</strong></span>. This will rebuild the package for inplace
+            use before running the tests.
+          </p>
+          <p>
+            To install both modules, issue the following commands as the
+            <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python2 setup.py install --optimize=1 &amp;&amp;
+python3 setup.py install --optimize=1</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263275184" name="idm45779263275184"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class="segbody">/usr/lib/python2.7/site-packages/lxml,
+                /usr/lib/python2.7/site-packages/lxml-4.5.0-py2.7-linux-$ARCH.egg-info
+                and/or /usr/lib/python3.8/site-packages/lxml,
+                /usr/lib/python3.8/site-packages/lxml-4.5.0-py3.8-linux-$ARCH.egg-info</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="MarkupSafe" name="MarkupSafe"></a>MarkupSafe-1.1.1
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263267008" name=
+            "idm45779263267008"></a>Introduction to MarkupSafe Module
+          </h4>
+          <p>
+            <span class="application">MarkupSafe</span> is a <span class=
+            "application">Python</span> module that implements a
+            XML/HTML/XHTML Markup safe string.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://files.pythonhosted.org/packages/source/M/MarkupSafe/MarkupSafe-1.1.1.tar.gz">
+                  https://files.pythonhosted.org/packages/source/M/MarkupSafe/MarkupSafe-1.1.1.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: 43fd756864fe42063068e092e220c57b
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 20 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 412 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: less than 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/MarkupSafe">http://wiki.linuxfromscratch.org/blfs/wiki/MarkupSafe</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263254544" name=
+            "idm45779263254544"></a>Installation of MarkupSafe
+          </h4>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              Both <span class="application">Python 2</span> and <span class=
+              "application">Python 3</span> modules can be built and
+              installed without any conflicts.
+            </p>
+          </div>
+          <p>
+            To build both Python 2 and Python 3 modules, run the following
+            commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">python2 setup.py build &amp;&amp;
+python3 setup.py build</kbd>
+</pre>
+          <p>
+            To install both modules, run the following commands as the
+            <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python2 setup.py install --optimize=1 &amp;&amp;
+python3 setup.py install --optimize=1</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263246272" name="idm45779263246272"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class=
+                "segbody">/usr/lib/python3.8/site-packages/markupsafe and
+                /usr/lib/python3.8/site-packages/MarkupSafe-1.1.1-py3.8.egg-info</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="Jinja2" name="Jinja2"></a>Jinja2-2.11.1
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263238192" name=
+            "idm45779263238192"></a>Introduction to Jinja2 Module
+          </h4>
+          <p>
+            <span class="application">Jinja2</span> is a <span class=
+            "application">Python</span> module that implements a simple
+            pythonic template language.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://files.pythonhosted.org/packages/source/J/Jinja2/Jinja2-2.11.1.tar.gz">
+                  https://files.pythonhosted.org/packages/source/J/Jinja2/Jinja2-2.11.1.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: 5d88c7e77aa63fc852a04f65dbfe5594
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 252 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 2.6 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: less than 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            Jinja2 Dependencies
+          </h4>
+          <h5>
+            Required
+          </h5>
+          <p class="required">
+            <a class="xref" href="python-modules.html#MarkupSafe" title=
+            "MarkupSafe-1.1.1">MarkupSafe-1.1.1</a>
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/Jinja2">http://wiki.linuxfromscratch.org/blfs/wiki/Jinja2</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263223056" name=
+            "idm45779263223056"></a>Installation of Jinja2
+          </h4>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              Both <span class="application">Python 2</span> and <span class=
+              "application">Python 3</span> modules can be built and
+              installed without any conflicts.
+            </p>
+          </div>
+          <p>
+            To install the <span class="application">Python 2</span> module,
+            run the following command as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python2 setup.py install --optimize=1</kbd>
+</pre>
+          <p>
+            To install the <span class="application">Python 3</span> module,
+            run the following command as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python3 setup.py install --optimize=1</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263212176" name="idm45779263212176"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class=
+                "segbody">/usr/lib/python2.7/site-packages/Jinja2,
+                /usr/lib/python2.7/site-packages/Jinja2-2.11.1-py2.7.egg-info
+                and/or /usr/lib/python3.8/site-packages/Jinja2,
+                /usr/lib/python3.8/site-packages/Jinja2-2.11.1-py3.8.egg-info</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="Mako" name="Mako"></a>Mako-1.1.1
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263204032" name=
+            "idm45779263204032"></a>Introduction to Mako Module
+          </h4>
+          <p>
+            <span class="application">Mako</span> is a <span class=
+            "application">Python</span> module that implements hyperfast and
+            lightweight templating for the <span class=
+            "application">Python</span> platform.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://files.pythonhosted.org/packages/source/M/Mako/Mako-1.1.1.tar.gz">
+                  https://files.pythonhosted.org/packages/source/M/Mako/Mako-1.1.1.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: 2660a4916f2f63456e6885c727b7cd2f
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 460 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 3.1 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: less than 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            Mako Dependencies
+          </h4>
+          <h5>
+            Required
+          </h5>
+          <p class="required">
+            <a class="xref" href="python-modules.html#MarkupSafe" title=
+            "MarkupSafe-1.1.1">MarkupSafe-1.1.1</a>
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/Mako">http://wiki.linuxfromscratch.org/blfs/wiki/Mako</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263187856" name=
+            "idm45779263187856"></a>Installation of Mako
+          </h4>
+          <p>
+            To install the <span class="application">Python 3</span> module,
+            run the following command as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python3 setup.py install --optimize=1</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263181216" name="idm45779263181216"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">mako-render3</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class="segbody">/usr/lib/python3.8/site-packages/mako
+                and
+                /usr/lib/python3.8/site-packages/Mako-1.1.1-py3.8.egg-info</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="python-slip" name="python-slip"></a>python-slip-0.6.5
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263171792" name=
+            "idm45779263171792"></a>Introduction to python-slip Module
+          </h4>
+          <p>
+            <span class="application">python-slip</span> provides
+            convenience, extension and workaround code for Python and some
+            Python modules.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://github.com/nphilipp/python-slip/releases/download/python-slip-0.6.5/python-slip-0.6.5.tar.bz2">
+                  https://github.com/nphilipp/python-slip/releases/download/python-slip-0.6.5/python-slip-0.6.5.tar.bz2</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: 28ae5f93853466c44ec96706ba2a1eb4
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 28 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 612 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            python-slip Dependencies
+          </h4>
+          <h5>
+            Required
+          </h5>
+          <p class="required">
+            <a class="xref" href="python-modules.html#dbus-python" title=
+            "D-Bus Python-1.2.16">D-Bus Python-1.2.16</a>, <a class="xref"
+            href="python-modules.html#decorator" title=
+            "decorator-4.4.1">decorator-4.4.1</a>, and <a class="xref" href=
+            "python-modules.html#six" title="six-1.14.0">six-1.14.0</a>
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/python-slip">http://wiki.linuxfromscratch.org/blfs/wiki/python-slip</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263156016" name=
+            "idm45779263156016"></a>Installation of python-slip
+          </h4>
+          <p>
+            To build the <span class="application">python-slip</span> module,
+            run the following commands:
+          </p>
+          <pre class="userinput">
+<kbd class=
+"command">sed 's/@VERSION@/0.6.5/' setup.py.in &gt; setup.py &amp;&amp;
+python3 setup.py build</kbd>
+</pre>
+          <p>
+            To install the <span class="application">python-slip</span>
+            module, run the following command as the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python3 setup.py install --optimize=1</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263149040" name="idm45779263149040"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class=
+                "segbody">usr/lib/python3.8/site-packages/python-slip-0.6.5-py3.8.egg-info
+                and
+                usr/lib/python3.8/site-packages/python-slip.dbus-0.6.5-py3.8.egg-info</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class=
+                "segbody">/usr/lib/python3.8/site-packages/python-slip</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="PyYAML" name="PyYAML"></a>PyYAML-5.3
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263140944" name=
+            "idm45779263140944"></a>Introduction to PyYAML Module
+          </h4>
+          <p>
+            <span class="application">PyYAML</span> is a <span class=
+            "application">Python</span> module that implements the next
+            generation YAML parser and emitter.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "http://pyyaml.org/download/pyyaml/PyYAML-5.3.tar.gz">http://pyyaml.org/download/pyyaml/PyYAML-5.3.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: adbb0d336b509d6472d3b095a0f1cf30
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 264 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 15 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            PyYAML Dependencies
+          </h4>
+          <h5>
+            Required
+          </h5>
+          <p class="required">
+            <a class="xref" href="libyaml.html" title=
+            "libyaml-0.2.2">libyaml-0.2.2</a>
+          </p>
+          <h5>
+            Optional
+          </h5>
+          <p class="optional">
+            <a class="xref" href="python2.html" title=
+            "Python-2.7.17">Python-2.7.17</a>
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/PyYAML">http://wiki.linuxfromscratch.org/blfs/wiki/PyYAML</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263123872" name=
+            "idm45779263123872"></a>Installation of PyYAML
+          </h4>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              Both <span class="application">Python 2</span> and <span class=
+              "application">Python 3</span> modules can be built and
+              installed without any conflicts.
+            </p>
+          </div>
+          <p>
+            To build both <span class="application">Python 2</span> and
+            <span class="application">Python 3</span> modules, run the
+            following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">python2 setup.py build &amp;&amp;
+python3 setup.py build</kbd>
+</pre>
+          <p>
+            To install both modules, run the following commands as the
+            <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python2 setup.py install --optimize=1 &amp;&amp;
+python3 setup.py install --optimize=1</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263114224" name="idm45779263114224"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">_yaml.so</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class="segbody">/usr/lib/python2.7/site-packages/yaml
+                and/or /usr/lib/python3.8/site-packages/yaml</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="scour" name="scour"></a>Scour-0.37
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263106240" name=
+            "idm45779263106240"></a>Introduction to Scour
+          </h4>
+          <p>
+            <span class="application">Scour</span> is an SVG (Scalable Vector
+            Graphics) optimizer/cleaner that reduces their size by optimizing
+            structure and removing unnecessary data.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://github.com/scour-project/scour/archive/v0.37/scour-0.37.tar.gz">
+                  https://github.com/scour-project/scour/archive/v0.37/scour-0.37.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: 1de595a0b1627d47b01b4e5fa2976087
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 96 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 1.3 MB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: less than 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            Scour Dependencies
+          </h4>
+          <h5>
+            Required
+          </h5>
+          <p class="required">
+            <a class="xref" href="python-modules.html#six" title=
+            "six-1.14.0">six-1.14.0</a> (will be automatically downloaded and
+            installed if not already present)
+          </p>
+          <h5>
+            Recommended
+          </h5>
+          <p class="recommended">
+            <a class="xref" href="python2.html" title=
+            "Python-2.7.17">Python-2.7.17</a>
+          </p>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              The only use of Scour in this book is by applications which
+              require Python2.
+            </p>
+          </div>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/scour">http://wiki.linuxfromscratch.org/blfs/wiki/scour</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263088832" name=
+            "idm45779263088832"></a>Installation of scour
+          </h4>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              Both <span class="application">Python 2</span> and <span class=
+              "application">Python 3</span> modules can be built and
+              installed without any conflicts.
+            </p>
+          </div>
+          <p>
+            To build both <span class="application">Python 2</span> and
+            <span class="application">Python 3</span> modules, run the
+            following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">python2 setup.py build &amp;&amp;
+python3 setup.py build</kbd>
+</pre>
+          <p>
+            To partially test the results, issue: <span class=
+            "command"><strong>python2 testcss.py</strong></span>. If you have
+            installed <span class="application">Six</span> you can run the
+            main tests by issuing: <span class="command"><strong>python2
+            testscour.py</strong></span>.
+          </p>
+          <p>
+            To install both modules, run the following command as the
+            <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python2 setup.py install --optimize=1 &amp;&amp;
+python3 setup.py install --optimize=1</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263076512" name="idm45779263076512"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">scour</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class="segbody">None</span>
+              </div>
+            </div>
+          </div>
+          <div class="variablelist">
+            <h3>
+              Short Descriptions
+            </h3>
+            <table border="0" class="variablelist">
+              <colgroup>
+                <col align="left" valign="top" />
+                <col />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <td>
+                    <p>
+                      <a id="scour-prog" name="scour-prog"></a><span class=
+                      "term"><span class=
+                      "command"><strong>scour</strong></span></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p>
+                      is a program to optimize and clean SVG files.
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="six" name="six"></a>six-1.14.0
+        </h2>
+        <div class="package" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263062752" name=
+            "idm45779263062752"></a>Introduction to Six Module
+          </h4>
+          <p>
+            Six is a Python 2 and 3 compatibility library.
+          </p>
+          <p>
+            This package is known to build and work properly using an LFS-9.1
+            platform.
+          </p>
+          <h4>
+            Package Information
+          </h4>
+          <div class="itemizedlist">
+            <ul class="compact">
+              <li class="listitem">
+                <p>
+                  Download (HTTP): <a class="ulink" href=
+                  "https://files.pythonhosted.org/packages/source/s/six/six-1.14.0.tar.gz">
+                  https://files.pythonhosted.org/packages/source/s/six/six-1.14.0.tar.gz</a>
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download MD5 sum: 21674588a57e649d1a6d977ec3122140
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Download size: 36 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated disk space required: 376 KB
+                </p>
+              </li>
+              <li class="listitem">
+                <p>
+                  Estimated build time: less than 0.1 SBU
+                </p>
+              </li>
+            </ul>
+          </div>
+          <h4>
+            Six Dependencies
+          </h4>
+          <h5>
+            Recommended Dependencies
+          </h5>
+          <p class="recommended">
+            <a class="xref" href="python2.html" title=
+            "Python-2.7.17">Python-2.7.17</a>
+          </p>
+          <p class="usernotes">
+            User Notes: <a class="ulink" href=
+            "http://wiki.linuxfromscratch.org/blfs/wiki/six">http://wiki.linuxfromscratch.org/blfs/wiki/six</a>
+          </p>
+        </div>
+        <div class="installation" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263048720" name=
+            "idm45779263048720"></a>Installation of six
+          </h4>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              Both <span class="application">Python 2</span> and <span class=
+              "application">Python 3</span> modules can be built and
+              installed without any conflicts.
+            </p>
+          </div>
+          <p>
+            Install <span class="application">six</span> for Python 2 and
+            Python 3 by running the following commands:
+          </p>
+          <pre class="userinput">
+<kbd class="command">python2 setup.py build &amp;&amp;
+python3 setup.py build</kbd>
+</pre>
+          <p>
+            This package does not come with a test suite.
+          </p>
+          <p>
+            Now, as the <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">python2 setup.py install --optimize=1 &amp;&amp;
+python3 setup.py install --optimize=1</kbd>
+</pre>
+        </div>
+        <div class="content" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779263039760" name="idm45779263039760"></a>Contents
+          </h4>
+          <div class="segmentedlist">
+            <div class="seglistitem">
+              <div class="seg">
+                <strong class="segtitle">Installed Programs:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Libraries:</strong>
+                <span class="segbody">None</span>
+              </div>
+              <div class="seg">
+                <strong class="segtitle">Installed Directories:</strong>
+                <span class=
+                "segbody">/usr/lib/python2.7/site-packages/six-1.14.0-py2.7.egg
+                and/or
+                /usr/lib/python3.8/site-packages/six-1.14.0-py3.8.egg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-13 15:23:59 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="python3.html" title="Python-3.8.1">Prev</a>
+          <p>
+            Python-3.8.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="ruby.html" title="Ruby-2.7.0">Next</a>
+          <p>
+            Ruby-2.7.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

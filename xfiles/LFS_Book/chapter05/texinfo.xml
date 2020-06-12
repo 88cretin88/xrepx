@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+  <!ENTITY % general-entities SYSTEM "../general.ent">
+  %general-entities;
+]>
+
+<sect1 id="ch-tools-texinfo" role="wrap">
+  <?dbhtml filename="texinfo.html"?>
+
+  <sect1info condition="script">
+    <productname>texinfo</productname>
+    <productnumber>&texinfo-version;</productnumber>
+    <address>&texinfo-url;</address>
+  </sect1info>
+
+  <title>Texinfo-&texinfo-version;</title>
+
+  <indexterm zone="ch-tools-texinfo">
+    <primary sortas="a-Texinfo">Texinfo</primary>
+    <secondary>tools</secondary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title/>
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude"
+    href="../chapter06/texinfo.xml"
+    xpointer="xpointer(/sect1/sect2[1]/para[1])"/>
+
+    <segmentedlist>
+      <segtitle>&buildtime;</segtitle>
+      <segtitle>&diskspace;</segtitle>
+
+      <seglistitem>
+        <seg>&texinfo-ch5-sbu;</seg>
+        <seg>&texinfo-ch5-du;</seg>
+      </seglistitem>
+    </segmentedlist>
+
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Установка пакета Texinfo</title>
+
+    <para>Подготовьте пакет к компиляции:</para>
+
+<screen><userinput remap="configure">./configure --prefix=/tools</userinput></screen>
+
+    <note>
+      <para>В процессе конфигурирования, могут быть отображены ошибки для TestXS_la-TestXS.lo..Эти ошибки не имеют никакого отношения к LFS, и их можно игнорировать.</para>
+    </note>
+
+    <para>Скомпилируйте пакет:</para>
+
+<screen><userinput remap="make">make</userinput></screen>
+
+    <para>Компиляция завершена. Как обсуждалось ранее выполнение тестов не является обязательным для набора временных инструментов в этой главе. Чтобы запустить выполнение тестов, в любом случае, выполните следующую команду:</para>
+
+<screen><userinput remap="test">make check</userinput></screen>
+
+    <para>Установите пакет:</para>
+
+<screen><userinput remap="install">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title/>
+
+    <para>Подробная информация об этом пакете находится в
+    <xref linkend="contents-texinfo" role="."/></para>
+
+  </sect2>
+
+</sect1>

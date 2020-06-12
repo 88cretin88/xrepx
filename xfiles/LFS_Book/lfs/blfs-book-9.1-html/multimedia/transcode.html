@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Transcode-1.1.7
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;44.&nbsp;Video Utilities
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="mplayer.html" title="MPlayer-1.4">Prev</a>
+          <p>
+            MPlayer-1.4
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="vlc.html" title="VLC-3.0.8">Next</a>
+          <p>
+            VLC-3.0.8
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="videoutils.html" title=
+          "Chapter&nbsp;44.&nbsp;Video Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="transcode" name="transcode"></a>Transcode-1.1.7
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Transcode
+        </h2>
+        <p>
+          <span class="application">Transcode</span> was a fast, versatile
+          and command-line based audio/video everything to everything
+          converter primarily focussed on producing AVI video files with MP3
+          audio, but also including a program to read all the video and audio
+          streams from a DVD.
+        </p>
+        <p>
+          Although outdated and no longer maintained, it can still be used to
+          extract items from a DVD using only the required and recommended
+          dependencies, or to recode to AVI files.
+        </p>
+        <p>
+          Subjects to the comments below, this package is known to build and
+          minimally work using an LFS-8.3 platform.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://sources.archlinux.org/other/community/transcode/transcode-1.1.7.tar.bz2">
+                https://sources.archlinux.org/other/community/transcode/transcode-1.1.7.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.mirrorservice.org/sites/distfiles.gentoo.org/distfiles/transcode-1.1.7.tar.bz2">
+                ftp://ftp.mirrorservice.org/sites/distfiles.gentoo.org/distfiles/transcode-1.1.7.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 9bb25a796a8591fb764de46ee87ce505
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 2.1 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 66 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.6 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Additional Downloads
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Required patch: <a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/blfs/9.1/transcode-1.1.7-ffmpeg4-1.patch">
+                http://www.linuxfromscratch.org/patches/blfs/9.1/transcode-1.1.7-ffmpeg4-1.patch</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Transcode Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="ffmpeg.html" title=
+          "FFmpeg-4.2.2">FFmpeg-4.2.2</a> (configured with
+          --enable-avresample)
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="alsa-lib.html" title=
+          "alsa-lib-1.2.1.2">alsa-lib-1.2.1.2</a>, <a class="xref" href=
+          "lame.html" title="LAME-3.100">LAME-3.100</a>, <a class="xref"
+          href="libdvdread.html" title=
+          "Libdvdread-6.0.2">libdvdread-6.0.2</a>, <a class="xref" href=
+          "libmpeg2.html" title="libmpeg2-0.5.1">libmpeg2-0.5.1</a>, and
+          <a class="xref" href="../x/x7lib.html" title="Xorg Libraries">Xorg
+          Libraries</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="faac.html" title=
+          "FAAC-1.29.9.2">FAAC-1.29.9.2</a>, <a class="xref" href=
+          "../general/freetype2.html" title=
+          "FreeType-2.10.1">FreeType-2.10.1</a>, <a class="xref" href=
+          "../general/imagemagick6.html" title=
+          "ImageMagick-6.9.10-93">ImageMagick-6.9.10-93 libraries</a>,
+          <a class="xref" href="liba52.html" title=
+          "Liba52-0.7.4">liba52-0.7.4</a>, <a class="xref" href="libdv.html"
+          title="Libdv-1.0.0">libdv-1.0.0</a>, <a class="xref" href=
+          "../general/libjpeg.html" title=
+          "libjpeg-turbo-2.0.4">libjpeg-turbo-2.0.4</a>, <a class="xref"
+          href="libogg.html" title="libogg-1.3.4">libogg-1.3.4</a>, <a class=
+          "xref" href="libquicktime.html" title=
+          "libquicktime-1.2.4">libquicktime-1.2.4</a>, <a class="xref" href=
+          "libtheora.html" title="libtheora-1.1.1">libtheora-1.1.1</a>,
+          <a class="xref" href="libvorbis.html" title=
+          "libvorbis-1.3.6">libvorbis-1.3.6</a>, <a class="xref" href=
+          "../general/libxml2.html" title=
+          "libxml2-2.9.10">libxml2-2.9.10</a>, <a class="xref" href=
+          "../general/lzo.html" title="LZO-2.10">LZO-2.10</a>, <a class=
+          "xref" href="sdl.html" title="SDL-1.2.15">SDL-1.2.15</a>, <a class=
+          "xref" href="v4l-utils.html" title=
+          "v4l-utils-1.18.0">v4l-utils-1.18.0</a>, <a class="xref" href=
+          "x264.html" title="x264-20200218">x264-20200218</a>, <a class=
+          "xref" href="xvid.html" title="XviD-1.3.7">XviD-1.3.7</a> <a class=
+          "ulink" href="http://sourceforge.net/projects/mjpeg/">MJPEG
+          Tools</a>, and <a class="ulink" href=
+          "http://www.netlib.org/pvm3/">PVM3</a>,
+        </p>
+        <h4>
+          Optional (at runtime)
+        </h4>
+        <p class="optional">
+          <a class="ulink" href=
+          "https://sourceforge.net/projects/lsdvd/files/">lsdvd</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/transcode">http://wiki.linuxfromscratch.org/blfs/wiki/transcode</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Transcode
+        </h2>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            The details of how the <span class="application">FFmpeg</span>
+            libraries are used has changed since this version of <span class=
+            "application">Transcode</span> was released. The patch allows the
+            package to be compiled, but some or all of the internal calls to
+            <span class="application">FFmpeg</span> may fail at run time
+            (they report an error and processing continues, but without any
+            output).
+          </p>
+          <p>
+            For many packages, that would be a critical error. In this case,
+            the main reason to install <span class=
+            "application">Transcode</span> is for the <span class=
+            "command"><strong>tccat</strong></span> program, which works.
+            Some of the <span class=
+            "command"><strong>transcode</strong></span> options work - for
+            the others, use <span class=
+            "command"><strong>ffmpeg</strong></span> directly on the command
+            line.
+          </p>
+        </div>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            Support for most of the dependency packages requires using
+            options passed to the <span class=
+            "command"><strong>configure</strong></span> script. View the
+            <code class="filename">INSTALL</code> file and the output from
+            <span class="command"><strong>./configure --help</strong></span>
+            for complete information about enabling dependency packages.
+          </p>
+        </div>
+        <p>
+          Install <span class="application">Transcode</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">sed -i 's|doc/transcode|&amp;-$(PACKAGE_VERSION)|' \
+       $(find . -name Makefile.in -exec grep -l 'docsdir =' {} \;) &amp;&amp;
+
+patch -Np1 -i ../transcode-1.1.7-ffmpeg4-1.patch                   &amp;&amp;
+./configure --prefix=/usr \
+            --enable-alsa \
+            --enable-libmpeg2 &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>sed -i ...</strong></span>: Fixes
+          install location for documentation.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">avifix, aviindex, avimerge, avisplit,
+              avisync, tccat, tcdecode, tcdemux, tcextract, tcmodinfo,
+              tcmp3cut, tcprobe, tcscan, tcxmlcheck, tcxpm2rgb, tcyait, and
+              transcode</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/lib/transcode and
+              /usr/share/doc/transcode-1.1.7</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="avifix" name="avifix"></a><span class=
+                    "term"><span class=
+                    "command"><strong>avifix</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    fixes the header of an AVI file.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="aviindex" name="aviindex"></a><span class=
+                    "term"><span class=
+                    "command"><strong>aviindex</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    writes a text file describing the index of an AVI file.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="avimerge" name="avimerge"></a><span class=
+                    "term"><span class=
+                    "command"><strong>avimerge</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    merges AVI files of the same format. Do not try to merge
+                    AVI files of different formats, it will most likely
+                    result in errors (and format means same bitrates, too!).
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="avisplit" name="avisplit"></a><span class=
+                    "term"><span class=
+                    "command"><strong>avisplit</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    splits AVI files into multiple files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="avisync" name="avisync"></a><span class=
+                    "term"><span class=
+                    "command"><strong>avisync</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    can shift audio in AVI files for better synchronizing of
+                    the audio and video data signal.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="tccat" name="tccat"></a><span class=
+                    "term"><span class=
+                    "command"><strong>tccat</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    concatenates input files using the input plugins of
+                    <span class="application">Transcode</span>. This is
+                    useful for extracting VOB (Video OBject) files, either
+                    for a whole DVD or for selected Titles or Chapters, which
+                    can then be played or recoded.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="tcdecode" name="tcdecode"></a><span class=
+                    "term"><span class=
+                    "command"><strong>tcdecode</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to decode input files to raw video and PCM audio
+                    streams.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="tcdemux" name="tcdemux"></a><span class=
+                    "term"><span class=
+                    "command"><strong>tcdemux</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    demultiplexes (separates) audio/video input that contains
+                    multiple streams, e.g., VOB files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="tcextract" name="tcextract"></a><span class=
+                    "term"><span class=
+                    "command"><strong>tcextract</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    grabs single streams from a file containing multiple
+                    streams.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="tcmodinfo" name="tcmodinfo"></a><span class=
+                    "term"><span class=
+                    "command"><strong>tcmodinfo</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    loads a supplied <span class=
+                    "application">Transcode</span> filter module and prints
+                    its parameters.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="tcmp3cut" name="tcmp3cut"></a><span class=
+                    "term"><span class=
+                    "command"><strong>tcmp3cut</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool which can cut MP3 streams at milliseconds
+                    positions.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="tcprobe" name="tcprobe"></a><span class=
+                    "term"><span class=
+                    "command"><strong>tcprobe</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    prints information about the input file format.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="tcscan" name="tcscan"></a><span class=
+                    "term"><span class=
+                    "command"><strong>tcscan</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    performs several measurements on the given input data.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="tcxmlcheck" name="tcxmlcheck"></a><span class=
+                    "term"><span class=
+                    "command"><strong>tcxmlcheck</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    checks information in a SMIL input file.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="transcode-prog" name=
+                    "transcode-prog"></a><span class="term"><span class=
+                    "command"><strong>transcode</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the encoder's user interface that handles the plugins
+                    and other programs, being the glue between the modules.
+                    There are several well documented usage examples on both
+                    the homepage and the documentation included in the
+                    package.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-20 12:41:28 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="mplayer.html" title="MPlayer-1.4">Prev</a>
+          <p>
+            MPlayer-1.4
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="vlc.html" title="VLC-3.0.8">Next</a>
+          <p>
+            VLC-3.0.8
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="videoutils.html" title=
+          "Chapter&nbsp;44.&nbsp;Video Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

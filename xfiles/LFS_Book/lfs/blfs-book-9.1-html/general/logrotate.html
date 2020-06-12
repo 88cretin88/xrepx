@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Logrotate-3.15.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;12.&nbsp;System Utilities
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="lm_sensors.html" title=
+          "lm-sensors-3-6-0">Prev</a>
+          <p>
+            lm-sensors-3-6-0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="mc.html" title="MC-4.8.24">Next</a>
+          <p>
+            MC-4.8.24
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="sysutils.html" title=
+          "Chapter&nbsp;12.&nbsp;System Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="logrotate" name="logrotate"></a>Logrotate-3.15.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Logrotate
+        </h2>
+        <p>
+          The <span class="application">logrotate</span> package allows
+          automatic rotation, compression, removal, and mailing of log files.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://github.com/logrotate/logrotate/releases/download/3.15.1/logrotate-3.15.1.tar.xz">
+                https://github.com/logrotate/logrotate/releases/download/3.15.1/logrotate-3.15.1.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: afe109afea749c306ff489203fde6beb
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 156 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 5.0 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.2 SBU (with tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Logrotate Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="popt.html" title="Popt-1.16">popt-1.16</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="fcron.html" title=
+          "Fcron-3.2.1">Fcron-3.2.1</a> (runtime)
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          An <a class="xref" href="../server/mail.html" title=
+          "Chapter&nbsp;21.&nbsp;Mail Server Software">MTA</a> (runtime)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/logrotate">http://wiki.linuxfromscratch.org/blfs/wiki/logrotate</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Logrotate
+        </h2>
+        <p>
+          Install <span class="application">logrotate</span> by running the
+          following command:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr        &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          test</strong></span>. One test fails because the very old
+          <span class="command"><strong>compress</strong></span> is not
+          present and two tests fail if an MTA is not installed.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring Logrotate
+        </h2>
+        <p>
+          <span class="application">Logrotate</span> needs a configuration
+          file, which must be passed as an argument to the command when
+          executed. Create the file as the <code class=
+          "systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">cat &gt; /etc/logrotate.conf &lt;&lt; EOF
+<code class="literal"># Begin of /etc/logrotate.conf
+
+# Rotate log files weekly
+weekly
+
+# Don't mail logs to anybody
+nomail
+
+# If the log file is empty, it will not be rotated
+notifempty
+
+# Number of backups that will be kept
+# This will keep the 2 newest backups only
+rotate 2
+
+# Create new empty files after rotating old ones
+# This will create empty log files, with owner
+# set to root, group set to sys, and permissions 644
+create 0664 root sys
+
+# Compress the backups with gzip
+compress
+
+# No packages own lastlog or wtmp -- rotate them here
+/var/log/wtmp {
+    monthly
+    create 0664 root utmp
+    rotate 1
+}
+
+/var/log/lastlog {
+    monthly
+    rotate 1
+}
+
+# Some packages drop log rotation info in this directory
+# so we include any file in it.
+include /etc/logrotate.d
+
+# End of /etc/logrotate.conf</code>
+EOF
+
+chmod -v 0644 /etc/logrotate.conf</kbd>
+</pre>
+        <p>
+          Now create the <code class="filename">/etc/logrotate.d</code>
+          directory as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command"> mkdir -p /etc/logrotate.d</kbd>
+</pre>
+        <p>
+          At this point additional log rotation commands can be entered,
+          typically in the <code class="filename">/etc/logrotate.d</code>
+          directory. For example:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat &gt; /etc/logrotate.d/sys.log &lt;&lt; EOF
+<code class="literal">/var/log/sys.log {
+   # If the log file is larger than 100kb, rotate it
+   size   100k
+   rotate 5
+   weekly
+   postrotate
+      /bin/killall -HUP syslogd
+   endscript
+}</code>
+EOF
+
+chmod -v 0644 /etc/logrotate.d/sys.log</kbd>
+</pre>
+        <p>
+          You can designate multiple files in one entry:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat &gt; /etc/logrotate.d/example.log &lt;&lt; EOF
+<code class="literal">file1
+file2
+file3 {
+   ...
+   postrotate
+    ...
+   endscript
+}</code>
+EOF
+
+chmod -v 0644 /etc/logrotate.d/example.log</kbd>
+</pre>
+        <p>
+          You can use in the same line the list of files: file1 file2 file3.
+          See the logrotate man page or <a class="ulink" href=
+          "http://www.techrepublic.com/article/manage-linux-log-files-with-logrotate/">
+          http://www.techrepublic.com/article/manage-linux-log-files-with-logrotate/</a>
+          for more examples.
+        </p>
+        <p>
+          The command <span class="command"><strong>logrotate
+          /etc/logrotate.conf</strong></span> can be run manually, however,
+          the command should be run daily. Other useful commands are
+          <span class="command"><strong>logrotate -d
+          /etc/logrotate.conf</strong></span> for debugging purposes and
+          <span class="command"><strong>logrotate -f
+          /etc/logrotate.conf</strong></span> forcing the logrotate commands
+          to be run immediately. Combining the previous options <code class=
+          "option">-df</code>, you can debug the effect of the force command.
+          When debugging, the command is only simulated, not really run,
+          thus, eventual non-existing errors appear, when some intermediate
+          files are expected, because they are not actually created.
+        </p>
+        <p>
+          To run the <span class="command"><strong>logrotate</strong></span>
+          daily, <span class="phrase">if you've installed <a class="xref"
+          href="fcron.html" title="Fcron-3.2.1">Fcron-3.2.1</a> and completed
+          the section on periodic jobs, execute</span> the following
+          commands, as the <code class="systemitem">root</code> user, to
+          create a <span class="phrase">daily cron job:</span>
+        </p>
+        <pre class="root">
+<kbd class="command">install -vdm 754 /etc/cron.daily            &amp;&amp;
+cat &gt; /etc/cron.daily/logrotate.sh &lt;&lt; "EOF" &amp;&amp;
+<code class="literal">#!/bin/bash
+/usr/sbin/logrotate /etc/logrotate.conf</code>
+EOF
+chmod 754 /etc/cron.daily/logrotate.sh</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">logrotate</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">None</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="logrotate-prog" name=
+                    "logrotate-prog"></a><span class="term"><span class=
+                    "command"><strong>logrotate</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    performs the log maintenance functions defined in the
+                    configuration files.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-21 00:36:57 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="lm_sensors.html" title=
+          "lm-sensors-3-6-0">Prev</a>
+          <p>
+            lm-sensors-3-6-0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="mc.html" title="MC-4.8.24">Next</a>
+          <p>
+            MC-4.8.24
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="sysutils.html" title=
+          "Chapter&nbsp;12.&nbsp;System Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

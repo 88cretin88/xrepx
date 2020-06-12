@@ -1,0 +1,15 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "ctrl+shift+b",
+        "command": "workbench.action.toggleActivityBarVisibility"
+      },
+      {
+        "key": "ctrl+alt+down",
+        "command": "cursorColumnSelectDown"
+      },
+      {
+        "key": "ctrl+alt+up",
+        "command": "cursorColumnSelectUp"
+      }
+]

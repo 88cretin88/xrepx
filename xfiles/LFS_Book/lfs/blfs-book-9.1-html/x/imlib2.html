@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      imlib2-1.6.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;25.&nbsp;X Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gtksourceview4.html" title=
+          "gtksourceview4-4.4.0">Prev</a>
+          <p>
+            gtksourceview4-4.4.0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="keybinder.html" title=
+          "keybinder-0.3.1">Next</a>
+          <p>
+            keybinder-0.3.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="lib.html" title=
+          "Chapter&nbsp;25.&nbsp;X Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="imlib2" name="imlib2"></a>imlib2-1.6.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to imlib2
+        </h2>
+        <p>
+          <span class="application">imlib2</span> is a graphics library for
+          fast file loading, saving, rendering and manipulation.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://downloads.sourceforge.net/enlightenment/imlib2-1.6.1.tar.bz2">
+                https://downloads.sourceforge.net/enlightenment/imlib2-1.6.1.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 7b3fbcb974b48822b32b326c6a47764b
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 876 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 12 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.2 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          imlib2 Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="x7lib.html" title="Xorg Libraries">Xorg
+          Libraries</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/libpng.html" title=
+          "libpng-1.6.37">libpng-1.6.37</a>, <a class="xref" href=
+          "../general/libjpeg.html" title=
+          "libjpeg-turbo-2.0.4">libjpeg-turbo-2.0.4</a>, <a class="xref"
+          href="../general/libtiff.html" title=
+          "LibTIFF-4.1.0">LibTIFF-4.1.0</a>, <a class="xref" href=
+          "../general/giflib.html" title="giflib-5.2.1">giflib-5.2.1</a>, and
+          <a class="ulink" href=
+          "http://sourceforge.net/projects/mad">libid3tag</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/imlib2">http://wiki.linuxfromscratch.org/blfs/wiki/imlib2</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of imlib2
+        </h2>
+        <p>
+          Install <span class="application">imlib2</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr --disable-static &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install &amp;&amp;
+install -v -m755 -d /usr/share/doc/imlib2-1.6.1 &amp;&amp;
+install -v -m644    doc/{*.gif,index.html} \
+                    /usr/share/doc/imlib2-1.6.1</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--disable-static</code></em>: This
+          switch prevents installation of static versions of the libraries.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">imlib2_bumpmap, imlib2_colorspace,
+              imlib2-config, imlib2_conv, imlib2_grab, imlib2_poly,
+              imlib2_show, imlib2_test, and imlib2_view</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libImlib2.so and various filters and
+              image loader modules.</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/lib/imlib2,
+              /usr/share/doc/imlib2-1.6.1, and /usr/share/imlib2</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="imlib2_bumpmap" name=
+                    "imlib2_bumpmap"></a><span class="term"><span class=
+                    "command"><strong>imlib2_bumpmap</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is to test the <span class="application">imlib2</span>
+                    bumpmap function.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="imlib2_colorspace" name=
+                    "imlib2_colorspace"></a><span class="term"><span class=
+                    "command"><strong>imlib2_colorspace</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is to test the <span class="application">imlib2</span>
+                    colorspace function.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="imlib2-config" name=
+                    "imlib2-config"></a><span class="term"><span class=
+                    "command"><strong>imlib2-config</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a script used to obtain <span class=
+                    "application">imlib2</span> building informations.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="imlib2_poly" name="imlib2_poly"></a><span class=
+                    "term"><span class=
+                    "command"><strong>imlib2_poly</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is to test the <span class="application">imlib2</span>
+                    poly function.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="imlib2_conv" name="imlib2_conv"></a><span class=
+                    "term"><span class=
+                    "command"><strong>imlib2_conv</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    converts images between formats.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="imlib2_grab" name="imlib2_grab"></a><span class=
+                    "term"><span class=
+                    "command"><strong>imlib2_grab</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    take screenshots.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="imlib2_show" name="imlib2_show"></a><span class=
+                    "term"><span class=
+                    "command"><strong>imlib2_show</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an <span class="application">imlib2</span> program
+                    test.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="imlib2_test" name="imlib2_test"></a><span class=
+                    "term"><span class=
+                    "command"><strong>imlib2_test</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an <span class="application">imlib2</span> program
+                    test.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="imlib2_view" name="imlib2_view"></a><span class=
+                    "term"><span class=
+                    "command"><strong>imlib2_view</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    diplays images files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libImlib2" name="libImlib2"></a><span class=
+                    "term"><code class="filename">libImlib2.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides the functions for programs to deal with various
+                    image data formats.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-17 18:27:03 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gtksourceview4.html" title=
+          "gtksourceview4-4.4.0">Prev</a>
+          <p>
+            gtksourceview4-4.4.0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="keybinder.html" title=
+          "keybinder-0.3.1">Next</a>
+          <p>
+            keybinder-0.3.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="lib.html" title=
+          "Chapter&nbsp;25.&nbsp;X Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

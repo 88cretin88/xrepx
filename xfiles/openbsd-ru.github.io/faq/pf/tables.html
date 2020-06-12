@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang=ru id=faq>
+
+<!-- If you make edits to any FAQ documents, please start each sentence
+     on a new line, and try to keep the general formatting consistent
+     with the rest of the pages -->
+
+<title>OpenBSD PF: Tables</title>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../../openbsd.css">
+<link rel="canonical" href="https://www.openbsd.org/faq/pf/tables.html">
+
+<h2 id=OpenBSD>
+<a href="../../index.html">
+<i>Open</i><b>BSD</b></a>
+PF - Таблицы
+<small>
+<a href="index.html">[FAQ PF - На главную]</a>
+</small>
+</h2>
+<hr>
+
+<ul>
+  <li><a href="#intro" >Введение</a>
+  <li><a href="#config">Конфигурация</a>
+  <li><a href="#manip" >Управление при помощи <code>pfctl</code></a>
+  <li><a href="#addr"  >Указание адресов</a>
+  <li><a href="#match" >Сопоставление адресов</a>
+</ul>
+<hr>
+
+<h2 id="intro">Введение</h2>
+
+Таблица используется для хранения группы IPv4- и/или IPv6-адресов.
+Поиск в таблице выполняется очень быстро, а по сравнению со
+<a href="macros.html#lists">списками</a>, процессорного времени и
+памяти для этого потребуется меньше.
+По этой причине таблица идеально подходит для хранения именно большой
+группы адресов, т.к. время поиска в таблице, содержащей 50 000 адресов,
+не на много больше, чем для таблицы, содержащей 50 адресов.
+Таблицы можно использовать для следующих целей:
+
+<ul>
+  <li>Определние в правилах адресов отправителей/получателей.
+  <li>Определение translation- или redirection-адресов в
+      <code>nat-to</code> и <code>rdr-to</code> правилах.
+  <li>Опредение адреса получателя в правилах <code>route-to</code>,
+      <code>reply-to</code> и <code>dup-to</code>.
+</ul>
+
+<p>
+Таблицы можно создавать либо в
+<a href="https://man.openbsd.org/pf.conf">pf.conf(5)</a>,
+либо при помощи <a href="https://man.openbsd.org/pfctl">pfctl(8)</a>.
+
+<h2 id="config">Конфигурация</h2>
+
+В <code>pf.conf</code> таблицу можно создать при помощи директивы
+<code>table</code>. Следующие атрибуты можно использовать для таблиц:
+
+<ul>
+  <li><code>const</code> - содержимое таблицы не может быть изменено
+      после создания таблицы. Если этот атрибут не указан, при помощи
+      <a href="https://man.openbsd.org/pfctl">pfctl(8)</a> можно добавлять
+      или удалять адреса из таблицы в любое время, даже если используется
+      <a href="https://man.openbsd.org/securelevel">securelevel(7)</a> с
+      уровнем два и выше.
+  <li><code>persist</code> - заставляет ядро хранить таблицу в памяти,
+      даже если на нее не ссылаются никакие правила. Без этого атрибута
+      ядро автоматически удалит таблицу при сбросе последнего правила,
+      ссылающегося на нее.
+</ul>
+
+Например:
+
+<pre class="cmdbox">
+table &lt;goodguys&gt; { 192.0.2.0/24 }
+table &lt;rfc1918&gt;  const { 192.168.0.0/16, 172.16.0.0/12, 10.0.0.0/8 }
+table &lt;spammers&gt; persist
+block in on fxp0 from { &lt;rfc1918&gt;, &lt;spammers&gt; } to any
+pass  in on fxp0 from &lt;goodguys&gt; to any
+</pre>
+
+Адреса также могут быть указаны при помощи отрицания (или «не»), например:
+
+<pre class="cmdbox">
+table &lt;goodguys&gt; { 192.0.2.0/24, !192.0.2.5 }
+</pre>
+
+Теперь таблица <code>goodguys</code> будет содержать все адреса из сети
+192.0.2.0/24, кроме 192.0.2.5.
+
+<p>
+Обратите внимание, что имена таблиц всегда надо брать в &lt; &gt;
+(угловые скобки).
+
+<p>
+Таблицы также можно создать при помощи обычных текстовых файлов, содержащих
+список IP-адресов и сетей:
+
+<pre class="cmdbox">
+table &lt;spammers&gt; persist file "/etc/spammers"
+block in on fxp0 from &lt;spammers&gt; to any
+</pre>
+
+Файл <code>/etc/spammers</code> должен содержать список IP-адресов и/или
+<a href="https://web.archive.org/web/20150213012421/http://public.swbell.net/dedicated/cidr.html">CIDR</a>
+заблокированных сетей (по одному/одной в каждой строчке).
+
+<h2 id="manip">Управление при помощи <code>pfctl</code></h2>
+
+Таблицами можно управлять на лету при помощи
+<a href="https://man.openbsd.org/pfctl">pfctl(8)</a>.
+Например, чтобы добавить записи в таблицу &lt;spammers&gt;, упомянутую выше:
+
+<pre class="cmdbox">
+# <b>pfctl -t spammers -T add 203.0.113.0/24</b>
+</pre>
+
+Это также создаст таблицу &lt;spammers&gt;, если ее еще нет.
+Вывести список адресов таблицы можно так:
+
+<pre class="cmdbox">
+# <b>pfctl -t spammers -T show</b>
+</pre>
+
+Аргумент <code>-v</code> можно использовать и совместно с
+<code>-T show</code>, чтобы вывести статистику для каждой записи
+таблицы. Удалить адреса из таблицы можно так:
+
+<pre class="cmdbox">
+# <b>pfctl -t spammers -T delete 203.0.113.0/24</b>
+</pre>
+
+Более подробное описание работы с таблицами при помощи
+<code>pfctl</code> находится в man-странице
+<a href="https://man.openbsd.org/pfctl">pfctl(8)</a>.
+
+<h2 id="addr">Указание адресов</h2>
+
+Помимо указания IP-адреса, хосты также могут быть указаны при помощи
+своего имени. Когда имя хоста преобразуется в IP-адрес, все полученные
+адреса IPv4 и IPv6 помещаются в таблицу. IP-адреса также можно ввести
+в таблицу, указав правильное имя интерфейса, группу интерфейсов или
+ключевое слово <code>self</code>.
+Таблица будет содержать все IP-адреса, назначенные этому интерфейсу или
+группе или же машине (включая loopback адреса) соответственно.
+
+<p>
+Одно ограничение при указании адресов состоит в том, что
+<code>0.0.0.0/0</code> и <code>0/0</code> не будут работать в таблицах.
+Альтернативой является hard-code-указание этого адреса или же использование
+<a href="macros.html#macros">макроса</a>.
+
+<h2 id="match">Сопоставление адресов</h2>
+
+Поиск lookup адреса в таблице вернет наиболее узко совпадающую запись.
+Это позволяет создавать таблицы, такие как:
+
+<pre class="cmdbox">
+table &lt;goodguys&gt; { 172.16.0.0/16, !172.16.1.0/24, 172.16.1.100 }
+
+block in on dc0
+pass &nbsp;in on dc0 from &lt;goodguys&gt;
+</pre>
+
+Любой входящий через <code>dc0</code> пакет, будет иметь свой source-адрес,
+совпадающий с таблицей <code>&lt;goodguys&gt;</code>:
+
+<ul>
+  <li>172.16.50.5 - ближайшее совпадение с 172.16.0.0/16;
+      пакет попадает в таблицу и будет передан
+  <li>172.16.1.25 - ближайшее совпадение с !172.16.1.0/24;
+      пакет попадает в таблицу, но эта запись отменяется (negated) (используется
+      модификатор "!"); пакет не соответствует таблице и будет отброшен
+  <li>172.16.1.100 - точно совпадает с 172.16.1.100; пакет попадает в таблицу и
+      будет передан
+  <li>10.1.4.55 - не попадает в таблицу и будет отброшен
+</ul>

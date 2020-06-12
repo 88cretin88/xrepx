@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      cifs-utils-6.10
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;15.&nbsp;Networking Programs
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="bridge-utils.html" title=
+          "bridge-utils-1.6">Prev</a>
+          <p>
+            bridge-utils-1.6
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="iw.html" title="iw-5.4">Next</a>
+          <p>
+            iw-5.4
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netprogs.html" title=
+          "Chapter&nbsp;15.&nbsp;Networking Programs">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="cifsutils" name="cifsutils"></a>cifs-utils-6.10
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to cifs-utils
+        </h2>
+        <p>
+          The <span class="application">cifs-utils</span> provides a means
+          for mounting SMB/CIFS shares on a Linux system.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://www.samba.org/ftp/linux-cifs/cifs-utils/cifs-utils-6.10.tar.bz2">
+                https://www.samba.org/ftp/linux-cifs/cifs-utils/cifs-utils-6.10.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 1cb2d653ccc77f8644213340a4f6b7dc
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 356 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 4.9 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          cifs-utils Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../general/talloc.html" title=
+          "Talloc-2.3.1">Talloc-2.3.1</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/keyutils.html" title=
+          "keyutils-1.6.1">keyutils-1.6.1</a> (required to build PAM module),
+          <a class="xref" href="../postlfs/linux-pam.html" title=
+          "Linux-PAM-1.3.1">Linux-PAM-1.3.1</a>, <a class="xref" href=
+          "../postlfs/mitkrb.html" title="MIT Kerberos V5-1.18">MIT Kerberos
+          V5-1.18</a>, <a class="xref" href="samba.html" title=
+          "Samba-4.11.6">Samba-4.11.6</a>, and <a class="ulink" href=
+          "http://people.redhat.com/sgrubb/libcap-ng/">libcap-ng</a> or
+          <a class="xref" href="../postlfs/libcap.html" title=
+          "libcap-2.31 with PAM">libcap-2.31 with PAM</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/cifsutils">http://wiki.linuxfromscratch.org/blfs/wiki/cifsutils</a>
+        </p>
+      </div>
+      <div class="kernel" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="cifsutils-kernel" name="cifsutils-kernel"></a>Kernel
+          Configuration
+        </h2>
+        <p>
+          Enable the following options in the kernel configuration and
+          recompile the kernel if necessary:
+        </p>
+        <pre class="screen">
+<code class="literal">File systems  ---&gt;
+  [*] Network File Systems  ---&gt;                                      [CONFIG_NETWORK_FILESYSTEMS]
+    &lt;*/M&gt; SMB3 and CIFS support (advanced network filesystem) [CONFIG_CIFS]</code>
+</pre>
+        <p>
+          Depending on your server configuration, additional kernel options
+          may be required.
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of cifs-utils
+        </h2>
+        <p>
+          Install <span class="application">cifs-utils</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">autoreconf -fiv           &amp;&amp;
+./configure --prefix=/usr \
+            --disable-pam \
+            --disable-systemd &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--disable-pam</code></em>: Do not build
+          PAM support. Remove it and use <code class=
+          "option">--with-pamdir</code> (see below), if <a class="xref" href=
+          "../postlfs/linux-pam.html" title=
+          "Linux-PAM-1.3.1">Linux-PAM-1.3.1</a> is installed and you wish PAM
+          support.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-systemd</code></em>: Disable
+          systemd specific behavior for <span class=
+          "command"><strong>mount.cifs</strong></span>. Remove it for systems
+          running with systemd.
+        </p>
+        <p>
+          <code class="option">--with-pamdir=/lib/security</code>: Install
+          the PAM module in <code class="filename">/lib/security</code>.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">cifs.idmap, cifs.upcall, cifscreds,
+              getcifsacl, mount.cifs, mount.smb3, setcifsacl, smb2-quota, and
+              smbinfo</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">/usr/lib/cifs-utils/idmapwb.so and
+              optionally PAM module /lib/security/pam_cifscreds.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/lib/cifs-utils</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="cifs.idmap" name="cifs.idmap"></a><span class=
+                    "term"><span class=
+                    "command"><strong>cifs.idmap</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a userspace helper program for the linux CIFS client
+                    filesystem. There are a number of activities that the
+                    kernel cannot easily do itself. This program is a callout
+                    program that does these things for the kernel and then
+                    returns the result. It is not intended to be run from the
+                    command-line.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="cifs.upcall" name="cifs.upcall"></a><span class=
+                    "term"><span class=
+                    "command"><strong>cifs.upcall</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a userspace helper program for the linux CIFS client
+                    filesystem. It is intended to be run when the kernel
+                    calls request-key for a particular key type. It is not
+                    intended to be run from the command-line.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="cifscreds" name="cifscreds"></a><span class=
+                    "term"><span class=
+                    "command"><strong>cifscreds</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a tool for managing credentials (username and
+                    password) for the purpose of establishing sessions in
+                    multiuser mounts.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="getcifsacl" name="getcifsacl"></a><span class=
+                    "term"><span class=
+                    "command"><strong>getcifsacl</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a userspace helper to display an ACL in a security
+                    descriptor for Common Internet File System (CIFS).
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mount.cifs" name="mount.cifs"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mount.cifs</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    mounts a Linux CIFS filesystem. It is usually invoked
+                    indirectly by the mount(8) command when using the "-t
+                    cifs" option.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mount.smb3" name="mount.smb3"></a><span class=
+                    "term"><span class=
+                    "command"><strong>mount.smb3</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    mounts a SMB3-based filesystem. It is usually invoked
+                    indirectly by the mount(8) command when using the "-t
+                    smb3" option.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="setcifsacl" name="setcifsacl"></a><span class=
+                    "term"><span class=
+                    "command"><strong>setcifsacl</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is intended to alter an ACL of a security descriptor for
+                    a file system object.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="smb2-quota" name="smb2-quota"></a><span class=
+                    "term"><span class=
+                    "command"><strong>smb3-quota</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    displays quota information for a SMB filesystem.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="smbinfo" name="smbinfo"></a><span class=
+                    "term"><span class=
+                    "command"><strong>smbinfo</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    displays SMB-specific file information, such as security
+                    descriptors and quotas.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-17 13:54:09 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="bridge-utils.html" title=
+          "bridge-utils-1.6">Prev</a>
+          <p>
+            bridge-utils-1.6
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="iw.html" title="iw-5.4">Next</a>
+          <p>
+            iw-5.4
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netprogs.html" title=
+          "Chapter&nbsp;15.&nbsp;Networking Programs">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
