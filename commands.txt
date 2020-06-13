@@ -159,6 +159,8 @@ ssa --diag --f report.txt
 
 git fix-
 
+git config --global push.rebase false
+
 git config --global push.default simple
 
 
