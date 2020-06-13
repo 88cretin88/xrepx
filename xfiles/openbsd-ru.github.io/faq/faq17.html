@@ -142,8 +142,7 @@ pass in log on $ext_if proto esp from 198.51.100.1 to 192.0.2.1 tag IKED
 ikev2 'server1_rsa' passive esp \
       from 10.0.1.0/24 to 10.0.2.0/24 \
       local 192.0.2.1 peer 198.51.100.1 \
-      srcid server1.domain \
-      rsa
+      srcid server1.domain
 </pre>
 
 И простой конфиг для server2, выступающего в роли инициатора:
@@ -152,7 +151,7 @@ ikev2 'server1_rsa' passive esp \
 ikev2 'server2_rsa' active esp \
         from 10.0.2.0/24 to 10.0.1.0/24 \
         peer 192.0.2.1 \
-        dstid server2.domain
+        srcid server2.domain
 </pre>
 
 Использование
@@ -246,8 +245,7 @@ ikev2 'server1_rsa' passive esp \
       from 10.0.1.0/24 to 198.51.100.1 \
       from 192.0.2.1 to 10.0.2.0/24 \
       local 192.0.2.1 peer 198.51.100.1 \
-      srcid server1.domain \
-      rsa
+      srcid server1.domain
 </pre>
 
 И конфигурация инициатора будет:
@@ -258,7 +256,7 @@ ikev2 'server2_rsa' active esp \
         from 10.0.2.0/24 to 192.0.2.1 \
         from 198.51.100.1 to 10.0.1.0/24 \
         peer 192.0.2.1 \
-        dstid server2.domain
+        srcid server2.domain
 </pre>
 
 <h2 id="clientikev2"></h2>
