@@ -1,0 +1,45 @@
+version: 0.16.0-{build}-{branch}
+
+pull_requests:
+  do_not_increment_build_number: true
+
+skip_tags: true
+
+image:
+  - Ubuntu1804
+#  - Ubuntu1604     # skip xenial builds because dependencies are broken
+
+clone_folder: ~/build/GameHub
+
+environment:
+  keys_enc_secret:
+    secure: VBUP6GQXENGa7E+H90WDhA==
+
+build_script:
+  - sh: bash scripts/build.sh gen_changelogs
+  - sh: bash scripts/build.sh build_deb
+  - sh: bash scripts/build.sh build_appimage
+  - sh: bash scripts/build.sh build_flatpak
+
+install:
+  - sh: bash scripts/build.sh import_keys
+  - sh: bash scripts/build.sh deps
+
+test: off
+
+artifacts:
+  - path: build/*/*.deb
+    name: deb
+  - path: build/appimage/GameHub*.AppImage
+    name: AppImage
+  - path: build/flatpak/GameHub*.flatpak
+    name: flatpak
+
+deploy:
+  - provider: GitHub
+    description: CI build
+    auth_token:
+        secure: J2LCcNeVYvzbvHRa/LChp+SmN6UKbg1ELsA4jmxnObCbX+ZyZ9DFH+S2aQIoA3dG
+    artifact: deb,AppImage,flatpak
+    draft: false
+    prerelease: true

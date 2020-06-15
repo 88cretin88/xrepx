@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+	<gresource prefix="/com/github/tkashkin/gamehub/icons">
+		<file alias="scalable/actions/sources-all-symbolic.svg">symbolic/sources/sources-all.svg</file>
+		<file alias="scalable/actions/source-steam-symbolic.svg">symbolic/sources/steam.svg</file>
+		<file alias="scalable/actions/source-gog-symbolic.svg">symbolic/sources/gog.svg</file>
+		<file alias="scalable/actions/source-humble-symbolic.svg">symbolic/sources/humble.svg</file>
+		<file alias="scalable/actions/source-humble-trove-symbolic.svg">symbolic/sources/humble-trove.svg</file>
+		<file alias="scalable/actions/source-itch-symbolic.svg">symbolic/sources/itch.svg</file>
+
+		<file alias="scalable/actions/emu-retroarch-symbolic.svg">symbolic/emu/retroarch.svg</file>
+
+		<file alias="scalable/actions/platform-linux-symbolic.svg">symbolic/platforms/linux.svg</file>
+		<file alias="scalable/actions/platform-windows-symbolic.svg">symbolic/platforms/windows.svg</file>
+		<file alias="scalable/actions/platform-macos-symbolic.svg">symbolic/platforms/macos.svg</file>
+
+		<file alias="scalable/actions/tool-wine-symbolic.svg">symbolic/tools/wine.svg</file>
+		<file alias="scalable/actions/tool-dosbox-symbolic.svg">symbolic/tools/dosbox.svg</file>
+		<file alias="scalable/actions/tool-scummvm-symbolic.svg">symbolic/tools/scummvm.svg</file>
+
+		<file alias="scalable/actions/provider-data-igdb.svg">normal/providers/data/IGDB.svg</file>
+		<file alias="scalable/actions/provider-images-steamgriddb.svg">normal/providers/images/SteamGridDB.svg</file>
+
+		<file alias="scalable/actions/tag.svg">normal/tags/tag.svg</file>
+		<file alias="scalable/actions/tag-symbolic.svg">symbolic/tags/tag.svg</file>
+
+		<file alias="scalable/actions/gh-tag-symbolic.svg">symbolic/tags/tag.svg</file>
+		<file alias="scalable/actions/gh-tag-add-symbolic.svg">symbolic/tags/tag-add.svg</file>
+		<file alias="scalable/actions/gh-tag-remove-symbolic.svg">symbolic/tags/tag-remove.svg</file>
+		<file alias="scalable/actions/gh-tag-multiple-symbolic.svg">symbolic/tags/tag-multiple.svg</file>
+		<file alias="scalable/actions/gh-tag-favorites-symbolic.svg">symbolic/tags/tag-favorites.svg</file>
+		<file alias="scalable/actions/gh-tag-hidden-symbolic.svg">symbolic/tags/tag-hidden.svg</file>
+
+		<file alias="scalable/actions/gh-game-favorite-symbolic.svg">symbolic/game-favorite.svg</file>
+		<file alias="scalable/actions/gh-game-updated-symbolic.svg">symbolic/game-updated.svg</file>
+
+		<file alias="scalable/actions/gamehub-symbolic.svg">symbolic/gamehub.svg</file>
+
+		<file alias="scalable/actions/controller-button-a.svg">normal/controller/a.svg</file>
+		<file alias="scalable/actions/controller-button-b.svg">normal/controller/b.svg</file>
+		<file alias="scalable/actions/controller-button-x.svg">normal/controller/x.svg</file>
+		<file alias="scalable/actions/controller-button-y.svg">normal/controller/y.svg</file>
+		<file alias="scalable/actions/controller-button-start.svg">normal/controller/start.svg</file>
+		<file alias="scalable/actions/controller-button-guide.svg">normal/controller/guide.svg</file>
+		<file alias="scalable/actions/controller-button-select.svg">normal/controller/select.svg</file>
+		<file alias="scalable/actions/controller-button-bumper-left.svg">normal/controller/bumper-left.svg</file>
+		<file alias="scalable/actions/controller-button-bumper-right.svg">normal/controller/bumper-right.svg</file>
+		<file alias="scalable/actions/controller-button-trigger-left.svg">normal/controller/trigger-left.svg</file>
+		<file alias="scalable/actions/controller-button-trigger-right.svg">normal/controller/trigger-right.svg</file>
+		<file alias="scalable/actions/controller-button-grip-left.svg">normal/controller/grip-left.svg</file>
+		<file alias="scalable/actions/controller-button-grip-right.svg">normal/controller/grip-right.svg</file>
+
+		<file alias="scalable/actions/related-link-app-android-symbolic.svg">symbolic/related-links/app-android.svg</file>
+		<file alias="scalable/actions/related-link-app-ipad-symbolic.svg">symbolic/related-links/app-ipad.svg</file>
+		<file alias="scalable/actions/related-link-app-iphone-symbolic.svg">symbolic/related-links/app-iphone.svg</file>
+		<file alias="scalable/actions/related-link-discord-symbolic.svg">symbolic/related-links/discord.svg</file>
+		<file alias="scalable/actions/related-link-facebook-symbolic.svg">symbolic/related-links/facebook.svg</file>
+		<file alias="scalable/actions/related-link-google-plus-symbolic.svg">symbolic/related-links/google-plus.svg</file>
+		<file alias="scalable/actions/related-link-instagram-symbolic.svg">symbolic/related-links/instagram.svg</file>
+		<file alias="scalable/actions/related-link-linkedin-symbolic.svg">symbolic/related-links/linkedin.svg</file>
+		<file alias="scalable/actions/related-link-pinterest-symbolic.svg">symbolic/related-links/pinterest.svg</file>
+		<file alias="scalable/actions/related-link-reddit-symbolic.svg">symbolic/related-links/reddit.svg</file>
+		<file alias="scalable/actions/related-link-soundcloud-symbolic.svg">symbolic/related-links/soundcloud.svg</file>
+		<file alias="scalable/actions/related-link-tumblr-symbolic.svg">symbolic/related-links/tumblr.svg</file>
+		<file alias="scalable/actions/related-link-twitch-symbolic.svg">symbolic/related-links/twitch.svg</file>
+		<file alias="scalable/actions/related-link-twitter-symbolic.svg">symbolic/related-links/twitter.svg</file>
+		<file alias="scalable/actions/related-link-wikipedia-symbolic.svg">symbolic/related-links/wikipedia.svg</file>
+		<file alias="scalable/actions/related-link-youtube-symbolic.svg">symbolic/related-links/youtube.svg</file>
+
+		<file alias="scalable/actions/about-link-git-symbolic.svg">symbolic/about-links/git.svg</file>
+		<file alias="scalable/actions/about-link-github-symbolic.svg">symbolic/about-links/github.svg</file>
+		<file alias="scalable/actions/about-link-codeberg.org.svg">symbolic/about-links/codeberg.org.svg</file>
+		<file alias="scalable/actions/about-link-git.froggi.es.svg">symbolic/about-links/git.froggi.es.svg</file>
+	</gresource>
+</gresources>
