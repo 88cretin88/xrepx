@@ -1,4 +1,4 @@
-version:1.2.1.4.1 :12.06.2020
+version:1.2.1.5 :18.06.2020
 _________________________________
 
 
@@ -114,7 +114,7 @@ dd if=/dev/zero of=image.txt bs=1024M count=1
 dd of=file.txt bs=1 count=0 seek=100G
 
 --------
-gpg-
+gpg:
 
 
 md5sum-
@@ -150,18 +150,44 @@ gpg --quick-add-key отпечаток rsa1024 sign,encr,auth none
 удалить ключи gpg-
 
 gpg --delete-secret-keys 0x12345678
+
 gpg --delete-keys 0x12345678
 
 
-
+report:
 
 ssa --diag --f report.txt
 
-git fix-
+
+
+git fix:
 
 git config --global push.rebase false
 
 git config --global push.default simple
+
+
+фрагментация диска:
+
+степень фрагментации-
+
+sudo e4defrag -c /путь до диска
+
+
+дефрагментация диска-
+
+sudo e4defrag -v /путь до диска
+
+
+
+информаия о файловой структуре-
+
+sudo tune2fs -l /путь до диска
+
+
+изменить резервную область диска на 1%
+
+sudo tune2fs -m 1 /путь до диска
 
 
 ---------------------------
