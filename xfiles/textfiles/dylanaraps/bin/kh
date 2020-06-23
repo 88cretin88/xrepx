@@ -1,0 +1,38 @@
+#!/bin/sh
+
+printf '%s\n' "TYPE=$TYPE, PKG=$PKG, DEST=$DEST"
+
+case $TYPE in
+    pre-build) 
+        IFS=. read -r start _ < /proc/uptime
+    ;;
+
+    post-build)
+        IFS=. read -r end _ < /proc/uptime
+
+        (
+            s=$((end - start))
+            d=$((s / 60 / 60 / 24))
+            h=$((s / 60 / 60 % 24))
+            m=$((s / 60 % 60))
+
+            [ "$d" = 0 ] || u="${u}${d}d "
+            [ "$h" = 0 ] || u="${u}${h}h "
+            [ "$m" = 0 ] || u="${u}${m}m "
+
+            log "$PKG" "Build finished in ${u:-${s}s}" 
+        )
+
+        : "${DEST:?DEST is unset}"
+
+        case $PKG in
+           kiss) ;;
+
+           *) 
+               rm -rf "$DEST/usr/share/doc" 
+               rm -rf "$DEST/usr/share/gettext"
+               rm -rf "$DEST/usr/share/zsh"
+           ;;
+        esac
+    ;;
+esac
