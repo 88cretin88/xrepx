@@ -1,0 +1,289 @@
+﻿01. Моя любимая GTK тема: Qogir Win Dark
+
+
+sudo apt-get install gtk2-engines-murrine gtk2-engines-pixbuf
+git clone https://github.com/vinceliuice/Qogir-theme.git
+cd Qogir-theme
+./install.sh -l gnome
+nautilus -q
+
+
+Игнорировать ошибку: Failed to load module "appmenu-gtk-module"
+
+
+02. Самый крутой курсор Bibata Oil
+
+
+sudo apt install git python3 python3-pip inkscape x11-apps
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/KaizIqbal/Bibata_Cursor/master/Bibata.sh)"
+
+
+03. Самый полный набор иконок Papirus Icons
+
+
+wget -qO- https://git.io/papirus-folders-install | sh
+papirus-folders -C yaru --theme Papirus-Dark
+
+
+Далее фиксим логотип PopOS:
+
+
+for size in 16x16 22x22 24x24 32x32 48x48 64x64; do sudo ln -sfv distributor-logo-pop-os.svg "/usr/share/icons/Papirus/$size/apps/distributor-logo.svg"; done
+sudo gtk-update-icon-cache -f /usr/share/icons/Papirus/
+sudo gtk-update-icon-cache -f /usr/share/icons/Papirus-Dark/
+sudo gtk-update-icon-cache -f /usr/share/icons/Papirus-Light/
+
+
+04. Устанавливаем расширение Folder's Color и Admin для Nautilus
+
+
+sudo add-apt-repository ppa:costales/folder-color
+sudo apt-get update
+sudo apt-get install folder-color
+sudo apt-get install nautilus-admin
+nautilus -q
+
+
+05. Устанавливаем Gnome Tweak и расширение User themes
+
+
+sudo apt install -y gnome-tweak-tool
+User Themes: https://extensions.gnome.org/extension/19/user-themes/
+
+
+И тут меняем тему, курсор, иконки и остальное настраиваем на свое усмотрение.
+
+
+
+
+05. Драйвера для AMD
+
+
+1.1 Mesa beta from kisak: Mesa 20.1+ , Valve ACO, Intel iris, Vulkan Overlay
+   
+   sudo add-apt-repository ppa:kisak/kisak-mesa
+   sudo apt update
+   sudo apt upgrade
+   
+05. Включаем разгон видеокарты и избавляемся от тиринга на AMD
+
+
+- Для того, чтобы включить разгон видеокарты от Radeon и отключить патчи уизвимостей на процессорах Intel (которые нужны только на винде и серьезно замедляют работу самого процессора)
+
+
+01. sudo gedit /boot/efi/loader/entries/Pop_OS-current.conf
+02. В графе с option, после уже имеющихся параметров, через пробел дописываем:
+
+
+- Для отключения не нужных патчей ядра:
+
+
+noibrs noibpb nopti nospectre_v2 nospectre_v1 l1tf=off nospec_store_bypass_disable no_stf_barrier mds=off mitigations=off
+
+
+- Для включения опций разгона видеокарт Radeon:
+
+
+amdgpu.ppfeaturemask=0xffffffff
+
+
+У меня в итоге получилось вот так:
+
+
+options root=UUID=26f3dcf0-3f02-416a-9404-62436a7091cc ro quiet loglevel=0 systemd.show_status=false splash noibrs noibpb nopti nospectre_v2 nospectre_v1 l1tf=off nospec_store_bypass_disable no_stf_barrier mds=off mitigations=off amdgpu.ppfeaturemask=0xffffffff
+
+
+
+
+
+
+Важно отметить, что " root=UUID=26f3dcf0-3f02-416a-9404-62436a7091cc" это идентификатор корневого раздела по UUID, он уникален после каждого форматирования тома, не надо его копировать себе :)
+
+
+
+
+
+
+
+
+
+
+- Убираем тиринг в Mesa AMDGPU
+
+
+sudo mkdir /etc/X11/xorg.conf.d
+sudo gedit /etc/X11/xorg.conf.d/20-amdgpu.conf
+
+
+Section "Device"
+         Identifier "Radeon"
+         Driver "radeon"
+         Option "TearFree" "on"
+               Option "DRI" "3"
+EndSection
+
+
+
+
+07. Патчи системы и SSD
+
+
+УСКОРЕНИЕ POP!_OS ЕСЛИ У ВАС SSD + ПАМЯТЬ 8Гб+ [НЕ ВСЕМ ПОДОЙДЕТ]
+
+
+echo -e "vm.dirty_background_ratio = 50" | sudo tee -a /etc/sysctl.conf
+echo -e "vm.dirty_ratio = 80" | sudo tee -a /etc/sysctl.conf
+echo -e "vm.vfs_cache_pressure=1000" | sudo tee -a /etc/sysctl.conf
+
+
+TMP ПАПКУ В ОПЕРАТИВНУЮ ПАМЯТЬ
+
+
+echo 'tmpfs /tmp tmpfs noatime,nodiratime,mode=1777,size=50% 0 0' | sudo tee -a /etc/fstab
+
+
+
+
+
+
+
+
+08. Устанавливаем утилиту CoreCtrl для AMD
+
+
+CoreCtrl 1.2+ for Overclocking\Undervolting GPU AMD
+   Support: rx 4xx\5xx series \ vega 64\56 \ rx5xxxx
+
+
+   sudo add-apt-repository -y ppa:ernstp/mesarc
+   sudo apt update -y
+   sudo apt install -f corectrl
+   sudo apt update -y
+   sudo apt upgrade
+
+
+
+
+
+
+
+
+   
+09. Устанавливаем лучшее мультимедийное ядро для Pop!_OS XanMod
+
+
+   echo 'deb http://deb.xanmod.org releases main' | sudo tee /etc/apt/sources.list.d/xanmod-kernel.list  && wget -qO - https://dl.xanmod.org/gpg.key | sudo apt-key add -
+   sudo apt update && sudo apt install linux-xanmod
+
+
+10. Зависимости и интсрументы для игр
+
+
+
+
+sudo apt install freetds-common gpm:i386 icoutils lib32gcc1 lib32stdc++6 lib32z1 libaa1:i386 libatk1.0-0:i386 libc6-i386 libclc-amdgcn libclc-dev libclc-r600 libcurl4:i386 libdatrie1:i386 libegl-mesa0:i386 libegl1:i386 libgbm1:i386 libgd-tools:i386 libgdk-pixbuf2.0-0:i386 libgnutlsxx28 libgnutlsxx28:i386 libgraphite2-3:i386 libharfbuzz0b:i386 libice6:i386 libjpeg62 libjpeg62:i386 libmikmod3 libnghttp2-14:i386 libnspr4:i386 libnss3:i386 libpango-1.0-0:i386 libpangocairo-1.0-0:i386 libpangoft2-1.0-0:i386 libpopt0:i386 libportaudio2:i386 libpq5 libpq5:i386 libpsl5:i386 librtmp1:i386 libsdl-net1.2 libsdl-sound1.2 libsdl2-2.0-0 libsdl2-2.0-0:i386 libsdl2-image-2.0-0:i386 libslang2:i386 libsm6:i386 libthai0:i386 libwxbase3.0-0v5 libxcb-xfixes0:i386 libxkbcommon0:i386 libxss1:i386 mesa-opencl-icd mesa-opencl-icd:i386  winbind fonts-wine gcc-8-base:i386 gstreamer1.0-plugins-base:i386 libasn1-8-heimdal:i386  libasound2:i386 libasound2-plugins:i386 libasyncns0:i386 libatomic1:i386 libavahi-client3:i386 libavahi-common-data:i386 libavahi-common3:i386 libblkid1:i386 libbsd0:i386 libc6:i386 libcairo2:i386 libcap2:i386 libcapi20-3 libcapi20-3:i386 libcdparanoia0:i386 libcom-err2:i386 libcups2:i386 libdb5.3:i386 libdbus-1-3:i386 libdrm-amdgpu1:i386 libdrm-intel1:i386 libdrm-nouveau2:i386 libdrm-radeon1:i386 libdrm2:i386 libedit2:i386 libelf1:i386 libexif12:i386 libexpat1:i386 libflac8:i386 libfontconfig1:i386 libfreetype6:i386 libgcc1:i386 libgcrypt20:i386 libgd3:i386 libgl1:i386 libgl1-mesa-dri:i386 libglapi-mesa:i386 libglib2.0-0:i386 libglu1-mesa:i386 libglvnd0:i386 libglx-mesa0:i386 libglx0:i386 libgmp10:i386 libgnutls30:i386 libgpg-error0:i386 libgphoto2-6:i386 libgphoto2-port12:i386 libgpm2:i386 libgsm1:i386 libgssapi-krb5-2:i386 libgssapi3-heimdal:i386 libgstreamer-plugins-base1.0-0:i386 libgstreamer1.0-0:i386 libhcrypto4-heimdal:i386 libheimbase1-heimdal:i386 libheimntlm0-heimdal:i386 libhx509-5-heimdal:i386 libidn2-0:i386 libieee1284-3:i386 libjack-jackd2-0:i386 libjbig0:i386 libjpeg-turbo8:i386 libjpeg8:i386 libk5crypto3:i386 libkeyutils1:i386 libkrb5-26-heimdal:i386 libkrb5-3:i386 libkrb5support0:i386 liblcms2-2:i386 libldap-2.4-2:i386 libltdl7:i386 liblz4-1:i386 liblzma5:i386 libmount1:i386 libmpg123-0:i386 libncurses5:i386 libogg0:i386 libopenal-data libopenal1 libopenal1:i386 libopus0:i386 liborc-0.4-0:i386 libosmesa6 libosmesa6:i386 libp11-kit0:i386 libpcap0.8:i386 libpciaccess0:i386 libpcre3:i386 libpixman-1-0:i386 libpng16-16:i386 libpulse0:i386 libroken18-heimdal:i386 libsamplerate0:i386 libsane1:i386 libsasl2-2:i386 libsasl2-modules:i386 libsasl2-modules-db:i386 libselinux1:i386 libsndfile1:i386 libspeexdsp1:i386 libsqlite3-0:i386  libstdc++6:i386 libsystemd0:i386 libtasn1-6:i386 libtheora0:i386 libtiff5:i386 libtinfo5:i386 libudev1:i386 libunistring2:i386 libusb-1.0-0:i386 libuuid1:i386 libv4l-0:i386 libv4lconvert0:i386 libvisual-0.4-0:i386 libvorbis0a:i386 libvorbisenc2:i386 libwebp6:i386 libwind0-heimdal:i386 libwrap0:i386 libx11-6:i386 libx11-xcb1:i386 libxau6:i386 libxcb-dri2-0:i386 libxcb-dri3-0:i386 libxcb-glx0:i386 libxcb-present0:i386 libxcb-render0:i386 libxcb-shm0:i386 libxcb-sync1:i386 libxcb1:i386 libxcomposite1:i386 libxcursor1:i386 libxdamage1:i386 libxdmcp6:i386 libxext6:i386 libxfixes3:i386 libxi6:i386 libxinerama1:i386 libxml2:i386 libxpm4:i386 libxrandr2:i386 libxrender1:i386 libxshmfence1:i386 libxslt1.1:i386 libxxf86vm1:i386 ocl-icd-libopencl1 ocl-icd-libopencl1:i386 zlib1g:i386 xterm curl wget aria2 p7zip p7zip-full cabextract ocl-icd-libopencl1 ocl-icd-libopencl1:i386 libvulkan1 libvulkan1:i386 vulkan-utils mesa-utils mesa-vulkan-drivers mesa-vulkan-drivers:i386 glib-networking:i386 gstreamer1.0-plugins-good:i386 gstreamer1.0-x:i386 libavc1394-0:i386 libcaca0:i386 libcairo-gobject2:i386 libdv4:i386 libgstreamer-plugins-good1.0-0:i386 libgudev-1.0-0:i386 libiec61883-0:i386 libmp3lame0:i386 libncursesw6:i386 libproxy1v5:i386 libraw1394-11:i386 libshout3:i386 libsoup2.4-1:i386 libspeex1:i386 libtag1v5:i386 libtag1v5-vanilla:i386 libtwolame0:i386 libvkd3d1 libvkd3d1:i386 libvpx6:i386 libwavpack1:i386 libxv1:i386 gstreamer1.0-plugins-bad libfaudio0 libfaudio0:i386 gamemode libwine libwine:i386
+
+
+* Устанавливаем Wine в PopOS
+
+
+sudo dpkg --add-architecture i386
+sudo apt update
+wget -qO- https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
+sudo apt-add-repository 'deb http://dl.winehq.org/wine-builds/ubuntu/ bionic main'
+sudo apt-get install --install-recommends winehq-stable
+sudo apt-get install --install-recommends winehq-staging
+
+
+- MangoHUD
+
+
+git clone --recurse-submodules https://github.com/flightlessmango/MangoHud.git
+cd MangoHud
+./build.sh build
+./build.sh package
+
+
+MANGOHUD=1 MANGOHUD_CONFIG=pci_dev,cpu_temp,gpu_temp,vram,ram,arch,position=top-right,font_size=22 RADV_PERFTEST=aco gamemoderun %command%
+
+
+- GameMode
+
+
+sudo apt install gamemode
+
+
+11. Расширения для Gnome 3
+
+
+Dash to Panel: https://extensions.gnome.org/extension/1160/dash-to-panel/
+Arc Menu: https://extensions.gnome.org/extension/1228/arc-menu/
+Мои настройки ArcDash: https://github.com/plafonlinux/arcdash
+Caffeine: https://extensions.gnome.org/extension/517/caffeine/
+GameMode: https://extensions.gnome.org/extension/1852/gamemode/
+More columns: https://extensions.gnome.org/extension/1305/more-columns-in-applications-view/
+Panel OSD: https://extensions.gnome.org/extension/708/panel-osd/
+Removable Drive Menu: https://extensions.gnome.org/extension/7/removable-drive-menu/
+Sound Input: https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+Tray Icons: https://extensions.gnome.org/extension/2890/tray-icons-reloaded/
+Blyr: https://extensions.gnome.org/extension/1251/blyr/
+Bluetooth quick connect: https://extensions.gnome.org/extension/1401/bluetooth-quick-connect/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- Включаем Wayland сессию на PopOS
+
+
+01. sudo gedit /etc/gdm3/custom.conf/
+02. В файле находим данный параметр:
+
+
+#WaylandEnable=false
+
+
+03. Убираем # и прописываем значение true:
+
+
+WaylandEnable=true
+
+
+04. Перезапускаем ПК и при входе в систему выбираем Pop on Wayland
+
+
+
+
+- Я был прав, что все дело в скорости загрузки ... Поэтому, команда PopOS выбрала systemd-boot
+
+
+Лично меня все устраивает, в плане того, что после тестов я останусь на одной системе ... А даже если, изредка, нужно перезагрузиться в другую ос ... Это всегда можно сделать, через Boot Menu ...
+
+
+Для тех, кто хочет MultiBoot с красивой темой:
+
+
+sudo apt-add-repository ppa:rodsmith/refind
+sudo apt-get update
+sudo apt-get install refind
+
+
+Как все настроить, читать в статье ниже! Спасибо @bada_booms
+
+
+https://medium.com/@png2378/%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D0%B0-grub-%D0%BD%D0%B0-refind-6520ae8b97bf
