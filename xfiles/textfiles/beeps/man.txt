@@ -1,0 +1,237 @@
+Name
+
+
+
+beep - beep the pc speaker any number of ways
+
+Synopsis
+
+
+
+beep [-f N] [-l N] [-r N] [-d N] [-D N] [-s] [-c]
+
+
+
+beep [ OPTIONS ] [-n] [--new] [ OPTIONS ]
+
+beep [-h] [--help]
+
+beep [-v] [-V] [--version]
+
+
+
+Description
+
+
+
+beep allows the user to control the pc-speaker with precision, allowing different sounds to indicate different events. While it can be run quite happily on the command line, it's intended place of residence is within shell/perl scripts, notifying the user when something interesting occurs. Of course, it has no notion of what's interesting, but it's real good at that notifying part.
+
+
+
+All options have default values, meaning that just typing 'beep' will work. If an option is specified more than once on the command line, subsequent options override their predecessors. So 'beep -f 200 -f 300' will beep at 300Hz.
+
+Options
+
+
+
+-f N
+
+
+
+beep at N Hz, where 0 < N < 20000. As a general ballpark, the regular terminal beep is around 750Hz. N is not, incidentally, restricted to whole numbers.
+
+
+
+-l N
+
+
+
+beep for N milliseconds.
+
+
+
+-r N
+
+
+
+specify the number of repetitions (defaults to 1).
+
+-d N, -D N
+
+    specify a delay of N milliseconds between repetitions. Use of -d specifies that this delay should only occur between beeps, that is, it should not occur after the last repetition. -D indicates that the delay should occur after every repetition, including the last. Normally, -d is what you want, but if, for example, you are stringing several beep commands together to play the star wars anthem, you may want control over every delay. 
+
+-n, --new
+
+    this option allows you to break the command line up into specifying multiple beeps. Each time this option is used, beep starts treating all further arguments as though they were for a new beep. So for example:
+
+
+
+    beep -f 1000 -n -f 2000 -n -f 1500
+
+
+
+    would produce a sequence of three beeps, the first with a frequency of 1000Hz (and otherwise default values), then a second beep with a frequency of 2000Hz (again, with things like delay and reps being set to their defaults), then a third beep, at 1500Hz. This is different from specifying a -r value, since -r repeats the same beep multiple times, whereas -n allows you to specify different beeps. After a -n, the new beep is created with all the default values, and any of these can be specified without altering values for preceeding (or later) beeps. See the EXAMPLES section if this managed to confuse you. 
+
+-s, -c
+
+
+
+these options put beep into input-processing mode. -s tells beep to read from stdin, and beep after each newline, and -c tells it to do so after every character. In both cases, the program will also echo the input back out to stdout, which makes it easy to slip beep into a text-processing pipeline, see the EXAMPLES section.
+
+-h, --help
+
+    display usage info and exit 
+
+-v, -V, --version
+
+    display version information and exit 
+
+
+
+Examples
+
+
+
+At its simplest (yet still effective)
+
+
+
+    beep 
+
+A more interesting standalone setup
+
+    beep -f 300.7 -r 2 -d 100 -l 400 
+
+As part of a log-watching pipeline
+
+    tail -f /var/log/xferlog | grep 'passwd' | beep -f 1000 -r 5 -s 
+
+When using -c mode, I recommend using a short -D, and a shorter -l, so that the beeps don't blur together. Something like this will get you a cheesy 1970's style beep-as-you-type-each-letter effect
+
+    cat file | beep -c -f 400 -D 50 -l 10 
+
+A highly contrived example of -n/--new usage
+
+    beep -f 1000 -r 2 -n -r 5 -l 10 --new
+
+
+
+    will produce first two 1000Hz beeps, then 5 beeps at the default tone, but only 10ms long each, followed by a third beep using all the default settings (since none are specified). 
+
+
+
+Ioctl Wackiness
+
+
+
+Some users will encounter a situation where beep dies with a complaint from ioctl(). The reason for this, as Peter Tirsek was nice enough to point out to me, stems from how the kernel handles beep's attempt to poke at (for non-programmers: ioctl is a sort of catch-all function that lets you poke at things that have no other predefined poking-at mechanism) the tty, which is how it beeps. The short story is, the kernel checks that either:
+
+
+
+- you are the superuser
+
+
+
+- you own the current tty
+
+
+
+What this means is that root can always make beep work (to the best of my knowledge!), and that any local user can make beep work, BUT a non-root remote user cannot use beep in it's natural state. What's worse, an xterm, or other x-session counts, as far as the kernel is concerned, as 'remote', so beep won't work from a non-priviledged xterm either. I had originally chalked this up to a bug, but there's actually nothing I can do about it, and it really is a Good Thing that the kernel does things this way. There is also a solution.
+
+
+
+By default beep is not installed with the suid bit set, because that would just be zany. On the other hand, if you do make it suid root, all your problems with beep bailing on ioctl calls will magically vanish, which is pleasant, and the only reason not to is that any suid program is a potential security hole. Conveniently, beep is very short, so auditing it is pretty straightforward.
+
+
+
+Decide for yourself, of course, but it looks safe to me - there's only one buffer and fgets doesn't let it overflow, there's only one file opening, and while there is a potential race condition there, it's with /dev/console. If someone can exploit this race by replacing /dev/console, you've got bigger problems. :)
+
+
+
+So the quick, only, and likely safe solution if beep is not beeping when you want it to is (as root):
+
+
+
+# chmod 4755 /usr/bin/beep
+
+
+
+(or wherever you put it)
+
+
+
+The one snag is that this will give any little nitwit the ability to run beep successfully - make sure this is what you want. If it isn't, a slightly more complex fix would be something like:
+
+
+
+# chgrp beep /usr/bin/beep
+
+
+
+# chmod 4750 /usr/bin/beep
+
+
+
+and then add only beep-worthy users to the 'beep' group.
+
+Frequency Table
+
+
+
+Several people have asked for some basic help translating music notes to frequencies. There are a lot of music notes, and several tables online will give you translations, but here are approximate numbers for the octave of middle C, to get you started.
+
+
+
+Note
+
+
+
+Frequency
+
+
+
+C         261.6
+
+C#        277.2
+
+D         293.7
+
+D#        311.1
+
+E         329.6
+
+F         349.2
+
+F#        370.0
+
+G         392.0
+
+G#        415.3
+
+A         440.0
+
+A#        466.2
+
+B         493.9
+
+C         523.2
+
+
+
+Bugs
+
+
+
+None that I'm aware of, though see the IOCTL WACKINESS section.
+
+Reporting Bugs
+
+
+
+Report bugs to <johnath@johnath.com>
+
+Author
+
+
+
+This program was written by Johnathan Nightingale (johnath@johnath.com) and is distributed under the GNU General Public License. For more contributing information, check the source, and past contributors can be found in CREDITS. 
