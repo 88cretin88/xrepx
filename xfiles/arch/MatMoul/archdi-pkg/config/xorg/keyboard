@@ -1,0 +1,84 @@
+#!/bin/bash
+. ./lib
+
+pacman -Q libxkbcommon 2> /dev/null
+if [ "$?" = "1" ]; then
+  if(confirm "libxkbcommon is required to use localectl.\n\nInstall libxkbcommon?") then
+    instpkg "libxkbcommon" ""
+  else
+    exit 1
+  fi
+fi
+
+
+options=()
+items=$(localectl list-x11-keymap-layouts)
+for item in $items; do
+  options+=("$item" "")
+done
+layout=$(whiptail --backtitle "$apptitle" --title "Select keyboard layout :" --menu "" --cancel-button "Cancel" 0 0 0 \
+  "${options[@]}" \
+  3>&1 1>&2 2>&3)
+if [ ! "$?" = "0" ]; then
+  exit 1
+fi
+
+options=()
+options+=("ignore" "")
+options+=("pc104" "Default")
+options+=("pc105" "")
+items=$(localectl list-x11-keymap-models)
+for item in $items; do
+  options+=("$item" "")
+done
+model=$(whiptail --backtitle "$apptitle" --title "Select keyboard model :" --menu "" --cancel-button "Cancel" 0 0 0 \
+  "${options[@]}" \
+  3>&1 1>&2 2>&3)
+if [ ! "$?" = "0" ]; then
+  exit 1
+fi
+if [ "$model" = "ignore" ]; then
+  model=""
+fi
+
+options=()
+options+=("ignore" "Default")
+items=$(localectl list-x11-keymap-variants $layout)
+for item in $items; do
+  options+=("$item" "")
+done
+variant=$(whiptail --backtitle "$apptitle" --title "Select keyboard variant :" --menu "" --cancel-button "Cancel" 0 0 0 \
+  "${options[@]}" \
+  3>&1 1>&2 2>&3)
+if [ ! "$?" = "0" ]; then
+  exit 1
+fi
+if [ "$variant" = "ignore" ]; then
+  variant=""
+fi
+
+options=()
+options+=("ignore" "Default")
+items=$(localectl list-x11-keymap-options)
+for item in $items; do
+  options+=("$item" "")
+done
+option=$(whiptail --backtitle "$apptitle" --title "Select keyboard option :" --menu "" --cancel-button "Cancel" 0 0 0 \
+  "${options[@]}" \
+  3>&1 1>&2 2>&3)
+if [ ! "$?" = "0" ]; then
+  exit 1
+fi
+if [ "$option" = "ignore" ]; then
+  option=""
+fi
+
+
+if ( confirm "Run localectl set-x11-keymap $layout $model $variant $option ?") then
+  clear
+  echo "localectl set-x11-keymap $layout $model $variant $option"
+  localectl set-x11-keymap $layout $model $variant $option
+  pressanykey
+fi
+
+exit 0

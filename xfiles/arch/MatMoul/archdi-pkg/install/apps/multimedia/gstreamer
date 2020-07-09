@@ -1,0 +1,30 @@
+#!/bin/bash
+. ./lib
+
+options=()
+
+options+=("gst-plugins-base" "" on)
+options+=("gst-plugins-good" "" on)
+options+=("gst-plugins-ugly" "" on)
+options+=("gst-plugins-bad" "" off)
+options+=("gst-libav" "" on)
+#options+=("gst-plugin-libde265" "(AUR)" off)
+#options+=("libde265" "(AUR)" off)
+
+sel=$(whiptail --backtitle "$apptitle" --title "GStreamer :" --checklist "" --cancel-button "Back" 0 0 0 \
+  "${options[@]}" \
+  3>&1 1>&2 2>&3)
+if [ ! "$?" = "0" ]; then
+  exit 1
+fi
+
+for itm in $sel; do
+  case $itm in
+    #'gst-plugin-libde265') aurpkg="$aurpkg $(echo $itm | sed 's/"//g')";;
+    *) pkg="$pkg $(echo $itm | sed 's/"//g')";;
+  esac
+done
+
+instpkg "$pkg" "$aurpkg"
+
+exit 0

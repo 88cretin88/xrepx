@@ -1,0 +1,42 @@
+#!/bin/bash
+. ./lib
+
+options=()
+options+=("Plasma5" "By MatMoul")
+options+=("XFCE4" "(Help Wanted)")
+options+=("Gnome" "(Help Wanted)")
+options+=("Cinnamon" "By FredBezies")
+options+=("LXDE" "(Help Wanted)")
+options+=("LXDE-GTK3" "(Help Wanted)")
+options+=("LXQt" "(Help Wanted)")
+options+=("Mate" "(By FredBezies)")
+options+=("Enlightenment" "(Help Wanted)")
+options+=("Openbox" "(Help Wanted)")
+options+=("Deepin" "(Help Wanted)")
+#options+=("GnuStep" "")
+#options+=("i3" "")
+
+defaultitem=""
+sel=$(whiptail --backtitle "$apptitle" --title "Install Desktop Menu :" --menu "First item is most maintained" --default-item "$defaultitem" --cancel-button "Back" 0 0 0 \
+  "${options[@]}" \
+  3>&1 1>&2 2>&3)
+if [ ! "$?" = "0" ]; then
+  exit 1
+fi
+sed -i "/^defaultitem=/c\defaultitem=\"$sel\"" $0
+
+case $sel in
+  'Plasma5') menu install/desktop/plasma5/menu;;
+  'XFCE4') menu install/desktop/xfce4/menu;;
+  'Gnome') menu install/desktop/gnome/menu;;
+  'Cinnamon') menu install/desktop/cinnamon/menu;;
+  'LXDE') script install/desktop/lxde/packages;;
+  'LXDE-GTK3') script install/desktop/lxde-gtk3/packages;;
+  'LXQt') menu install/desktop/lxqt/menu;;
+  'Mate') menu install/desktop/mate/menu;;
+  'Enlightenment') script install/desktop/enlightenment/packages;;
+  'Openbox') script install/desktop/openbox/packages;;
+  'Deepin') menu install/desktop/deepin/menu;;
+esac
+
+exit 0

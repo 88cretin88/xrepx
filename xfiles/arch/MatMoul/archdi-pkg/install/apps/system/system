@@ -1,0 +1,64 @@
+#!/bin/bash
+. ./lib
+options=()
+options+=("gparted" "(GTK) Partitions manager" off)
+options+=("bleachbit" "(GTK) profile cleaner" off)
+options+=("keepassxc" "(QT) Password Manager" off)
+options+=("keepass" "(MONO) Password Manager" off)
+#options+=("keepassx2" "(QT) Password Manager" off)
+#options+=("keepassx" "(QT) Password Manager" off)
+options+=("virtualbox" "(QT) Virtualization software" off)
+options+=("virtualbox-ext-oracle" "(AUR) Ext Pack" off)
+options+=("wine" "MS Windows App Support" off)
+options+=("wine_gecko" "MS Windows App Support" off)
+options+=("wine-mono" "MS Windows App Support" off)
+options+=("zenity" "recommended for wine" off)
+options+=("winetricks" "recommended for wine" off)
+options+=("q4wine" "" off)
+options+=("gdmap" "" off)
+options+=("k4dirstat" "(AUR)" off)
+options+=("conky" "" off)
+
+sel=$(whiptail --backtitle "$apptitle" --title "System applications :" --checklist "Choose what you want" --cancel-button "Back" 0 0 0 \
+  "${options[@]}" \
+  3>&1 1>&2 2>&3)
+if [ ! "$?" = "0" ]; then
+  exit 1
+fi
+
+for itm in $sel; do
+  case $itm in
+    '"keepassx-git"' | \
+    '"virtualbox-ext-oracle"' | \
+    '"k4dirstat"') aurpkg="$aurpkg $(echo $itm | sed 's/"//g')";;
+    '"wine"' | \
+    '"wine_gecko"')
+      multilib="true"
+      pkg="$pkg $(echo $itm | sed 's/"//g')"
+    ;;
+    '"virtualbox"' )
+      pacman -Q qt4 > /dev/null
+      if [ ! "$?" = "0" ]; then
+        if ( confirm "Virtualbox require qt4 for GUI.\nInstall qt4 ?" ) then
+          pkg="$pkg qt4"
+        fi
+      fi
+      pkg="$pkg $(echo $itm | sed 's/"//g')"
+    ;;
+    *) pkg="$pkg $(echo $itm | sed 's/"//g')";;
+  esac
+done
+
+if [ "$multilib" = "true" ]; then
+  if ( confirm "To install wine or wine_gecko, multilib repo is requires.\nFor this, the script edit the [mulilib] part in /etc/pacman.conf and run pacman -Syu\n\nEnable multilib repo ?" ) then
+    sed -i '/\[multilib\]/s/^#//g' /etc/pacman.conf
+    sed -i '/\[multilib\]/{n;s/^#//g}' /etc/pacman.conf
+    pacman -Syu
+  else
+    exit 1
+  fi
+fi
+
+instpkg "$pkg" "$aurpkg"
+
+exit 0

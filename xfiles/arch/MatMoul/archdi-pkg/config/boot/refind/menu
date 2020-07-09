@@ -1,0 +1,52 @@
+#!/bin/bash
+. ./lib
+
+options=()
+options+=("Config" "/boot/refind_linux.conf")
+options+=("Global config" "/boot/refind_linux.conf")
+options+=("" "")
+options+=("Update" "refind-install")
+options+=("" "")
+if [ ! -f /etc/pacman.d/hooks/refind.hook ];  then
+  options+=("Create pacman hook" "/etc/pacman.d/hooks/refind.hook")
+else
+  options+=("Delete pacman hook" "/etc/pacman.d/hooks/refind.hook")
+fi
+
+defaultitem="Config"
+sel=$(whiptail --backtitle "$apptitle" --title "rEFInd Config Menu :" --menu "" --default-item "$defaultitem" --cancel-button "Back" 0 0 0 \
+  "${options[@]}" \
+  3>&1 1>&2 2>&3)
+if [ ! "$?" = "0" ]; then
+  exit 1
+fi
+sed -i "/^defaultitem=/c\defaultitem=\"$sel\"" $0
+
+case $sel in
+  'Config') editfile /boot/refind_linux.conf;;
+  'Global config') editfile /boot/EFI/refind/refind.conf;;
+  'Update')
+    clear
+    refind-install
+    pressanykey
+  ;;
+  'Create pacman hook')
+    mkdir -p /etc/pacman.d/hooks
+    cat <<EOF > /etc/pacman.d/hooks/refind.hook
+[Trigger]
+Operation=Upgrade
+Type=Package
+Target=refind-efi
+
+[Action]
+Description = Updating rEFInd on ESP
+When=PostTransaction
+Exec=/usr/bin/refind-install
+EOF
+  ;;
+  'Delete pacman hook')
+    rm /etc/pacman.d/hooks/refind.hook
+  ;;
+esac
+
+exit 0
