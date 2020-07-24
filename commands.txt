@@ -1,4 +1,4 @@
-version:1.2.1.5.2.2 : 20.07.2020
+version:1.2.1.5.3 : 24.07.2020
 _________________________________
 
 
@@ -83,7 +83,7 @@ balooctl disable           -отключить baloo
 
 free -h                          -потребление ОЗУ
 
-
+-------------------------
 файловая система ntfs:
 
 sudo pacman -S ntfs-3g
@@ -95,6 +95,15 @@ ntfsfix /dev/sda1
 
 mkisofs -J -o obraz.iso /var/cache/pacman/pkg
 
+---------------
+монтировать файл или iso:
+
+mount -o loop file.iso /mnt/
+
+
+размонтироавть устройство sda1,если оно заблокировано каким-то процессом:
+
+fuser -km /mnt/sda1
 
 ---------
 Проверка хостов в локальной сети-
@@ -109,6 +118,11 @@ nmap -sn 192.168.1.0/24
 Создать пустой файл-
 
 dd if=/dev/zero of=/path/to/your/file bs=<razmer bloka> count=<skolko blokov>
+
+для вывода информации о скорости:
+
+dd if=/dev/zero | pv | of=/path/to/your/file bs=<razmer bloka> count=<skolko blokov>
+
 
 dd if=/dev/zero of=image.txt bs=1024M count=1
 
