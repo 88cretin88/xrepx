@@ -1,4 +1,4 @@
-version:1.2.1.5.3 : 24.07.2020
+version:1.2.1.5.3.1 : 24.07.2020
 _________________________________
 
 
@@ -91,7 +91,14 @@ sudo pacman -S ntfs-3g
 ntfsfix /dev/sda1
 
 ---------------
-образ диска-
+записать образ диска iso на флешку:
+
+pv image.iso > /dev/sda
+
+pv image.iso | dd of=/dev/sda
+
+
+образ диска:
 
 mkisofs -J -o obraz.iso /var/cache/pacman/pkg
 
