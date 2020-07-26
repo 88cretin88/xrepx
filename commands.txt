@@ -1,4 +1,4 @@
-version:1.2.1.5.3.2 : 24.07.2020
+version:1.2.1.5.4 : 26.07.2020
 _________________________________
 
 
@@ -12,6 +12,15 @@ cd files
 
 
 ssh xxx@0.tcp.ngrok.io -p999999
+
+
+--------------------
+
+скорость соединения:
+
+yes | pv | ssh $your_host_here "cat > /dev/null"
+
+pv /dev/zero|ssh $your_host_here 'cat > /dev/null'
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -30,6 +39,10 @@ tar -vcpzf archive.tar.gz directory
 
 tar -vxzpf archive.tar.gz
 
+--------------------
+вывод прогресса:
+
+tar -czpf - backUPs | pv -s $(du -sb backUPs| grep -o '[0-9]*') > backUPs.tgz
 
 -----------------
 
@@ -53,7 +66,6 @@ tar cvpjf /home/sergo/progs/test.tar.bz2 --exclude /etc/gconf /etc
 
 
 tar -cvzpf /lib/live/mount/medium/backupYYYYMMDD.tgz --exclude=/mnt/var/spool/asterisk/monitor --exclude=/mnt/var/spool/asterisk/backup /mnt/
-
 
 ___________________________________________________________________________________________________________________________________________________________________________________________________________________***
 
@@ -127,14 +139,16 @@ nmap -sn 192.168.1.0/24
 
 dd if=/dev/zero of=/path/to/your/file bs=<razmer bloka> count=<skolko blokov>
 
-для вывода информации о скорости:
-
-dd if=/dev/zero | pv | of=/path/to/your/file bs=<razmer bloka> count=<skolko blokov>
-
-
 dd if=/dev/zero of=image.txt bs=1024M count=1
 
 dd of=file.txt bs=1 count=0 seek=100G
+
+
+для вывода информации о скорости:
+
+dd if=/dev/sdc bs=4096 | pv -s 2G | sudo dd bs=4096 of=~/USB_BLACK_BACKUP.IMG
+
+dd if=/dev/zero | pv | of=/path/to/your/file bs=<razmer bloka> count=<skolko blokov>
 
 --------
 gpg:
