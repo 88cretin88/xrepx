@@ -1,4 +1,4 @@
-version:1.2.1.5.4 : 26.07.2020
+version:1.2.1.5.5 : 27.07.2020
 _________________________________
 
 
@@ -44,7 +44,7 @@ tar -vxzpf archive.tar.gz
 
 tar -czpf - backUPs | pv -s $(du -sb backUPs| grep -o '[0-9]*') > backUPs.tgz
 
------------------
+--------------------
 
 Архивирование-
 
@@ -94,6 +94,11 @@ balooctl disable           -отключить baloo
 
 
 free -h                          -потребление ОЗУ
+
+
+забить всю доступную оперативную память нулями:
+
+tail /dev/zero
 
 -------------------------
 файловая система ntfs:
@@ -202,8 +207,6 @@ git fix:
 git config --global push.rebase false
 
 git config --global push.default simple
-
-
 
 ------------------------------
 
