@@ -85,6 +85,7 @@ cantarell-fonts
 cblas
 ccache
 cdparanoia
+cdrtools
 cfitsio
 chromaprint
 cifs-utils
@@ -261,6 +262,7 @@ iproute2
 iptables
 iputils
 iso-codes
+iucode-tool
 iw
 jack
 jansson
@@ -821,6 +823,7 @@ opensubdiv
 openvdb
 opus
 orc
+os-prober
 osm-gps-map
 oxygen
 p11-kit
@@ -1118,6 +1121,7 @@ xmltoman
 xorg-bdftopcf
 xorg-docs
 xorg-font-util
+xorg-font-utils
 xorg-fonts-100dpi
 xorg-fonts-75dpi
 xorg-fonts-alias-100dpi
