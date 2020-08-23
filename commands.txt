@@ -1,4 +1,4 @@
-version:1.2.1.5.8.3.1 : 22.08.2020
+version:1.2.1.5.9 : 23.08.2020
 _________________________________
 
 
@@ -10,6 +10,8 @@ systemctl start sshd
 cd files
 ./ngrok tcp 22
 
+
+подключение:
 
 ssh xxx@0.tcp.ngrok.io -p999999
 
@@ -39,11 +41,12 @@ tar -vcpzf archive.tar.gz directory
 tar -vxzpf archive.tar.gz
 
 --------------------
+
 вывод прогресса:
 
 tar -czpf - backUPs | pv -s $(du -sb backUPs| grep -o '[0-9]*') > backUPs.tgz
 
---------------------
+------------------------
 
 Архивирование:
 
@@ -66,47 +69,66 @@ tar cvpjf /home/sergo/progs/test.tar.bz2 --exclude /etc/gconf /etc
 
 tar -cvzpf /lib/live/mount/medium/backupYYYYMMDD.tgz --exclude=/mnt/var/spool/asterisk/monitor --exclude=/mnt/var/spool/asterisk/backup /mnt/
 
-___________________________________________________________________________________________________________________________________________________________________________________________________________________***
-
+___________________________________________________________________________________________________________________________________________________________________________________________________________________***
 
 Погода:
 
 curl wttr.in/Moscow
+
 ---------------------------------------
+информация о системе:
 
-lspci -v                  -информация о системе
+lspci -v                  
 
+--------
+видеодрайвер:
 
-glxinfo | grep "OpenGL version"         -узнать видеодрайвер
+glxinfo | grep "OpenGL version"         
 
+--------
+скорость диска:
 
-sudo hdparm -Tt /dev/sda        -скорость диска
+sudo hdparm -Tt /dev/sda        
 
+--------
+проверка с.м.а.р.т.а диска:
 
-sudo smartctl -a /dev/sda       -проверка с.м.а.р.т.а диска
+sudo smartctl -a /dev/sda       
 
+--------
+температура диска:
 
-hddtemp /dev/sda         -температура диска
+hddtemp /dev/sda         
 
+--------
+отключить baloo:
 
-balooctl disable           -отключить baloo
+balooctl disable           
 
+--------
+потребление ОЗУ:
 
-free -h                          -потребление ОЗУ
+free -h                          
 
+--------
+хеш md5sum:
 
+printf "string" | md5sum
+
+--------
 забить всю доступную оперативную память нулями:
 
 tail /dev/zero
 
--------------------------
+----------
 файловая система ntfs:
 
 sudo pacman -S ntfs-3g
 
 ntfsfix /dev/sda1
 
------------------------
+-------------------------------------------
+
 записать образ диска iso на флешку с информацией о скорости:
 
 pv image.iso > /dev/sda
@@ -116,14 +138,14 @@ pv image.iso | dd of=/dev/sda
 dd if=образ of=флэшка status=progress 
 
 
-образ диска:
+создать образ диска:
 
 pacman -S cdrkit
 
 mkisofs -J -o obraz.iso /home/xxx
-
-
+
 ---------------------
+
 монтировать файл или iso:
 
 mount -o loop file.iso /mnt/
@@ -158,14 +180,9 @@ dd if=/dev/sdc bs=4096 | pv -s 2G | sudo dd bs=4096 of=~/USB_BLACK_BACKUP.IMG
 
 dd if=/dev/zero | pv | of=/path/to/your/file bs=<razmer bloka> count=<skolko blokov>
 
---------
+--------------
 
 gpg:
-
-
-md5sum-
-
-printf "string" | md5sum
 
 
 зашифровать и подписать "файл" ключём-
