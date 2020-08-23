@@ -1,4 +1,4 @@
-version:1.2.1.5.8.3 : 22.08.2020
+version:1.2.1.5.8.3.1 : 22.08.2020
 _________________________________
 
 
@@ -13,7 +13,7 @@ cd files
 
 ssh xxx@0.tcp.ngrok.io -p999999
 
---------------------
+----------------------
 
 скорость соединения:
 
@@ -106,7 +106,7 @@ sudo pacman -S ntfs-3g
 
 ntfsfix /dev/sda1
 
----------------
+-----------------------
 записать образ диска iso на флешку с информацией о скорости:
 
 pv image.iso > /dev/sda
@@ -123,7 +123,7 @@ pacman -S cdrkit
 mkisofs -J -o obraz.iso /home/xxx
 
 
----------------
+---------------------
 монтировать файл или iso:
 
 mount -o loop file.iso /mnt/
@@ -133,7 +133,8 @@ mount -o loop file.iso /mnt/
 
 fuser -km /mnt/sda1
 
----------
+-------------
+
 Проверка хостов в локальной сети:
 
 arp -en
@@ -158,6 +159,7 @@ dd if=/dev/sdc bs=4096 | pv -s 2G | sudo dd bs=4096 of=~/USB_BLACK_BACKUP.IMG
 dd if=/dev/zero | pv | of=/path/to/your/file bs=<razmer bloka> count=<skolko blokov>
 
 --------
+
 gpg:
 
 
@@ -246,6 +248,7 @@ arch-chroot /*
 
 
 ----------------
+
 создать список установленных пакетов:
 
 sudo pacman -Qq > packages
@@ -278,6 +281,7 @@ sudo pacman -S progress
 progress -M 
 
 ----------------
+
 qemu:
 
 sudo pacman -S qemu edk2-ovmf
@@ -289,6 +293,7 @@ run_archiso -i /path/to/archlinux-yyyy.mm.dd-x86_64.iso
 запуск образа диска в qemu в режиме efi:
 
 run_archiso -u -i /path/to/archlinux-yyyy.mm.dd-x86_64.iso
+
 
 ___________________________________________________________________________________________________________________________________________________________________________________________________________________
 
