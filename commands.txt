@@ -1,4 +1,4 @@
-version:1.2.1.6.1 : 27.08.2020
+version:1.2.1.6.2 : 30.08.2020
 _________________________________
 
 
@@ -154,15 +154,14 @@ mount -o loop file.iso /mnt/
 
 fuser -km /mnt/sda1
 
--------------
+----------
 › Проверка хостов в локальной сети:
 
 arp -en
 
 nmap -sn 192.168.1.0/24
 
--------------
-
+----------
 › Создать пустой файл:
 
 dd if=/dev/zero of=/path/to/your/file bs=<razmer bloka> count=<skolko blokov>
@@ -178,7 +177,38 @@ dd if=/dev/sdc bs=4096 | pv -s 2G | sudo dd bs=4096 of=~/USB_BLACK_BACKUP.IMG
 
 dd if=/dev/zero | pv | of=/path/to/your/file bs=<razmer bloka> count=<skolko blokov>
 
---------------
+----------
+› Создать пустой зашифрованный файл с алгоритмом blowfish:
+
+dd if=/dev/zero of=image.crypted bs=1M count=1024
+
+
+› подгрузка модулей-
+
+modprobe cryptoloop
+
+modprobe blowfish
+
+
+› ассоциация образа с блочным устройством со включенным шифрованием-
+
+losetup -e blowfish /dev/loop0 image.crypted
+
+
+› нужно ввести пароль, который и будет ключем к образу. Если ключ введен не правильно, система не смонтируется. Можно будет заново создать данные в образе, используя новый ключ, но к старым данным доступа не будет.Создаем файловую систему и монтируем-
+
+mkfs.ext2 /dev/loop0
+
+mount /dev/loop0 /mnt/image
+
+
+› образ готов к записи данных. После завершения работы с ним, нужно не забыть его отмонтировать и отключить от блочного loop устройства-
+
+umount /dev/loop0
+
+losetup -d /dev/loop0
+
+----------
 
 › gpg:
 
