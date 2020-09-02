@@ -1,4 +1,4 @@
-version:1.2.1.6.3 : 31.08.2020
+version:1.2.1.6.4 : 2.09.2020
 _________________________________
 
 
@@ -3431,7 +3431,7 @@ ________________________________________________________________________________
 
 Сгенерируем файл fstab:
 
-# genfstab -L /mnt >> /mnt/etc/fstab
+# genfstab -U /mnt >> /mnt/etc/fstab
 
 Просмотреть содержимое файла можно командой:
 
@@ -3842,7 +3842,7 @@ title   Arch Linux
 linux   /vmlinuz-linux
 initrd  /intel-ucode.img
 initrd  /initramfs-linux.img
-options root=LABEL=/dev/sda3 rw
+options root=LABEL=ROOT_FS rw
 
 Кстати этот файл в арче копируется с шаблона:
 
