@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Emacs-26.3
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;6.&nbsp;Editors
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="ed.html" title="Ed-1.15">Prev</a>
+          <p>
+            Ed-1.15
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gedit.html" title="Gedit-3.34.1">Next</a>
+          <p>
+            Gedit-3.34.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="editors.html" title=
+          "Chapter&nbsp;6.&nbsp;Editors">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="emacs" name="emacs"></a>Emacs-26.3
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Emacs
+        </h2>
+        <p>
+          The <span class="application">Emacs</span> package contains an
+          extensible, customizable, self-documenting real-time display
+          editor.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://ftp.gnu.org/gnu/emacs/emacs-26.3.tar.xz">https://ftp.gnu.org/gnu/emacs/emacs-26.3.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnu.org/gnu/emacs/emacs-26.3.tar.xz">ftp://ftp.gnu.org/gnu/emacs/emacs-26.3.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 0a2e4b965d31a7cb1930eae3b79df793
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 42 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 434 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.6 SBU (Using parallelism=4)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Emacs Dependencies
+        </h3>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/giflib.html" title=
+          "giflib-5.2.1">giflib-5.2.1</a>, <a class="xref" href="gnutls.html"
+          title="GnuTLS-3.6.12">GnuTLS-3.6.12</a>, and <a class="xref" href=
+          "../general/libtiff.html" title="LibTIFF-4.1.0">LibTIFF-4.1.0</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../x/installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">X Window
+          System</a>, <a class="xref" href="../multimedia/alsa-lib.html"
+          title="alsa-lib-1.2.1.2">alsa-lib-1.2.1.2</a>, <a class="xref"
+          href="../general/dbus.html" title="dbus-1.12.16">dbus-1.12.16</a>,
+          <a class="xref" href="../gnome/GConf.html" title=
+          "GConf-3.2.6">GConf-3.2.6</a>, <a class="xref" href=
+          "../general/gobject-introspection.html" title=
+          "gobject-introspection-1.62.0">gobject-introspection-1.62.0</a>,
+          <a class="xref" href="../gnome/gsettings-desktop-schemas.html"
+          title=
+          "gsettings-desktop-schemas-3.34.0">gsettings-desktop-schemas-3.34.0</a>,
+          <a class="xref" href="../general/gpm.html" title=
+          "GPM-1.20.7">GPM-1.20.7</a>, <a class="xref" href="../x/gtk2.html"
+          title="GTK+-2.24.32">GTK+-2.24.32</a> or <a class="xref" href=
+          "../x/gtk3.html" title="GTK+-3.24.13">GTK+-3.24.13</a>, <a class=
+          "xref" href="../general/imagemagick6.html" title=
+          "ImageMagick-6.9.10-93">ImageMagick-6.9.10-93 libraries</a> (see
+          command explanations), <a class="xref" href=
+          "../general/libjpeg.html" title=
+          "libjpeg-turbo-2.0.4">libjpeg-turbo-2.0.4</a>, <a class="xref"
+          href="../general/libpng.html" title=
+          "libpng-1.6.37">libpng-1.6.37</a>, <a class="xref" href=
+          "../general/librsvg.html" title=
+          "librsvg-2.46.4">librsvg-2.46.4</a>, <a class="xref" href=
+          "../general/libxml2.html" title=
+          "libxml2-2.9.10">libxml2-2.9.10</a>, <a class="xref" href=
+          "mitkrb.html" title="MIT Kerberos V5-1.18">MIT Kerberos
+          V5-1.18</a>, <a class="xref" href="../general/valgrind.html" title=
+          "Valgrind-3.15.0">Valgrind-3.15.0</a>, <a class="ulink" href=
+          "https://ftp.gnu.org/gnu/intlfonts/">intlfonts</a>, <a class=
+          "ulink" href="http://directory.fsf.org/wiki/Libungif">libungif</a>,
+          <a class="ulink" href="http://www.nongnu.org/m17n/">libotf</a> and
+          <a class="ulink" href="http://www.nongnu.org/m17n/">m17n-lib</a> -
+          to correctly display such complex scripts as Indic and Khmer, and
+          also for scripts that require Arabic shaping support (Arabic and
+          Farsi), and <a class="ulink" href=
+          "https://www.x.org/pub/individual/lib/">libXaw3d</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/emacs">http://wiki.linuxfromscratch.org/blfs/wiki/emacs</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Emacs
+        </h2>
+        <p>
+          Install <span class="application">Emacs</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">./configure --prefix=/usr --localstatedir=/var &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite. If make succeeds, you
+          can test the result by running <span class=
+          "command"><strong>src/emacs -Q</strong></span>, which is the
+          program that will be installed, with its auxiliary files. This
+          should start and display the application opening screen.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install &amp;&amp;
+chown -v -R root:root /usr/share/emacs/26.3 &amp;&amp;
+rm -vf /usr/lib/systemd/user/emacs.service</kbd>
+</pre>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            This package installs icon files into the <code class=
+            "filename">/usr/share/icons/hicolor</code> hierarchy and you can
+            improve system performance and memory usage by updating
+            <code class=
+            "filename">/usr/share/icons/hicolor/index.theme</code>. To
+            perform the update you must have <a class="xref" href=
+            "../x/gtk2.html" title="GTK+-2.24.32">GTK+-2.24.32</a> or
+            <a class="xref" href="../x/gtk3.html" title=
+            "GTK+-3.24.13">GTK+-3.24.13</a> installed and issue the following
+            command as the <code class="systemitem">root</code> user:
+          </p>
+          <pre class="userinput">
+<kbd class=
+"command">gtk-update-icon-cache -qtf /usr/share/icons/hicolor</kbd>
+</pre>
+        </div>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--localstatedir=/var</code></em>:
+          Create game score files in <code class=
+          "filename">/var/games/emacs</code> instead of <code class=
+          "filename">/usr/var/games/emacs</code>.
+        </p>
+        <p>
+          <code class=
+          "option">IMAGEMAGICK_CFLAGS=-I/usr/include/ImageMagick-6
+          IMAGEMAGICK_LIBS="-lMagickCore-6.Q16HDRI -lMagick++-6.Q16HDRI
+          -lMagickWand-6.Q16HDRI"</code> : use these when you invoke
+          configure if you have installed <a class="xref" href=
+          "../general/imagemagick6.html" title=
+          "ImageMagick-6.9.10-93">ImageMagick-6.9.10-93 libraries</a> and
+          wish to link to them (the normal unversioned pkgconfig files
+          collide with <a class="xref" href="../general/imagemagick.html"
+          title="ImageMagick-7.0.9-23">ImageMagick-7.0.9-23</a> which this
+          package cannot use).
+        </p>
+        <p>
+          <code class="option">--with-gif=no</code>: Use this if you have not
+          installed <a class="xref" href="../general/giflib.html" title=
+          "giflib-5.2.1">giflib-5.2.1</a> or <a class="ulink" href=
+          "http://directory.fsf.org/wiki/Libungif">libungif</a>.
+        </p>
+        <p>
+          <code class="option">--with-tiff=no</code>: Use this if you have
+          not installed <a class="xref" href="../general/libtiff.html" title=
+          "LibTIFF-4.1.0">LibTIFF-4.1.0</a>.
+        </p>
+        <p>
+          <code class="option">--with-gnutls=no</code>: Use this if you have
+          not installed <a class="xref" href="gnutls.html" title=
+          "GnuTLS-3.6.12">GnuTLS-3.6.12</a>.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">ctags, ebrowse, emacs (symlink),
+              emacs-26.3, emacsclient, etags, and grep-changelog</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/libexec/emacs, /usr/share/emacs, and
+              /var/games/emacs</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ctags" name="ctags"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ctags</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    creates cross-reference tagfile database files for source
+                    code.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ebrowse" name="ebrowse"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ebrowse</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    permits browsing of C++ class hierarchies from within
+                    <span class="command"><strong>emacs</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="emacs-prog" name="emacs-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>emacs</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an editor.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="emacsclient" name="emacsclient"></a><span class=
+                    "term"><span class=
+                    "command"><strong>emacsclient</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    attaches an <span class=
+                    "command"><strong>emacs</strong></span> session to an
+                    already running <span class=
+                    "command"><strong>emacsserver</strong></span> instance.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="etags" name="etags"></a><span class=
+                    "term"><span class=
+                    "command"><strong>etags</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is another program to generate source code
+                    cross-reference tagfiles.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="grep-changelog" name=
+                    "grep-changelog"></a><span class="term"><span class=
+                    "command"><strong>grep-changelog</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    prints entries in Change Logs matching various criteria.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-17 12:12:55 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="ed.html" title="Ed-1.15">Prev</a>
+          <p>
+            Ed-1.15
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gedit.html" title="Gedit-3.34.1">Next</a>
+          <p>
+            Gedit-3.34.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="editors.html" title=
+          "Chapter&nbsp;6.&nbsp;Editors">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

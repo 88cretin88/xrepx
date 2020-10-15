@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      WebKitGTK+-2.26.4
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;25.&nbsp;X Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="startup-notification.html" title=
+          "startup-notification-0.12">Prev</a>
+          <p>
+            startup-notification-0.12
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="dm.html" title="Display Managers">Next</a>
+          <p>
+            Display Managers
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="lib.html" title=
+          "Chapter&nbsp;25.&nbsp;X Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="webkitgtk" name="webkitgtk"></a>WebKitGTK+-2.26.4
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to WebKitGTK+
+        </h2>
+        <p>
+          The <span class="application">WebKitGTK+</span> package is a port
+          of the portable web rendering engine <span class=
+          "application">WebKit</span> to the <span class="application">GTK+
+          3</span> and <span class="application">GTK+ 2</span> platforms.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://webkitgtk.org/releases/webkitgtk-2.26.4.tar.xz">https://webkitgtk.org/releases/webkitgtk-2.26.4.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 60f881729f3b71244b7f6e58790073e0
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 18 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 725 MB (107 MB installed)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 20 SBU (using parallelism=4, 68 SBUs
+                using one core)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          WebKitGTK+ Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="cairo.html" title=
+          "Cairo-1.17.2+f93fc72c03e">Cairo-1.17.2+f93fc72c03e</a>, <a class=
+          "xref" href="../general/cmake.html" title=
+          "CMake-3.16.4">CMake-3.16.4</a>, <a class="xref" href=
+          "../multimedia/gst10-plugins-base.html" title=
+          "gst-plugins-base-1.16.2">gst-plugins-base-1.16.2</a>, <a class=
+          "xref" href="../multimedia/gst10-plugins-bad.html" title=
+          "gst-plugins-bad-1.16.2">gst-plugins-bad-1.16.2</a>, <a class=
+          "xref" href="gtk3.html" title="GTK+-3.24.13">GTK+-3.24.13</a>,
+          <a class="xref" href="../general/icu.html" title=
+          "ICU-65.1">ICU-65.1</a>, <a class="xref" href=
+          "../general/libgudev.html" title="libgudev-233">libgudev-233</a>,
+          <a class="xref" href="../gnome/libsecret.html" title=
+          "libsecret-0.20.1">libsecret-0.20.1</a>, <a class="xref" href=
+          "../basicnet/libsoup.html" title=
+          "libsoup-2.68.3">libsoup-2.68.3</a>, <a class="xref" href=
+          "../general/libwebp.html" title="libwebp-1.1.0">libwebp-1.1.0</a>,
+          <a class="xref" href="mesa.html" title=
+          "Mesa-19.3.4">Mesa-19.3.4</a>, <a class="xref" href=
+          "../general/openjpeg2.html" title=
+          "OpenJPEG-2.3.1">OpenJPEG-2.3.1</a>, <a class="xref" href=
+          "../general/ruby.html" title="Ruby-2.7.0">Ruby-2.7.0</a>, <a class=
+          "xref" href="../server/sqlite.html" title=
+          "SQLite-3.31.1">SQLite-3.31.1</a>, and <a class="xref" href=
+          "../general/which.html" title=
+          "Which-2.21 and Alternatives">Which-2.21</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/enchant.html" title=
+          "enchant-2.2.7">enchant-2.2.7</a>, <a class="xref" href=
+          "../basicnet/geoclue2.html" title=
+          "GeoClue-2.5.5">GeoClue-2.5.5</a>, <a class="xref" href=
+          "../general/gobject-introspection.html" title=
+          "gobject-introspection-1.62.0">gobject-introspection-1.62.0</a>,
+          <a class="xref" href="hicolor-icon-theme.html" title=
+          "hicolor-icon-theme-0.17">hicolor-icon-theme-0.17</a>, and
+          <a class="xref" href="libnotify.html" title=
+          "libnotify-0.7.8">libnotify-0.7.8</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/bubblewrap.html" title=
+          "Bubblewrap-0.4.0">bubblewrap-0.4.0</a>, <a class="xref" href=
+          "../general/gtk-doc.html" title="GTK-Doc-1.32">GTK-Doc-1.32</a>,
+          <a class="xref" href="../general/harfbuzz.html" title=
+          "HarfBuzz-2.6.4">HarfBuzz-2.6.4</a>, <a class="xref" href=
+          "../general/wayland.html" title=
+          "Wayland-1.18.0">Wayland-1.18.0</a>, <a class="xref" href=
+          "../general/woff2.html" title="woff2-1.0.2">WOFF2-1.0.2</a>,
+          <a class="ulink" href=
+          "http://sourceforge.net/projects/hunspell/files/Hyphen/">Hyphen</a>,
+          <a class="ulink" href="http://xsltml.sourceforge.net/">MathML</a>,
+          <a class="ulink" href=
+          "https://github.com/WebPlatformForEmbedded/libwpe">libwpe</a>,
+          <a class="ulink" href=
+          "https://github.com/Igalia/WPEBackend-fdo">WPEBackend-fdo</a>, and
+          <a class="ulink" href=
+          "https://github.com/flatpak/xdg-dbus-proxy">xdg-dbus-proxy</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/webkitgtk">http://wiki.linuxfromscratch.org/blfs/wiki/webkitgtk</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of WebKitGTK+
+        </h2>
+        <h3>
+          Installation of <span class="application">WebKitGTK+</span>
+        </h3>
+        <p>
+          Install <span class="application">WebKitGTK+</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir -vp build &amp;&amp;
+cd        build &amp;&amp;
+
+cmake -DCMAKE_BUILD_TYPE=Release  \
+      -DCMAKE_INSTALL_PREFIX=/usr \
+      -DCMAKE_SKIP_RPATH=ON       \
+      -DPORT=GTK                  \
+      -DLIB_INSTALL_DIR=/usr/lib  \
+      -DUSE_LIBHYPHEN=OFF         \
+      -DENABLE_MINIBROWSER=ON     \
+      -DUSE_WOFF2=OFF             \
+      -DUSE_WPE_RENDERER=OFF      \
+      -DENABLE_BUBBLEWRAP_SANDBOX=OFF \
+      -Wno-dev -G Ninja ..        &amp;&amp;
+ninja</kbd>
+</pre>
+        <p>
+          This package does not have a working testsuite. However, there is a
+          usable basic graphical web browser in the build directory,
+          <span class="application">build/bin/MiniBrowser</span>. If
+          launching it fails, there is a problem with the build.
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            When installing, the Makefile does some additional compiling and
+            linking. If you do not have Xorg in /usr, the LIBRARY_PATH and
+            PKG_CONFIG_PATH variables need to be defined for the root user.
+            If using sudo to assume root, use the -E option to pass your
+            current environment variables for the install process.
+          </p>
+        </div>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">ninja install &amp;&amp;
+
+install -vdm755 /usr/share/gtk-doc/html/webkit{2,dom}gtk-4.0 &amp;&amp;
+install -vm644  ../Documentation/webkit2gtk-4.0/html/*   \
+                /usr/share/gtk-doc/html/webkit2gtk-4.0       &amp;&amp;
+install -vm644  ../Documentation/webkitdomgtk-4.0/html/* \
+                /usr/share/gtk-doc/html/webkitdomgtk-4.0</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>-DUSE_LIBHYPHEN=OFF</code></em>: This
+          switch disables default automatic hyphenation implementation. You
+          need to install <a class="ulink" href=
+          "http://sourceforge.net/projects/hunspell/files/Hyphen/">Hyphen</a>,
+          if you wish to enable it (replacing OFF with ON or just removing
+          the switch).
+        </p>
+        <p>
+          <em class="parameter"><code>-DENABLE_MINIBROWSER=ON</code></em>:
+          This switch enables the <span class="application">Mini
+          Browser</span> compilation and install.
+        </p>
+        <p>
+          <em class="parameter"><code>-DUSE_WPE_RENDERER=OFF</code></em>:
+          Remove this switch if the optional packages <a class="ulink" href=
+          "https://github.com/WebPlatformForEmbedded/libwpe">libwpe</a> and
+          <a class="ulink" href=
+          "https://github.com/Igalia/WPEBackend-fdo">WPEBackend-fdo</a> are
+          installed.
+        </p>
+        <p>
+          <em class=
+          "parameter"><code>-DENABLE_BUBBLEWRAP_SANDBOX=OFF</code></em>:
+          Remove this switch if the optional packages <a class="xref" href=
+          "../general/bubblewrap.html" title=
+          "Bubblewrap-0.4.0">bubblewrap-0.4.0</a> and <a class="ulink" href=
+          "https://github.com/flatpak/xdg-dbus-proxy">xdg-dbus-proxy</a> are
+          installed.
+        </p>
+        <p>
+          <code class="option">-DUSE_LIBNOTIFY=OFF</code>: Use this switch if
+          you do not have <span class="application">libnotify</span>
+          installed.
+        </p>
+        <p>
+          <code class="option">-DUSE_SYSTEM_MALLOC=ON</code>: This switch
+          enables building against the system installed <span class=
+          "application">malloc</span>.
+        </p>
+        <p>
+          <code class="option">-DENABLE_GEOLOCATION=OFF</code>: Use this
+          switch if you don't want to install <a class="xref" href=
+          "../basicnet/geoclue2.html" title=
+          "GeoClue-2.5.5">GeoClue-2.5.5</a>.
+        </p>
+        <p>
+          <code class="option">-DENABLE_GTKDOC=ON</code>: Use this switch if
+          <a class="xref" href="../general/gtk-doc.html" title=
+          "GTK-Doc-1.32">GTK-Doc-1.32</a> is installed and you wish to
+          rebuild and install the API documentation.
+        </p>
+        <p>
+          <code class="option">-DUSE_WOFF2=ON</code>: Use this switch if the
+          optional package <a class="xref" href="../general/woff2.html"
+          title="woff2-1.0.2">WOFF2-1.0.2</a> is installed. This adds
+          additional support for fonts.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">jsc, MiniBrowser, and
+              WebKitWebDriver</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libjavascriptcoregtk-4.0.so and
+              libwebkit2gtk-4.0.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/webkitgtk-4.0,
+              /usr/lib{,exec}/webkit2gtk-4.0, and
+              /usr/share/gtk-doc/html/webkit{2,dom}gtk-4.0</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="jsc" name="jsc"></a><span class=
+                    "term"><span class="command"><strong>jsc</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a command-line utility that allows you to run
+                    JavaScript programs outside of the context of a web
+                    browser.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="MiniBrowser" name="MiniBrowser"></a><span class=
+                    "term"><span class=
+                    "command"><strong>MiniBrowser</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a very simple graphical browser.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="WebKitWebDriver" name=
+                    "WebKitWebDriver"></a><span class="term"><span class=
+                    "command"><strong>WebKitWebDriver</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    allows debugging and automation of web pages and
+                    browsers.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libjavascriptcoregtk-4.0" name=
+                    "libjavascriptcoregtk-4.0"></a><span class=
+                    "term"><code class=
+                    "filename">libjavascriptcoregtk-4.0.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains core JavaScript API functions used by
+                    <span class="command"><strong>jsc</strong></span> and
+                    <code class="filename">libwebkit2gtk-4.0</code>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libwebkit2gtk-4" name=
+                    "libwebkit2gtk-4"></a><span class="term"><code class=
+                    "filename">libwebkit2gtk-4.0.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains the <span class="application">WebKit2</span> API
+                    functions.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-25 11:39:19 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="startup-notification.html" title=
+          "startup-notification-0.12">Prev</a>
+          <p>
+            startup-notification-0.12
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="dm.html" title="Display Managers">Next</a>
+          <p>
+            Display Managers
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="lib.html" title=
+          "Chapter&nbsp;25.&nbsp;X Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

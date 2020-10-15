@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      ePDFView-0.1.8
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;50.&nbsp;PostScript
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="psutils.html" title="PSUtils-p17">Prev</a>
+          <p>
+            PSUtils-p17
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="fop.html" title="fop-2.4">Next</a>
+          <p>
+            fop-2.4
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="ps.html" title=
+          "Chapter&nbsp;50.&nbsp;PostScript">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="epdfview" name="epdfview"></a>ePDFView-0.1.8
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to ePDFView
+        </h2>
+        <p>
+          <span class="application">ePDFView</span> is a free standalone
+          lightweight PDF document viewer using <span class=
+          "application">Poppler</span> and <span class=
+          "application">GTK+</span> libraries. It is a good replacement for
+          <span class="application">Evince</span> as it does not rely upon
+          <span class="application">GNOME</span> libraries.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://anduin.linuxfromscratch.org/BLFS/epdfview/epdfview-0.1.8.tar.bz2">
+                http://anduin.linuxfromscratch.org/BLFS/epdfview/epdfview-0.1.8.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: e50285b01612169b2594fea375f53ae4
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 456 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 6 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Additional Downloads
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Required patch: <a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/blfs/9.1/epdfview-0.1.8-fixes-2.patch">
+                http://www.linuxfromscratch.org/patches/blfs/9.1/epdfview-0.1.8-fixes-2.patch</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          ePDFView Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../x/gtk2.html" title=
+          "GTK+-2.24.32">GTK+-2.24.32</a> and <a class="xref" href=
+          "../general/poppler.html" title="Poppler-0.85.0">Poppler-0.85.0</a>
+        </p>
+        <h4>
+          Recommended (mainly for Desktop Environments)
+        </h4>
+        <p class="Recommended">
+          <a class="xref" href="../general/desktop-file-utils.html" title=
+          "desktop-file-utils-0.24">desktop-file-utils-0.24</a> and <a class=
+          "xref" href="../x/hicolor-icon-theme.html" title=
+          "hicolor-icon-theme-0.17">hicolor-icon-theme-0.17</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="cups.html" title="Cups-2.3.1">Cups-2.3.1</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/epdfview">http://wiki.linuxfromscratch.org/blfs/wiki/epdfview</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of ePDFView
+        </h2>
+        <p>
+          Install <span class="application">ePDFView</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">patch -Np1 -i ../epdfview-0.1.8-fixes-2.patch &amp;&amp;
+./configure --prefix=/usr &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+        <p>
+          For Desktop Environment users, further (optional) instructions are
+          necessary for properly displaying <code class=
+          "filename">epdfview.desktop</code> in the menu. As <code class=
+          "systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">for size in 24 32 48; do
+  ln -svf ../../../../epdfview/pixmaps/icon_epdfview-$size.png \
+          /usr/share/icons/hicolor/${size}x${size}/apps
+done &amp;&amp;
+unset size &amp;&amp;
+
+update-desktop-database &amp;&amp;
+gtk-update-icon-cache -t -f --include-image-data /usr/share/icons/hicolor</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>patch -Np1 -i
+          ../epdfview-0.1.8-fixes-2.patch</strong></span> The patch does four
+          things: fixes compiling with <span class=
+          "application">glib-2.32</span> or greater, corrects red appearing
+          as blue with recent versions of <span class=
+          "application">poppler</span>, allows the application to compile
+          when <a class="xref" href="cups.html" title=
+          "Cups-2.3.1">Cups-2.3.1</a> has been installed, and fixes the
+          display of embedded png images.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">epdfview</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/share/epdfview</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="epdfview-prog" name=
+                    "epdfview-prog"></a><span class="term"><span class=
+                    "command"><strong>epdfview</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a <span class="application">Gtk+-2</span> program for
+                    viewing PDF documents.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-19 16:31:22 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="psutils.html" title="PSUtils-p17">Prev</a>
+          <p>
+            PSUtils-p17
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="fop.html" title="fop-2.4">Next</a>
+          <p>
+            fop-2.4
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="ps.html" title=
+          "Chapter&nbsp;50.&nbsp;PostScript">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

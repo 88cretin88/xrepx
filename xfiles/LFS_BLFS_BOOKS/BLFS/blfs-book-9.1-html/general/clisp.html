@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Clisp-2.49
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;13.&nbsp;Programming
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="cbindgen.html" title=
+          "Cbindgen-0.13.1">Prev</a>
+          <p>
+            Cbindgen-0.13.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="cmake.html" title="CMake-3.16.4">Next</a>
+          <p>
+            CMake-3.16.4
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="clisp" name="clisp"></a>Clisp-2.49
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Clisp
+        </h2>
+        <p>
+          <span class="application">GNU Clisp</span> is a Common Lisp
+          implementation which includes an interpreter, compiler, debugger,
+          and many extensions.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://ftp.gnu.org/gnu/clisp/latest/clisp-2.49.tar.bz2">https://ftp.gnu.org/gnu/clisp/latest/clisp-2.49.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnu.org/gnu/clisp/latest/clisp-2.49.tar.bz2">ftp://ftp.gnu.org/gnu/clisp/latest/clisp-2.49.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 1962b99d5e530390ec3829236d168649
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 7.8 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 163 MB (add 8 MB for tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.9 SBU (1.2 SBU with tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Additional Downloads
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Optional patch: <a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/blfs/9.1/clisp-2.49-readline7_fixes-1.patch">
+                http://www.linuxfromscratch.org/patches/blfs/9.1/clisp-2.49-readline7_fixes-1.patch</a>
+                (required if building against libffcall)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Clisp Dependencies
+        </h3>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="libsigsegv.html" title=
+          "libsigsegv-2.12">libsigsegv-2.12</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="ulink" href=
+          "http://www.gnu.org/software/libffcall/">libffcall</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/clisp">http://wiki.linuxfromscratch.org/blfs/wiki/clisp</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Clisp
+        </h2>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            This package does not support parallel build.
+          </p>
+        </div>
+        <p>
+          If you are building on a 32-bit system, work around a bug in GCC
+          caused by the latest version of binutils:
+        </p>
+        <pre class="userinput">
+<kbd class="command">case $(uname -m) in
+    i?86) export CFLAGS+=-falign-functions=4 ;;
+esac</kbd>
+</pre>
+        <p>
+          Remove two tests, which fail for unknown reasons:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i -e '/socket/d' -e '/"streams"/d' tests/tests.lisp</kbd>
+</pre>
+        <p>
+          Install <span class="application">Clisp</span> by running the
+          following commands:
+        </p>
+        <p>
+          If you are building <span class="application">clisp</span> against
+          <span class="application">libffcall</span>, apply the patch to fix
+          a build failure with current <span class=
+          "application">readline</span>:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">patch -Np1 -i ../clisp-2.49-readline7_fixes-1.patch</kbd>
+</pre>
+        <p>
+          Install <span class="application">Clisp</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+../configure --srcdir=../                       \
+             --prefix=/usr                      \
+             --docdir=/usr/share/doc/clisp-2.49 \
+             --with-libsigsegv-prefix=/usr &amp;&amp;
+
+ulimit -s 16384 &amp;&amp;
+make -j1</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>ulimit -s 16384</strong></span>: this
+          increases the maximum stack size, as recommended by the
+          <span class="command"><strong>configure</strong></span>.
+        </p>
+        <p>
+          <span class=
+          "command"><strong>--docdir=/usr/share/doc/clisp-2.49</strong></span>:
+          this ensures the html documentation will go into a versioned
+          directory instead of straight into <code class=
+          "filename">/usr/share/html/</code>.
+        </p>
+        <p>
+          <span class=
+          "command"><strong>--with-libsigsegv-prefix=/usr</strong></span>:
+          use this to tell <span class=
+          "command"><strong>configure</strong></span> that you have installed
+          <span class="package">libsigsegv</span> in /usr, otherwise it will
+          not be found.
+        </p>
+        <p>
+          <code class="option">--with-libffcall-prefix=/usr</code>: use this
+          to tell <span class="command"><strong>configure</strong></span>
+          that you have installed the optional <span class=
+          "package">libffcall</span> in /usr, otherwise like <span class=
+          "package">libsigsegv</span> it will not be found.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">clisp, clisp-link</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">various static libraries in <code class=
+              "filename">/usr/lib/clisp-2.49/base/</code></span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/lib/clisp-2.49
+              /usr/share/doc/clisp-2.49 /usr/share/emacs/site-lisp;</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="clisp-prog" name="clisp-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>clisp</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an ANSI Common Lisp compiler, interpreter, and
+                    debugger
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="clisp-link" name="clisp-link"></a><span class=
+                    "term"><span class=
+                    "command"><strong>clisp-link</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to link an external module to clisp
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-19 08:47:37 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="cbindgen.html" title=
+          "Cbindgen-0.13.1">Prev</a>
+          <p>
+            Cbindgen-0.13.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="cmake.html" title="CMake-3.16.4">Next</a>
+          <p>
+            CMake-3.16.4
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

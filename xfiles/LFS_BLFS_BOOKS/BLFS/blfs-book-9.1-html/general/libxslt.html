@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      libxslt-1.1.34
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;9.&nbsp;General Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libxml2.html" title=
+          "libxml2-2.9.10">Prev</a>
+          <p>
+            libxml2-2.9.10
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libwacom.html" title=
+          "libwacom-0.29">Next</a>
+          <p>
+            libwacom-0.29
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="libxslt" name="libxslt"></a>libxslt-1.1.34
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to libxslt
+        </h2>
+        <p>
+          The <span class="application">libxslt</span> package contains XSLT
+          libraries used for extending <code class="filename">libxml2</code>
+          libraries to support XSLT files.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://xmlsoft.org/sources/libxslt-1.1.34.tar.gz">http://xmlsoft.org/sources/libxslt-1.1.34.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://xmlsoft.org/libxslt/libxslt-1.1.34.tar.gz">ftp://xmlsoft.org/libxslt/libxslt-1.1.34.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: db8765c8d076f1b6caafd9f2542a304a
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 3.4 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 36 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.3 SBU (with tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          libxslt Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="libxml2.html" title=
+          "libxml2-2.9.10">libxml2-2.9.10</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../pst/docbook.html" title=
+          "docbook-xml-4.5">docbook-xml-4.5</a> and <a class="xref" href=
+          "../pst/docbook-xsl.html" title=
+          "docbook-xsl-nons-1.79.2">docbook-xsl-1.79.2</a>
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            Although it is not a direct dependency, many applications using
+            <span class="application">libxslt</span> will expect <a class=
+            "xref" href="../pst/docbook.html" title=
+            "docbook-xml-4.5">docbook-xml-4.5</a> and <a class="xref" href=
+            "../pst/docbook-xsl.html" title=
+            "docbook-xsl-nons-1.79.2">docbook-xsl-1.79.2</a> to be present.
+          </p>
+        </div>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="libgcrypt.html" title=
+          "libgcrypt-1.8.5">libgcrypt-1.8.5</a>, <a class="xref" href=
+          "python-modules.html#libxml2py2" title=
+          "libxml2-2.9.10 (for its Python2 module)">libxml2-2.9.10 (for
+          Python2)</a>
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            The <a class="xref" href="python-modules.html#libxml2py2" title=
+            "libxml2-2.9.10 (for its Python2 module)">libxml2-2.9.10 (for
+            Python2)</a> dependency is only appropriate if the <span class=
+            "application">Python2</span> module for this package is needed.
+            The libxslt <span class="application">Python2</span> module is
+            not needed for any package in BLFS but various packages may
+            install <span class="application">Python2</span> modules which
+            reference it.
+          </p>
+        </div>
+        <p class="optional"></p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/libxslt">http://wiki.linuxfromscratch.org/blfs/wiki/libxslt</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of libxslt
+        </h2>
+        <p>
+          Install <span class="application">libxslt</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i s/3000/5000/ libxslt/transform.c doc/xsltproc.{1,xml} &amp;&amp;
+./configure --prefix=/usr --disable-static                   &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>sed -i s/3000/5000/
+          ...</strong></span>: this increases the recursion limit in libxslt.
+          This is needed by some packages for their documentation.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-static</code></em>: This
+          switch prevents installation of static versions of the libraries.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">xslt-config and xsltproc</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libexslt.so, libxslt.so and optionally,
+              libxsltmod.so <span class="application">Python</span>
+              module</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/libexslt,
+              /usr/include/libxslt, /usr/lib/libxslt-plugins,
+              /usr/share/doc/libxslt-1.1.34, and
+              /usr/share/doc/libxslt-python-1.1.34</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="xslt-config" name="xslt-config"></a><span class=
+                    "term"><span class=
+                    "command"><strong>xslt-config</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to find out the pre-processor, linking and
+                    compiling flags necessary to use the <span class=
+                    "application">libxslt</span> libraries in 3rd-party
+                    programs.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="xsltproc" name="xsltproc"></a><span class=
+                    "term"><span class=
+                    "command"><strong>xsltproc</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to apply XSLT stylesheets to XML documents.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libexslt" name="libexslt"></a><span class=
+                    "term"><code class="filename">libexslt.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to provide extensions to XSLT functions.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libxslt-lib" name="libxslt-lib"></a><span class=
+                    "term"><code class="filename">libxslt.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides extensions to the <code class=
+                    "filename">libxml2</code> libraries to parse files that
+                    use the XSLT format.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 08:54:30 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libxml2.html" title=
+          "libxml2-2.9.10">Prev</a>
+          <p>
+            libxml2-2.9.10
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libwacom.html" title=
+          "libwacom-0.29">Next</a>
+          <p>
+            libwacom-0.29
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      lxdm-0.5.3
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;26.&nbsp;Display Managers
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="lightdm.html" title=
+          "lightdm-1.30.0">Prev</a>
+          <p>
+            lightdm-1.30.0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="wm.html" title="Window Managers">Next</a>
+          <p>
+            Window Managers
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="dm.html" title=
+          "Chapter&nbsp;26.&nbsp;Display Managers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="lxdm" name="lxdm"></a>lxdm-0.5.3
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to LXDM
+        </h2>
+        <p>
+          The <span class="application">LXDM</span> is a lightweight Display
+          Manager for the <span class="application">LXDE</span> desktop. It
+          can also be used as an alternative to other Display Managers such
+          as <span class="application">GNOME's</span> <span class=
+          "application">GDM</span> or <span class=
+          "application">LightDM</span>.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://downloads.sourceforge.net/lxdm/lxdm-0.5.3.tar.xz">https://downloads.sourceforge.net/lxdm/lxdm-0.5.3.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 061caae432634e6db38bbdc84bc6ffa0
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 236 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 5.6 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          LXDM Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="gtk2.html" title=
+          "GTK+-2.24.32">GTK+-2.24.32</a>, <a class="xref" href=
+          "../general/iso-codes.html" title="ISO Codes-4.4">ISO
+          Codes-4.4</a>, and <a class="xref" href="../general/librsvg.html"
+          title="librsvg-2.46.4">librsvg-2.46.4</a> (runtime, for default
+          theme background)
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../lxde/lxsession.html" title=
+          "LXSession-0.5.4">LXSession-0.5.4</a> (for <span class=
+          "application">lxpolkit</span>) or <a class="xref" href=
+          "../gnome/polkit-gnome.html" title=
+          "polkit-gnome-0.105">polkit-gnome-0.105</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="gtk3.html" title=
+          "GTK+-3.24.13">GTK+-3.24.13</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/lxdm">http://wiki.linuxfromscratch.org/blfs/wiki/lxdm</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of LXDM
+        </h2>
+        <p>
+          First, some fixes.
+        </p>
+        <pre class="userinput">
+<kbd class="command">cat &gt; pam/lxdm &lt;&lt; "EOF"
+<code class="literal"># Begin /etc/pam.d/lxdm
+
+auth     requisite      pam_nologin.so
+auth     required       pam_env.so
+auth     required       pam_succeed_if.so uid &gt;= 1000 quiet
+auth     include        system-auth
+
+account  include        system-account
+
+password include        system-password
+
+session  required       pam_limits.so
+session  include        system-session
+
+# End /etc/pam.d/lxdm</code>
+EOF
+
+sed -i 's:sysconfig/i18n:profile.d/i18n.sh:g' data/lxdm.in &amp;&amp;
+sed -i 's:/etc/xprofile:/etc/profile:g' data/Xsession &amp;&amp;
+sed -e 's/^bg/#&amp;/'        \
+    -e '/reset=1/ s/# //' \
+    -e 's/logou$/logout/' \
+    -e "/arg=/a arg=$XORG_PREFIX/bin/X" \
+    -i data/lxdm.conf.in</kbd>
+</pre>
+        <p>
+          Install <span class="application">LXDM</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr     \
+            --sysconfdir=/etc \
+            --with-pam        \
+            --with-systemdsystemunitdir=no &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>cat &gt; pam/lxdm &lt;&lt; "EOF"
+          ...</strong></span>: Replace default <code class=
+          "filename">/etc/pam.d/lxdm</code> by another one appropriate for
+          BLFS.
+        </p>
+        <p>
+          <span class="command"><strong>sed -i ...
+          data/lxdm.conf.in</strong></span>: Modifications in the default
+          configuration: (1) fix the background to the default one; (2)
+          restart X when session is close; (3) typo; and (4) include
+          <code class="envar">XORG_PREFIX</code>, which may be different from
+          <code class="filename">/usr</code>.
+        </p>
+        <p>
+          <span class="command"><strong>sed -i ...
+          data/Xsession</strong></span>: Source <code class=
+          "filename">/etc/profile</code>, instead of other file, according to
+          BLFS standard.
+        </p>
+        <p>
+          <span class="command"><strong>sed -i ...
+          data/lxdm.in</strong></span>: Fix greeter's locale for BLFS
+          specification.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-pam</code></em>: This parameter
+          enables use of pam authentication.
+        </p>
+        <p>
+          <em class=
+          "parameter"><code>--with-systemdsystemunitdir=no</code></em>: BLFS
+          does not support systemd.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring LXDM
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="lxdm-config" name="lxdm-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="lxdm-config" name="lxdm-config"></a>Config Files
+          </h4>
+          <p>
+            <code class="filename">/etc/lxdm/lxdm.conf</code>
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="lxdm-init" name="lxdm-init"></a>
+          </h3>
+          <h4 class="title">
+            <a id="lxdm-init" name="lxdm-init"></a>Boot Script
+          </h4>
+          <p>
+            Install the <code class="filename">/etc/rc.d/init.d/lxdm</code>
+            init script from the <a class="xref" href=
+            "../introduction/bootscripts.html" title=
+            "BLFS Boot Scripts">blfs-bootscripts-20191204</a> package.
+          </p>
+          <pre class="root">
+<kbd class="command">make install-lxdm</kbd>
+</pre>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779248071120" name=
+            "idm45779248071120"></a>Configuration Information
+          </h4>
+          <p>
+            The LXDM daemon configuration file (<code class=
+            "filename">/etc/lxdm/lxdm.conf</code>) specifies options that
+            include numlock on/off, background image (bg), session, etc. You
+            can set a default session by uncommenting the line:
+            session=/usr/bin/startlxde and replacing <span class=
+            "command"><strong>startlxde</strong></span> with your session of
+            choice. For <span class="application">GNOME</span>
+            session=/usr/bin/gnome-session. For <span class=
+            "application">OPENBOX</span> session=/usr/bin/openbox-session and
+            for <span class="application">XFCE</span>
+            session=/usr/bin/startxfce4.
+          </p>
+          <p>
+            It is also possible to set the preferred session on a per-user
+            basis by editing the ~/.dmrc file for each user and adding:
+          </p>
+          <pre class="screen">
+<code class="literal">[Desktop]
+        Session=xfce</code>
+</pre>
+          <p>
+            You can replace the default dummy face in the greeting screen by
+            another image representing your user. For that, copy or symlink
+            the desired image to your home directory with the name
+            <code class="filename">.face</code>.
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779248062960" name="idm45779248062960"></a>Starting
+            lxdm
+          </h4>
+          <p>
+            You can manually start <span class=
+            "command"><strong>lxdm</strong></span>, e.g, if the bootscript
+            has been installed, by running, as <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">/etc/rc.d/init.d/lxdm start</kbd>
+</pre>
+          <p>
+            By convention, X should be executed at runlevel 5, consequently,
+            the same is true for <span class="application">lxdm</span>.
+            However, the LFS default runlevel is 3. Changing to runlevel 5,
+            from the console (as <code class="systemitem">root</code> user)
+            starts the <span class="command"><strong>lxdm</strong></span>
+            bootscript and presents the greeter screen:
+          </p>
+          <pre class="root">
+<kbd class="command">init 5</kbd>
+</pre>
+          <p>
+            In order to permanently set the default to 5, starting the
+            <span class="command"><strong>lxdm</strong></span> greeter screen
+            automatically, you can modify <code class=
+            "filename">/etc/inittab</code>. As the <code class=
+            "systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">cp -v /etc/inittab{,-orig} &amp;&amp;
+sed -i '/initdefault/ s/3/5/' /etc/inittab</kbd>
+</pre>
+          <p>
+            You should also disable default elogind power management:
+          </p>
+          <pre class="root">
+<kbd class="command">cat &gt;&gt; /etc/elogind/logind.conf &lt;&lt; "EOF"
+<code class="literal">AllowSuspend=no
+AllowHibernation=no</code>
+EOF</kbd>
+</pre>
+          <div class="admon note">
+            <img alt="[Note]" src="../images/note.png" />
+            <h3>
+              Note
+            </h3>
+            <p>
+              One important script, executed after login is <code class=
+              "filename">/etc/lxdm/Xsession</code> which we have fixed to fit
+              BLFS specifications.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">lxdm, lxdm-binary and lxdm-config</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/etc/lxdm and /usr/share/lxdm</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="lxdm-prog" name="lxdm-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>lxdm</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a script to execute <span class=
+                    "command"><strong>lxdm-binary</strong></span>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="lxdm-binary" name="lxdm-binary"></a><span class=
+                    "term"><span class=
+                    "command"><strong>lxdm-binary</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the actual Display Manager; needs to be executed with
+                    option <code class="option">-d</code> to daemonize
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="lxdm-config-prog" name=
+                    "lxdm-config-prog"></a><span class="term"><span class=
+                    "command"><strong>lxdm-config</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a graphical customizing program
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-21 01:01:08 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="lightdm.html" title=
+          "lightdm-1.30.0">Prev</a>
+          <p>
+            lightdm-1.30.0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="wm.html" title="Window Managers">Next</a>
+          <p>
+            Window Managers
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="dm.html" title=
+          "Chapter&nbsp;26.&nbsp;Display Managers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

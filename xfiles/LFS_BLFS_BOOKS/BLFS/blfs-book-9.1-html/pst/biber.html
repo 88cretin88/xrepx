@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      biber-2.14
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;51.&nbsp;Typesetting
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="asymptote.html" title=
+          "asymptote-2.62">Prev</a>
+          <p>
+            asymptote-2.62
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="dvisvgm.html" title="dvisvgm-2.8.2">Next</a>
+          <p>
+            dvisvgm-2.8.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="typesetting.html" title=
+          "Chapter&nbsp;51.&nbsp;Typesetting">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="biber" name="biber"></a>biber-2.14
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to biber
+        </h2>
+        <p>
+          Biber is a BibTeX replacement for users of biblatex, written in
+          <span class="application">Perl</span>, with full Unicode support.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://github.com/plk/biber/archive/v2.14/biber-2.14.tar.gz">
+                https://github.com/plk/biber/archive/v2.14/biber-2.14.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 726e7457f1b4d882e1d05fd185563cfd
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 1.6 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 16 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.6 SBU including tests
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            If you have updated to a new release of texlive-source, biber and
+            its perl dependencies are still in present in <code class=
+            "filename">/usr</code> and do not need to be rebuilt. However,
+            biblatex installs in <code class=
+            "filename">/opt/texlive/2019</code> and does need to be
+            reinstalled.
+          </p>
+          <p>
+            This version of biber requires <span class=
+            "application">perl-5.30</span> or later. If you are still using
+            the 8.4 version of BLFS you may wish to build the 2.13 version:
+            see the 8.4 book noting that biblatex-3.13 has been replaced by
+            biblatex-3.13a upstream.
+          </p>
+        </div>
+        <h3>
+          Required Additional Downloads
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                The corresponding version of <span class=
+                "application">biblatex</span> is a separate project - the tds
+                tarball is pre-packaged for untarring into the <code class=
+                "filename">texmf-dist</code> directory. Download (HTTP):
+                <a class="ulink" href=
+                "http://sourceforge.net/projects/biblatex/files/biblatex-3.14/biblatex-3.14.tds.tgz">
+                http://sourceforge.net/projects/biblatex/files/biblatex-3.14/biblatex-3.14.tds.tgz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: fc3605bc86de283e6f962f20a80c5a04
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 20 MB
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Biber Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href=
+          "../general/perl-modules.html#perl-autovivification" title=
+          "autovivification-0.18">autovivification-0.18</a> <a class="xref"
+          href="../general/perl-modules.html#perl-business-isbn" title=
+          "Business::ISBN-3.005">Business-ISBN-3.005</a> <a class="xref"
+          href="../general/perl-modules.html#perl-business-ismn" title=
+          "Business::ISMN-1.201">Business-ISMN-1.201</a> <a class="xref"
+          href="../general/perl-modules.html#perl-business-issn" title=
+          "Business::ISSN-1.003">Business-ISSN-1.003</a> <a class="xref"
+          href="../general/perl-modules.html#perl-class-accessor" title=
+          "Class::Accessor-0.51">Class-Accessor-0.51</a> <a class="xref"
+          href="../general/perl-modules.html#perl-data-compare" title=
+          "Data::Compare-1.27">Data-Compare-1.27</a> <a class="xref" href=
+          "../general/perl-modules.html#perl-data-dump" title=
+          "Data::Dump-1.23">Data-Dump-1.23</a> <a class="xref" href=
+          "../general/perl-modules.html#perl-data-uniqid" title=
+          "Data::Uniqid-0.12">Data-Uniqid-0.12</a> <a class="xref" href=
+          "../general/perl-modules.html#perl-datetime-calendar-julian" title=
+          "DateTime::Calendar::Julian-0.102">DateTime-Calendar-Julian-0.102</a>
+          <a class="xref" href=
+          "../general/perl-modules.html#perl-datetime-format-builder" title=
+          "DateTime::Format::Builder-0.82">DateTime-Format-Builder-0.82</a>
+          <a class="xref" href=
+          "../general/perl-modules.html#perl-encode-eucjpascii" title=
+          "Encode::EUCJPASCII-0.03">Encode-EUCJPASCII-0.03</a> <a class=
+          "xref" href="../general/perl-modules.html#perl-encode-hanextra"
+          title="Encode::HanExtra-0.23">Encode-HanExtra-0.23</a> <a class=
+          "xref" href="../general/perl-modules.html#perl-encode-jis2k" title=
+          "Encode::JIS2K-0.03">Encode-JIS2K-0.03</a> <a class="xref" href=
+          "../general/perl-modules.html#perl-file-slurper" title=
+          "File::Slurper-0.012">File-Slurper-0.012</a> <a class="xref" href=
+          "../general/perl-modules.html#perl-io-string" title=
+          "IO::String-1.08">IO-String-1.08</a> <a class="xref" href=
+          "../general/perl-modules.html#perl-ipc-run3" title=
+          "IPC::Run3-0.048">IPC-Run3-0.048</a> <a class="xref" href=
+          "../general/perl-modules.html#perl-lingua-translit" title=
+          "Lingua::Translit-0.28">Lingua-Translit-0.28</a> <a class="xref"
+          href="../general/perl-modules.html#perl-list-allutils" title=
+          "List::AllUtils-0.15">List-AllUtils-0.15</a> <a class="xref" href=
+          "../general/perl-modules.html#perl-list-moreutils" title=
+          "List::MoreUtils-0.428">List-MoreUtils-0.428</a> <a class="xref"
+          href="../general/perl-modules.html#perl-log-log4perl" title=
+          "Log::Log4perl-1.49">Log-Log4perl-1.49</a> <a class="xref" href=
+          "../general/perl-modules.html#perl-lwp-protocol-https" title=
+          "LWP::Protocol::https-6.07">LWP-Protocol-https-6.07</a> <a class=
+          "xref" href="../general/perl-modules.html#perl-module-build" title=
+          "Module::Build-0.4231">Module-Build-0.4231</a> <a class="xref"
+          href="../general/perl-modules.html#perl-parse-recdescent" title=
+          "Parse::RecDescent-1.967015">Parse-RecDescent-1.967015</a>
+          <a class="xref" href=
+          "../general/perl-modules.html#perl-perlio-utf8_strict" title=
+          "PerlIO::utf8_strict-0.007">PerlIO-utf8_strict-0.007</a> <a class=
+          "xref" href="../general/perl-modules.html#perl-regexp-common"
+          title="Regexp::Common-2017060201">Regexp-Common-2017060201</a>
+          <a class="xref" href="../general/perl-modules.html#perl-sort-key"
+          title="Sort::Key-1.33">Sort-Key-1.33</a> <a class="xref" href=
+          "../general/perl-modules.html#perl-text-bibtex" title=
+          "Text::BibTeX-0.88">Text-BibTeX-0.88</a> <a class="xref" href=
+          "../general/perl-modules.html#perl-text-csv" title=
+          "Text::CSV-2.00">Text-CSV-2.00</a> <a class="xref" href=
+          "../general/perl-modules.html#perl-text-roman" title=
+          "Text::Roman-3.5">Text-Roman-3.5</a> <a class="xref" href=
+          "../general/perl-modules.html#perl-unicode-collate" title=
+          "Unicode::Collate-1.27">Unicode-Collate-1.27</a> <a class="xref"
+          href="../general/perl-modules.html#perl-unicode-linebreak" title=
+          "Unicode::LineBreak-2019.001">Unicode-LineBreak-2019.001</a>
+          <a class="xref" href=
+          "../general/perl-modules.html#perl-xml-libxml-simple" title=
+          "XML::LibXML::Simple-1.01">XML-LibXML-Simple-1.01</a> <a class=
+          "xref" href="../general/perl-modules.html#perl-xml-libxslt" title=
+          "XML::LibXSLT-1.99">XML-LibXSLT-1.99</a> <a class="xref" href=
+          "../general/perl-modules.html#perl-xml-writer" title=
+          "XML::Writer-0.625">XML-Writer-0.625</a> and <a class="xref" href=
+          "texlive.html" title="texlive-20190410-source">texlive-20190410</a>
+          (or <a class="xref" href="tl-installer.html" title=
+          "install-tl-unx">install-tl-unx</a>, but for that you can use
+          <span class="command"><strong>tlmgr update</strong></span> )
+        </p>
+        <h4>
+          Recommended (required for the testsuite)
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/perl-modules.html#perl-file-which"
+          title="File::Which-1.23">File-Which-1.23</a> and <a class="xref"
+          href="../general/perl-modules.html#perl-test-differences" title=
+          "Test::Differences-0.67">Test-Differences-0.67</a>
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            It is possible to install all missing dependencies automatically.
+            You must first install <a class="xref" href=
+            "../general/perl-modules.html#perl-module-build" title=
+            "Module::Build-0.4231">Module-Build-0.4231</a> using <a class=
+            "xref" href="../general/perl-modules.html#perl-auto-install"
+            title="Automatic Installation of Perl Modules.">automatic
+            installation of perl modules</a>. then run <span class=
+            "command"><strong>perl ./Build.PL</strong></span> and when it
+            prompts you, become the root user and run <span class=
+            "command"><strong>./Build installdeps</strong></span>
+          </p>
+        </div>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/biber">http://wiki.linuxfromscratch.org/blfs/wiki/biber</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Biber
+        </h2>
+        <p>
+          Install <span class="application">Biber</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">perl ./Build.PL &amp;&amp;
+./Build</kbd>
+</pre>
+        <p>
+          To test the results, enter: <span class="command"><strong>./Build
+          test</strong></span>
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">tar -xf ../biblatex-3.14.tds.tgz -C /opt/texlive/2019/texmf-dist &amp;&amp;
+texhash &amp;&amp;
+./Build install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>tar -xf biblatex-3.14.tds.tar.gz -C
+          /opt/texlive/2019/texmf-dist</strong></span>: this installs the new
+          <span class="application">biblatex</span> files over those
+          installed by <span class="application">texlive</span>.
+        </p>
+        <p>
+          <span class="command"><strong>texhash</strong></span> : this
+          updates the file hash tables (otherwise known as the file name
+          database).
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">biber</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class=
+              "segbody">/usr/lib/perl5/site_perl/5.*{,/&lt;arch&gt;-linux/auto}/Biber</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="biber-prog" name="biber-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>biber</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used for producing bibliographies in LaTeX documents.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-27 17:21:14 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="asymptote.html" title=
+          "asymptote-2.62">Prev</a>
+          <p>
+            asymptote-2.62
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="dvisvgm.html" title="dvisvgm-2.8.2">Next</a>
+          <p>
+            dvisvgm-2.8.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="typesetting.html" title=
+          "Chapter&nbsp;51.&nbsp;Typesetting">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

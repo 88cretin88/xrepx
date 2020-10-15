@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Setting the PATH for TeX Live
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;51.&nbsp;Typesetting
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="typesetting.html" title=
+          "Typesetting">Prev</a>
+          <p>
+            Typesetting
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="tl-installer.html" title=
+          "install-tl-unx">Next</a>
+          <p>
+            install-tl-unx
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="typesetting.html" title=
+          "Chapter&nbsp;51.&nbsp;Typesetting">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="tex-path" name="tex-path"></a>Setting the PATH for TeX Live
+      </h1>
+      <p>
+        Before starting to build TeX Live, set up your PATH so that the
+        system can properly find the files. If you set up your login scripts
+        as recommended in <a class="xref" href="../postlfs/profile.html"
+        title="The Bash Shell Startup Files">The Bash Shell Startup
+        Files</a>, update the needed paths by appending to the <code class=
+        "filename">extrapaths.sh</code> script. The programs are always
+        installed in an &lt;ARCH&gt;-linux subdirectory and on 32-bit x86
+        this is always i386-linux. For x86_64 and i?86 we can generate this
+        as $TEXARCH:
+      </p>
+      <pre class="root">
+<kbd class=
+"command">export TEXARCH=$(uname -m | sed -e 's/i.86/i386/' -e 's/$/-linux/') &amp;&amp;
+
+cat &gt;&gt; /etc/profile.d/extrapaths.sh &lt;&lt; EOF
+<code class="literal">
+# Begin texlive addition
+
+pathappend /opt/texlive/2019/texmf-dist/doc/man  MANPATH
+pathappend /opt/texlive/2019/texmf-dist/doc/info INFOPATH
+pathappend /opt/texlive/2019/bin/$TEXARCH
+
+# End texlive addition
+</code>
+EOF
+
+unset TEXARCH</kbd>
+</pre>
+      <p>
+        The new paths can be immediately activated by running <span class=
+        "command"><strong>source /etc/profile</strong></span>.
+      </p>
+      <p>
+        You should now proceed either to <a class="xref" href=
+        "tl-installer.html" title="install-tl-unx">install-tl-unx</a> for a
+        binary installation of texlive, or to <a class="xref" href=
+        "texlive.html" title="texlive-20190410-source">texlive-20190410</a>
+        to begin installing from source.
+      </p>
+      <p class="updated">
+        Last updated on 2015-06-23 16:14:01 -0700
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="typesetting.html" title=
+          "Typesetting">Prev</a>
+          <p>
+            Typesetting
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="tl-installer.html" title=
+          "install-tl-unx">Next</a>
+          <p>
+            install-tl-unx
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="typesetting.html" title=
+          "Chapter&nbsp;51.&nbsp;Typesetting">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

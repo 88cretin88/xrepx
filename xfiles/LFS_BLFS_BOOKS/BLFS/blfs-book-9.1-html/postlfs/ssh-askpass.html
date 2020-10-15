@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      ssh-askpass-8.2p1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;4.&nbsp;Security
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="shadow.html" title="Shadow-4.8.1">Prev</a>
+          <p>
+            Shadow-4.8.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="stunnel.html" title="stunnel-5.56">Next</a>
+          <p>
+            stunnel-5.56
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="security.html" title=
+          "Chapter&nbsp;4.&nbsp;Security">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="ssh-askpass" name="ssh-askpass"></a>ssh-askpass-8.2p1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to ssh-askpass
+        </h2>
+        <p>
+          The <span class="application">ssh-askpass</span> is a generic
+          executable name for many packages, with similar names, that provide
+          a interactive X service to grab password for packages requiring
+          administrative privileges to be run. It prompts the user with a
+          window box where the necessary password can be inserted. Here, we
+          choose Damien Miller's package distributed in the <span class=
+          "application">OpenSSH</span> tarball.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-8.2p1.tar.gz">
+                http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-8.2p1.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-8.2p1.tar.gz">
+                ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-8.2p1.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 3076e6413e8dbe56d33848c1054ac091
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 1.6 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 9.0 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          ssh-askpass Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../x/gtk2.html" title=
+          "GTK+-2.24.32">GTK+-2.24.32</a>, <a class="xref" href="sudo.html"
+          title="Sudo-1.8.31">Sudo-1.8.31</a> (runtime), <a class="xref"
+          href="../x/x7lib.html" title="Xorg Libraries">Xorg Libraries</a>,
+          and <a class="xref" href="../x/installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">X Window
+          System</a> (runtime)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/ssh-askpass">http://wiki.linuxfromscratch.org/blfs/wiki/ssh-askpass</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of ssh-askpass
+        </h2>
+        <p>
+          Install <span class="application">ssh-askpass</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cd contrib &amp;&amp;
+make gnome-ssh-askpass2</kbd>
+</pre>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">install -v -d -m755 /usr/libexec/openssh/contrib  &amp;&amp;
+install -v -m755    gnome-ssh-askpass2 \
+                    /usr/libexec/openssh/contrib  &amp;&amp;
+ln -sv -f contrib/gnome-ssh-askpass2 \
+                    /usr/libexec/openssh/ssh-askpass</kbd>
+</pre>
+        <p>
+          The use of /usr/libexec/openssh/contrib and a symlink is justified
+          by the eventual necessity of a different program for that service.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring ssh-askpass
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="ssh-askpass-config" name="ssh-askpass-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="ssh-askpass-config" name=
+            "ssh-askpass-config"></a>Configuration Information
+          </h4>
+          <p>
+            As the <code class="systemitem">root</code> user, configure
+            <a class="xref" href="sudo.html" title=
+            "Sudo-1.8.31">Sudo-1.8.31</a> to use <span class=
+            "application">ssh-askpass</span>:
+          </p>
+          <pre class="root">
+<kbd class="command">cat &gt;&gt; /etc/sudo.conf &lt;&lt; "EOF" &amp;&amp;
+<code class="literal"># Path to askpass helper program
+Path askpass /usr/libexec/openssh/ssh-askpass</code>
+EOF
+chmod -v 0644 /etc/sudo.conf</kbd>
+</pre>
+          <p>
+            If a given graphical &lt;application&gt; requires administrative
+            privileges, use <span class="command"><strong>sudo -A
+            &lt;application&gt;</strong></span> from an x-terminal, from a
+            Window Manager menu and/or replace "Exec=&lt;application&gt; ..."
+            by "Exec=sudo -A &lt;application&gt; ..." in the
+            &lt;application&gt;.desktop file.
+          </p>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/libexec/openssh/contrib</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-16 18:46:23 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="shadow.html" title="Shadow-4.8.1">Prev</a>
+          <p>
+            Shadow-4.8.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="stunnel.html" title="stunnel-5.56">Next</a>
+          <p>
+            stunnel-5.56
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="security.html" title=
+          "Chapter&nbsp;4.&nbsp;Security">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

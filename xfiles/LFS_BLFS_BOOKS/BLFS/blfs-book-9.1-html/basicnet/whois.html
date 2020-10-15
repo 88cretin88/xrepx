@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Whois-5.4.3
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;16.&nbsp;Networking Utilities
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="traceroute.html" title=
+          "Traceroute-2.1.0">Prev</a>
+          <p>
+            Traceroute-2.1.0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="wireshark.html" title=
+          "Wireshark-3.2.1">Next</a>
+          <p>
+            Wireshark-3.2.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netutils.html" title=
+          "Chapter&nbsp;16.&nbsp;Networking Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="whois" name="whois"></a>Whois-5.4.3
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Whois
+        </h2>
+        <p>
+          <span class="application">Whois</span> is a client-side application
+          which queries the whois directory service for information
+          pertaining to a particular domain name. This package will install
+          two programs by default: <span class=
+          "command"><strong>whois</strong></span> and <span class=
+          "command"><strong>mkpasswd</strong></span>. The <span class=
+          "command"><strong>mkpasswd</strong></span> command is also
+          installed by the <a class="xref" href="../general/expect.html"
+          title="Expect-5.45.4">Expect-5.45.4</a> package.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://github.com/rfc1036/whois/archive/v5.4.3/whois-5.4.3.tar.gz">
+                https://github.com/rfc1036/whois/archive/v5.4.3/whois-5.4.3.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 381dce8db7c6e38ef013b5d6527f494c
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 100 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 1.2 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Whois Dependencies
+        </h3>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/libidn.html" title=
+          "libidn-1.35">libidn-1.35</a> or <a class="xref" href=
+          "../general/libidn2.html" title="libidn2-2.3.0">libidn2-2.3.0</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/whois">http://wiki.linuxfromscratch.org/blfs/wiki/whois</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Whois
+        </h2>
+        <p>
+          Build the application with:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make</kbd>
+</pre>
+        <p>
+          You can install the <span class=
+          "command"><strong>whois</strong></span> program, the <span class=
+          "command"><strong>mkpasswd</strong></span> program, and the locale
+          files independently. Control your choice of what is installed with
+          the following commands issued as the <code class=
+          "systemitem">root</code> user:
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            Installing this version of <span class=
+            "command"><strong>mkpasswd</strong></span> will overwrite the
+            same command installed by <a class="xref" href=
+            "../general/expect.html" title="Expect-5.45.4">Expect-5.45.4</a>.
+          </p>
+        </div>
+        <pre class="root">
+<kbd class="command">make prefix=/usr install-whois
+make prefix=/usr install-mkpasswd
+make prefix=/usr install-pos</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">whois and mkpasswd</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">None</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="whois-prog" name="whois-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>whois</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a client-side application which queries the whois
+                    directory service for information pertaining to a
+                    particular domain name.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="mkpasswd-whois" name=
+                    "mkpasswd-whois"></a><span class="term"><span class=
+                    "command"><strong>mkpasswd</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    generates a new password, and optionally applies it to a
+                    user.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-17 12:12:55 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="traceroute.html" title=
+          "Traceroute-2.1.0">Prev</a>
+          <p>
+            Traceroute-2.1.0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="wireshark.html" title=
+          "Wireshark-3.2.1">Next</a>
+          <p>
+            Wireshark-3.2.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netutils.html" title=
+          "Chapter&nbsp;16.&nbsp;Networking Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -26,10 +26,7 @@ issue. Очень нужным и важным является самая об�
 | Материал к переводу | Ответственный | Комментарий |
 | --- | --- | --- |
 | **[FAQ13 - Multimedia](https://www.openbsd.org/faq/faq13.html)** | Хотите перевести?| [Перевод для 6.6](https://openbsd-ru.github.io/faq/faq13.html) |
-| **[FAQ#PF_Anchors](https://www.openbsd.org/faq/pf/anchors.html)** | [khabibd](https://github.com/khabibd) | [старый перевод](https://github.com/alexander-naumov/openbsd-doc-ru/blob/master/openbsd/faq/pf/anchors.html)|
 | **[FAQ#PF_User Shell for Authenticating Gateways (authpf)](https://www.openbsd.org/faq/pf/authpf.html)** | Хотите перевести?| |
-| **[FAQ#PF_Firewall Redundancy (CARP and pfsync)](https://www.openbsd.org/faq/pf/carp.html)** | [Alexander Naumov](https://github.com/alexander-naumov) | |
-| **[FAQ#PF_Building a Router](https://www.openbsd.org/faq/pf/example1.html)** | Хотите перевести? | |
 | **[FAQ#PF_Packet Filtering](https://www.openbsd.org/faq/pf/filter.html)** | Хотите перевести? | |
 | **[FAQ#PF_Issues with FTP](https://www.openbsd.org/faq/pf/ftp.html)** | Хотите перевести? | |
 | **[FAQ#PF_Network Address Translation](https://www.openbsd.org/faq/pf/nat.html)** | [Alexander Naumov](https://github.com/alexander-naumov) | |
@@ -41,6 +38,7 @@ issue. Очень нужным и важным является самая об�
 | **[Innovations](https://www.openbsd.org/innovations.html)** |  Хотите перевести? | |
 | **[Events](https://www.openbsd.org/events.html)** | Хотите перевести? | |
 | **[amd64](https://www.openbsd.org/amd64.html)** |  Хотите перевести? | |
+| **[powerpc64](https://www.openbsd.org/powerpc64.html)** |  Хотите перевести? | |
 | **[sparc64](https://www.openbsd.org/sparc64.html)** |  Хотите перевести? | |
 | **[6.7](https://www.openbsd.org/67.html)** |  Хотите перевести? | |
 | **[Crash Reports](https://www.openbsd.org/ddb.html)** |  Хотите перевести? | |

@@ -40,18 +40,18 @@
     <!--<listitem>
       <para>Bash &bash-version;</para>
     </listitem>-->
-    <!--<listitem>
+    <listitem>
       <para>Bc &bc-version;</para>
-    </listitem>-->
+    </listitem>
     <!--<listitem>
       <para>Binutils-&binutils-version;</para>
     </listitem>-->
     <listitem>
       <para>Bison-&bison-version;</para>
     </listitem>
-    <!--<listitem>
+    <listitem>
       <para>Bzip2-&bzip2-version;</para>
-    </listitem>-->
+    </listitem>
     <!--<listitem>
       <para>Check-&check-version;</para>
     </listitem>-->
@@ -61,9 +61,9 @@
     <!--<listitem>
       <para>DejaGNU-&dejagnu-version;</para>
     </listitem>-->
-    <!--<listitem revision="systemd">
+    <listitem revision="systemd">
       <para>D-Bus-&dbus-version;</para>
-    </listitem>-->
+    </listitem>
     <!--<listitem>
       <para>Diffutils-&diffutils-version;</para>
     </listitem>-->
@@ -74,9 +74,9 @@
 	<listitem revision="sysv">
       <para>Eudev-&eudev-version;</para>
    </listitem>
-   <!--<listitem>
+   <listitem>
       <para>Expat-&expat-version;</para>
-   </listitem>-->
+   </listitem>
    <!-- <listitem>
       <para>Expect-&expect-version;</para>
    </listitem>-->
@@ -101,9 +101,9 @@
     <listitem>
       <para>Gettext-&gettext-version;</para>
     </listitem>
-    <!--<listitem>
+    <listitem>
       <para>Glibc-&glibc-version;</para>
-    </listitem>-->
+    </listitem>
     <!--<listitem>
       <para>GMP-&gmp-version;</para>
     </listitem>-->
@@ -116,9 +116,9 @@
     <!--<listitem>
       <para>Groff-&groff-version;</para>
     </listitem>-->
-    <!--<listitem>
+    <listitem>
       <para>GRUB-&grub-version;</para>
-    </listitem>-->
+    </listitem>
     <!--<listitem>
       <para>Gzip-&gzip-version;</para>
    </listitem>-->
@@ -134,24 +134,24 @@
     <listitem>
       <para>IPRoute2-&iproute2-version;</para>
    </listitem>
-    <!--<listitem>
+    <listitem>
       <para>Kbd-&kbd-version;</para>
-    </listitem>-->
+    </listitem>
     <!--<listitem>
       <para>Kmod-&kmod-version;</para>
    </listitem>-->
-   <!--<listitem>
+   <listitem>
       <para>Less-&less-version;</para>
-   </listitem>-->
+   </listitem>
     <!--<listitem>
       <para>LFS-Bootscripts-&lfs-bootscripts-version;</para>
     </listitem>-->
     <listitem>
       <para>Libcap-&libcap-version;</para>
     </listitem>
-    <!--<listitem>
+    <listitem>
       <para>Libelf-&elfutils-version; (from elfutils)</para>
-   </listitem>-->
+   </listitem>
    <!--<listitem>
       <para>Libpipeline-&libpipeline-version;</para>
    </listitem>-->
@@ -167,9 +167,9 @@
     <!--<listitem>
       <para>Make-&make-version;</para>
     </listitem>-->
-    <!--<listitem>
+    <listitem>
       <para>Man-DB-&man-db-version;</para>
-   </listitem>-->
+   </listitem>
    <!--<listitem>
       <para>Man-pages-&man-pages-version;</para>
    </listitem>-->
@@ -215,9 +215,9 @@
     <!--<listitem>
       <para>Sed-&sed-version;</para>
     </listitem>-->
-    <!--<listitem>
+    <listitem>
       <para>Shadow-&shadow-version;</para>
-    </listitem>-->
+    </listitem>
     <!--<listitem revision="sysv">
       <para>Sysklogd-&sysklogd-version;</para>
     </listitem>-->
@@ -242,9 +242,9 @@
    <listitem>
       <para>Util-Linux-&util-linux-version;</para>
    </listitem>
-    <!--<listitem>
+    <listitem>
       <para>Vim-&vim-version;</para>
-    </listitem>-->
+    </listitem>
     <!--<listitem>
       <para>XML-Parser-&xml-parser-version;</para>
     </listitem>-->

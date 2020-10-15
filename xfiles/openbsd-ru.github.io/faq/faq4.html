@@ -160,7 +160,6 @@ boot> <b>boot hd1d:/bsd.rd</b>
 </ul>
 
 <h2 id="Download">Загрузка OpenBSD из Интернет</h2>
-
 Следующие установочные образы доступны для скачивания:
 
 <ul>
@@ -548,39 +547,12 @@ $ <b>(dmesg; sysctl hw.sensors) > ~/dmesg.txt</b>
 один из четырех основных разделов MBR для загрузки OpenBSD.
 Расширенные разделы могут не работать.
 
-
-<h3>Загрузчики (Boot Loaders)</h3>
-
-На Mac должен работать без проблем
-<a href="http://www.rodsbooks.com/refind/">rEFInd</a>.
-
 <p>
-Вы можете настроить загрузку обоих систем при помощи
-<a href="https://www.gnu.org/software/grub/">GRUB 2</a>.
-Предполагая, что OpenBSD установлен в четвертом разделе MBR (раздел 3 fdisk)
-первого жесткого диска <code>hd0</code>, добавьте следующее в
-<code>/etc/grub.d/40_custom</code>.
-
-<pre class="cmdbox">
-menuentry "OpenBSD" {
-	set root=(hd0,4)
-	chainloader +1
-}
-</pre>
-
-Затем сгенерируйте (regenerate) файл конфигурации GRUB2,
-<code>/boot/grub/grub.cfg</code>. В дистрибутивах на основе Debian вы
-должны запустить <code>update-grub</code>. В противном случае, сделать
-
-<pre class="cmdbox">
-# <b>grub-mkconfig -o /boot/grub/grub.cfg</b>
-</pre>
-
-Больше информации можно найти в
-<a href="https://www.gnu.org/software/grub/manual/grub.html#Invoking-grub_002dmkconfig">
-Руководстве по GRUB 2</a> или
-<a href="https://manpages.debian.org/jessie/grub2-common/update-grub2.8">
-update-grub2(8)</a>.
+<a href="https://www.rodsbooks.com/refind/">rEFInd</a>, как нам известно по
+сообщениям пользователей. обычно работет без проблем.
+<a href="https://www.gnu.org/software/grub/">GRUB</a>, по сообщениям от
+пользователей, как правило работает не совсем правильно.
+Так или иначе, вы в праве сами решать что и как хотите использовать.
 
 <h3>Windows</h3>
 

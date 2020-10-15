@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Tk-8.6.10
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;13.&nbsp;Programming
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="tcl.html" title="Tcl-8.6.10">Prev</a>
+          <p>
+            Tcl-8.6.10
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="vala.html" title="Vala-0.46.6">Next</a>
+          <p>
+            Vala-0.46.6
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="tk" name="tk"></a>Tk-8.6.10
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Tk
+        </h2>
+        <p>
+          The <span class="application">Tk</span> package contains a TCL GUI
+          Toolkit.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://downloads.sourceforge.net/tcl/tk8.6.10-src.tar.gz">https://downloads.sourceforge.net/tcl/tk8.6.10-src.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 602a47ad9ecac7bf655ada729d140a94
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 4.2 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 24 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.3 SBU (add 2.0 SBU for tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Tk Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="tcl.html" title="Tcl-8.6.10">Tcl-8.6.10</a>
+          and <a class="xref" href="../x/x7lib.html" title=
+          "Xorg Libraries">Xorg Libraries</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/tk">http://wiki.linuxfromscratch.org/blfs/wiki/tk</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Tk
+        </h2>
+        <p>
+          Install <span class="application">Tk</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">cd unix &amp;&amp;
+./configure --prefix=/usr \
+            --mandir=/usr/share/man \
+            $([ $(uname -m) = x86_64 ] &amp;&amp; echo --enable-64bit) &amp;&amp;
+
+make &amp;&amp;
+
+sed -e "s@^\(TK_SRC_DIR='\).*@\1/usr/include'@" \
+    -e "/TK_B/s@='\(-L\)\?.*unix@='\1/usr/lib@" \
+    -i tkConfig.sh</kbd>
+</pre>
+        <p>
+          Running the tests is not recommended. Failures will be reported
+          during the tests, depending on the screen resolution/capabilities,
+          fonts installed and other X related parameters, but the end report
+          can show 0 failures. Some tests will steal focus and some might
+          crash your X Server. To test the results anyway, issue:
+          <span class="command"><strong>make test</strong></span>. Ensure you
+          run it from an X Window display device with the GLX extensions
+          loaded, but even so, tests might hang.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install &amp;&amp;
+make install-private-headers &amp;&amp;
+ln -v -sf wish8.6 /usr/bin/wish &amp;&amp;
+chmod -v 755 /usr/lib/libtk8.6.so</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>$([ $(uname -m) = x86_64 ] &amp;&amp;
+          echo --enable-64bit)</code></em>: This switch is used to enable 64
+          bit support in <span class="application">Tk</span> on 64 bit
+          operating systems.
+        </p>
+        <p>
+          <span class="command"><strong>make
+          install-private-headers</strong></span>: This command is used to
+          install the <span class="application">Tk</span> library interface
+          headers used by other packages if they link to the <span class=
+          "application">Tk</span> library.
+        </p>
+        <p>
+          <span class="command"><strong>ln -v -sf wish8.6
+          /usr/bin/wish</strong></span>: This command is used to create a
+          compatibility symbolic link to the <span class=
+          "command"><strong>wish8.6</strong></span> file as many packages
+          expect a file named <span class=
+          "command"><strong>wish</strong></span>.
+        </p>
+        <p>
+          <span class="command"><strong>sed -e ...
+          tkConfig.sh</strong></span>: The <span class=
+          "application">Tk</span> package expects that its source tree is
+          preserved so that packages depending on it for their compilation
+          can utilize it. This <span class=
+          "command"><strong>sed</strong></span> removes the references to the
+          build directory and replaces them with saner system-wide locations.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">wish and wish8.6</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libtk8.6.so and libtkstub8.6.a</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/lib/tk8.6</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="wish" name="wish"></a><span class=
+                    "term"><span class=
+                    "command"><strong>wish</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a symlink to the <span class=
+                    "command"><strong>wish8.6</strong></span> program.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="wish-eight" name="wish-eight"></a><span class=
+                    "term"><span class=
+                    "command"><strong>wish8.6</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a simple shell containing the <span class=
+                    "application">Tk</span> toolkit that creates a main
+                    window and then processes <span class=
+                    "application">Tcl</span> commands.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libtk" name="libtk"></a><span class=
+                    "term"><code class="filename">libtk8.6.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains the API functions required by <span class=
+                    "application">Tk</span>.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-16 15:15:05 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="tcl.html" title="Tcl-8.6.10">Prev</a>
+          <p>
+            Tcl-8.6.10
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="vala.html" title="Vala-0.46.6">Next</a>
+          <p>
+            Vala-0.46.6
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

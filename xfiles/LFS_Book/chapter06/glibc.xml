@@ -49,11 +49,12 @@
     <para>Fix a minor security issue with glob functions:</para>
 
 <screen><userinput remap="pre">patch -Np1 -i ../&glibc-glob-patch;</userinput></screen>
---><!--
-    <para>Для начала создайте символическую ссылку для совместимости и чтобы избежать наличия ссылок на каталог /tools в конечной установке пакета glibc:</para>
-
-<screen><userinput remap="pre">ln -sfv /tools/lib/gcc /usr/lib</userinput></screen>
 -->
+    <para>Исправьте проблему, которая провяввляется в ядре linux-5.2:</para>
+
+<screen><userinput remap="pre">sed -i '/asm.socket.h/a# include &lt;linux/sockios.h&gt;' \
+   sysdeps/unix/sysv/linux/bits/socket.h</userinput></screen>
+
     <para>Cоздайте символическую ссылку для соблюдения стандартов LSB. Кроме того, для x86_64 создайте символическую ссылку для совместимости
      и правильной работы динамического загрузчика:</para>
 
@@ -152,11 +153,6 @@ esac</userinput></screen>
     <para>Можно наблюдать некоторые ошибки при тестировании. Выполнение набора тестов Glibc сильно зависит от хост-системы. Ниже приведен список наиболее распространённых проблем, наблюдаемых в некоторых версиях LFS:</para>
 
     <itemizedlist>
-
-	 <listitem>
-        <para><emphasis>misc/check-installed-headers-c</emphasis>
-        is known to fail due to changes in the kernel headers.</para>
-      </listitem>
 
       <listitem>
         <para><emphasis>misc/tst-ttyname</emphasis>
@@ -372,9 +368,7 @@ unset ZONEINFO</userinput></screen>
 
     <para>Создайте файл <filename>/etc/localtime</filename> выполнив команду:</para>
 
-<screen revision="sysv"><userinput>cp -v /usr/share/zoneinfo/<replaceable>&lt;xxx&gt;</replaceable> /etc/localtime</userinput></screen>
-
-<screen revision="systemd"><userinput>ln -sfv /usr/share/zoneinfo/<replaceable>&lt;xxx&gt;</replaceable> /etc/localtime</userinput></screen>
+	<screen><userinput>ln -sfv /usr/share/zoneinfo/<replaceable>&lt;xxx&gt;</replaceable> /etc/localtime</userinput></screen>
 
     <para>Замените <replaceable>&lt;xxx&gt;</replaceable> наименованием выбранной временной зоны (например, Canada/Eastern).</para>
 

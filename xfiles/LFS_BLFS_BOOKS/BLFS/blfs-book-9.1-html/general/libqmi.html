@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      libqmi-1.24.4
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;9.&nbsp;General Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libpaper.html" title=
+          "libpaper-1.1.24+nmu5">Prev</a>
+          <p>
+            libpaper-1.1.24+nmu5
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libseccomp.html" title=
+          "libseccomp-2.4.2">Next</a>
+          <p>
+            libseccomp-2.4.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="libqmi" name="libqmi"></a>libqmi-1.24.4
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to libqmi
+        </h2>
+        <p>
+          The <span class="application">libqmi</span> package contains a
+          GLib-based library for talking to WWAN modems and devices which
+          speak the Qualcomm MSM Interface (QMI) protocol.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://www.freedesktop.org/software/libqmi/libqmi-1.24.4.tar.xz">
+                https://www.freedesktop.org/software/libqmi/libqmi-1.24.4.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: be6539fde54fec1fc9d852db201c8560
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 976 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 77 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.2 SBU (Using parallelism=4; with
+                tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          libqmi Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="glib2.html" title=
+          "GLib-2.62.4">GLib-2.62.4</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="libmbim.html" title=
+          "libmbim-1.22.0">libmbim-1.22.0</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="gtk-doc.html" title=
+          "GTK-Doc-1.32">GTK-Doc-1.32</a> and <a class="ulink" href=
+          "https://ftp.gnu.org/gnu/help2man/">help2man</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/libqmi">http://wiki.linuxfromscratch.org/blfs/wiki/libqmi</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of libqmi
+        </h2>
+        <p>
+          Install <span class="application">libqmi</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr --disable-static &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--disable-static</code></em>: This
+          switch prevents installation of static versions of the libraries.
+        </p>
+        <p>
+          <code class="option">--enable-gtk-doc</code>: Use this parameter if
+          <span class="application">GTK-Doc</span> is installed and you wish
+          to rebuild and install the API documentation.
+        </p>
+        <p>
+          <code class="option">--disable-mbim-qmux</code>: This switch
+          disables support for using a MBIM control device for QMI messages.
+          Use this switch if you did not install <span class=
+          "application">libmbim</span>.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">qmicli, qmi-firmware-update, and
+              qmi-network</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libqmi-glib.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/libqmi-glib and
+              /usr/share/gtk-doc/html/libqmi-glib</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="qmicli" name="qmicli"></a><span class=
+                    "term"><span class=
+                    "command"><strong>qmicli</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an utility used to control QMI devices.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="qmi-network" name="qmi-network"></a><span class=
+                    "term"><span class=
+                    "command"><strong>qmi-network</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an utility used for simple network management of QMI
+                    devices.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libqmi-glib" name="libqmi-glib"></a><span class=
+                    "term"><code class=
+                    "filename">libqmi-glib.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains API functions for talking to WWAN modems and
+                    devices which speak the Qualcomm MSM Interface (QMI)
+                    protocol.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-16 18:46:23 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libpaper.html" title=
+          "libpaper-1.1.24+nmu5">Prev</a>
+          <p>
+            libpaper-1.1.24+nmu5
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libseccomp.html" title=
+          "libseccomp-2.4.2">Next</a>
+          <p>
+            libseccomp-2.4.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      libpsl-0.21.0
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;17.&nbsp;Networking Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libpcap.html" title="libpcap-1.9.1">Prev</a>
+          <p>
+            libpcap-1.9.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libndp.html" title="libndp-1.7">Next</a>
+          <p>
+            libndp-1.7
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netlibs.html" title=
+          "Chapter&nbsp;17.&nbsp;Networking Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="libpsl" name="libpsl"></a>libpsl-0.21.0
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to libpsl
+        </h2>
+        <p>
+          The <span class="application">libpsl</span> package provides a
+          library for accessing and resolving information from the Public
+          Suffix List (PSL). The PSL is a set of domain names beyond the
+          standard suffixes, such as .com.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://github.com/rockdaboot/libpsl/releases/download/libpsl-0.21.0/libpsl-0.21.0.tar.gz">
+                https://github.com/rockdaboot/libpsl/releases/download/libpsl-0.21.0/libpsl-0.21.0.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 171e96d887709e36a57f4ee627bf82d2
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 8.8 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 54 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: Less than 0.1 SBU (including tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          libpsl Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../general/libidn2.html" title=
+          "libidn2-2.3.0">libidn2-2.3.0</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/gtk-doc.html" title=
+          "GTK-Doc-1.32">GTK-Doc-1.32</a> (for documentation) and <a class=
+          "xref" href="../general/valgrind.html" title=
+          "Valgrind-3.15.0">Valgrind-3.15.0</a> (for tests)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/libpsl">http://wiki.linuxfromscratch.org/blfs/wiki/libpsl</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of libpsl
+        </h2>
+        <p>
+          Install <span class="application">libpsl</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i 's/env python/&amp;3/' src/psl-make-dafsa &amp;&amp;
+./configure --prefix=/usr --disable-static       &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>sed -i ...</strong></span>: This
+          command forces the use of <span class="application">Python 3</span>
+          in an utility.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">psl</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">libpsl.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">None</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="psl" name="psl"></a><span class=
+                    "term"><span class="command"><strong>psl</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    queries the Public Suffix List.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libpsl-lib" name="libpsl-lib"></a><span class=
+                    "term"><code class="filename">libpsl.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains a library used to access the Public Suffix List.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-16 12:25:07 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libpcap.html" title="libpcap-1.9.1">Prev</a>
+          <p>
+            libpcap-1.9.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libndp.html" title="libndp-1.7">Next</a>
+          <p>
+            libndp-1.7
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netlibs.html" title=
+          "Chapter&nbsp;17.&nbsp;Networking Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

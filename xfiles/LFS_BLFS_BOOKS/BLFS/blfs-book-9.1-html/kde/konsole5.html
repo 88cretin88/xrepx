@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Konsole-19.12.2
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;31.&nbsp;KDE Frameworks 5 Based Applications
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="khelpcenter.html" title=
+          "Khelpcenter-19.12.2">Prev</a>
+          <p>
+            Khelpcenter-19.12.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libkexiv2.html" title=
+          "libkexiv2-19.12.2">Next</a>
+          <p>
+            libkexiv2-19.12.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="kf5-apps.html" title=
+          "Chapter&nbsp;31.&nbsp;KDE Frameworks 5 Based Applications">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="konsole5" name="konsole5"></a>Konsole-19.12.2
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Konsole
+        </h2>
+        <p>
+          The <span class="application">Konsole</span> package is a KF5 based
+          terminal emulator.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://download.kde.org/stable/release-service/19.12.2/src/konsole-19.12.2.tar.xz">
+                http://download.kde.org/stable/release-service/19.12.2/src/konsole-19.12.2.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: a606de5d802880448ff80290ff5ee83f
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 1.1 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 25 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.4 SBU (using parallism=4)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Additional Downloads
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Optional patch: <a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/blfs/9.1/konsole-19.12.2-scrollbar-1.patch">
+                http://www.linuxfromscratch.org/patches/blfs/9.1/konsole-19.12.2-scrollbar-1.patch</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Konsole Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="krameworks5.html" title=
+          "Building KDE Frameworks 5 (KF5)">KDE Frameworks-5.67.0</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/konsole5">http://wiki.linuxfromscratch.org/blfs/wiki/konsole5</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Konsole
+        </h2>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            In non-plasma environments, the konsole scrollbar and its handle
+            do not show up well. If desired, apply the optional patch to the
+            package:
+          </p>
+          <pre class="userinput">
+<kbd class="command">patch -Np1 -i ../konsole-19.12.2-scrollbar-1.patch</kbd>
+</pre>
+          <p>
+            The patch makes the scrollbar light gray with a small white
+            border. The handle is dark gray. If desired, the colors may be
+            changed to taste by editing the patch.
+          </p>
+        </div>
+        <p>
+          Install <span class="application">Konsole</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+cmake -DCMAKE_INSTALL_PREFIX=$KF5_PREFIX \
+      -DCMAKE_BUILD_TYPE=Release         \
+      -DBUILD_TESTING=OFF                \
+      -Wno-dev .. &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">konsole and konsoleprofile</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libkdeinit5_konsole.so and
+              libkonsoleprivate.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">$KF5_PREFIX/share/doc/HTML/*/konsole,
+              $KF5_PREFIX/share/konsole, and
+              $KF5_PREFIX/share/kxmlgui5/konsole</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="konsole5-prog" name=
+                    "konsole5-prog"></a><span class="term"><span class=
+                    "command"><strong>konsole</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an X terminal emulation which provides a command-line
+                    interface.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="konsoleprofile5" name=
+                    "konsoleprofile5"></a><span class="term"><span class=
+                    "command"><strong>konsoleprofile</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a command-line tool to change the current tab's
+                    profile options.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-19 16:31:22 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="khelpcenter.html" title=
+          "Khelpcenter-19.12.2">Prev</a>
+          <p>
+            Khelpcenter-19.12.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libkexiv2.html" title=
+          "libkexiv2-19.12.2">Next</a>
+          <p>
+            libkexiv2-19.12.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="kf5-apps.html" title=
+          "Chapter&nbsp;31.&nbsp;KDE Frameworks 5 Based Applications">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Random Number Generation
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;3.&nbsp;After LFS Configuration Issues
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="logon.html" title=
+          "Customizing your Logon with /etc/issue">Prev</a>
+          <p>
+            Customizing your Logon with /etc/issue
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="security.html" title="Security">Next</a>
+          <p>
+            Security
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="config.html" title=
+          "Chapter&nbsp;3.&nbsp;After LFS Configuration Issues">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="postlfs-config-random" name="postlfs-config-random"></a>Random
+        Number Generation
+      </h1>
+      <p>
+        The Linux kernel supplies a random number generator which is accessed
+        through <code class="filename">/dev/random</code> and <code class=
+        "filename">/dev/urandom</code>. Programs that utilize the random and
+        urandom devices, such as <span class="application">OpenSSH</span>,
+        will benefit from these instructions.
+      </p>
+      <p>
+        When a Linux system starts up without much operator interaction, the
+        entropy pool (data used to compute a random number) may be in a
+        fairly predictable state. This creates the real possibility that the
+        number generated at startup may always be the same. In order to
+        counteract this effect, you should carry the entropy pool information
+        across your shut-downs and start-ups.
+      </p>
+      <p>
+        Install the <code class="filename">/etc/rc.d/init.d/random</code>
+        init script included with the <a class="xref" href=
+        "../introduction/bootscripts.html" title=
+        "BLFS Boot Scripts">blfs-bootscripts-20191204</a> package.
+      </p>
+      <pre class="root">
+<kbd class="command">make install-random</kbd>
+</pre>
+      <p class="updated">
+        Last updated on 2016-06-03 20:04:06 -0700
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="logon.html" title=
+          "Customizing your Logon with /etc/issue">Prev</a>
+          <p>
+            Customizing your Logon with /etc/issue
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="security.html" title="Security">Next</a>
+          <p>
+            Security
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="config.html" title=
+          "Chapter&nbsp;3.&nbsp;After LFS Configuration Issues">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      libblockdev-2.23
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;9.&nbsp;General Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libatomic_ops.html" title=
+          "libatomic_ops-7.6.10">Prev</a>
+          <p>
+            libatomic_ops-7.6.10
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libbytesize.html" title=
+          "libbytesize-2.2">Next</a>
+          <p>
+            libbytesize-2.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="libblockdev" name="libblockdev"></a>libblockdev-2.23
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to libblockdev
+        </h2>
+        <p>
+          libblockdev is a C library supporting GObject Introspection for
+          manipulation of block devices. It has a plugin-based architecture
+          where each technology (like LVM, Btrfs, MD RAID, Swap,...) is
+          implemented in a separate plugin, possibly with multiple
+          implementations (e.g. using LVM CLI or the new LVM DBus API).
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://github.com/storaged-project/libblockdev/releases/download/2.23-1/libblockdev-2.23.tar.gz">
+                https://github.com/storaged-project/libblockdev/releases/download/2.23-1/libblockdev-2.23.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: b956653be98a677cf004c07b302941b9
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 840 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 11 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.2 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          libblockdev Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="gobject-introspection.html" title=
+          "gobject-introspection-1.62.0">gobject-introspection-1.62.0</a>,
+          <a class="xref" href="libbytesize.html" title=
+          "libbytesize-2.2">libbytesize-2.2</a>, <a class="xref" href=
+          "libyaml.html" title="libyaml-0.2.2">libyaml-0.2.2</a>, <a class=
+          "xref" href="../postlfs/parted.html" title=
+          "parted-3.3">parted-3.3</a>, and <a class="xref" href=
+          "../postlfs/volume_key.html" title=
+          "volume_key-0.3.12">volume_key-0.3.12</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../postlfs/btrfs-progs.html" title=
+          "btrfs-progs-5.4.1">btrfs-progs-5.4.1</a>, <a class="xref" href=
+          "gtk-doc.html" title="GTK-Doc-1.32">GTK-Doc-1.32</a>, <a class=
+          "xref" href="../postlfs/mdadm.html" title=
+          "mdadm-4.1">mdadm-4.1</a>, <a class="ulink" href=
+          "http://people.redhat.com/~heinzm/sw/dmraid/">dmraid</a>, <a class=
+          "ulink" href="http://bcachefs.org/">bcachefs</a>, and <a class=
+          "ulink" href="https://github.com/pmem/ndctl">ndctl</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/libblockdev">http://wiki.linuxfromscratch.org/blfs/wiki/libblockdev</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of libblockdev
+        </h2>
+        <p>
+          Install <span class="application">libblockdev</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr     \
+            --sysconfdir=/etc \
+            --with-python3    \
+            --without-gtk-doc \
+            --without-nvdimm  \
+            --without-dm      &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a working test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">lvm-cache-stats</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libbd_btrfs.so, libbd_crypto.so,
+              libbd_fs.so, libbd_kbd.so, libbd_loop.so, libbd_lvm.so,
+              libbd_lvm-dbus.so, libbd_mdraid.so, libbd_mpath.so,
+              libbd_part.so, libbd_part_err.so, libbd_swap.so,
+              libbd_utils.so, libbd_vdo.so, and libblockdev.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/etc/libblockdev, /usr/include/blockdev,
+              and /usr/share/gtk-doc/html/libblockdev</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="lvm-cache-stats" name=
+                    "lvm-cache-stats"></a><span class="term"><span class=
+                    "command"><strong>lvm-cache-stats</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    prints statistics on caches on LVM Logical Volumes.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-19 08:47:37 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libatomic_ops.html" title=
+          "libatomic_ops-7.6.10">Prev</a>
+          <p>
+            libatomic_ops-7.6.10
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libbytesize.html" title=
+          "libbytesize-2.2">Next</a>
+          <p>
+            libbytesize-2.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

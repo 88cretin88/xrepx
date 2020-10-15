@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      gst-libav-1.16.2
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;42.&nbsp;Multimedia Libraries and Drivers
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gst10-plugins-ugly.html" title=
+          "gst-plugins-ugly-1.16.2">Prev</a>
+          <p>
+            gst-plugins-ugly-1.16.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gstreamer10-vaapi.html" title=
+          "gstreamer-vaapi-1.16.2">Next</a>
+          <p>
+            gstreamer-vaapi-1.16.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="libdriv.html" title=
+          "Chapter&nbsp;42.&nbsp;Multimedia Libraries and Drivers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="gst10-libav" name="gst10-libav"></a>gst-libav-1.16.2
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to GStreamer Libav
+        </h2>
+        <p>
+          The <span class="application">GStreamer Libav</span> package
+          contains <span class="application">GStreamer</span> plugins for
+          <span class="application">Libav</span> (a fork of <span class=
+          "application">FFmpeg</span>).
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://gstreamer.freedesktop.org/src/gst-libav/gst-libav-1.16.2.tar.xz">
+                https://gstreamer.freedesktop.org/src/gst-libav/gst-libav-1.16.2.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: eacebd0136ede3a9bd3672eeb338806b
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 9.0 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 87 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU (Using parallelism=4)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          GStreamer Libav Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="ffmpeg.html" title=
+          "FFmpeg-4.2.2">FFmpeg-4.2.2</a> and <a class="xref" href=
+          "gst10-plugins-base.html" title=
+          "gst-plugins-base-1.16.2">gst-plugins-base-1.16.2</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/yasm.html" title=
+          "yasm-1.3.0">yasm-1.3.0</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/valgrind.html" title=
+          "Valgrind-3.15.0">Valgrind-3.15.0</a> and <a class="ulink" href=
+          "http://gstreamer.freedesktop.org/src/orc/">Orc</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/gst10-libav">http://wiki.linuxfromscratch.org/blfs/wiki/gst10-libav</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of GStreamer Libav
+        </h2>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            If you do not have an Objective-C compiler installed, the build
+            system for this package will emit a warning about a failed sanity
+            check. This is harmless, and it is safe to continue.
+          </p>
+        </div>
+        <p>
+          Install <span class="application">GStreamer Libav</span> by running
+          the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson  --prefix=/usr       \
+       -Dbuildtype=release \
+       -Dpackage-origin=http://www.linuxfromscratch.org/blfs/view/svn/ \
+       -Dpackage-name="GStreamer 1.16.2 BLFS" &amp;&amp;
+ninja</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">ninja install</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">libgstlibav.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">None</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-18 14:50:03 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gst10-plugins-ugly.html" title=
+          "gst-plugins-ugly-1.16.2">Prev</a>
+          <p>
+            gst-plugins-ugly-1.16.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gstreamer10-vaapi.html" title=
+          "gstreamer-vaapi-1.16.2">Next</a>
+          <p>
+            gstreamer-vaapi-1.16.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="libdriv.html" title=
+          "Chapter&nbsp;42.&nbsp;Multimedia Libraries and Drivers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

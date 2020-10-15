@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      apache-ant-1.10.7
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;13.&nbsp;Programming
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="ojdk-conf.html" title=
+          "Configuring the JAVA environment">Prev</a>
+          <p>
+            Configuring the JAVA environment
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="../basicnet/basicnet.html" title=
+          "Networking">Next</a>
+          <p>
+            Networking
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="apache-ant" name="apache-ant"></a>apache-ant-1.10.7
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Apache Ant
+        </h2>
+        <p>
+          The <span class="application">Apache Ant</span> package is a
+          <span class="application">Java</span>-based build tool. In theory,
+          it is like the <span class="command"><strong>make</strong></span>
+          command, but without <span class=
+          "command"><strong>make</strong></span>'s wrinkles. <span class=
+          "application">Ant</span> is different. Instead of a model that is
+          extended with shell-based commands, <span class=
+          "application">Ant</span> is extended using <span class=
+          "application">Java</span> classes. Instead of writing shell
+          commands, the configuration files are XML-based, calling out a
+          target tree that executes various tasks. Each task is run by an
+          object that implements a particular task interface.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://archive.apache.org/dist/ant/source/apache-ant-1.10.7-src.tar.xz">
+                https://archive.apache.org/dist/ant/source/apache-ant-1.10.7-src.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: ab7ccbece38850f2fe9258d0ce965786
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 4.1 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 142 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.3 SBU (excluding download time)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Apache Ant Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          A JDK (<a class="xref" href="java.html#java-bin" title=
+          "Binary JDK Information">Java Binary</a> or <a class="xref" href=
+          "openjdk.html" title="OpenJDK-12.0.2">OpenJDK-12.0.2</a>) and
+          <a class="xref" href="glib2.html" title=
+          "GLib-2.62.4">GLib-2.62.4</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/apache-ant">http://wiki.linuxfromscratch.org/blfs/wiki/apache-ant</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Apache Ant
+        </h2>
+        <p>
+          First fix an incompatibility issue between the documentation
+          standard used in the build tree, and the one expected by <a class=
+          "xref" href="openjdk.html" title=
+          "OpenJDK-12.0.2">OpenJDK-12.0.2</a>:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">sed -i 's/--add-modules java.activation/-html4/' build.xml</kbd>
+</pre>
+        <p>
+          Build a limited bootstrap version of <span class=
+          "application">Apache Ant</span> using the following command:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./bootstrap.sh</kbd>
+</pre>
+        <p>
+          Download the runtime dependencies using the <code class=
+          "filename">fetch.xml</code> ant build script:
+        </p>
+        <pre class="userinput">
+<kbd class="command">bootstrap/bin/ant -f fetch.xml -Ddest=optional</kbd>
+</pre>
+        <p>
+          Build <span class="application">Apache Ant</span> by running the
+          following command:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./build.sh -Ddist.dir=$PWD/ant-1.10.7 dist</kbd>
+</pre>
+        <p>
+          Install, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">cp -rv ant-1.10.7 /opt/            &amp;&amp;
+chown -R root:root /opt/ant-1.10.7 &amp;&amp;
+ln -sfv ant-1.10.7 /opt/ant</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>bootstrap/bin/ant -f fetch.xml
+          -Ddest=optional</strong></span>: Downloads the missing dependencies
+          to user's home directory, and copy them into the source tree (in
+          the <code class="filename">lib/optional</code> directory, where
+          <span class="command"><strong>ant</strong></span> picks them up at
+          build time).
+        </p>
+        <p>
+          <span class="command"><strong>./build.sh -Ddist.dir=$PWD/ant-1.10.7
+          dist</strong></span>: This command builds, tests, then installs the
+          package into a temporary directory.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring Apache Ant
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="apache-ant-config" name="apache-ant-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="apache-ant-config" name="apache-ant-config"></a>Config
+            Files
+          </h4>
+          <p>
+            <code class="filename">/etc/ant/ant.conf</code>, <code class=
+            "filename">~/.ant/ant.conf</code>, and <code class=
+            "filename">~/.antrc</code>
+          </p>
+        </div>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3"></h3>
+          <h4 class="title">
+            <a id="idm45779260975200" name=
+            "idm45779260975200"></a>Configuration Information
+          </h4>
+          <p>
+            Some packages will require <span class=
+            "command"><strong>ant</strong></span> to be in the search path
+            and the <code class="envar">ANT_HOME</code> environment variable
+            defined. Satisfy these requirements by issuing, as the
+            <code class="systemitem">root</code> user:
+          </p>
+          <pre class="root">
+<kbd class="command">cat &gt; /etc/profile.d/ant.sh &lt;&lt; EOF
+<code class="literal"># Begin /etc/profile.d/ant.sh
+
+pathappend /opt/ant/bin
+export ANT_HOME=/opt/ant
+
+# End /etc/profile.d/ant.sh</code>
+EOF</kbd>
+</pre>
+          <p>
+            The above instrutions assume you have configured your system as
+            described in <a class="xref" href="../postlfs/profile.html"
+            title="The Bash Shell Startup Files">The Bash Shell Startup
+            Files</a>.
+          </p>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">ant, antRun, antRun.pl,
+              complete-ant-cmd.pl, runant.pl, and runant.py</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">Numerous <code class=
+              "filename">ant*.jar</code> and dependant libraries in
+              <code class="envar">$ANT_HOME</code><code class=
+              "filename">/lib</code></span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/opt/ant-1.10.7</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ant" name="ant"></a><span class=
+                    "term"><span class="command"><strong>ant</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a <span class="application">Java</span> based build
+                    tool used by many packages instead of the conventional
+                    <span class="command"><strong>make</strong></span>
+                    program.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="antRun" name="antRun"></a><span class=
+                    "term"><span class=
+                    "command"><strong>antRun</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a support script used to start <span class=
+                    "command"><strong>ant</strong></span> build scripts in a
+                    given directory.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="antRun.pl" name="antRun.pl"></a><span class=
+                    "term"><span class=
+                    "command"><strong>antRun.pl</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a <span class="application">Perl</span> script that
+                    provides similar functionality offered by the
+                    <span class="command"><strong>antRun</strong></span>
+                    script.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="complete-ant-cmd.pl" name=
+                    "complete-ant-cmd.pl"></a><span class="term"><span class=
+                    "command"><strong>complete-ant-cmd.pl</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a <span class="application">Perl</span> script that
+                    allows <span class="application">Bash</span> to complete
+                    an <span class="command"><strong>ant</strong></span>
+                    command-line.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="runant.pl" name="runant.pl"></a><span class=
+                    "term"><span class=
+                    "command"><strong>runant.pl</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a <span class="application">Perl</span> wrapper script
+                    used to invoke <span class=
+                    "command"><strong>ant</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="runant.py" name="runant.py"></a><span class=
+                    "term"><span class=
+                    "command"><strong>runant.py</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a <span class="application">Python</span> wrapper
+                    script used to invoke <span class=
+                    "command"><strong>ant</strong></span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ant-star" name="ant-star"></a><span class=
+                    "term"><code class="filename">ant*.jar</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    files are the <span class="application">Apache Ant</span>
+                    <span class="application">Java</span> class libraries.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-18 12:45:12 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="ojdk-conf.html" title=
+          "Configuring the JAVA environment">Prev</a>
+          <p>
+            Configuring the JAVA environment
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="../basicnet/basicnet.html" title=
+          "Networking">Next</a>
+          <p>
+            Networking
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

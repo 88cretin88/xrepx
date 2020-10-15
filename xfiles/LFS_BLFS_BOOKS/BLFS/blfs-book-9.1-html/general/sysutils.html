@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Chapter&nbsp;12.&nbsp;System Utilities
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Part&nbsp;III.&nbsp;General Libraries and Utilities
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="xdg-user-dirs.html" title=
+          "Xdg-user-dirs-0.17">Prev</a>
+          <p>
+            Xdg-user-dirs-0.17
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="accountsservice.html" title=
+          "AccountsService-0.6.55">Next</a>
+          <p>
+            AccountsService-0.6.55
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="general.html" title=
+          "Part&nbsp;III.&nbsp;General Libraries and Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="chapter" lang="en" xml:lang="en">
+      <h1 class="chapter">
+        <a id="general-sysutils" name="general-sysutils"></a>System Utilities
+      </h1>
+      <p>
+        This chapter contains mainly hardware utilities. It also contains
+        some applications used by other applications in the book for
+        installation or configuration purposes.
+      </p>
+      <div class="toc">
+        <h3>
+          Table of Contents
+        </h3>
+        <ul>
+          <li class="sect1">
+            <a href="accountsservice.html">AccountsService-0.6.55</a>
+          </li>
+          <li class="sect1">
+            <a href="acpid.html">acpid-2.0.32</a>
+          </li>
+          <li class="sect1">
+            <a href="at.html">at-3.1.23</a>
+          </li>
+          <li class="sect1">
+            <a href="autofs.html">autofs-5.1.6</a>
+          </li>
+          <li class="sect1">
+            <a href="bluez.html">BlueZ-5.53</a>
+          </li>
+          <li class="sect1">
+            <a href="bubblewrap.html">Bubblewrap-0.4.0</a>
+          </li>
+          <li class="sect1">
+            <a href="colord.html">Colord-1.4.4</a>
+          </li>
+          <li class="sect1">
+            <a href="cpio.html">cpio-2.13</a>
+          </li>
+          <li class="sect1">
+            <a href="cups-pk-helper.html">cups-pk-helper-0.2.6</a>
+          </li>
+          <li class="sect1">
+            <a href="dbus.html">dbus-1.12.16</a>
+          </li>
+          <li class="sect1">
+            <a href="elogind.html">elogind-243.4</a>
+          </li>
+          <li class="sect1">
+            <a href="blocaled.html">blocaled-0.2</a>
+          </li>
+          <li class="sect1">
+            <a href="fcron.html">Fcron-3.2.1</a>
+          </li>
+          <li class="sect1">
+            <a href="gpm.html">GPM-1.20.7</a>
+          </li>
+          <li class="sect1">
+            <a href="hdparm.html">Hdparm-9.58</a>
+          </li>
+          <li class="sect1">
+            <a href="lsb-tools.html">LSB-Tools-0.6</a>
+          </li>
+          <li class="sect1">
+            <a href="lm_sensors.html">lm-sensors-3-6-0</a>
+          </li>
+          <li class="sect1">
+            <a href="logrotate.html">Logrotate-3.15.1</a>
+          </li>
+          <li class="sect1">
+            <a href="mc.html">MC-4.8.24</a>
+          </li>
+          <li class="sect1">
+            <a href="ModemManager.html">ModemManager-1.12.6</a>
+          </li>
+          <li class="sect1">
+            <a href="p7zip.html">p7zip-16.02</a>
+          </li>
+          <li class="sect1">
+            <a href="pax.html">Pax-20161104</a>
+          </li>
+          <li class="sect1">
+            <a href="pciutils.html">pciutils-3.6.4</a>
+          </li>
+          <li class="sect1">
+            <a href="pm-utils.html">pm-utils-1.4.1</a>
+          </li>
+          <li class="sect1">
+            <a href="raptor.html">Raptor-2.0.15</a>
+          </li>
+          <li class="sect1">
+            <a href="rasqal.html">Rasqal-0.9.33</a>
+          </li>
+          <li class="sect1">
+            <a href="redland.html">Redland-1.0.17</a>
+          </li>
+          <li class="sect1">
+            <a href="sg3_utils.html">sg3_utils-1.44</a>
+          </li>
+          <li class="sect1">
+            <a href="sysstat.html">Sysstat-12.3.1</a>
+          </li>
+          <li class="sect1">
+            <a href="udisks2.html">UDisks-2.8.4</a>
+          </li>
+          <li class="sect1">
+            <a href="unrar.html">UnRar-5.9.1</a>
+          </li>
+          <li class="sect1">
+            <a href="unzip.html">UnZip-6.0</a>
+          </li>
+          <li class="sect1">
+            <a href="upower.html">UPower-0.99.11</a>
+          </li>
+          <li class="sect1">
+            <a href="usbutils.html">usbutils-012</a>
+          </li>
+          <li class="sect1">
+            <a href="which.html">Which-2.21 and Alternatives</a>
+          </li>
+          <li class="sect1">
+            <a href="zip.html">Zip-3.0</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="xdg-user-dirs.html" title=
+          "Xdg-user-dirs-0.17">Prev</a>
+          <p>
+            Xdg-user-dirs-0.17
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="accountsservice.html" title=
+          "AccountsService-0.6.55">Next</a>
+          <p>
+            AccountsService-0.6.55
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="general.html" title=
+          "Part&nbsp;III.&nbsp;General Libraries and Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

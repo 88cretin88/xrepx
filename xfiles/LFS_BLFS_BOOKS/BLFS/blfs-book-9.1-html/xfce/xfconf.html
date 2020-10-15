@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Xfconf-4.14.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;35.&nbsp;Xfce Desktop
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libxfce4util.html" title=
+          "libxfce4util-4.14.0">Prev</a>
+          <p>
+            libxfce4util-4.14.0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libxfce4ui.html" title=
+          "libxfce4ui-4.14.1">Next</a>
+          <p>
+            libxfce4ui-4.14.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="xfce-core.html" title=
+          "Chapter&nbsp;35.&nbsp;Xfce Desktop">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="xfconf" name="xfconf"></a>Xfconf-4.14.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Xfconf
+        </h2>
+        <p>
+          <span class="application">Xfconf</span> is the configuration
+          storage system for <span class="application">Xfce</span>.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://archive.xfce.org/src/xfce/xfconf/4.14/xfconf-4.14.1.tar.bz2">
+                http://archive.xfce.org/src/xfce/xfconf/4.14/xfconf-4.14.1.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: cb51a59e2a89d05232f825ad8c74a7c0
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 630 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 8.8 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Xfconf Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="libxfce4util.html" title=
+          "libxfce4util-4.14.0">libxfce4util-4.14.0</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../general/gtk-doc.html" title=
+          "GTK-Doc-1.32">GTK-Doc-1.32</a> and Perl Module <a class="ulink"
+          href=
+          "http://sourceforge.net/projects/gtk2-perl/files/Glib/">Glib</a>
+          (this allows perl developers to store settings in xfconf for perl
+          applications)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/xfconf">http://wiki.linuxfromscratch.org/blfs/wiki/xfconf</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Xfconf
+        </h2>
+        <p>
+          Install <span class="application">Xfconf</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <code class="option">--enable-gtk-doc</code>: Use this parameter if
+          <span class="application">GTK-Doc</span> is installed and you wish
+          to rebuild and install the API documentation.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">xfconf-query</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">libxfconf.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/xfconf-0,
+              /usr/lib/xfce4/xfconf, and
+              /usr/share/gtk-doc/html/xfconf</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="xfconf-query" name="xfconf-query"></a><span class=
+                    "term"><span class=
+                    "command"><strong>xfconf-query</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a commandline utility to view or change any setting
+                    stored in <span class="application">Xfconf</span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libxfconf" name="libxfconf"></a><span class=
+                    "term"><code class="filename">libxfconf.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains basic functions for <span class=
+                    "application">Xfce</span> configuration.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-17 12:12:55 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="libxfce4util.html" title=
+          "libxfce4util-4.14.0">Prev</a>
+          <p>
+            libxfce4util-4.14.0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="libxfce4ui.html" title=
+          "libxfce4ui-4.14.1">Next</a>
+          <p>
+            libxfce4ui-4.14.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="xfce-core.html" title=
+          "Chapter&nbsp;35.&nbsp;Xfce Desktop">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

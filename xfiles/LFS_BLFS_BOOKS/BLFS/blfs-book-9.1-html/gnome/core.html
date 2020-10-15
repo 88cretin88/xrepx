@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Chapter&nbsp;33.&nbsp;GNOME Libraries and Desktop
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Part&nbsp;VIII.&nbsp;GNOME
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gnome.html" title="GNOME">Prev</a>
+          <p>
+            GNOME
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gcr.html" title="Gcr-3.34.0">Next</a>
+          <p>
+            Gcr-3.34.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="gnome.html" title=
+          "Part&nbsp;VIII.&nbsp;GNOME">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="chapter" lang="en" xml:lang="en">
+      <h1 class="chapter">
+        <a id="gnome-core" name="gnome-core"></a>GNOME Libraries and Desktop
+      </h1>
+      <p>
+        The objective of this section is to build a <span class=
+        "application">GNOME</span> desktop.
+      </p>
+      <div class="toc">
+        <h3>
+          Table of Contents
+        </h3>
+        <ul>
+          <li class="sect1">
+            <span class="dummy">Libraries</span>
+          </li>
+          <li class="sect1">
+            <a href="gcr.html">Gcr-3.34.0</a>
+          </li>
+          <li class="sect1">
+            <a href=
+            "gsettings-desktop-schemas.html">gsettings-desktop-schemas-3.34.0</a>
+          </li>
+          <li class="sect1">
+            <a href="libsecret.html">libsecret-0.20.1</a>
+          </li>
+          <li class="sect1">
+            <a href="rest.html">rest-0.8.1</a>
+          </li>
+          <li class="sect1">
+            <a href="totem-pl-parser.html">totem-pl-parser-3.26.4</a>
+          </li>
+          <li class="sect1">
+            <a href="vte.html">VTE-0.58.3</a>
+          </li>
+          <li class="sect1">
+            <a href="yelp-xsl.html">yelp-xsl-3.34.2</a>
+          </li>
+          <li class="sect1">
+            <a href="GConf.html">GConf-3.2.6</a>
+          </li>
+          <li class="sect1">
+            <a href="geocode-glib.html">geocode-glib-3.26.1</a>
+          </li>
+          <li class="sect1">
+            <a href="gjs.html">Gjs-1.58.5</a>
+          </li>
+          <li class="sect1">
+            <a href="gnome-autoar.html">gnome-autoar-0.2.4</a>
+          </li>
+          <li class="sect1">
+            <a href="gnome-desktop.html">gnome-desktop-3.34.4</a>
+          </li>
+          <li class="sect1">
+            <a href="gnome-menus.html">gnome-menus-3.35.3</a>
+          </li>
+          <li class="sect1">
+            <a href="gnome-video-effects.html">gnome-video-effects-0.5.0</a>
+          </li>
+          <li class="sect1">
+            <a href=
+            "gnome-online-accounts.html">gnome-online-accounts-3.34.1</a>
+          </li>
+          <li class="sect1">
+            <a href="grilo.html">Grilo-0.3.12</a>
+          </li>
+          <li class="sect1">
+            <a href="libchamplain.html">libchamplain-0.12.20</a>
+          </li>
+          <li class="sect1">
+            <a href="libgdata.html">libgdata-0.17.11</a>
+          </li>
+          <li class="sect1">
+            <a href="libgee.html">libgee-0.20.3</a>
+          </li>
+          <li class="sect1">
+            <a href="libgtop.html">libgtop-2.40.0</a>
+          </li>
+          <li class="sect1">
+            <a href="libgweather.html">libgweather-3.34.0</a>
+          </li>
+          <li class="sect1">
+            <a href="libpeas.html">libpeas-1.24.1</a>
+          </li>
+          <li class="sect1">
+            <a href="libwnck.html">libwnck-3.32.0</a>
+          </li>
+          <li class="sect1">
+            <a href=
+            "evolution-data-server.html">evolution-data-server-3.34.4</a>
+          </li>
+          <li class="sect1">
+            <a href="folks.html">Folks-0.13.2</a>
+          </li>
+          <li class="sect1">
+            <a href="gfbgraph.html">gfbgraph-0.2.3</a>
+          </li>
+          <li class="sect1">
+            <a href="tracker.html">Tracker-2.3.2</a>
+          </li>
+          <li class="sect1">
+            <a href="tracker-miners.html">Tracker-miners-2.3.2</a>
+          </li>
+          <li class="sect1">
+            <a href="gsound.html">GSound-1.0.2</a>
+          </li>
+          <li class="sect1">
+            <span class="dummy">Required Runtime Dependencies</span>
+          </li>
+          <li class="sect1">
+            <a href="dconf.html">DConf-0.34.0 / DConf-Editor-3.34.4</a>
+          </li>
+          <li class="sect1">
+            <a href="gnome-backgrounds.html">gnome-backgrounds-3.34.0</a>
+          </li>
+          <li class="sect1">
+            <a href="gvfs.html">Gvfs-1.42.2</a>
+          </li>
+          <li class="sect1">
+            <a href="gexiv2.html">gexiv2-0.12.0</a>
+          </li>
+          <li class="sect1">
+            <a href="nautilus.html">Nautilus-3.34.2</a>
+          </li>
+          <li class="sect1">
+            <a href="zenity.html">Zenity-3.32.0</a>
+          </li>
+          <li class="sect1">
+            <a href="gnome-bluetooth.html">gnome-bluetooth-3.34.0</a>
+          </li>
+          <li class="sect1">
+            <a href="gnome-keyring.html">gnome-keyring-3.34.0</a>
+          </li>
+          <li class="sect1">
+            <a href=
+            "gnome-settings-daemon.html">gnome-settings-daemon-3.34.2</a>
+          </li>
+          <li class="sect1">
+            <a href=
+            "gnome-control-center.html">gnome-control-center-3.34.4</a>
+          </li>
+          <li class="sect1">
+            <a href="mutter.html">Mutter-3.34.4</a>
+          </li>
+          <li class="sect1">
+            <a href="gnome-shell.html">gnome-shell-3.34.4</a>
+          </li>
+          <li class="sect1">
+            <a href=
+            "gnome-shell-extensions.html">gnome-shell-extensions-3.34.2</a>
+          </li>
+          <li class="sect1">
+            <a href="gnome-session.html">gnome-session-3.34.2</a>
+          </li>
+          <li class="sect1">
+            <a href="gdm.html">GDM-3.34.1</a>
+          </li>
+          <li class="sect1">
+            <a href="gnome-user-docs.html">gnome-user-docs-3.34.1</a>
+          </li>
+          <li class="sect1">
+            <a href="yelp.html">Yelp-3.34.0</a>
+          </li>
+          <li class="sect1">
+            <a href="notification-daemon.html">notification-daemon-3.20.0</a>
+          </li>
+          <li class="sect1">
+            <a href="polkit-gnome.html">polkit-gnome-0.105</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gnome.html" title="GNOME">Prev</a>
+          <p>
+            GNOME
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gcr.html" title="Gcr-3.34.0">Next</a>
+          <p>
+            Gcr-3.34.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="gnome.html" title=
+          "Part&nbsp;VIII.&nbsp;GNOME">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

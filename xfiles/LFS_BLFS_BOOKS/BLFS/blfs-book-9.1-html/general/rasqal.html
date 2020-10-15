@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Rasqal-0.9.33
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;12.&nbsp;System Utilities
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="raptor.html" title="Raptor-2.0.15">Prev</a>
+          <p>
+            Raptor-2.0.15
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="redland.html" title=
+          "Redland-1.0.17">Next</a>
+          <p>
+            Redland-1.0.17
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="sysutils.html" title=
+          "Chapter&nbsp;12.&nbsp;System Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="rasqal" name="rasqal"></a>Rasqal-0.9.33
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Rasqal
+        </h2>
+        <p>
+          <span class="application">Rasqal</span> is a C library that handles
+          Resource Description Framework (RDF) query language syntaxes, query
+          construction, and execution of queries returning results as
+          bindings, boolean, RDF graphs/triples or syntaxes.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://download.librdf.org/source/rasqal-0.9.33.tar.gz">http://download.librdf.org/source/rasqal-0.9.33.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 1f5def51ca0026cd192958ef07228b52
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 1.6 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 22 MB (additional 4 MB for the
+                tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.3 SBU (additional 0.7 SBU for the
+                tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Rasqal Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="raptor.html" title=
+          "Raptor-2.0.15">Raptor-2.0.15</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="pcre.html" title="PCRE-8.44">PCRE-8.44</a>
+          and <a class="xref" href="libgcrypt.html" title=
+          "libgcrypt-1.8.5">libgcrypt-1.8.5</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/rasqal">http://wiki.linuxfromscratch.org/blfs/wiki/rasqal</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Rasqal
+        </h2>
+        <p>
+          Install <span class="application">Rasqal</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr --disable-static &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--disable-static</code></em>: This
+          switch prevents installation of static versions of the libraries.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">rasqal-config and roqet</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">librasqal.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/rasqal and
+              /usr/share/gtk-doc/html/rasqal</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="rasqal-config" name=
+                    "rasqal-config"></a><span class="term"><span class=
+                    "command"><strong>rasqal-config</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an utility for retrieving the installation options of
+                    <span class="application">Rasqal</span>.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="roqet" name="roqet"></a><span class=
+                    "term"><span class=
+                    "command"><strong>roqet</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an RDF query utility.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-19 08:47:37 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="raptor.html" title="Raptor-2.0.15">Prev</a>
+          <p>
+            Raptor-2.0.15
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="redland.html" title=
+          "Redland-1.0.17">Next</a>
+          <p>
+            Redland-1.0.17
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="sysutils.html" title=
+          "Chapter&nbsp;12.&nbsp;System Utilities">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

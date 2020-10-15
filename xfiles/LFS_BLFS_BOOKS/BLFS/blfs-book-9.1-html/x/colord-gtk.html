@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      colord-gtk-0.2.0
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;25.&nbsp;X Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="clutter-gtk.html" title=
+          "clutter-gtk-1.8.4">Prev</a>
+          <p>
+            clutter-gtk-1.8.4
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="fltk.html" title="FLTK-1.3.5">Next</a>
+          <p>
+            FLTK-1.3.5
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="lib.html" title=
+          "Chapter&nbsp;25.&nbsp;X Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="colord-gtk" name="colord-gtk"></a>colord-gtk-0.2.0
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Colord GTK
+        </h2>
+        <p>
+          The <span class="application">Colord GTK</span> package contains
+          <span class="application">GTK+</span> bindings for <span class=
+          "application">Colord</span>.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://www.freedesktop.org/software/colord/releases/colord-gtk-0.2.0.tar.xz">
+                https://www.freedesktop.org/software/colord/releases/colord-gtk-0.2.0.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 66d048803c8b89e5e63da4b461484933
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 20 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 41 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Colord GTK Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../general/colord.html" title=
+          "Colord-1.4.4">colord-1.4.4</a> and <a class="xref" href=
+          "gtk3.html" title="GTK+-3.24.13">GTK+-3.24.13</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/gobject-introspection.html" title=
+          "gobject-introspection-1.62.0">gobject-introspection-1.62.0</a> and
+          <a class="xref" href="../general/vala.html" title=
+          "Vala-0.46.6">Vala-0.46.6</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../pst/docbook-utils.html" title=
+          "DocBook-utils-0.6.14">DocBook-utils-0.6.14</a>, <a class="xref"
+          href="gtk2.html" title="GTK+-2.24.32">GTK+-2.24.32</a> and
+          <a class="xref" href="../general/gtk-doc.html" title=
+          "GTK-Doc-1.32">GTK-Doc-1.32</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/colord-gtk">http://wiki.linuxfromscratch.org/blfs/wiki/colord-gtk</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Colord GTK
+        </h2>
+        <div class="admon warning">
+          <img alt="[Warning]" src="../images/warning.png" />
+          <h3>
+            Warning
+          </h3>
+          <p>
+            If building the documentation <span class="command"><strong>make
+            -j1</strong></span> must be used.
+          </p>
+        </div>
+        <p>
+          Install <span class="application">Colord GTK</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson --prefix=/usr  \
+      -Dgtk2=true    \
+      -Dvapi=true    \
+      -Ddocs=false   \
+      -Dman=false .. &amp;&amp;
+ninja</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>ninja
+          test</strong></span>. The tests need to be run from an X session,
+          and may require a color profile for your primary display.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">ninja install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>-Dvapi=true</code></em>: This switch
+          enables building of the Vala bindings. Remove if you don't have
+          <a class="xref" href="../general/vala.html" title=
+          "Vala-0.46.6">Vala-0.46.6</a> installed.
+        </p>
+        <p>
+          <em class="parameter"><code>-Dgtk2=true</code></em>: This switch
+          enables building the GTK+-2 bindings for colord.
+        </p>
+        <p>
+          <em class="parameter"><code>-Ddocs=false</code></em>: This switch
+          disables building GTK-DOC based documentation. Even if GTK-DOC is
+          installed, you will need the namespaced versions of the Docbook XSL
+          stylesheets.
+        </p>
+        <p>
+          <em class="parameter"><code>-Dman=false</code></em>: This switch
+          disables generating the manual pages for this package. Remove this
+          switch if you have namespaced versions of the Docbook XSL
+          stylesheets installed.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">cd-convert</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libcolord-gtk.so and
+              libcolord-gtk2.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/colord-1/colord-gtk and
+              /usr/share/gtk-doc/html/colord-gtk</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="cd-convert" name="cd-convert"></a><span class=
+                    "term"><span class=
+                    "command"><strong>cd-convert</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a Color Manager Testing Tool.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libcolord-gtk" name=
+                    "libcolord-gtk"></a><span class="term"><code class=
+                    "filename">libcolord-gtk.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains the <span class="application">Colord</span>
+                    <span class="application">GTK+</span> bindings.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libcolord-gtk2" name=
+                    "libcolord-gtk2"></a><span class="term"><code class=
+                    "filename">libcolord-gtk2.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains the <span class="application">Colord</span>
+                    <span class="application">GTK+-2</span> bindings.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-18 14:50:03 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="clutter-gtk.html" title=
+          "clutter-gtk-1.8.4">Prev</a>
+          <p>
+            clutter-gtk-1.8.4
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="fltk.html" title="FLTK-1.3.5">Next</a>
+          <p>
+            FLTK-1.3.5
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="lib.html" title=
+          "Chapter&nbsp;25.&nbsp;X Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

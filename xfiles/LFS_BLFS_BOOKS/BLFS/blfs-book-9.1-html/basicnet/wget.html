@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Wget-1.20.3
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;15.&nbsp;Networking Programs
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="samba.html" title="Samba-4.11.6">Prev</a>
+          <p>
+            Samba-4.11.6
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="wireless_tools.html" title=
+          "Wireless Tools-29">Next</a>
+          <p>
+            Wireless Tools-29
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netprogs.html" title=
+          "Chapter&nbsp;15.&nbsp;Networking Programs">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="wget" name="wget"></a>Wget-1.20.3
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Wget
+        </h2>
+        <p>
+          The <span class="application">Wget</span> package contains a
+          utility useful for non-interactive downloading of files from the
+          Web.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://ftp.gnu.org/gnu/wget/wget-1.20.3.tar.gz">https://ftp.gnu.org/gnu/wget/wget-1.20.3.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnu.org/gnu/wget/wget-1.20.3.tar.gz">ftp://ftp.gnu.org/gnu/wget/wget-1.20.3.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: db4e6dc7977cbddcd543b240079a4899
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 4.2 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 60 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.4 SBU (with tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Wget Dependencies
+        </h3>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../postlfs/make-ca.html" title=
+          "make-ca-1.5">make-ca-1.5</a> (runtime)
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="../postlfs/gnutls.html" title=
+          "GnuTLS-3.6.12">GnuTLS-3.6.12</a>, <a class="xref" href=
+          "../general/perl-modules.html#perl-http-daemon" title=
+          "HTTP::Daemon-6.06">HTTP-Daemon-6.06</a> (for the test suite),
+          <a class="xref" href=
+          "../general/perl-modules.html#perl-io-socket-ssl" title=
+          "IO::Socket::SSL-2.067">IO-Socket-SSL-2.067</a> (for the test
+          suite), <a class="xref" href="../general/libidn2.html" title=
+          "libidn2-2.3.0">libidn2-2.3.0</a>, <a class="xref" href=
+          "libpsl.html" title="libpsl-0.21.0">libpsl-0.21.0</a>, <a class=
+          "xref" href="../general/pcre.html" title="PCRE-8.44">PCRE-8.44</a>
+          or <a class="xref" href="../general/pcre2.html" title=
+          "PCRE2-10.34">pcre2-10.34</a>, and <a class="xref" href=
+          "../general/valgrind.html" title=
+          "Valgrind-3.15.0">Valgrind-3.15.0</a> (for the test suite)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/wget">http://wiki.linuxfromscratch.org/blfs/wiki/wget</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Wget
+        </h2>
+        <p>
+          Install <span class="application">Wget</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr      \
+            --sysconfdir=/etc  \
+            --with-ssl=openssl &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span>.
+        </p>
+        <p>
+          HTTPS tests are known to fail if Perl module IO::Socket::INET6 is
+          installed.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--sysconfdir=/etc</code></em>: This
+          relocates the configuration file from <code class=
+          "filename">/usr/etc</code> to <code class="filename">/etc</code>.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-ssl=openssl</code></em>: This
+          allows the program to use openssl instead of <a class="xref" href=
+          "../postlfs/gnutls.html" title="GnuTLS-3.6.12">GnuTLS-3.6.12</a>.
+        </p>
+        <p>
+          <code class="option">--enable-valgrind-tests</code>: This allows
+          the tests to be run under valgrind.
+        </p>
+      </div>
+      <div class="configuration" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Configuring Wget
+        </h2>
+        <div class="sect3" lang="en" xml:lang="en">
+          <h3 class="sect3">
+            <a id="wget-config" name="wget-config"></a>
+          </h3>
+          <h4 class="title">
+            <a id="wget-config" name="wget-config"></a>Config Files
+          </h4>
+          <p>
+            <code class="filename">/etc/wgetrc</code> and <code class=
+            "filename">~/.wgetrc</code>
+          </p>
+        </div>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Program:</strong>
+              <span class="segbody">wget</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">None</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="wget-prog" name="wget-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>wget</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    retrieves files from the Web using the HTTP, HTTPS and
+                    FTP protocols. It is designed to be non-interactive, for
+                    background or unattended operations.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-15 08:54:30 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="samba.html" title="Samba-4.11.6">Prev</a>
+          <p>
+            Samba-4.11.6
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="wireless_tools.html" title=
+          "Wireless Tools-29">Next</a>
+          <p>
+            Wireless Tools-29
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="netprogs.html" title=
+          "Chapter&nbsp;15.&nbsp;Networking Programs">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

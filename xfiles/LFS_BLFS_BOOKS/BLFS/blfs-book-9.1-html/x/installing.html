@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Chapter&nbsp;24.&nbsp;X Window System Environment
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Part&nbsp;VI.&nbsp;X + Window and Display Managers
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="x.html" title=
+          "X + Window and Display Managers">Prev</a>
+          <p>
+            X + Window and Display Managers
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="xorg7.html" title=
+          "Introduction to Xorg-7">Next</a>
+          <p>
+            Introduction to Xorg-7
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="x.html" title=
+          "Part&nbsp;VI.&nbsp;X + Window and Display Managers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="chapter" lang="en" xml:lang="en">
+      <h1 class="chapter">
+        <a id="x-window-system" name="x-window-system"></a>X Window System
+        Environment
+      </h1>
+      <p>
+        This chapter contains instructions to build and configure a graphical
+        user environment.
+      </p>
+      <p>
+        <span class="application">Xorg</span>, in addition to clearing up
+        some licensing issues with <a class="ulink" href=
+        "http://www.xfree86.org/">XFree86</a>, introduced a completely
+        auto-tooled build for the X Window system. This means that the
+        packages build and install using the conventional <span class=
+        "command"><strong>configure</strong></span>, <span class=
+        "command"><strong>make</strong></span>, and <span class=
+        "command"><strong>make install</strong></span> commands, as opposed
+        to a proprietary build system that required hand editing of
+        configuration parameters in a C-like syntax.
+      </p>
+      <p>
+        <span class="application">Xorg</span> also brought with it a modular
+        build system. While this separation into modules resulted in full
+        control of the features available to the X server on any given
+        installation, it also made the installation more tedious as it
+        requires installing more than 100 different packages to obtain a
+        functional X Window environment. Most large commercial distributions
+        have elected to use <span class="application">Xorg</span> over the
+        <span class="application">XFree86</span> distribution due to both
+        licensing issues and the increased functionality provided by it over
+        <span class="application">XFree86</span>. With the modular build
+        system, also came incremental updates to individual packages. The
+        distribution of <span class="application">Xorg</span> is given a
+        release number by the developers, in this case Xorg-7, and is
+        referred to as the "katamari" by the upstream developers.
+      </p>
+      <div class="toc">
+        <h3>
+          Table of Contents
+        </h3>
+        <ul>
+          <li class="sect1">
+            <a href="xorg7.html">Introduction to Xorg-7</a>
+          </li>
+          <li class="sect1">
+            <a href="util-macros.html">util-macros-1.19.2</a>
+          </li>
+          <li class="sect1">
+            <a href="xorgproto.html">xorgproto-2019.2</a>
+          </li>
+          <li class="sect1">
+            <a href="libXau.html">libXau-1.0.9</a>
+          </li>
+          <li class="sect1">
+            <a href="libXdmcp.html">libXdmcp-1.1.3</a>
+          </li>
+          <li class="sect1">
+            <a href="xcb-proto.html">xcb-proto-1.13</a>
+          </li>
+          <li class="sect1">
+            <a href="libxcb.html">libxcb-1.13.1</a>
+          </li>
+          <li class="sect1">
+            <a href="x7lib.html">Xorg Libraries</a>
+          </li>
+          <li class="sect1">
+            <a href="xcb-util.html">xcb-util-0.4.0</a>
+          </li>
+          <li class="sect1">
+            <a href="xcb-util-image.html">xcb-util-image-0.4.0</a>
+          </li>
+          <li class="sect1">
+            <a href="xcb-util-keysyms.html">xcb-util-keysyms-0.4.0</a>
+          </li>
+          <li class="sect1">
+            <a href="xcb-util-renderutil.html">xcb-util-renderutil-0.3.9</a>
+          </li>
+          <li class="sect1">
+            <a href="xcb-util-wm.html">xcb-util-wm-0.4.1</a>
+          </li>
+          <li class="sect1">
+            <a href="xcb-util-cursor.html">xcb-util-cursor-0.1.3</a>
+          </li>
+          <li class="sect1">
+            <a href="mesa.html">Mesa-19.3.4</a>
+          </li>
+          <li class="sect1">
+            <a href="xbitmaps.html">xbitmaps-1.1.2</a>
+          </li>
+          <li class="sect1">
+            <a href="x7app.html">Xorg Applications</a>
+          </li>
+          <li class="sect1">
+            <a href="xcursor-themes.html">xcursor-themes-1.0.6</a>
+          </li>
+          <li class="sect1">
+            <a href="x7font.html">Xorg Fonts</a>
+          </li>
+          <li class="sect1">
+            <a href="xkeyboard-config.html">XKeyboardConfig-2.29</a>
+          </li>
+          <li class="sect1">
+            <a href="xorg-server.html">Xorg-Server-1.20.7</a>
+          </li>
+          <li class="sect1">
+            <a href="x7driver.html">Xorg Drivers</a>
+          </li>
+          <li class="sect1">
+            <a href="twm.html">twm-1.0.10</a>
+          </li>
+          <li class="sect1">
+            <a href="xterm.html">xterm-353</a>
+          </li>
+          <li class="sect1">
+            <a href="xclock.html">xclock-1.0.9</a>
+          </li>
+          <li class="sect1">
+            <a href="xinit.html">xinit-1.4.1</a>
+          </li>
+          <li class="sect1">
+            <a href="xorg-config.html">Xorg-7 Testing and Configuration</a>
+          </li>
+          <li class="sect1">
+            <a href="tuning-fontconfig.html">Tuning Fontconfig</a>
+          </li>
+          <li class="sect1">
+            <a href="TTF-and-OTF-fonts.html">TTF and OTF fonts</a>
+          </li>
+          <li class="sect1">
+            <a href="x7legacy.html">Xorg Legacy</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="x.html" title=
+          "X + Window and Display Managers">Prev</a>
+          <p>
+            X + Window and Display Managers
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="xorg7.html" title=
+          "Introduction to Xorg-7">Next</a>
+          <p>
+            Introduction to Xorg-7
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="x.html" title=
+          "Part&nbsp;VI.&nbsp;X + Window and Display Managers">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

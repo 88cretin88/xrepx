@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      network-manager-applet-1.8.24
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;34.&nbsp;<span class="phrase">GNOME Applications</span>
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gucharmap.html" title=
+          "Gucharmap-12.0.1">Prev</a>
+          <p>
+            Gucharmap-12.0.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="seahorse.html" title=
+          "Seahorse-3.34.1">Next</a>
+          <p>
+            Seahorse-3.34.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="applications.html" title=
+          "Chapter&nbsp;34.&nbsp;GNOME Applications">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="network-manager-applet" name=
+        "network-manager-applet"></a>network-manager-applet-1.8.24
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to NetworkManager Applet
+        </h2>
+        <p>
+          The <span class="application">NetworkManager Applet</span> provides
+          a tool and a panel applet used to configure wired and wireless
+          network connections through GUI. It's designed for use with any
+          desktop environment that uses <span class=
+          "application">GTK+</span>, such as <span class=
+          "application">Xfce</span> and <span class=
+          "application">LXDE</span>.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.gnome.org/pub/gnome/sources/network-manager-applet/1.8/network-manager-applet-1.8.24.tar.xz">
+                http://ftp.gnome.org/pub/gnome/sources/network-manager-applet/1.8/network-manager-applet-1.8.24.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnome.org/pub/gnome/sources/network-manager-applet/1.8/network-manager-applet-1.8.24.tar.xz">
+                ftp://ftp.gnome.org/pub/gnome/sources/network-manager-applet/1.8/network-manager-applet-1.8.24.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 5c1bf351fde5adc12200345550516050
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 1.9 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 65 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.3 SBU (with tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          NetworkManager Applet Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="gcr.html" title="Gcr-3.34.0">Gcr-3.34.0</a>,
+          <a class="xref" href="../x/gtk3.html" title=
+          "GTK+-3.24.13">GTK+-3.24.13</a>, <a class="xref" href=
+          "../general/iso-codes.html" title="ISO Codes-4.4">ISO
+          Codes-4.4</a>, <a class="xref" href="libsecret.html" title=
+          "libsecret-0.20.1">libsecret-0.20.1</a>, <a class="xref" href=
+          "../x/libnotify.html" title="libnotify-0.7.8">libnotify-0.7.8</a>,
+          and <a class="xref" href="../basicnet/networkmanager.html" title=
+          "NetworkManager-1.22.6">NetworkManager-1.22.6</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../general/gobject-introspection.html" title=
+          "gobject-introspection-1.62.0">gobject-introspection-1.62.0</a> and
+          <a class="xref" href="../general/ModemManager.html" title=
+          "ModemManager-1.12.6">ModemManager-1.12.6</a>
+        </p>
+        <h4>
+          Required (Runtime)
+        </h4>
+        <p class="required">
+          Since this package uses <a class="xref" href=
+          "../postlfs/polkit.html" title="Polkit-0.116">Polkit-0.116</a> for
+          authorization, one <a class="xref" href=
+          "../postlfs/polkit.html#polkit-agent" title=
+          "Optional Runtime Dependencies">Polkit Authentication Agent</a>
+          should be running when the functionality of this package is used.
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="gnome-bluetooth.html" title=
+          "gnome-bluetooth-3.34.0">gnome-bluetooth-3.34.0</a>, <a class=
+          "xref" href="../general/gtk-doc.html" title=
+          "GTK-Doc-1.32">GTK-Doc-1.32</a>, <a class="xref" href=
+          "../general/jansson.html" title="Jansson-2.12">jansson-2.12</a>,
+          <a class="ulink" href=
+          "https://launchpad.net/libappindicator">libindicator</a>, and
+          <a class="ulink" href=
+          "http://ftp.gnome.org/pub/gnome/sources/mobile-broadband-provider-info">
+          mobile-broadband-provider-info</a> (runtime)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/network-manager-applet">
+          http://wiki.linuxfromscratch.org/blfs/wiki/network-manager-applet</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of NetworkManager Applet
+        </h2>
+        <p>
+          Install <span class="application">NetworkManager Applet</span> by
+          running the following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson --prefix=/usr     \
+      --sysconfdir=/etc \
+      -Dselinux=false   \
+      -Dteam=false      \
+      -Dmobile_broadband_provider_info=false \
+      -Dgtk_doc=false .. &amp;&amp;
+ninja</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>ninja
+          test</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">ninja install</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>-Dteam=false</code></em>: This switch
+          disables the team configuration editor since it requires <a class=
+          "xref" href="../general/jansson.html" title=
+          "Jansson-2.12">jansson-2.12</a>. If you have Jansson installed,
+          remove this option or set it to "true".
+        </p>
+        <p>
+          <em class="parameter"><code>-Dselinux=false</code></em>: This
+          switch forcibly disables <span class="application">SELinux</span>
+          support since it is not currently in BLFS and the build will fail
+          without it.
+        </p>
+        <p>
+          <em class=
+          "parameter"><code>-Dmobile_broadband_provider_info=false</code></em>:
+          This switch forcibly disables Mobile Broadband Provider support
+          because it is not currently available in BLFS.
+        </p>
+        <p>
+          <em class="parameter"><code>-Dgtk_doc=false</code></em>: Remove
+          this if you have <a class="xref" href="../general/gtk-doc.html"
+          title="GTK-Doc-1.32">GTK-Doc-1.32</a> installed and want to rebuild
+          the documentation with it.
+        </p>
+        <p>
+          <code class="option">-Dwwan=false</code>: This switch disables WWAN
+          support. Use this if you do not have <a class="xref" href=
+          "../general/ModemManager.html" title=
+          "ModemManager-1.12.6">ModemManager-1.12.6</a> installed.
+        </p>
+        <p>
+          <code class="option">-Dintrospection=false</code>: Use this if you
+          do not have <a class="xref" href=
+          "../general/gobject-introspection.html" title=
+          "gobject-introspection-1.62.0">gobject-introspection-1.62.0</a>
+          installed.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">nm-applet and nm-connection-editor</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libnma.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/libnma and
+              /usr/share/gtk-doc/libnma</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="nm-connection-editor" name=
+                    "nm-connection-editor"></a><span class=
+                    "term"><span class="command"><strong>nm-connection-editor</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    allows users to view and edit network connection
+                    settings.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libnma" name="libnma"></a><span class=
+                    "term"><code class="filename">libnma.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains internal functions for the <span class=
+                    "application">Network Manager GTK+ Interface</span>.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-26 22:00:52 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gucharmap.html" title=
+          "Gucharmap-12.0.1">Prev</a>
+          <p>
+            Gucharmap-12.0.1
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="seahorse.html" title=
+          "Seahorse-3.34.1">Next</a>
+          <p>
+            Seahorse-3.34.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="applications.html" title=
+          "Chapter&nbsp;34.&nbsp;GNOME Applications">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

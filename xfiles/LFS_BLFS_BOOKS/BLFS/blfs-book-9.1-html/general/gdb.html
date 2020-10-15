@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      GDB-9.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;13.&nbsp;Programming
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gc.html" title="GC-8.0.4">Prev</a>
+          <p>
+            GC-8.0.4
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="git.html" title="Git-2.25.0">Next</a>
+          <p>
+            Git-2.25.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="gdb" name="gdb"></a>GDB-9.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to GDB
+        </h2>
+        <p>
+          <span class="application">GDB</span>, the GNU Project debugger,
+          allows you to see what is going on <span class=
+          "quote">&ldquo;<span class="quote">inside</span>&rdquo;</span>
+          another program while it executes -- or what another program was
+          doing at the moment it crashed. Note that <span class=
+          "application">GDB</span> is most effective when tracing programs
+          and libraries that were built with debugging symbols and not
+          stripped.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://ftp.gnu.org/gnu/gdb/gdb-9.1.tar.xz">https://ftp.gnu.org/gnu/gdb/gdb-9.1.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnu.org/gnu/gdb/gdb-9.1.tar.xz">ftp://ftp.gnu.org/gnu/gdb/gdb-9.1.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: f7e9f6236c425097d9e5f18a6ac40655
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 20 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 656 MB (add 738 MB for docs)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 1.9 SBU (Using parallelism=4; add 18
+                SBU for tests, add 0.6 SBU for docs)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          GDB Dependencies
+        </h3>
+        <h4>
+          Recommended Runtime Dependency
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="python-modules.html#six" title=
+          "six-1.14.0">six-1.14.0</a> (Python 3 module, required at run-time
+          to use GDB scripts from various LFS/BLFS packages with Python 3
+          installed in LFS)
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="dejagnu.html" title=
+          "DejaGnu-1.6.2">DejaGnu-1.6.2</a> (required for tests), <a class=
+          "xref" href="doxygen.html" title=
+          "Doxygen-1.8.17">Doxygen-1.8.17</a>, <a class="xref" href=
+          "gcc.html" title="GCC-9.2.0">GCC-9.2.0</a> (ada and gfortran are
+          used for tests), <a class="xref" href="guile.html" title=
+          "Guile-3.0.0">Guile-3.0.0</a>, <a class="xref" href="python2.html"
+          title="Python-2.7.17">Python-2.7.17</a>, <a class="xref" href=
+          "rust.html" title="Rustc-1.37.0">rustc-1.37.0</a> (used for some
+          tests), <a class="xref" href="valgrind.html" title=
+          "Valgrind-3.15.0">Valgrind-3.15.0</a>, and <a class="ulink" href=
+          "https://sourceware.org/systemtap/">SystemTap</a> (run-time, used
+          for tests)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/gdb">http://wiki.linuxfromscratch.org/blfs/wiki/gdb</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of GDB
+        </h2>
+        <p>
+          Install <span class="application">GDB</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+../configure --prefix=/usr          \
+             --with-system-readline \
+             --with-python=/usr/bin/python3 &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          Optionally, to build the API documentation using <a class="xref"
+          href="doxygen.html" title="Doxygen-1.8.17">Doxygen-1.8.17</a>, run:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make -C gdb/doc doxy</kbd>
+</pre>
+        <p>
+          To test the results, issue:
+        </p>
+        <pre class="userinput">
+<kbd class="command">pushd gdb/testsuite &amp;&amp;
+make  site.exp      &amp;&amp;
+echo  "set gdb_test_timeout 120" &gt;&gt; site.exp &amp;&amp;
+runtest
+popd</kbd>
+</pre>
+        <p>
+          See <span class="emphasis"><em>gdb/testsuite/README</em></span> and
+          <a class="ulink" href=
+          "https://sourceware.org/gdb/wiki/TestingGDB">TestingGDB</a>. There
+          are many problems with the test suite:
+        </p>
+        <div class="itemizedlist">
+          <ul>
+            <li class="listitem">
+              <p>
+                Clean directories are needed if re-running the tests. For
+                that reason, make a copy of the compiled source code
+                directory before the tests in case you need to run the tests
+                again.
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Results depend on installed compilers.
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                A few tests assume that the header file <code class=
+                "filename">&lt;sys/sdt.h&gt;</code>, part of <a class="ulink"
+                href="https://sourceware.org/systemtap/">SystemTap</a>, is
+                present.
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                A test run of the test suite had 228 unexpected failures (out
+                of over 70000 tests).
+              </p>
+            </li>
+          </ul>
+        </div>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make -C gdb install</kbd>
+</pre>
+        <p>
+          If you have built the API documentation, it is now in gdb/doc/doxy.
+          You can install it (as the <code class="systemitem">root</code>
+          user):
+        </p>
+        <pre class="root">
+<kbd class="command">install -d /usr/share/doc/gdb-9.1 &amp;&amp;
+rm -rf gdb/doc/doxy/xml &amp;&amp;
+cp -Rv gdb/doc/doxy /usr/share/doc/gdb-9.1</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--with-system-readline</code></em>:
+          This switch forces <span class="application">GDB</span> to use the
+          copy of <span class="application">Readline</span> installed in LFS.
+        </p>
+        <p>
+          <em class=
+          "parameter"><code>--with-python=/usr/bin/python3</code></em>: This
+          switch forces <span class="application">GDB</span> to use Python 3
+          installed in LFS. Remove this switch if you have installed
+          <a class="xref" href="python2.html" title=
+          "Python-2.7.17">Python-2.7.17</a> and want to use it instead of
+          Python 3.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">gcore, gdb and gdbserver</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">libinproctrace.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/{include,share}/gdb and
+              /usr/share/doc/gdb-9.1</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gcore" name="gcore"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gcore</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    generates a core dump of a running program.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gdb-prog" name="gdb-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gdb</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the GNU Debugger.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gdbserver" name="gdbserver"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gdbserver</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a remote server for the GNU debugger (it allows
+                    programs to be debugged from a different machine).
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libinproctrace" name=
+                    "libinproctrace"></a><span class="term"><code class=
+                    "filename">libinproctrace.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains functions for the in-process tracing agent. The
+                    agent allows for installing fast tracepoints, listing
+                    static tracepoint markers, probing static tracepoints
+                    markers, and starting trace monitoring.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-16 12:25:07 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gc.html" title="GC-8.0.4">Prev</a>
+          <p>
+            GC-8.0.4
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="git.html" title="Git-2.25.0">Next</a>
+          <p>
+            Git-2.25.0
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

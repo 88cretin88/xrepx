@@ -1,4 +1,4 @@
-version:1.2.1.7 : 14.10.2020
+version:1.2.1.7.1 : 15.10.2020
 _________________________________
 
 
@@ -3840,11 +3840,11 @@ UEFI раздел FAT32:
 
 # device list 
 
-# station device scan
+# station device_name scan
 
-# station device get-network 
+# station device_name get-network 
 
-# station device connect "SSID"
+# station device_name connect "SSID"
 
 
 Проверяем:
@@ -3920,6 +3920,21 @@ options root=LABEL=ROOT_FS rw
 
 # bootctl list
 
+
+Если порядок загрузки вас не устраивает,то можно изменить его:
+
+# efibootmgr -o 0001 0002 0003
+
+
+Некоторые комбинации версий ядер и efibootmgr могут отказываться создавать новые загрузочные записи. Это может происходить из-за того что не хватает свободного места в NVRAM. Вы можете попробовать удалить какие-нибудь мусорные EFI файлы
+
+
+# rm /sys/firmware/efi/efivars/dump-*
+
+
+Или же, в качестве последней надежды, загрузитесь с параметром ядра efi_no_storage_paranoia. Вы также можете попробовать откатить efibootmgr до версии 0.11.0, если она доступна в вашем кеше.
+
+
 Необходимо так же на случай обновления systemd разместить следующий pacman hook в каталоге /etc/pacman.d/hooks/:
 
 # nano /etc/pacman.d/hooks/systemd-boot.hook 
@@ -3935,7 +3950,7 @@ Description = Updating systemd-boot...
 When = PostTransaction
 Exec = /usr/bin/bootctl update
 
-Подробнее про описанное выше здесь: ArchWiki systemd-boot (Русский)
+
 
 9. Завершение установки
 
@@ -3953,7 +3968,7 @@ Exec = /usr/bin/bootctl update
 
 # reboot
 
-Вытаскиваем флешку, меняем устройство загрузки и грузим новую систему.
+Вытаскиваем флешку, меняем устройство загрузки и загружаем новую систему.
 
 
 

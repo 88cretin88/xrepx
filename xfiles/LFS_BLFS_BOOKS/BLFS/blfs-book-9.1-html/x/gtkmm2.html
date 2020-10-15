@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Gtkmm-2.24.5
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;25.&nbsp;X Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gtk-engines.html" title=
+          "GTK Engines-2.20.2">Prev</a>
+          <p>
+            GTK Engines-2.20.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gtkmm3.html" title="Gtkmm-3.24.2">Next</a>
+          <p>
+            Gtkmm-3.24.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="lib.html" title=
+          "Chapter&nbsp;25.&nbsp;X Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="gtkmm2" name="gtkmm2"></a>Gtkmm-2.24.5
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Gtkmm
+        </h2>
+        <p>
+          The <span class="application">Gtkmm</span> package provides a C++
+          interface to <span class="application">GTK+ 2</span>. It can be
+          installed alongside <a class="xref" href="gtkmm3.html" title=
+          "Gtkmm-3.24.2">Gtkmm-3.24.2</a> (the <span class="application">GTK+
+          3</span> version) with no namespace conflicts.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://ftp.gnome.org/pub/gnome/sources/gtkmm/2.24/gtkmm-2.24.5.tar.xz">
+                http://ftp.gnome.org/pub/gnome/sources/gtkmm/2.24/gtkmm-2.24.5.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (FTP): <a class="ulink" href=
+                "ftp://ftp.gnome.org/pub/gnome/sources/gtkmm/2.24/gtkmm-2.24.5.tar.xz">
+                ftp://ftp.gnome.org/pub/gnome/sources/gtkmm/2.24/gtkmm-2.24.5.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 6c59ae8bbff48fad9132f23af347acf1
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 11 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 426 MB (with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 3.4 SBU (with tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Gtkmm Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="atkmm.html" title=
+          "Atkmm-2.28.0">Atkmm-2.28.0</a>, <a class="xref" href="gtk2.html"
+          title="GTK+-2.24.32">GTK+-2.24.32</a> and <a class="xref" href=
+          "pangomm.html" title="Pangomm-2.42.0">Pangomm-2.42.0</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/gtkmm2">http://wiki.linuxfromscratch.org/blfs/wiki/gtkmm2</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Gtkmm
+        </h2>
+        <p>
+          First, fix the documents directory name:
+        </p>
+        <pre class="userinput">
+<kbd class="command">sed -e '/^libdocdir =/ s/$(book_name)/gtkmm-2.24.5/' \
+    -i docs/Makefile.in</kbd>
+</pre>
+        <p>
+          Install <span class="application">Gtkmm</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libgdkmm-2.4.so and
+              libgtkmm-2.4.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/gdkmm-2.4,
+              /usr/include/gtkmm-2.4, /usr/lib/gdkmm-2.4, /usr/lib/gtkmm-2.4,
+              and
+              /usr/share/{devhelp/books/gtkmm-2.4,doc/gtkmm-2.24.5}</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgdkmm-2" name="libgdkmm-2"></a><span class=
+                    "term"><code class=
+                    "filename">libgdkmm-2.4.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains the GDK API classes.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgtkmm-2" name="libgtkmm-2"></a><span class=
+                    "term"><code class=
+                    "filename">libgtkmm-2.4.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains the <span class="application">GTK+</span> API
+                    classes.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-18 14:50:03 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gtk-engines.html" title=
+          "GTK Engines-2.20.2">Prev</a>
+          <p>
+            GTK Engines-2.20.2
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="gtkmm3.html" title="Gtkmm-3.24.2">Next</a>
+          <p>
+            Gtkmm-3.24.2
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="lib.html" title=
+          "Chapter&nbsp;25.&nbsp;X Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

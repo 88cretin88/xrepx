@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Little CMS-1.19
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;10.&nbsp;Graphics and Font Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="jasper.html" title="JasPer-2.0.14">Prev</a>
+          <p>
+            JasPer-2.0.14
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="lcms2.html" title="Little CMS-2.9">Next</a>
+          <p>
+            Little CMS-2.9
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="graphlib.html" title=
+          "Chapter&nbsp;10.&nbsp;Graphics and Font Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="lcms" name="lcms"></a>Little CMS-1.19
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Little CMS
+        </h2>
+        <p>
+          The <span class="application">Little CMS</span> library is used by
+          other programs to provide color management facilities.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://downloads.sourceforge.net/lcms/lcms-1.19.tar.gz">https://downloads.sourceforge.net/lcms/lcms-1.19.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 8af94611baf20d9646c7c2c285859818
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 927 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 27 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.5 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Additional Downloads
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Required patch: <a class="ulink" href=
+                "http://www.linuxfromscratch.org/patches/blfs/9.1/lcms-1.19-cve_2013_4276-1.patch">
+                http://www.linuxfromscratch.org/patches/blfs/9.1/lcms-1.19-cve_2013_4276-1.patch</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Little CMS Dependencies
+        </h3>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="libtiff.html" title=
+          "LibTIFF-4.1.0">LibTIFF-4.1.0</a>, <a class="xref" href=
+          "libjpeg.html" title="libjpeg-turbo-2.0.4">libjpeg-turbo-2.0.4</a>,
+          and <a class="xref" href="python2.html" title=
+          "Python-2.7.17">Python-2.7.17</a> (with <a class="xref" href=
+          "swig.html" title="SWIG-4.0.1">SWIG-4.0.1</a> also)
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/lcms">http://wiki.linuxfromscratch.org/blfs/wiki/lcms</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Little CMS
+        </h2>
+        <p>
+          Install <span class="application">Little CMS</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class=
+"command">patch -Np1 -i ../lcms-1.19-cve_2013_4276-1.patch &amp;&amp;
+
+./configure --prefix=/usr --disable-static       &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make
+          check</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install &amp;&amp;
+install -v -m755 -d /usr/share/doc/lcms-1.19 &amp;&amp;
+install -v -m644    README.1ST doc/* \
+                    /usr/share/doc/lcms-1.19</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--disable-static</code></em>: This
+          switch prevents installation of static versions of the libraries.
+        </p>
+        <p>
+          <code class="option">--with-python</code>: Use this parameter if
+          <span class="application">Python</span> and <span class=
+          "application">SWIG</span> are installed.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">icc2ps, icclink, icctrans, wtpt and
+              optionally, jpegicc, tiffdiff and tifficc</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">liblcms.so and the optional _lcms.so
+              Python module</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/share/doc/lcms-1.19</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="icc2ps" name="icc2ps"></a><span class=
+                    "term"><span class=
+                    "command"><strong>icc2ps</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    generates PostScript CRD or CSA from ICC profiles.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="icclink" name="icclink"></a><span class=
+                    "term"><span class=
+                    "command"><strong>icclink</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    links two or more profiles into a single device link
+                    profile.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="icctrans" name="icctrans"></a><span class=
+                    "term"><span class=
+                    "command"><strong>icctrans</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a color space conversion calculator.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="jpegicc" name="jpegicc"></a><span class=
+                    "term"><span class=
+                    "command"><strong>jpegicc</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an ICC profile applier for JPEG files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="tifficc" name="tifficc"></a><span class=
+                    "term"><span class=
+                    "command"><strong>tifficc</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an ICC profile applier for TIFF files.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="tiffdiff" name="tiffdiff"></a><span class=
+                    "term"><span class=
+                    "command"><strong>tiffdiff</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    A TIFF compare utility
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="wtpt" name="wtpt"></a><span class=
+                    "term"><span class=
+                    "command"><strong>wtpt</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    shows media white of profiles, identifying black body
+                    locus.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="liblcms" name="liblcms"></a><span class=
+                    "term"><code class="filename">liblcms.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used by the <span class="application">lcms</span>
+                    programs as well as other programs to provide color
+                    management facilities.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-17 12:12:55 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="jasper.html" title="JasPer-2.0.14">Prev</a>
+          <p>
+            JasPer-2.0.14
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="lcms2.html" title="Little CMS-2.9">Next</a>
+          <p>
+            Little CMS-2.9
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="graphlib.html" title=
+          "Chapter&nbsp;10.&nbsp;Graphics and Font Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

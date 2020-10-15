@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Chapter&nbsp;3.&nbsp;After LFS Configuration Issues
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Part&nbsp;II.&nbsp;Post LFS Configuration and Extra Software
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="postlfs.html" title=
+          "Post LFS Configuration and Extra Software">Prev</a>
+          <p>
+            Post LFS Configuration and Extra Software
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="bootdisk.html" title=
+          "Creating a Custom Boot Device">Next</a>
+          <p>
+            Creating a Custom Boot Device
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="postlfs.html" title=
+          "Part&nbsp;II.&nbsp;Post LFS Configuration and Extra Software">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="chapter" lang="en" xml:lang="en">
+      <h1 class="chapter">
+        <a id="postlfs-config" name="postlfs-config"></a>After LFS
+        Configuration Issues
+      </h1>
+      <p>
+        The intention of LFS is to provide a basic system which you can build
+        upon. There are several things about tidying up the system which many
+        people wonder about once they have done the base install. We hope to
+        cover these issues in this chapter.
+      </p>
+      <p>
+        Most people coming from non-Unix like backgrounds to Linux find the
+        concept of text-only configuration files slightly strange. In Linux,
+        just about all configuration is done via the manipulation of text
+        files. The majority of these files can be found in the <code class=
+        "filename">/etc</code> hierarchy. There are often graphical
+        configuration programs available for different subsystems but most
+        are simply pretty front ends to the process of editing a text file.
+        The advantage of text-only configuration is that you can edit
+        parameters using your favorite text editor, whether that be
+        <span class="command"><strong>vim</strong></span>, <span class=
+        "command"><strong>emacs</strong></span>, or any other editor.
+      </p>
+      <p>
+        The first task is making a recovery boot device in <a class="xref"
+        href="bootdisk.html" title="Creating a Custom Boot Device">Creating a
+        Custom Boot Device</a> because it's the most critical need. Hardware
+        issues relevant to firmware and other devices is addressed next. The
+        system is then configured to ease addition of new users, because this
+        can affect the choices you make in the two subsequent
+        topics&mdash;<a class="xref" href="profile.html" title=
+        "The Bash Shell Startup Files">The Bash Shell Startup Files</a> and
+        <a class="xref" href="vimrc.html" title=
+        "The /etc/vimrc and ~/.vimrc Files">The vimrc Files</a>.
+      </p>
+      <p>
+        The remaining topics, <a class="xref" href="logon.html" title=
+        "Customizing your Logon with /etc/issue">Customizing your Logon with
+        /etc/issue</a>, <span class="phrase"><a class="xref" href=
+        "random.html" title="Random Number Generation">Random number
+        generation</a>,</span> and <a class="xref" href=
+        "../general/autofs.html" title="autofs-5.1.6">Autofs-5.1.6</a> are
+        then addressed, in that order. They don't have much interaction with
+        the other topics in this chapter.
+      </p>
+      <div class="toc">
+        <h3>
+          Table of Contents
+        </h3>
+        <ul>
+          <li class="sect1">
+            <a href="bootdisk.html">Creating a Custom Boot Device</a>
+          </li>
+          <li class="sect1">
+            <a href="console-fonts.html">About Console Fonts</a>
+          </li>
+          <li class="sect1">
+            <a href="firmware.html">About Firmware</a>
+          </li>
+          <li class="sect1">
+            <a href="devices.html">About Devices</a>
+          </li>
+          <li class="sect1">
+            <a href="skel.html">Configuring for Adding Users</a>
+          </li>
+          <li class="sect1">
+            <a href="users.html">About System Users and Groups</a>
+          </li>
+          <li class="sect1">
+            <a href="profile.html">The Bash Shell Startup Files</a>
+          </li>
+          <li class="sect1">
+            <a href="vimrc.html">The /etc/vimrc and ~/.vimrc Files</a>
+          </li>
+          <li class="sect1">
+            <a href="logon.html">Customizing your Logon with /etc/issue</a>
+          </li>
+          <li class="sect1">
+            <a href="random.html">Random Number Generation</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="postlfs.html" title=
+          "Post LFS Configuration and Extra Software">Prev</a>
+          <p>
+            Post LFS Configuration and Extra Software
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="bootdisk.html" title=
+          "Creating a Custom Boot Device">Next</a>
+          <p>
+            Creating a Custom Boot Device
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="postlfs.html" title=
+          "Part&nbsp;II.&nbsp;Post LFS Configuration and Extra Software">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

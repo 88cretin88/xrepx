@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      qemu-4.2.0
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;8.&nbsp;Virtualization
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="virtualization.html" title=
+          "Virtualization">Prev</a>
+          <p>
+            Virtualization
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="../general/general.html" title=
+          "General Libraries and Utilities">Next</a>
+          <p>
+            General Libraries and Utilities
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="virtualization.html" title=
+          "Chapter&nbsp;8.&nbsp;Virtualization">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="qemu" name="qemu"></a>qemu-4.2.0
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to qemu
+        </h2>
+        <p>
+          <span class="application">qemu</span> is a full virtualization
+          solution for Linux on x86 hardware containing virtualization
+          extensions (Intel VT or AMD-V).
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "http://download.qemu-project.org/qemu-4.2.0.tar.xz">http://download.qemu-project.org/qemu-4.2.0.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 278eeb294e4b497e79af7a57e660cb9a
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 59 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 1.1 G (add 0.4 GB for tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.9 SBU (using parallelism=4; add 4.2
+                SBU for tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Qemu Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../general/glib2.html" title=
+          "GLib-2.62.4">GLib-2.62.4</a>, and <a class="xref" href=
+          "../x/installing.html" title=
+          "Chapter&nbsp;24.&nbsp;X Window System Environment">X Window
+          System</a>
+        </p>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="../multimedia/alsa-lib.html" title=
+          "alsa-lib-1.2.1.2">alsa-lib-1.2.1.2</a> and <a class="xref" href=
+          "../multimedia/sdl2.html" title="SDL2-2.0.10">SDL2-2.0.10</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          Depending on the sound system, various packages in <a class="xref"
+          href="../multimedia/alsa.html" title="ALSA-1.2.1">ALSA-1.2.1</a>,
+          <a class="xref" href="../general/python3.html" title=
+          "Python-3.8.1">Python-3.8.1</a>, <a class="xref" href=
+          "../multimedia/pulseaudio.html" title=
+          "PulseAudio-13.0">PulseAudio-13.0</a>, <a class="xref" href=
+          "../general/bluez.html" title="BlueZ-5.53">BlueZ-5.53</a>,
+          <a class="xref" href="../basicnet/curl.html" title=
+          "cURL-7.68.0">cURL-7.68.0</a>, <a class="xref" href=
+          "cyrus-sasl.html" title="Cyrus SASL-2.1.27">Cyrus SASL-2.1.27</a>,
+          <a class="xref" href="gnutls.html" title=
+          "GnuTLS-3.6.12">GnuTLS-3.6.12</a>, <a class="xref" href=
+          "../x/gtk2.html" title="GTK+-2.24.32">GTK+-2.24.32</a>, <a class=
+          "xref" href="../x/gtk3.html" title="GTK+-3.24.13">GTK+-3.24.13</a>,
+          <a class="xref" href="../general/libusb.html" title=
+          "libusb-1.0.23">libusb-1.0.23</a>, <a class="xref" href=
+          "../general/libgcrypt.html" title=
+          "libgcrypt-1.8.5">libgcrypt-1.8.5</a>, <a class="xref" href=
+          "../general/libssh2.html" title="libssh2-1.9.0">libssh2-1.9.0</a>,
+          <a class="xref" href="../general/lzo.html" title=
+          "LZO-2.10">LZO-2.10</a>, <a class="xref" href="nettle.html" title=
+          "Nettle-3.5.1">Nettle-3.5.1</a>, <a class="xref" href=
+          "../x/mesa.html" title="Mesa-19.3.4">Mesa-19.3.4</a>, <a class=
+          "xref" href="../multimedia/sdl.html" title=
+          "SDL-1.2.15">SDL-1.2.15</a>, <a class="xref" href=
+          "../gnome/vte.html" title="VTE-0.58.3">VTE-0.58.3</a> or <a class=
+          "xref" href="../lxde/vte2.html" title="Vte-0.28.2">Vte-0.28.2</a>,
+          and <a class="ulink" href=
+          "https://www.spice-space.org/page/Libcacard">libcacard</a>
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            This optional dependencies list is not comprehensive. See the
+            output of <span class="command"><strong>./configure
+            --help</strong></span> for a more complete list.
+          </p>
+        </div>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/qemu">http://wiki.linuxfromscratch.org/blfs/wiki/qemu</a>
+        </p>
+      </div>
+      <div class="sect2" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="qemu-prereq" name="qemu-prereq"></a>KVM Prerequisites
+        </h2>
+        <p>
+          Before building <span class="application">qemu</span>, check to see
+          if your processor supports Virtualization Technology (VT):
+        </p>
+        <pre class="userinput">
+<kbd class="command">egrep '^flags.*(vmx|svm)' /proc/cpuinfo</kbd>
+</pre>
+        <p>
+          If you get any output, you have VT technology (vmx for Intel
+          processors and svm for AMD processors). You then need to go into
+          your system BIOS and ensure it is enabled. After enabing, reboot
+          back to your LFS instance.
+        </p>
+      </div>
+      <div class="kernel" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          <a id="qemu-kernel" name="qemu-kernel"></a>Kernel Configuration
+        </h2>
+        <p>
+          Enable the following options in the kernel configuration and
+          recompile the kernel if necessary:
+        </p>
+        <pre class="screen">
+<code class=
+"literal">[*] Virtualization:  ---&gt;                            [CONFIG_VIRTUALIZATION]
+  &lt;*/M&gt;   Kernel-based Virtual Machine (KVM) support [CONFIG_KVM]
+  &lt;*/M&gt;     KVM for Intel processors support         [CONFIG_KVM_INTEL]
+  &lt;*/M&gt;     KVM for AMD processors support           [CONFIG_KVM_AMD]</code>
+</pre>
+        <p>
+          The Intel or AMD settings are not both required, but the one
+          matching your system processor is required.
+        </p>
+        <p>
+          To use the <span class="quote">&ldquo;<span class=
+          "quote">bridge</span>&rdquo;</span> network device, as explained
+          below, check that <a class="xref" href=
+          "../basicnet/bridge-utils.html" title=
+          "bridge-utils-1.6">bridge-utils-1.6</a> is installed and the
+          following options in the kernel configuration are enabled:
+        </p>
+        <pre class="screen">
+<code class=
+"literal">[*] Networking support  ---&gt;                         [CONFIG_NET]
+  Networking options  ---&gt;
+    &lt;*/M&gt; 802.1d Ethernet Bridging                   [CONFIG_BRIDGE]
+Device Drivers  ---&gt;
+  [*] Network device support  ---&gt;                   [CONFIG_NETDEVICES]
+    &lt;*/M&gt;    Universal TUN/TAP device driver support [CONFIG_TUN]</code>
+</pre>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of qemu
+        </h2>
+        <p>
+          You will need a dedicated group that will contain users (other than
+          root) allowed to access the KVM device. Create this group by
+          running the following command as the <code class=
+          "systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">groupadd -g 61 kvm</kbd>
+</pre>
+        <p>
+          Add any users that might use the KVM device to that group:
+        </p>
+        <pre class="root">
+<kbd class="command">usermod -a -G kvm <em class=
+"replaceable"><code>&lt;username&gt;</code></em></kbd>
+</pre>
+        <p>
+          Install <span class="application">qemu</span> by running the
+          following commands:
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            Qemu is capable of running many targets. The build process is
+            also capable of building multiple targets at one time in a comma
+            delimited list assigned to <code class=
+            "option">--target-list</code>. Run <span class=
+            "command"><strong>./configure --help</strong></span> to get a
+            complete list of available targets.
+          </p>
+        </div>
+        <pre class="userinput">
+<kbd class="command">if [ $(uname -m) = i686 ]; then
+   QEMU_ARCH=i386-softmmu
+else
+   QEMU_ARCH=x86_64-softmmu
+fi
+
+
+mkdir -vp build &amp;&amp;
+cd        build &amp;&amp;
+
+../configure --prefix=/usr               \
+             --sysconfdir=/etc           \
+             --target-list=$QEMU_ARCH    \
+             --audio-drv-list=alsa       \
+             --docdir=/usr/share/doc/qemu-4.2.0 &amp;&amp;
+
+unset QEMU_ARCH &amp;&amp;
+
+make</kbd>
+</pre>
+        <p>
+          To run the built in tests, run <span class="command"><strong>make
+          V=1 -k check</strong></span>.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install</kbd>
+</pre>
+        <p>
+          You will also need to add an Udev rule so that the KVM device gets
+          correct permissions:
+        </p>
+        <pre class="root">
+<kbd class="command">cat &gt; /lib/udev/rules.d/65-kvm.rules &lt;&lt; "EOF"
+<code class="literal">KERNEL=="kvm", GROUP="kvm", MODE="0660"</code>
+EOF</kbd>
+</pre>
+        <p>
+          Change the permissions and ownership of a helper script, which is
+          needed when using the <span class="quote">&ldquo;<span class=
+          "quote">bridge</span>&rdquo;</span> network device (see below):
+        </p>
+        <pre class="root">
+<kbd class="command">chgrp kvm  /usr/libexec/qemu-bridge-helper &amp;&amp;
+chmod 4750 /usr/libexec/qemu-bridge-helper</kbd>
+</pre>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            For convenience you may want to create a symbolic link to run the
+            installed program. For instance:
+          </p>
+          <pre class="root">
+<kbd class="command">ln -sv qemu-system-`uname -m` /usr/bin/qemu</kbd>
+</pre>
+        </div>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>--audio-drv-list=alsa</code></em>: This
+          switch sets the audio driver to ALSA. See below for enabling other
+          audio drivers.
+        </p>
+        <p>
+          <code class="option">--audio-drv-list=pa</code>: This switch sets
+          the audio driver to pulseaudio. For other drivers see the
+          --audio-drv-list list in <span class=
+          "command"><strong>configure</strong></span>'s help output. The
+          default audio driver is OSS. To enable support for both alsa and
+          pulseaudio, use <code class=
+          "option">--audio-drv-list=alsa,pa</code>.
+        </p>
+      </div>
+      <div class="using" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Using Qemu
+        </h2>
+        <p>
+          Since using qemu means using a virtual computer, the steps to set
+          up the virtual machine are in close analogy with those to set up a
+          real computer. You'll need to decide about CPU, memory, disk, USB
+          devices, network card(s), screen size, etc. Once the <span class=
+          "quote">&ldquo;<span class="quote">hardware</span>&rdquo;</span> is
+          decided, you'll have for example to choose how to connect the
+          machine to internet, and/or to install an OS. In the following, we
+          show basic ways of performing those steps. But qemu is much more
+          than this, and it is strongly advised to read the qemu
+          documentation in <code class=
+          "filename">/usr/share/doc/qemu-4.2.0/qemu-doc.html</code>.
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            It is standard practice to name the computer running qemu
+            <span class="quote">&ldquo;<span class=
+            "quote">host</span>&rdquo;</span> and the emulated machine
+            running under qemu the <span class="quote">&ldquo;<span class=
+            "quote">guest</span>&rdquo;</span>. We'll use those notations in
+            the following.
+          </p>
+        </div>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            The following instructions assume the optional symbolic link,
+            <code class="filename">qemu</code>, has been created.
+            Additionally, <span class="command"><strong>qemu</strong></span>
+            must be run from an X Window System based terminal (either
+            locally or over ssh).
+          </p>
+        </div>
+        <h3>
+          Disk
+        </h3>
+        <p>
+          A virtual disk may be set up in the following way:
+        </p>
+        <pre class="userinput">
+<kbd class="command">VDISK_SIZE=<em class="replaceable"><code>50G</code></em>
+VDISK_FILENAME=<em class="replaceable"><code>vdisk.img</code></em>
+qemu-img create -f qcow2 $VDISK_FILENAME $VDISK_SIZE</kbd>
+</pre>
+        <p>
+          The virtual disk size and filename should be ajusted as desired.
+          The actual size of the file will be less than specified, but will
+          expand as needed, so it is safe to put a high value.
+        </p>
+        <h3>
+          Operating System
+        </h3>
+        <p>
+          To install an operating system, download an iso image from your
+          preferred Linux distribution. For the purposes of this example,
+          we'll use <code class=
+          "filename">Fedora-16-x86_64-Live-LXDE.iso</code> in the current
+          directory. Run the following:
+        </p>
+        <pre class="userinput">
+<kbd class="command">qemu -enable-kvm                           \
+     -drive file=$VDISK_FILENAME           \
+     -cdrom Fedora-16-x86_64-Live-LXDE.iso \
+     -boot d                               \
+     -m <em class="replaceable"><code>1G</code></em></kbd>
+</pre>
+        <p>
+          Follow the normal installation procedures for the chosen
+          distribution. The <em class="parameter"><code>-boot</code></em>
+          option specifies the boot order of drives as a string of drive
+          letters. Valid drive letters are: a, b (floppy 1 and 2), c (first
+          hard disk), d (first CD-ROM). The <em class=
+          "parameter"><code>-m</code></em> option is the amount of memory to
+          use for the virtual machine. The choice depends on the load of the
+          host. Modern distributions should be comfortable with 1GB. The
+          <em class="parameter"><code>-enable-kvm</code></em> option allows
+          hardware acceleration. Without this switch, the emulation is much
+          slower.
+        </p>
+        <h3>
+          Defining the virtual hardware
+        </h3>
+        <p>
+          The virtual machine hardware is defined by the qemu command line.
+          An example command is given below:
+        </p>
+        <pre class="userinput">
+<kbd class="command">qemu -enable-kvm                     \
+     -smp 4                          \
+     -cpu host                       \
+     -m 1G                           \
+     -drive file=$VDISK_FILENAME     \
+     -cdrom grub-img.iso             \
+     -boot order=c,once=d,menu=on    \
+     -net nic,netdev=net0            \
+     -netdev user,id=net0            \
+     -soundhw ac97                   \
+     -vga std                        \
+     -serial mon:stdio               \
+     -name "fedora-16"</kbd>
+</pre>
+        <h3>
+          Meaning of the command line options
+        </h3>
+        <p>
+          <em class="parameter"><code>-enable-kvm</code></em>: enable full
+          KVM virtualization support. On some hardware, it may be necessary
+          to add the undocumented <code class="option">-machine
+          smm=off</code> option in order to enable KVM.
+        </p>
+        <p>
+          <em class="parameter"><code>-smp &lt;N&gt;</code></em>: enable
+          symmetric multiprocessing with &lt;N&gt; CPUs.
+        </p>
+        <p>
+          <em class="parameter"><code>-cpu &lt;model&gt;</code></em>:
+          simulate CPU &lt;model&gt;. the list of supported models can be
+          obtained with <code class="option">-cpu help</code>.
+        </p>
+        <p>
+          <em class="parameter"><code>-drive
+          file=&lt;filename&gt;</code></em>: defines a virtual disk whose
+          image is stored in <code class="filename">&lt;filename&gt;</code>.
+        </p>
+        <p>
+          <em class="parameter"><code>-cdrom grub-img.iso</code></em>:
+          defines an iso formated file to use as a cdrom. Here we use a grub
+          rescue disk, which may turn handy when something goes wrong at boot
+          time.
+        </p>
+        <p>
+          <em class="parameter"><code>-boot
+          order=c,once=d,menu=on</code></em>: defines the boot order for the
+          virtual BIOS.
+        </p>
+        <p>
+          <em class="parameter"><code>-net
+          nic,netdev=&lt;netid&gt;</code></em>: defines a network card
+          connected to the network device with id &lt;netid&gt;.
+        </p>
+        <p>
+          <em class="parameter"><code>-netdev
+          user,id=&lt;netid&gt;</code></em>: defines the network <span class=
+          "quote">&ldquo;<span class="quote">user</span>&rdquo;</span>
+          device. This is a virtual local network with addresses 10.0.2.0/24,
+          where the host has address 10.0.2.2 and acts as a gateway to
+          internet, and with a name server at address 10.0.2.3, and an smb
+          server at address 10.0.2.4. A builtin DHCP server can allocate
+          addresses between 10.0.2.15 and 10.0.2.31.
+        </p>
+        <p>
+          <em class="parameter"><code>-soundhw &lt;model&gt;</code></em>:
+          defines the soundcard model. The list may be obtained with
+          <code class="option">-soundhw help</code>.
+        </p>
+        <p>
+          <em class="parameter"><code>-vga &lt;type&gt;</code></em>: defines
+          the type of vga card to emulate.
+        </p>
+        <p>
+          <em class="parameter"><code>-serial mon:stdio</code></em>: sends
+          the serial port of the guest (<code class=
+          "filename">/dev/ttyS0</code> on linux guests), multiplexed with the
+          qemu monitor, to the standard input and output of the qemu process.
+        </p>
+        <p>
+          <em class="parameter"><code>-name &lt;name&gt;</code></em>: sets
+          the name of the guest. This name is displayed in the guest window
+          caption. It may be useful if you run several guests at the same
+          time.
+        </p>
+        <h3>
+          Controlling the Emulated Display
+        </h3>
+        <p>
+          It may happen that the guest window displayed by qemu does not
+          correspond to the full capability of the emulated vga card. For
+          example, the vmware card is 1600x900 capable, but only 1024x768 is
+          displayed by default. A suitable Xorg configuration on the guest
+          allows to use the full size (Note that the Xorg video driver to use
+          is <a class="xref" href="../x/x7driver.html#xorg-vmware-driver"
+          title="Xorg VMware Driver-13.3.0">Xorg VMware Driver-13.3.0</a>):
+        </p>
+        <pre class="root">
+<kbd class=
+"command">cat &gt; /usr/share/X11/xorg.conf.d/20-vmware.conf &lt;&lt; "EOF"
+<code class="literal">Section         "Monitor"
+  Identifier    "Monitor0"
+  # cvt 1600 900
+  # 1600x900 59.95 Hz (CVT 1.44M9) hsync: 55.99 kHz; pclk: 118.25 MHz
+  Modeline      "1600x900"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync
+  Option        "PreferredMode" "1600x900"
+  HorizSync     1-200
+  VertRefresh   1-200
+EndSection
+
+Section         "Device"
+  Identifier    "VMware SVGA II Adapter"
+  Option        "Monitor" "default"
+  Driver        "vmware"
+EndSection
+
+Section         "Screen"
+  Identifier    "Default Screen"
+  Device        "VMware SVGA II Adapter"
+  Monitor       "Monitor0"
+
+  SubSection    "Display"
+    Depth       24
+    Modes       "1600x900" "1440x900" "1366x768" "1280x720" "800x480"
+  EndSubSection
+
+EndSection</code>
+EOF</kbd>
+</pre>
+        <p>
+          New sizes will be available besides the native ones. You need to
+          restart X in order to have the new sizes available.
+        </p>
+        <h3>
+          Networking
+        </h3>
+        <p>
+          The above solution for networking allows the guest to access the
+          local network through the host (and possibly to access internet
+          through the local routers), but the converse is not true. Not even
+          the host can access the guest, unless port forwarding is enabled.
+          And in the case several guests are running, they cannot communicate
+          with each other. Other network devices can be used for this
+          purpose. For example, there is the <span class=
+          "quote">&ldquo;<span class="quote">socket</span>&rdquo;</span>
+          device, which allows several guests to share a common virtual
+          network. In the following, we describe in more details how to set
+          up the <span class="quote">&ldquo;<span class=
+          "quote">bridge</span>&rdquo;</span> device, which allows the guests
+          to appear as if connected to the local network. All the commands
+          below should be run as the <code class="systemitem">root</code>
+          user.
+        </p>
+        <p>
+          Set up bridging with <a class="xref" href=
+          "../basicnet/bridge-utils.html" title=
+          "bridge-utils-1.6">bridge-utils-1.6</a>. Only the physical
+          interface(s) should be set up at boot. The virtual interface(s)
+          will be added as needed when qemu is started.
+        </p>
+        <p>
+          Set up a required configuration file:
+        </p>
+        <pre class="root">
+<kbd class="command">install -vdm 755 /etc/qemu &amp;&amp;
+echo allow br0 &gt; /etc/qemu/bridge.conf</kbd>
+</pre>
+        <p>
+          In the command above, replace the switch <em class=
+          "parameter"><code>-netdev user,...</code></em> with <em class=
+          "parameter"><code>-netdev bridge,id=net0</code></em>.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">ivshmem-client, ivshmem-server, qemu
+              (symlink), qemu-ga, qemu-img, qemu-io, qemu-nbd,
+              qemu-system-&lt;arch&gt;, and virtfs-proxy-helper</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/share/qemu and
+              /usr/share/doc/qemu-4.2.0</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Description
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ivshmem-client" name=
+                    "ivshmem-client"></a><span class="term"><span class=
+                    "command"><strong>ivshmem-client</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a standalone client for using the ivshmem device.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ivshmem-server" name=
+                    "ivshmem-server"></a><span class="term"><span class=
+                    "command"><strong>ivshmem-server</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is an example server for the ivshmem device.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="qemu-edid" name="qemu-edid"></a><span class=
+                    "term"><span class=
+                    "command"><strong>qemu-edid</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a test tool for the qemu EDID generator.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="qemu-ga" name="qemu-ga"></a><span class=
+                    "term"><span class=
+                    "command"><strong>qemu-ga</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    implements support for QMP (QEMU Monitor Protocol)
+                    commands and events that terminate and originate
+                    respectively within the guest using an agent built as
+                    part of QEMU.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="qemu-img" name="qemu-img"></a><span class=
+                    "term"><span class=
+                    "command"><strong>qemu-img</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides commands to manage QEMU disk images.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="qemu-io" name="qemu-io"></a><span class=
+                    "term"><span class=
+                    "command"><strong>qemu-io</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a diagnostic and manipulation program for (virtual)
+                    memory media. It is still at an early stage of
+                    development.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="qemu-nbd" name="qemu-nbd"></a><span class=
+                    "term"><span class=
+                    "command"><strong>qemu-nbd</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    exports Qemu disk images using the QEMU Disk Network
+                    Block Device (NBD) protocol.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="qemu-system" name="qemu-system"></a><span class=
+                    "term"><span class=
+                    "command"><strong>qemu-system-x86_64</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is the QEMU PC System emulator.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="virtfs-proxy-helper" name=
+                    "virtfs-proxy-helper"></a><span class="term"><span class=
+                    "command"><strong>virtfs-proxy-helper</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    creates a socket pair or a named socket. QEMU and proxy
+                    helper communicate using this socket. QEMU proxy fs
+                    driver sends filesystem request to proxy helper and
+                    receives the response from it.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-20 12:41:28 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="virtualization.html" title=
+          "Virtualization">Prev</a>
+          <p>
+            Virtualization
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="../general/general.html" title=
+          "General Libraries and Utilities">Next</a>
+          <p>
+            General Libraries and Utilities
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="virtualization.html" title=
+          "Chapter&nbsp;8.&nbsp;Virtualization">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

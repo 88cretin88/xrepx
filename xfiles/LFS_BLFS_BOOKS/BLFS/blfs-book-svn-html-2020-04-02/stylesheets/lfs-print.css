@@ -1,0 +1,9 @@
+/*
+$LastChangedBy: manuel $
+$Date: 2007-07-07 05:25:55 -0500 (Sat, 07 Jul 2007) $
+*/
+@import url(lfs.css);
+
+.navfooter, .headerlinks {
+   display: none;
+}

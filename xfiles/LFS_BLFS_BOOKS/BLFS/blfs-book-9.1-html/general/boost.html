@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      Boost-1.72.0
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;9.&nbsp;General Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="aspell.html" title="Aspell-0.60.8">Prev</a>
+          <p>
+            Aspell-0.60.8
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="brotli.html" title="brotli-1.0.7">Next</a>
+          <p>
+            brotli-1.0.7
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="boost" name="boost"></a>Boost-1.72.0
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to Boost
+        </h2>
+        <p>
+          <span class="application">Boost</span> provides a set of free
+          peer-reviewed portable C++ source libraries. It includes libraries
+          for linear algebra, pseudorandom number generation, multithreading,
+          image processing, regular expressions and unit testing.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.bz2">
+                https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.bz2</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: cb40943d2a2cb8ce08d42bc48b0f84f0
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 102 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 1.0 GB (168 MB installed)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 1.5 SBU (Using parallelism=4; add 1.3
+                SBU for tests)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          Boost Dependencies
+        </h3>
+        <h4>
+          Recommended
+        </h4>
+        <p class="recommended">
+          <a class="xref" href="which.html" title=
+          "Which-2.21 and Alternatives">Which-2.21</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="icu.html" title="ICU-65.1">ICU-65.1</a> and
+          <a class="ulink" href="https://www.open-mpi.org/">Open MPI</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/boost">http://wiki.linuxfromscratch.org/blfs/wiki/boost</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of Boost
+        </h2>
+        <p>
+          This package can be built with several jobs running in parallel. In
+          the instructions below, <em class=
+          "parameter"><code>&lt;N&gt;</code></em> stands for the number of
+          jobs. Install <span class="application">Boost</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./bootstrap.sh --prefix=/usr &amp;&amp;
+./b2 stage -j<em class=
+"replaceable"><code>&lt;N&gt;</code></em> threading=multi link=shared</kbd>
+</pre>
+        <p>
+          To run the Boost.Build's regression test, <a class="xref" href=
+          "python2.html" title="Python-2.7.17">Python-2.7.17</a> is required.
+          Run the tests with: issue <span class="command"><strong>pushd
+          tools/build/test; python3 test_all.py; popd</strong></span>. All
+          152 tests should pass.
+        </p>
+        <p>
+          To run every library's regression tests, issue <span class=
+          "command"><strong>pushd status; ../b2; popd</strong></span>. A few
+          tests may fail. They take a very long time (over 119 SBU at -j4)
+          and use a very large amount of disk space (46 GB). You should use
+          the <em class="parameter"><code>-jN</code></em> switch to speed
+          them up.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class=
+"command">./b2 install threading=multi link=shared                 &amp;&amp;
+ln -svf detail/sha1.hpp /usr/include/boost/uuid/sha1.hpp</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class="parameter"><code>threading=multi</code></em>: This
+          parameter ensures that <span class="application">Boost</span> is
+          built with multithreading support.
+        </p>
+        <p>
+          <em class="parameter"><code>link=shared</code></em>: This parameter
+          ensures that only shared libraries are created, except for
+          libboost_exception and libboost_test_exec_monitor which are created
+          as static. Most people will not need the static libraries, and most
+          programs using <span class="application">Boost</span> only use the
+          headers. Omit this parameter if you do need static libraries.
+        </p>
+        <p>
+          <em class="parameter"><code>ln -svf detail/sha1.hpp
+          ...</code></em>: The <code class="filename">uuid/sha1.hpp</code>
+          used to be a regular header, but by boost_1_66_0 it had been
+          changed to load the similar <code class=
+          "filename">detail/sha1.hpp</code> header, with a message that it
+          had been deprecated. It has now been removed, but not every package
+          which uses it has been changed. An example is one of the libraries
+          downloaded as a git version by libreoffice. The symlink enables
+          this and similar packages to build.
+        </p>
+        <p>
+          <code class="option">-jN</code>: This switch may be added to the
+          <span class="command"><strong>b2</strong></span> command lines, to
+          run up to N processes in parallel.
+        </p>
+        <p>
+          <code class="option">--with-python=python3</code>: Add this switch
+          to the <span class="command"><strong>bootstrap</strong></span>
+          command, if you want Boost to use Python3 instead of Python2. Using
+          Python3 is known to cause the installation to fail on some systems.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libboost_atomic.so, libboost_chrono.a,
+              libboost_chrono.so, libboost_container.so, libboost_context.so,
+              libboost_coroutine.so, libboost_date_time.so,
+              libboost_exception.a, libboost-fiber.so,
+              libboost_filesystem.so, libboost_graph.so,
+              libboost_iostreams.so, libboost_locale.so,
+              libboost_log_setup.so, libboost_log.so, libboost_math_c99.so,
+              libboost_math_c99f.so, libboost_math_c99l.so,
+              libboost_math_tr1.so, libboost_math_tr1f.so,
+              libboost_math_tr1l.so, libboost_prg_exec_monitor.so,
+              libboost_program_options.so, libboost_python27.so or
+              libboost_python3.so, libboost_random.so, libboost_regex.so,
+              libboost_serialization.so, libboost_signals.so,
+              libboost_stacktrace_addr2line.so, libboost_stacktrace_basic.so,
+              libboost_stacktrace_noop.so, libboost_system.a,
+              libboost_system.so, libboost_test_exec_monitor.a,
+              libboost_thread.so, libboost_timer.a, libboost_timer.so,
+              libboost_type_erasure.so, libboost_unit_test_framework.so,
+              libboost_wave.so, and libboost_wserialization.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/include/boost</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-16 12:25:07 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="aspell.html" title="Aspell-0.60.8">Prev</a>
+          <p>
+            Aspell-0.60.8
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="brotli.html" title="brotli-1.0.7">Next</a>
+          <p>
+            brotli-1.0.7
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

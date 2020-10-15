@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      giflib-5.2.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;10.&nbsp;Graphics and Font Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gegl.html" title="gegl-0.4.22">Prev</a>
+          <p>
+            gegl-0.4.22
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="glm.html" title="GLM-0.9.9.7">Next</a>
+          <p>
+            GLM-0.9.9.7
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="graphlib.html" title=
+          "Chapter&nbsp;10.&nbsp;Graphics and Font Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="giflib" name="giflib"></a>giflib-5.2.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to giflib
+        </h2>
+        <p>
+          The <span class="application">giflib</span> package contains
+          libraries for reading and writing GIFs as well as programs for
+          converting and working with GIF files.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://sourceforge.net/projects/giflib/files/giflib-5.2.1.tar.gz">
+                https://sourceforge.net/projects/giflib/files/giflib-5.2.1.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (HTTP) MD5 sum: 6f03aee4ebe54ac2cc1ab3e4b0a049e5
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download (HTTP) size: 436 KB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 3.2 MB (with documentation)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: less than 0.1 SBU (with documentation)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          giflib Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="../pst/xmlto.html" title=
+          "xmlto-0.0.28">xmlto-0.0.28</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/giflib">http://wiki.linuxfromscratch.org/blfs/wiki/giflib</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of giflib
+        </h2>
+        <p>
+          Install <span class="application">giflib</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">make</kbd>
+</pre>
+        <p>
+          This package does not come with a test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make PREFIX=/usr install &amp;&amp;
+
+
+find doc \( -name Makefile\* -o -name \*.1 \
+         -o -name \*.xml \) -exec rm -v {} \; &amp;&amp;
+
+install -v -dm755 /usr/share/doc/giflib-5.2.1 &amp;&amp;
+cp -v -R doc/* /usr/share/doc/giflib-5.2.1</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>find doc ... -exec rm -v {}
+          \;</strong></span>: This command removes <code class=
+          "filename">Makefiles</code>, man and xml files from the
+          documentation directory that would otherwise be installed by the
+          commands that follow.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">gif2rgb, gifbuild, gifclrmp, giffix,
+              giftext, and giftool</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">libgif.so</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directory:</strong>
+              <span class="segbody">/usr/share/doc/giflib-5.2.1</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gif2rgb" name="gif2rgb"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gif2rgb</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    converts images saved as GIF to 24-bit RGB images.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gifbuild" name="gifbuild"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gifbuild</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    dumps GIF data in a textual format, or undumps it to a
+                    GIF.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="gifclrmp" name="gifclrmp"></a><span class=
+                    "term"><span class=
+                    "command"><strong>gifclrmp</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    modifies GIF image colormaps.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="giffix" name="giffix"></a><span class=
+                    "term"><span class=
+                    "command"><strong>giffix</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    clumsily attempts to fix truncated GIF images.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="giftext" name="giftext"></a><span class=
+                    "term"><span class=
+                    "command"><strong>giftext</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    prints (text only) general information about a GIF file.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="giftool" name="giftool"></a><span class=
+                    "term"><span class=
+                    "command"><strong>giftool</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a GIF transformation tool.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libgif" name="libgif"></a><span class=
+                    "term"><code class="filename">libgif.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains API functions required by the <span class=
+                    "application">giflib</span> programs and any other
+                    programs needing library functionality to read, write and
+                    manipulate GIF images.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-17 14:39:03 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="gegl.html" title="gegl-0.4.22">Prev</a>
+          <p>
+            gegl-0.4.22
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="glm.html" title="GLM-0.9.9.7">Next</a>
+          <p>
+            GLM-0.9.9.7
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="graphlib.html" title=
+          "Chapter&nbsp;10.&nbsp;Graphics and Font Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

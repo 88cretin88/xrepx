@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      SWIG-4.0.1
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-9.1">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 9.1
+      </h4>
+      <h3>
+        Chapter&nbsp;13.&nbsp;Programming
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="svnserver.html" title=
+          "Running a Subversion Server">Prev</a>
+          <p>
+            Running a Subversion Server
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="tcl.html" title="Tcl-8.6.10">Next</a>
+          <p>
+            Tcl-8.6.10
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="swig" name="swig"></a>SWIG-4.0.1
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to SWIG
+        </h2>
+        <p>
+          <span class="application">SWIG</span> (Simplified Wrapper and
+          Interface Generator) is a compiler that integrates <span class=
+          "application">C</span> and <span class="application">C++</span>
+          with languages including <span class="application">Perl</span>,
+          <span class="application">Python</span>, <span class=
+          "application">Tcl</span>, <span class="application">Ruby</span>,
+          <span class="application">PHP</span>, <span class=
+          "application">Java</span>, <span class="application">C#</span>,
+          <span class="application">D</span>, <span class=
+          "application">Go</span>, <span class="application">Lua</span>,
+          <span class="application">Octave</span>, <span class=
+          "application">R</span>, <span class="application">Scheme</span>,
+          and <span class="application">Ocaml</span>. <span class=
+          "application">SWIG</span> can also export its parse tree into
+          <span class="application">Lisp</span> s-expressions and
+          <span class="application">XML</span>.
+        </p>
+        <p>
+          <span class="application">SWIG</span> reads annotated <span class=
+          "application">C/C++</span> header files and creates wrapper code
+          (glue code) in order to make the corresponding <span class=
+          "application">C/C++</span> libraries available to the listed
+          languages, or to extend <span class="application">C/C++</span>
+          programs with a scripting language.
+        </p>
+        <p>
+          This package is known to build and work properly using an LFS-9.1
+          platform.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://downloads.sourceforge.net/swig/swig-4.0.1.tar.gz">https://downloads.sourceforge.net/swig/swig-4.0.1.tar.gz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: 54cc40b3804816f7d38ab510b6f13b04
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 7.7 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 181 MB (1.2 GB with tests)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 0.2 SBU (add 9.4 SBU for tests; both
+                using parallelism=4)
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          SWIG Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="pcre.html" title="PCRE-8.44">PCRE-8.44</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="boost.html" title=
+          "Boost-1.72.0">Boost-1.72.0</a> for tests, and any of the languages
+          mentioned in the introduction, as run-time dependencies
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/swig">http://wiki.linuxfromscratch.org/blfs/wiki/swig</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of SWIG
+        </h2>
+        <p>
+          Install <span class="application">SWIG</span> by running the
+          following commands:
+        </p>
+        <pre class="userinput">
+<kbd class="command">./configure --prefix=/usr \
+            --without-maximum-compile-warnings &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          To test the results, issue: <span class="command"><strong>make -k
+          check TCL_INCLUDE=</strong></span>. The unsetting of the variable
+          <code class="envar">TCL_INCLUDE</code> is necessary since it is not
+          correctly set by <span class="emphasis"><em>configure</em></span>.
+          The tests are only executed for the languages installed on your
+          machine, so the disk space and SBU values given for the tests may
+          vary, and should be considered as mere orders of magnitude. If you
+          have <a class="xref" href="python2.html" title=
+          "Python-2.7.17">Python-2.7.17</a> installed, the Python-3 tests are
+          not run. You can run tests for Python-3 by issuing <span class=
+          "command"><strong>PY3=1 make check-python-examples</strong></span>
+          followed by <span class="command"><strong>PY3=1 make
+          check-python-test-suite</strong></span>. According to <span class=
+          "application">SWIG</span>'s documentation, the failure of some
+          tests should not be considered harmful.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install &amp;&amp;
+install -v -m755 -d /usr/share/doc/swig-4.0.1 &amp;&amp;
+cp -v -R Doc/* /usr/share/doc/swig-4.0.1</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <em class=
+          "parameter"><code>--without-maximum-compile-warnings</code></em>:
+          disables compiler ansi conformance enforcement, which triggers
+          errors in the <span class="application">Lua</span> headers
+          (starting with Lua 5.3).
+        </p>
+        <p>
+          <code class="option">--without-&lt;language&gt;</code>: allows
+          disabling the building of tests and examples for &lt;language&gt;,
+          but all the languages capabilities of <span class=
+          "application">SWIG</span> are always built.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">swig and ccache-swig</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Library:</strong>
+              <span class="segbody">None</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/share/doc/swig-4.0.1 and
+              /usr/share/swig</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="swig-prog" name="swig-prog"></a><span class=
+                    "term"><span class=
+                    "command"><strong>swig</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    takes an interface file containing C/C++ declarations and
+                    SWIG special instructions, and generates the
+                    corresponding wrapper code needed to build extension
+                    modules.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="ccache-swig" name="ccache-swig"></a><span class=
+                    "term"><span class=
+                    "command"><strong>ccache-swig</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is a compiler cache, which speeds up re-compilation of
+                    C/C++/SWIG code.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-02-17 12:12:55 -0800
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="svnserver.html" title=
+          "Running a Subversion Server">Prev</a>
+          <p>
+            Running a Subversion Server
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="tcl.html" title="Tcl-8.6.10">Next</a>
+          <p>
+            Tcl-8.6.10
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="prog.html" title=
+          "Chapter&nbsp;13.&nbsp;Programming">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 9.1">Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

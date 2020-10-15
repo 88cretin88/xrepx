@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content=
+    "application/xhtml+xml; charset=iso-8859-1" />
+    <title>
+      JS-68.6.0
+    </title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
+    <link rel="stylesheet" href="../stylesheets/lfs-print.css" type=
+    "text/css" media="print" />
+  </head>
+  <body class="blfs" id="blfs-2020-04-02">
+    <div class="navheader">
+      <h4>
+        Beyond Linux<sup>®</sup> From Scratch <span class="phrase">(System
+        V</span> Edition) - Version 2020-04-02
+      </h4>
+      <h3>
+        Chapter&nbsp;9.&nbsp;General Libraries
+      </h3>
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="js60.html" title="JS-60.8.0">Prev</a>
+          <p>
+            JS-60.8.0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="json-c.html" title="JSON-C-0.13.1">Next</a>
+          <p>
+            JSON-C-0.13.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 2020-04-02">
+          Home</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sect1" lang="en" xml:lang="en">
+      <h1 class="sect1">
+        <a id="js68" name="js68"></a>JS-68.6.0
+      </h1>
+      <div class="package" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Introduction to JS
+        </h2>
+        <p>
+          <span class="application">JS</span> is Mozilla's JavaScript engine
+          written in C. JS68 is taken from Firefox.
+        </p>
+        <h3>
+          Package Information
+        </h3>
+        <div class="itemizedlist">
+          <ul class="compact">
+            <li class="listitem">
+              <p>
+                Download (HTTP): <a class="ulink" href=
+                "https://archive.mozilla.org/pub/firefox/releases/68.6.0esr/source/firefox-68.6.0esr.source.tar.xz">
+                https://archive.mozilla.org/pub/firefox/releases/68.6.0esr/source/firefox-68.6.0esr.source.tar.xz</a>
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download MD5 sum: d21112f6e2b482e3c3ce431682de5e7d
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Download size: 300 MB
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated disk space required: 2.8 GB (30 MB installed)
+              </p>
+            </li>
+            <li class="listitem">
+              <p>
+                Estimated build time: 7.0 SBU
+              </p>
+            </li>
+          </ul>
+        </div>
+        <h3>
+          JS68 Dependencies
+        </h3>
+        <h4>
+          Required
+        </h4>
+        <p class="required">
+          <a class="xref" href="autoconf213.html" title=
+          "Autoconf2.13">Autoconf-2.13</a>, <a class="xref" href="icu.html"
+          title="ICU-66.1">ICU-66.1</a>, <a class="xref" href="python2.html"
+          title="Python-2.7.17">Python-2.7.17</a>, <a class="xref" href=
+          "which.html" title="Which-2.21 and Alternatives">Which-2.21</a>,
+          and <a class="xref" href="zip.html" title="Zip-3.0">Zip-3.0</a>
+        </p>
+        <h4>
+          Optional
+        </h4>
+        <p class="optional">
+          <a class="xref" href="llvm.html" title=
+          "LLVM-10.0.0">LLVM-10.0.0</a> (with <span class=
+          "application">Clang</span>) and <a class="xref" href="doxygen.html"
+          title="Doxygen-1.8.17">Doxygen-1.8.17</a>
+        </p>
+        <p class="usernotes">
+          User Notes: <a class="ulink" href=
+          "http://wiki.linuxfromscratch.org/blfs/wiki/js68">http://wiki.linuxfromscratch.org/blfs/wiki/js68</a>
+        </p>
+      </div>
+      <div class="installation" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Installation of JS
+        </h2>
+        <div class="admon caution">
+          <img alt="[Caution]" src="../images/caution.png" />
+          <h3>
+            Caution
+          </h3>
+          <p>
+            If you are upgrading JS68 from a previously installed old
+            version, save all work and exit your GNOME Session if you have
+            one running. Replacing the JS68 binary will cause the GNOME Shell
+            to crash and return you to your display manager or TTY. After
+            installing the new version, reinstall <a class="xref" href=
+            "../gnome/gjs.html" title="Gjs-1.64.1">Gjs-1.64.1</a>. Polkit is
+            unaffected.
+          </p>
+        </div>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            Unlike most other packages in BLFS, the instructions below
+            require you to untar <code class=
+            "filename">firefox-68.6.0esr.tar.xz</code> and change into the
+            <code class="filename">firefox-68.6.0</code> folder.
+          </p>
+        </div>
+        <p>
+          Install <span class="application">JS</span> by running the
+          following commands:
+        </p>
+        <div class="admon note">
+          <img alt="[Note]" src="../images/note.png" />
+          <h3>
+            Note
+          </h3>
+          <p>
+            If you are compiling this package in chroot you must do two
+            things. First, as the <code class="systemitem">root</code> user,
+            ensure that <code class="filename">/dev/shm</code> is mounted. If
+            you do not do this, the <span class="application">Python</span>
+            configury will fail with a traceback report referencing
+            <code class=
+            "filename">/usr/lib/pythonN.N/multiprocessing/synchronize.py</code>.
+            Run:
+          </p>
+          <pre class="userinput">
+<kbd class="command">mountpoint /dev/shm &gt;/dev/null ||
+ mount -t tmpfs devshm /dev/shm</kbd>
+</pre>
+          <p>
+            Second, either as the <code class="systemitem">root</code> user
+            export the <code class="envar">$SHELL</code> environment variable
+            using <span class="command"><strong>export
+            SHELL=/bin/sh</strong></span> or else prepend <code class=
+            "envar">SHELL=/bin/sh</code> when running the <span class=
+            "command"><strong>configure</strong></span> command.
+          </p>
+        </div>
+        <pre class="userinput">
+<kbd class="command">sed '21,+4d' -i js/moz.configure &amp;&amp;
+
+mkdir obj &amp;&amp;
+cd    obj &amp;&amp;
+
+CC=gcc CXX=g++ LLVM_OBJDUMP=/bin/false       \
+../js/src/configure --prefix=/usr            \
+                    --with-intl-api          \
+                    --with-system-zlib       \
+                    --with-system-icu        \
+                    --disable-jemalloc       \
+                    --disable-debug-symbols  \
+                    --enable-readline        \
+                    --enable-unaligned-private-values &amp;&amp;
+make</kbd>
+</pre>
+        <p>
+          This package does not come with a working test suite.
+        </p>
+        <p>
+          Now, as the <code class="systemitem">root</code> user:
+        </p>
+        <pre class="root">
+<kbd class="command">make install &amp;&amp;
+rm -v /usr/lib/libjs_static.ajs</kbd>
+</pre>
+      </div>
+      <div class="commands" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Command Explanations
+        </h2>
+        <p>
+          <span class="command"><strong>sed '21,+4d'
+          js/moz.configure</strong></span>: The building system searches for
+          <span class="command"><strong>rustc</strong></span> and
+          <span class="command"><strong>cargo</strong></span> but doesn't
+          actually use them. Remove the reference to them so we can build
+          JS68 without <a class="xref" href="rust.html" title=
+          "Rustc-1.42.0">rustc-1.42.0</a> installed.
+        </p>
+        <p>
+          <code class="envar">CC=gcc CXX=g++</code>: Upstream now prefers
+          <span class="application">clang</span>, override it like other
+          Mozilla packages in BLFS book.
+        </p>
+        <p>
+          <code class="envar">LLVM_OBJDUMP=/bin/false</code>: The building
+          system searches for <span class=
+          "command"><strong>llvm-objdump</strong></span> but doesn't actually
+          use it. Override it so we can build JS68 without <a class="xref"
+          href="llvm.html" title="LLVM-10.0.0">LLVM-10.0.0</a> installed.
+        </p>
+        <p>
+          <em class="parameter"><code>--with-*</code></em>: These parameters
+          allow the build system to use system versions of the above
+          libriares. These are required for stability.
+        </p>
+        <p>
+          <em class="parameter"><code>--enable-readline</code></em>: This
+          switch enables Readline support in the JS shell.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-jemalloc</code></em>: This
+          switch disables the internal memory allocator used in JS68.
+          jemalloc causes a conflict with glibc.
+        </p>
+        <p>
+          <em class="parameter"><code>--disable-debug-symbols</code></em>:
+          Don't generate debug symbols since they are very large and most
+          users won't need it. Remove it if you want to debug JS68.
+        </p>
+        <p>
+          <em class=
+          "parameter"><code>--enable-unaligned-private-values</code></em>:
+          This switch allows the code using JS68 not to align all pointers in
+          the same way JS68 does. <a class="xref" href="../gnome/gjs.html"
+          title="Gjs-1.64.1">Gjs-1.64.1</a> requires JS68 to be built with
+          this switch.
+        </p>
+        <p>
+          <span class="command"><strong>rm -v
+          /usr/lib/libjs_static.ajs</strong></span>: Remove a large static
+          library which is not used by any BLFS package.
+        </p>
+      </div>
+      <div class="content" lang="en" xml:lang="en">
+        <h2 class="sect2">
+          Contents
+        </h2>
+        <div class="segmentedlist">
+          <div class="seglistitem">
+            <div class="seg">
+              <strong class="segtitle">Installed Programs:</strong>
+              <span class="segbody">js68 and js68-config</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Libraries:</strong>
+              <span class="segbody">libmozjs-68.so and
+              libjs_static.ajs</span>
+            </div>
+            <div class="seg">
+              <strong class="segtitle">Installed Directories:</strong>
+              <span class="segbody">/usr/include/mozjs-68</span>
+            </div>
+          </div>
+        </div>
+        <div class="variablelist">
+          <h3>
+            Short Descriptions
+          </h3>
+          <table border="0" class="variablelist">
+            <colgroup>
+              <col align="left" valign="top" />
+              <col />
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>
+                  <p>
+                    <a id="js6-js68" name="js6-js68"></a><span class=
+                    "term"><span class=
+                    "command"><strong>js68</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    provides a command line interface to the <span class=
+                    "application">JavaScript</span> engine.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="js68-config" name="js68-config"></a><span class=
+                    "term"><span class=
+                    "command"><strong>js68-config</strong></span></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    is used to find the JS compiler and linker flags.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>
+                    <a id="libmozjs-68" name="libmozjs-68"></a><span class=
+                    "term"><code class=
+                    "filename">libmozjs-68.so</code></span>
+                  </p>
+                </td>
+                <td>
+                  <p>
+                    contains the Mozilla JavaScript API functions.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="updated">
+        Last updated on 2020-03-31 20:34:37 -0500
+      </p>
+    </div>
+    <div class="navfooter">
+      <ul>
+        <li class="prev">
+          <a accesskey="p" href="js60.html" title="JS-60.8.0">Prev</a>
+          <p>
+            JS-60.8.0
+          </p>
+        </li>
+        <li class="next">
+          <a accesskey="n" href="json-c.html" title="JSON-C-0.13.1">Next</a>
+          <p>
+            JSON-C-0.13.1
+          </p>
+        </li>
+        <li class="up">
+          <a accesskey="u" href="genlib.html" title=
+          "Chapter&nbsp;9.&nbsp;General Libraries">Up</a>
+        </li>
+        <li class="home">
+          <a accesskey="h" href="../index.html" title=
+          "Beyond Linux® From Scratch     (System V Edition) - Version 2020-04-02">
+          Home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
