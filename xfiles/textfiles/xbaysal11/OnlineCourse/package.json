@@ -55,7 +55,7 @@
         "react-calendar-heatmap": "^1.8.0",
         "react-charts": "^2.0.0-alpha.12",
         "react-console-emulator": "^2.0.0",
-        "react-dev-utils": "^7.0.3",
+        "react-dev-utils": "^11.0.4",
         "react-dom": "^16.8.3",
         "react-fontawesome": "^1.6.1",
         "react-router-dom": "^4.3.1",
